@@ -1,68 +1,101 @@
-from tkinter import Tk, Label, Button, Entry, IntVar, END, W, E
+import base64
+import tempfile
+import tkinter as tk
+
+from fseutil.etc.icon import ofr_colour_618_618_base64
+from fseutil.lib.b4_br187 import phi_parallel_any_br187
 
 
-class Calculator:
+class Calculator(tk.Frame):
 
-    def __init__(self, master: Tk):
-        self.master = master
-        master.title("Calculator")
-        master.geometry(newGeometry="500x500")
-        master.resizable(0, 0)
-        master.iconbitmap()
+    def __init__(self):
+        super().__init__()
 
-        self.total = 0
-        self.entered_number = 0
+        self.l1 = tk.Label(self, text='Emitter Width [m]')
+        self.e1 = tk.Entry(self)
+        self.l2 = tk.Label(self, text='Emitter Height [m]')
+        self.e2 = tk.Entry(self)
+        self.l3 = tk.Label(self, text='Receiver Loc. X [m]')
+        self.e3 = tk.Entry(self)
+        self.l4 = tk.Label(self, text='Receiver Loc. Y [m]')
+        self.e4 = tk.Entry(self)
+        self.l5 = tk.Label(self, text='Separation [m]')
+        self.e5 = tk.Entry(self)
+        self.l6 = tk.Label(self, text='Emitter Heat Flux [kW/m2]')
+        self.e6 = tk.Entry(self)
+        self.l7 = tk.Label(self, text='Received Heat Flux [kW/m2]')
+        self.e7 = tk.Entry(self)
 
-        self.total_label_text = IntVar()
-        self.total_label_text.set(self.total)
-        self.total_label = Label(master, textvariable=self.total_label_text)
+        self.init_ui()
 
-        self.label = Label(master, text="Total:")
+    def init_ui(self):
+        _, fp_icon = tempfile.mkstemp()
+        with open(fp_icon, "wb") as f:
+            f.write(base64.b64decode(ofr_colour_618_618_base64))
+        self.master.iconbitmap(fp_icon)
 
-        vcmd = master.register(self.validate) # we have to wrap the command
-        self.entry = Entry(master, validate="key", validatecommand=(vcmd, '%P'))
+        self.master.title("Phi Calculator")
+        self.master.geometry(newGeometry="400x150")
+        self.master.resizable(0, 0)
 
-        self.add_button = Button(master, text="+", command=lambda: self.update("add"))
-        self.subtract_button = Button(master, text="-", command=lambda: self.update("subtract"))
-        self.reset_button = Button(master, text="Reset", command=lambda: self.update("reset"))
+        self.pack(fill=tk.BOTH, expand=True)
 
-        # LAYOUT
+        # self.columnconfigure(1, weight=1)
+        # self.columnconfigure(3, pad=7)
+        # self.rowconfigure(3, weight=1)
+        # self.rowconfigure(5, pad=7)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(1, pad=10)
+        # self.rowconfigure(3, weight=1)
+        # self.rowconfigure(5, pad=7)
 
-        self.label.grid(row=0, column=0, sticky=W)
-        self.total_label.grid(row=0, column=1, columnspan=2, sticky=E)
+        self.l1.grid(row=1, column=0, sticky=tk.W)
+        self.e1.grid(row=1, column=1, sticky=tk.W+tk.E)
+        self.l2.grid(row=2, column=0, sticky=tk.W)
+        self.e2.grid(row=2, column=1, sticky=tk.W+tk.E)
+        self.l3.grid(row=3, column=0, sticky=tk.W)
+        self.e3.grid(row=3, column=1, sticky=tk.W+tk.E)
+        self.l4.grid(row=4, column=0, sticky=tk.W)
+        self.e4.grid(row=4, column=1, sticky=tk.W+tk.E)
+        self.l5.grid(row=5, column=0, sticky=tk.W)
+        self.e5.grid(row=5, column=1, sticky=tk.W+tk.E)
+        self.l6.grid(row=6, column=0, sticky=tk.W)
+        self.e6.grid(row=6, column=1, sticky=tk.W+tk.E)
+        self.l7.grid(row=7, column=0, sticky=tk.W)
+        self.e7.grid(row=7, column=1, sticky=tk.W+tk.E)
 
-        self.entry.grid(row=1, column=0, columnspan=3, sticky=W+E)
+        self.e7.config(stat=tk.DISABLED)
+        self.e7.delete(0, tk.END)
+        self.e7.insert(tk.END, 156)
 
-        self.add_button.grid(row=2, column=0)
-        self.subtract_button.grid(row=2, column=1)
-        self.reset_button.grid(row=2, column=2, sticky=W+E)
+        b1 = tk.Button(self, text="Calculate", command=self.command_calculate_phi)
+        b1.grid(row=7, column=2)
 
-    def validate(self, new_text):
-        if not new_text: # the field is being cleared
-            self.entered_number = 0
-            return True
-
+    def command_calculate_phi(self):
         try:
-            self.entered_number = int(new_text)
-            return True
-        except ValueError:
-            return False
+            out = phi_parallel_any_br187(
+                W_m=float(self.e1.get()),
+                H_m=float(self.e2.get()),
+                w_m=float(self.e3.get()),
+                h_m=float(self.e4.get()),
+                S_m=float(self.e5.get())
+            )
+            out *= float(self.e6.get())
+        except Exception as e:
+            if hasattr(e, 'message'):
+                out = e.message
+            else:
+                out = e
 
-    def update(self, method):
-        if method == "add":
-            self.total += self.entered_number
-        elif method == "subtract":
-            self.total -= self.entered_number
-        else: # reset
-            self.total = 0
-
-        self.total_label_text.set(self.total)
-        self.entry.delete(0, END)
+        self.e7.config(stat=tk.NORMAL)
+        self.e7.delete(0, tk.END)
+        self.e7.insert(tk.END, out)
+        self.e7.config(stat='readonly')
 
 
 def main():
-    root = Tk()
-    my_gui = Calculator(root)
+    root = tk.Tk()
+    my_gui = Calculator()
     root.mainloop()
 
 
