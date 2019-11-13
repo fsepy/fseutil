@@ -44,3 +44,5 @@
 /sfeprapy/dev
 /sfeprapy_demo
 /.coverage
+
+*.spec
