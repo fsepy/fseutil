@@ -1,12 +1,14 @@
-from tkinter import Tk, Label, Button, W
-
 from tkinter import Tk, Label, Button, Entry, IntVar, END, W, E
+
 
 class Calculator:
 
-    def __init__(self, master):
+    def __init__(self, master: Tk):
         self.master = master
         master.title("Calculator")
+        master.geometry(newGeometry="500x500")
+        master.resizable(0, 0)
+        master.iconbitmap()
 
         self.total = 0
         self.entered_number = 0
