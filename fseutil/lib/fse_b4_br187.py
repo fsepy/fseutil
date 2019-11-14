@@ -1,6 +1,8 @@
 # coding: utf-8
 
-import numpy
+# import numpy
+import math
+from statistics import median
 
 
 def phi_parallel_corner_br187(W_m, H_m, S_m, multiplier=1):
@@ -15,14 +17,14 @@ def phi_parallel_corner_br187(W_m, H_m, S_m, multiplier=1):
     # Calculate view factor, phi
     X = W_m / S_m
     Y = H_m / S_m
-    a = 1 / 2 / numpy.pi
-    b = X / numpy.sqrt(1 + X**2)
-    c = numpy.arctan(Y / numpy.sqrt(1 + X**2))
-    d = Y / numpy.sqrt(1 + Y ** 2)
-    e = numpy.arctan(X / numpy.sqrt(1 + Y ** 2))
+    a = 1 / 2 / math.pi
+    b = X / (1 + X**2) ** 0.5
+    c = math.atan(Y / (1 + X**2) ** 0.5)
+    d = Y / (1 + Y ** 2) ** 0.5
+    e = math.atan(X / (1 + Y ** 2) ** 0.5)
     phi = a * (b * c + d * e)
 
-    return phi*multiplier
+    return phi * multiplier
 
 
 def phi_perpendicular_corner_br187(W_m, H_m, S_m, multiplier=1):
@@ -37,14 +39,25 @@ def phi_perpendicular_corner_br187(W_m, H_m, S_m, multiplier=1):
     X = W_m / S_m
     Y = H_m / S_m
 
-    a = 1 / 2 / numpy.pi
-    b = numpy.arctan(X)
-    c = 1 / numpy.sqrt(Y ** 2 + 1)
-    d = numpy.arctan(X / numpy.sqrt(Y ** 2 + 1))
+    a = 1 / 2 / math.pi
+    b = math.atan(X)
+    c = 1 / (Y ** 2 + 1) ** 0.5
+    d = math.atan(X / (Y ** 2 + 1) ** 0.5)
 
     phi = a * (b - c * d)
 
     return phi*multiplier
+
+
+def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
+    phi = [phi_parallel_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_planes(W_m, H_m, w_m, h_m)]
+    return sum(phi)
+
+
+def phi_perpendicular_any_br187(W_m, H_m, w_m, h_m, S_m):
+    four_P = four_planes(W_m, H_m, w_m, h_m)
+    phi = [phi_perpendicular_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_P]
+    return sum(phi)
 
 
 def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
@@ -64,10 +77,10 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
     r1 = (w_m, h_m)
 
     # GLOBAL MIN, MEDIAN AND MAX
-    min = (numpy.min([W_m, w_m, 0]), numpy.min([H_m, h_m, 0]))
-    mid = (numpy.median([W_m, w_m, 0]), numpy.median([H_m, h_m, 0]))
-    max = (numpy.max([W_m, w_m, 0]), numpy.max([H_m, h_m, 0]))
-
+    min_ = (min([W_m, w_m, 0]), min([H_m, h_m, 0]))
+    mid_ = (median([W_m, w_m, 0]), median([H_m, h_m, 0]))
+    max_ = (max([W_m, w_m, 0]), max([H_m, h_m, 0]))
+    
     # FOUR PLANES
     A = 0, 0, 0
     B = 0, 0, 0
@@ -76,7 +89,7 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
 
     # RECEIVER AT CORNER
     if e1 == e2 or e1 == r1 or e1 == (e2[0], r1[1]) or e1 == (r1[0], e2[1]):
-        A = (max[0] - min[0], max[1] - min[1], 1)
+        A = (max_[0] - min_[0], max_[1] - min_[1], 1)
         B = (0, 0, 0)
         C = (0, 0, 0)
         D = (0, 0, 0)
@@ -89,15 +102,15 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
     elif ((r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]) or ((r1[1] == e1[1] or r1[1] == e2[1]) and e1[0] < r1[0] < e2[0]):
         # vertical edge
         if (r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]:
-            A = (max[0] - min[0], max[1] - mid[1], 1)
-            B = (max[0] - min[0], mid[1] - min[1], 1)
+            A = (max_[0] - min_[0], max_[1] - mid_[1], 1)
+            B = (max_[0] - min_[0], mid_[1] - min_[1], 1)
             C = (0, 0, 0)
             D = (0, 0, 0)
 
         # horizontal edge
         elif (r1[1] == e1[1] or r1[1] == e2[1]) and e1[0] < r1[0] < e2[0]:
-            A = (max[0] - mid[0], max[1] - min[1], 1)
-            B = (mid[0] - min[0], max[1] - min[1], 1)
+            A = (max_[0] - mid_[0], max_[1] - min_[1], 1)
+            B = (mid_[0] - min_[0], max_[1] - min_[1], 1)
             C = (0, 0, 0)
             D = (0, 0, 0)
         else:
@@ -105,77 +118,66 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
 
     # RECEIVER WITHIN EMITTER
     elif o[0] < w_m < W_m and o[1] < h_m < H_m:
-        A = (mid[0] - min[0], mid[1] - min[1], 1)
-        B = (max[0] - mid[0], max[1] - mid[1], 1)
-        C = (mid[0] - min[0], max[1] - mid[1], 1)
-        D = (max[0] - mid[0], mid[1] - min[1], 1)
+        A = (mid_[0] - min_[0], mid_[1] - min_[1], 1)
+        B = (max_[0] - mid_[0], max_[1] - mid_[1], 1)
+        C = (mid_[0] - min_[0], max_[1] - mid_[1], 1)
+        D = (max_[0] - mid_[0], mid_[1] - min_[1], 1)
 
     # RECEIVER OUTSIDE EMITTER
     else:
         # within y-axis range max[1] and min[1], far right
-        if min[1] < r1[1] < max[1] and r1[0] == max[0]:
-            A = max[0] - min[0], max[1] - mid[1], 1
-            B = max[0] - min[0], mid[1] - min[1], 1
-            C = max[0] - mid[0], max[1] - mid[1], -1  # negative
-            D = max[0] - mid[0], mid[1] - min[1], -1  # negative
+        if min_[1] < r1[1] < max_[1] and r1[0] == max_[0]:
+            A = max_[0] - min_[0], max_[1] - mid_[1], 1
+            B = max_[0] - min_[0], mid_[1] - min_[1], 1
+            C = max_[0] - mid_[0], max_[1] - mid_[1], -1  # negative
+            D = max_[0] - mid_[0], mid_[1] - min_[1], -1  # negative
         # within y-axis range max[1] and min[1], far left
-        elif min[1] < r1[1] < max[1] and r1[0] == min[0]:
-            A = max[0] - min[0], max[1] - mid[1], 1
-            B = max[0] - min[0], mid[1] - min[1], 1
-            C = mid[0] - min[0], max[1] - mid[1], -1  # negative
-            D = mid[0] - min[0], mid[1] - min[1], -1  # negative
+        elif min_[1] < r1[1] < max_[1] and r1[0] == min_[0]:
+            A = max_[0] - min_[0], max_[1] - mid_[1], 1
+            B = max_[0] - min_[0], mid_[1] - min_[1], 1
+            C = mid_[0] - min_[0], max_[1] - mid_[1], -1  # negative
+            D = mid_[0] - min_[0], mid_[1] - min_[1], -1  # negative
         # within x-axis range max[0] and min[0], far top
-        elif min[0] < r1[0] < max[0] and r1[1] == max[1]:
-            A = max[0] - mid[0], max[1] - min[1], 1
-            B = mid[0] - min[0], max[1] - min[1], 1
-            C = max[0] - mid[0], max[1] - mid[1], -1
-            D = mid[0] - min[0], max[1] - mid[1], -1
+        elif min_[0] < r1[0] < max_[0] and r1[1] == max_[1]:
+            A = max_[0] - mid_[0], max_[1] - min_[1], 1
+            B = mid_[0] - min_[0], max_[1] - min_[1], 1
+            C = max_[0] - mid_[0], max_[1] - mid_[1], -1
+            D = mid_[0] - min_[0], max_[1] - mid_[1], -1
         # within x-axis range max[0] and min[0], far bottom
-        elif min[0] < r1[0] < max[0] and r1[1] == min[1]:
-            A = max[0] - mid[0], max[1] - min[1], 1
-            B = mid[0] - min[0], max[1] - min[1], 1
-            C = max[0] - mid[0], mid[1] - min[1], -1
-            D = mid[0] - min[0], mid[1] - min[1], -1
+        elif min_[0] < r1[0] < max_[0] and r1[1] == min_[1]:
+            A = max_[0] - mid_[0], max_[1] - min_[1], 1
+            B = mid_[0] - min_[0], max_[1] - min_[1], 1
+            C = max_[0] - mid_[0], mid_[1] - min_[1], -1
+            D = mid_[0] - min_[0], mid_[1] - min_[1], -1
         # receiver out, within 1st quadrant
-        elif r1[0] == max[0] and r1[1] == max[1]:
-            A = max[0] - min[0], max[1] - min[1], 1
-            B = max[0] - mid[0], max[1] - mid[1], 1
-            C = max[0] - mid[0], max[1] - min[1], -1
-            D = max[0] - min[0], max[1] - mid[1], -1
+        elif r1[0] == max_[0] and r1[1] == max_[1]:
+            A = max_[0] - min_[0], max_[1] - min_[1], 1
+            B = max_[0] - mid_[0], max_[1] - mid_[1], 1
+            C = max_[0] - mid_[0], max_[1] - min_[1], -1
+            D = max_[0] - min_[0], max_[1] - mid_[1], -1
         # receiver out, within 2nd quadrant
-        elif r1[0] == max[0] and r1[1] == min[1]:
-            A = max[0] - min[0], max[1] - min[1], 1
-            B = max[0] - mid[0], mid[1] - min[1], 1
-            C = max[0] - min[0], mid[1] - min[1], -1
-            D = max[0] - mid[0], max[1] - min[1], -1
+        elif r1[0] == max_[0] and r1[1] == min_[1]:
+            A = max_[0] - min_[0], max_[1] - min_[1], 1
+            B = max_[0] - mid_[0], mid_[1] - min_[1], 1
+            C = max_[0] - min_[0], mid_[1] - min_[1], -1
+            D = max_[0] - mid_[0], max_[1] - min_[1], -1
         # receiver out, within 3rd quadrant
-        elif r1[0] == min[0] and r1[1] == min[1]:
-            A = max[0] - min[0], max[1] - min[1], 1
-            B = mid[0] - min[0], mid[1] - min[1], 1
-            C = mid[0] - min[0], max[1] - min[1], -1
-            D = max[0] - min[0], mid[1] - min[1], -1
+        elif r1[0] == min_[0] and r1[1] == min_[1]:
+            A = max_[0] - min_[0], max_[1] - min_[1], 1
+            B = mid_[0] - min_[0], mid_[1] - min_[1], 1
+            C = mid_[0] - min_[0], max_[1] - min_[1], -1
+            D = max_[0] - min_[0], mid_[1] - min_[1], -1
         # receiver out, within 4th quadrant
-        elif r1[0] == min[0] and r1[1] == max[1]:
-            A = max[0] - min[0], max[1] - min[1], 1
-            B = mid[0] - min[0], max[1] - mid[1], 1
-            C = mid[0] - min[0], max[1] - min[1], -1
-            D = max[0] - min[0], max[1] - mid[1], -1
+        elif r1[0] == min_[0] and r1[1] == max_[1]:
+            A = max_[0] - min_[0], max_[1] - min_[1], 1
+            B = mid_[0] - min_[0], max_[1] - mid_[1], 1
+            C = mid_[0] - min_[0], max_[1] - min_[1], -1
+            D = max_[0] - min_[0], max_[1] - mid_[1], -1
         # unkown
         else:
-            return numpy.nan, numpy.nan, numpy.nan
+            return math.nan, math.nan, math.nan
 
     return A, B, C, D
-
-
-def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
-    phi = [phi_parallel_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_planes(W_m, H_m, w_m, h_m)]
-    return numpy.sum(phi)
-
-
-def phi_perpendicular_any_br187(W_m, H_m, w_m, h_m, S_m):
-    four_P = four_planes(W_m, H_m, w_m, h_m)
-    phi = [phi_perpendicular_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_P]
-    return numpy.sum(phi)
 
 
 def test_phi_parallel_any_br187():

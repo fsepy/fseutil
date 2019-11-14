@@ -1,9 +1,10 @@
 import base64
 import tempfile
 import tkinter as tk
+from tkinter import ttk
 
 from fseutil.etc.icon import ofr_colour_618_618_base64
-from fseutil.lib.b4_br187 import phi_parallel_any_br187
+from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187
 
 
 class Calculator(tk.Frame):
@@ -11,20 +12,22 @@ class Calculator(tk.Frame):
     def __init__(self):
         super().__init__()
 
-        self.l1 = tk.Label(self, text='Emitter Width [m]')
-        self.e1 = tk.Entry(self)
-        self.l2 = tk.Label(self, text='Emitter Height [m]')
-        self.e2 = tk.Entry(self)
-        self.l3 = tk.Label(self, text='Receiver Loc. X [m]')
-        self.e3 = tk.Entry(self)
-        self.l4 = tk.Label(self, text='Receiver Loc. Y [m]')
-        self.e4 = tk.Entry(self)
-        self.l5 = tk.Label(self, text='Separation [m]')
-        self.e5 = tk.Entry(self)
-        self.l6 = tk.Label(self, text='Emitter Heat Flux [kW/m2]')
-        self.e6 = tk.Entry(self)
-        self.l7 = tk.Label(self, text='Received Heat Flux [kW/m2]')
-        self.e7 = tk.Entry(self)
+        self.l1 = ttk.Label(self, text='W [m]')
+        self.e1 = ttk.Entry(self)
+        self.l2 = ttk.Label(self, text='H [m]')
+        self.e2 = ttk.Entry(self)
+        self.l3 = ttk.Label(self, text='w [m]')
+        self.e3 = ttk.Entry(self)
+        self.l4 = ttk.Label(self, text='h [m]')
+        self.e4 = ttk.Entry(self)
+        self.l5 = ttk.Label(self, text='S [m]')
+        self.e5 = ttk.Entry(self)
+        self.l6 = ttk.Label(self, text='Q [kW/m2]')
+        self.e6 = ttk.Entry(self)
+        self.l7 = ttk.Label(self, text='Resultant Q [kW/m2]')
+        self.e7 = ttk.Entry(self)
+
+        self.b1 = ttk.Button(self, text="Calculate", command=self.command_calculate_phi)
 
         self.init_ui()
 
@@ -64,12 +67,11 @@ class Calculator(tk.Frame):
         self.l7.grid(row=7, column=0, sticky=tk.W)
         self.e7.grid(row=7, column=1, sticky=tk.W+tk.E)
 
-        self.e7.config(stat=tk.DISABLED)
+        self.e7.config(stat='readonly')
         self.e7.delete(0, tk.END)
         self.e7.insert(tk.END, 156)
 
-        b1 = tk.Button(self, text="Calculate", command=self.command_calculate_phi)
-        b1.grid(row=7, column=2)
+        self.b1.grid(row=7, column=2)
 
     def command_calculate_phi(self):
         try:
@@ -81,6 +83,7 @@ class Calculator(tk.Frame):
                 S_m=float(self.e5.get())
             )
             out *= float(self.e6.get())
+            out = f'{out:.2f}'
         except Exception as e:
             if hasattr(e, 'message'):
                 out = e.message
