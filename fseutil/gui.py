@@ -7,27 +7,29 @@ from fseutil.etc.icon import ofr_colour_618_618_base64
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187
 
 
-class Calculator(tk.Frame):
+class Calculator(ttk.Frame):
 
     def __init__(self):
         super().__init__()
 
-        self.l1 = ttk.Label(self, text='W [m]')
-        self.e1 = ttk.Entry(self)
-        self.l2 = ttk.Label(self, text='H [m]')
-        self.e2 = ttk.Entry(self)
-        self.l3 = ttk.Label(self, text='w [m]')
-        self.e3 = ttk.Entry(self)
-        self.l4 = ttk.Label(self, text='h [m]')
-        self.e4 = ttk.Entry(self)
-        self.l5 = ttk.Label(self, text='S [m]')
-        self.e5 = ttk.Entry(self)
-        self.l6 = ttk.Label(self, text='Q [kW/m2]')
-        self.e6 = ttk.Entry(self)
-        self.l7 = ttk.Label(self, text='Resultant Q [kW/m2]')
-        self.e7 = ttk.Entry(self)
+        self.frame_centre = ttk.Frame(self, width=450, height=50, pady=3)
 
-        self.b1 = ttk.Button(self, text="Calculate", command=self.command_calculate_phi)
+        self.label_W = ttk.Label(self, text='W [m]')
+        self.entry_W = ttk.Entry(self)
+        self.label_H = ttk.Label(self, text='H [m]')
+        self.entry_H = ttk.Entry(self)
+        self.label_w = ttk.Label(self, text='w [m]')
+        self.entry_w = ttk.Entry(self)
+        self.label_h = ttk.Label(self, text='h [m]')
+        self.entry_h = ttk.Entry(self)
+        self.label_S = ttk.Label(self, text='S [m]')
+        self.entry_S = ttk.Entry(self)
+        self.label_Q = ttk.Label(self, text='Q [kW/m2]')
+        self.entry_Q = ttk.Entry(self)
+        self.label_result = ttk.Label(self, text='Resultant Q [kW/m2]')
+        self.entry_result = ttk.Entry(self)
+
+        self.button_calculate = ttk.Button(self, text="Calculate", command=self.command_calculate_phi)
 
         self.init_ui()
 
@@ -48,41 +50,41 @@ class Calculator(tk.Frame):
         # self.rowconfigure(3, weight=1)
         # self.rowconfigure(5, pad=7)
         self.columnconfigure(1, weight=1)
-        self.columnconfigure(1, pad=10)
+        self.columnconfigure(1, pad=2)
         # self.rowconfigure(3, weight=1)
         # self.rowconfigure(5, pad=7)
 
-        self.l1.grid(row=1, column=0, sticky=tk.W)
-        self.e1.grid(row=1, column=1, sticky=tk.W+tk.E)
-        self.l2.grid(row=2, column=0, sticky=tk.W)
-        self.e2.grid(row=2, column=1, sticky=tk.W+tk.E)
-        self.l3.grid(row=3, column=0, sticky=tk.W)
-        self.e3.grid(row=3, column=1, sticky=tk.W+tk.E)
-        self.l4.grid(row=4, column=0, sticky=tk.W)
-        self.e4.grid(row=4, column=1, sticky=tk.W+tk.E)
-        self.l5.grid(row=5, column=0, sticky=tk.W)
-        self.e5.grid(row=5, column=1, sticky=tk.W+tk.E)
-        self.l6.grid(row=6, column=0, sticky=tk.W)
-        self.e6.grid(row=6, column=1, sticky=tk.W+tk.E)
-        self.l7.grid(row=7, column=0, sticky=tk.W)
-        self.e7.grid(row=7, column=1, sticky=tk.W+tk.E)
+        self.label_W.grid(row=1, column=0, sticky='w')
+        self.entry_W.grid(row=1, column=1, sticky='we')
+        self.label_H.grid(row=2, column=0, sticky=tk.W)
+        self.entry_H.grid(row=2, column=1, sticky=tk.W + tk.E)
+        self.label_w.grid(row=3, column=0, sticky=tk.W)
+        self.entry_w.grid(row=3, column=1, sticky=tk.W + tk.E)
+        self.label_h.grid(row=4, column=0, sticky=tk.W)
+        self.entry_h.grid(row=4, column=1, sticky=tk.W + tk.E)
+        self.label_S.grid(row=5, column=0, sticky=tk.W)
+        self.entry_S.grid(row=5, column=1, sticky=tk.W + tk.E)
+        self.label_Q.grid(row=6, column=0, sticky=tk.W)
+        self.entry_Q.grid(row=6, column=1, sticky=tk.W + tk.E)
+        self.label_result.grid(row=7, column=0, sticky=tk.W)
+        self.entry_result.grid(row=7, column=1, sticky=tk.W + tk.E)
 
-        self.e7.config(stat='readonly')
-        self.e7.delete(0, tk.END)
-        self.e7.insert(tk.END, 156)
+        self.entry_result.config(stat='readonly')
+        self.entry_result.delete(0, tk.END)
+        self.entry_result.insert(tk.END, 156)
 
-        self.b1.grid(row=7, column=2)
+        self.button_calculate.grid(row=7, column=2)
 
     def command_calculate_phi(self):
         try:
             out = phi_parallel_any_br187(
-                W_m=float(self.e1.get()),
-                H_m=float(self.e2.get()),
-                w_m=float(self.e3.get()),
-                h_m=float(self.e4.get()),
-                S_m=float(self.e5.get())
+                W_m=float(self.entry_W.get()),
+                H_m=float(self.entry_H.get()),
+                w_m=float(self.entry_w.get()),
+                h_m=float(self.entry_h.get()),
+                S_m=float(self.entry_S.get())
             )
-            out *= float(self.e6.get())
+            out *= float(self.entry_Q.get())
             out = f'{out:.2f}'
         except Exception as e:
             if hasattr(e, 'message'):
@@ -90,10 +92,10 @@ class Calculator(tk.Frame):
             else:
                 out = e
 
-        self.e7.config(stat=tk.NORMAL)
-        self.e7.delete(0, tk.END)
-        self.e7.insert(tk.END, out)
-        self.e7.config(stat='readonly')
+        self.entry_result.config(stat=tk.NORMAL)
+        self.entry_result.delete(0, tk.END)
+        self.entry_result.insert(tk.END, out)
+        self.entry_result.config(stat='readonly')
 
 
 def main():
