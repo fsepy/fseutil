@@ -6,7 +6,7 @@ import subprocess
 def build_gui():
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-    cmd_pyinstaller = 'python -m PyInstaller'
+    cmd_pyinstaller = 'pyinstaller'
 
     cmd_option_list = [
         # '--noconsole',

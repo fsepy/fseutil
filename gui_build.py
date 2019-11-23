@@ -5,14 +5,16 @@ import subprocess
 
 def build_gui():
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    print(os.getcwd())
 
     cmd_pyinstaller = 'python -m PyInstaller'
+    cmd_pyinstaller = 'pyinstaller'
 
     cmd_option_list = [
         '--noconsole',
         '--onefile',
         '--windowed',
-        '--icon='+os.path.join('fseutil', 'etc', 'ofr-colour-618_618.ico'),
+        '--icon='+os.path.realpath(os.path.join('fseutil', 'etc', 'ofr-colour-618_618.ico')),
     ]
     cmd_extra_files_list = [
     ]

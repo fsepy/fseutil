@@ -50,6 +50,16 @@ def phi_perpendicular_corner_br187(W_m, H_m, S_m, multiplier=1):
 
 
 def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
+    r"""
+    Equation in LaTeX \phi=\frac{1}{2\pi}\left(\frac{X}{\sqrt{1+X^2}}\cdot\tan^{-1}\left({\frac{Y}{\sqrt{1+X^2}}}\right)
+    +\frac{Y}{\sqrt{1+Y^2}}\cdot\tan^{-1}\left({\frac{X}{\sqrt{1+Y^2}}}\right)\right)
+    :param W_m:
+    :param H_m:
+    :param w_m:
+    :param h_m:
+    :param S_m:
+    :return:
+    """
     phi = [phi_parallel_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_planes(W_m, H_m, w_m, h_m)]
     return sum(phi)
 
