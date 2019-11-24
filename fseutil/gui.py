@@ -86,8 +86,8 @@ class Calculator(ttk.Frame):
         # STYLES
         # ======
         style = ttk.Style()
-        style.configure("TLabel", foreground="black", background=self.master.cget('bg'), font=("Helvetica", 12))
-        style.configure("TCheckbutton", foreground="black", background=self.master.cget('bg'), font=("Helvetica", 12))
+        style.configure("TLabel", foreground="black", background=self.master.cget('bg'), font=("Helvetica", 9))
+        style.configure("TCheckbutton", foreground="black", background=self.master.cget('bg'), font=("Helvetica", 9))
 
         # GUI LAYOUT
         # ==========
@@ -170,8 +170,8 @@ class Calculator(ttk.Frame):
         self.label_upa_unit = ttk.Label(self, text='%')
 
         # set grid location
-        self.checkbutton_centered.grid(row=2, column=0, sticky='w', padx=5, pady=(5, 0))
-        self.checkbutton_to_boundary.grid(row=3, column=0, sticky='w', padx=5, pady=(0, 5))
+        self.checkbutton_centered.grid(row=2, column=0, sticky='w', padx=5, pady=(10, 0))
+        self.checkbutton_to_boundary.grid(row=3, column=0, sticky='w', padx=5, pady=(0, 10))
 
         row0 = 4
         col0 = 0
@@ -220,7 +220,7 @@ class Calculator(ttk.Frame):
         self.entry_upa.delete(0, tk.END)
 
         self.button_calculate = ttk.Button(self, text="Calculate", command=self.calculate_resultant_heat_flux)
-        self.button_calculate.grid(row=12, column=1, columnspan=2, sticky='e', padx=5, pady=(0, 5))
+        self.button_calculate.grid(row=12, column=1, columnspan=2, sticky='e', padx=5, pady=10)
 
     def calculate_resultant_heat_flux(self, _=None):
         """
@@ -253,14 +253,20 @@ class Calculator(ttk.Frame):
                     list_entry_v.append(None)
             return list_entry_v
 
-        list_label = [self.label_W, self.label_H, self.label_m, self.label_n, self.label_S, self.label_Q1, self.label_Q2, self.label_upa]
-        list_entry = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.option_Q1, self.entry_Q2, self.entry_upa]
+        list_label = [self.label_W, self.label_H, self.label_m, self.label_n, self.label_S, self.label_Q2, self.label_upa]
+        list_entry = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q2, self.entry_upa]
         list_entry_v = get_float_from_entry(list_entry)
 
         print('BEFORE CALCULATION')
         print('\n'.join('{:40.40} {}'.format(v.cget('text')+':', list_entry_v[i]) for i, v in enumerate(list_label)))
 
-        W, H, m, n, S, Q1, Q2, upa = tuple(list_entry_v)
+        W, H, m, n, S, Q2, upa = tuple(list_entry_v)
+        # get value for Q1, i.e. ttk.OptionMenu
+        try:
+            Q1 = float(self.option_Q1_v.get())
+        except:
+            Q1 = None
+
         # if self.checkbutton_centered_v.get() == 1:
         #     m, n = 0.5 * W, 0.5 * H
         m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
@@ -290,7 +296,7 @@ class Calculator(ttk.Frame):
         # Update Entries
         # --------------
         # store Entry state, to restore later
-        list_tk = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.option_Q1, self.entry_Q2, self.entry_upa]
+        list_tk = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q2, self.entry_upa]
         list_tk_states = [i['state'] for i in list_tk]
 
         # set Entry state to 'normal' to able to write value
