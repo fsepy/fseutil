@@ -16,43 +16,44 @@ class Calculator(ttk.Frame):
     def __init__(self, root: tk.Tk = None):
         super().__init__()
 
-        self.app_name = 'OFR B4 BR187 Calculator'
+        # General App Setting
+        # ===================
+        self.app_name = 'OFR B4 BR187 Calculator'  # app name
+        self.app_version = _ver  # app version
 
+        # set short cut, calculate when enter is pressed
         self.root = None
         if root:
             root.bind(sequence='<Return>', func=self.calculate_resultant_heat_flux)
 
+        # variable container, preserved to be used later, class wide
+
         # Instantiate GUI objects
         # -----------------------
 
-        self.label_logo = None
+        self.label_lage_logo: ttk.Label  # large logo image
+        self.label_short_description: ttk.Label  # text short description
 
-        self.text_short_description = None
-
-        self.checkbutton_centered: ttk.Checkbutton
-        self.checkbutton_centered_v = tk.IntVar(value=1)
-
-        self.checkbutton_upa: ttk.Checkbutton
-        self.checkbutton_upa_v = tk.IntVar(value=1)
-
-        self.checkbutton_to_boudnary: ttk.Checkbutton
-        self.checkbutton_to_boudnary_v = tk.IntVar(value=1)
+        self.checkbutton_centered: ttk.Checkbutton  # checkbox, whether to treat the receiver as centered to emitter
+        self.checkbutton_to_boundary: ttk.Checkbutton  # checkbox, whether to take separation to boundary or surface
+        self.checkbutton_centered_v = tk.IntVar(value=1)  # set default, receiver to the center of emitter
+        self.checkbutton_to_boundary_v = tk.IntVar(value=1)  # set default, separation to notional boundary
 
         self.label_W: ttk.Label
-        self.entry_W: ttk.Entry
         self.label_H: ttk.Label
-        self.entry_H: ttk.Entry
         self.label_m: ttk.Label
-        self.entry_m: ttk.Entry
         self.label_n: ttk.Label
-        self.entry_n: ttk.Entry
         self.label_S: ttk.Label
-        self.entry_S: ttk.Entry
         self.label_Q1: ttk.Label
-        self.entry_Q1: ttk.Entry
         self.label_Q2: ttk.Label
-        self.entry_Q2: ttk.Entry
         self.label_upa: ttk.Label
+        self.entry_W: ttk.Entry
+        self.entry_H: ttk.Entry
+        self.entry_m: ttk.Entry
+        self.entry_n: ttk.Entry
+        self.entry_S: ttk.Entry
+        self.entry_Q1: ttk.Entry
+        self.entry_Q2: ttk.Entry
         self.entry_upa: ttk.Entry
 
         self.button_calculate: ttk.Button
@@ -98,15 +99,15 @@ class Calculator(ttk.Frame):
         label_logo_image = Image.open(os.path.realpath(fp_radiation_figure_image))
         label_logo_image = label_logo_image.resize((150, int(150/2.43)), Image.ANTIALIAS)
         label_logo_image = ImageTk.PhotoImage(label_logo_image)
-        self.label_logo = ttk.Label(self, image=label_logo_image)
-        self.label_logo.image = label_logo_image
-        self.label_logo.grid(row=0, column=0, sticky='w', padx=5, pady=5)
+        self.label_lage_logo = ttk.Label(self, image=label_logo_image)
+        self.label_lage_logo.image = label_logo_image
+        self.label_lage_logo.grid(row=0, column=0, sticky='w', padx=5, pady=5)
 
         # Short description
         # -----------------
         description_str = f'OFR B4 BR187 Calculator\n{_ver}'
-        self.text_short_description = ttk.Label(self, text=description_str, anchor='e', foreground='grey')
-        self.text_short_description.grid(row=0, column=1, columnspan=2, sticky='nswe', padx=5, pady=5)
+        self.label_short_description = ttk.Label(self, text=description_str, anchor='e', foreground='grey')
+        self.label_short_description.grid(row=0, column=1, columnspan=2, sticky='nswe', padx=5, pady=5)
 
         # Radiation figure
         # ----------------
@@ -117,9 +118,9 @@ class Calculator(ttk.Frame):
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
         label_logo_image = label_logo_image.resize((400, int(400/1.010)), Image.ANTIALIAS)
         label_logo_image = ImageTk.PhotoImage(label_logo_image)
-        self.label_logo = ttk.Label(self, image=label_logo_image)
-        self.label_logo.image = label_logo_image
-        self.label_logo.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
+        self.label_lage_logo = ttk.Label(self, image=label_logo_image)
+        self.label_lage_logo.image = label_logo_image
+        self.label_lage_logo.grid(row=1, column=0, columnspan=3, padx=5, pady=5)
 
         # Input
         # -----
@@ -131,10 +132,10 @@ class Calculator(ttk.Frame):
             command=self.check_center_receiver
         )
 
-        self.checkbutton_to_boudnary = ttk.Checkbutton(
+        self.checkbutton_to_boundary = ttk.Checkbutton(
             self,
             text='Separation to boundary',
-            variable=self.checkbutton_to_boudnary_v,
+            variable=self.checkbutton_to_boundary_v,
             command=self.check_to_boundary
         )
 
@@ -167,7 +168,7 @@ class Calculator(ttk.Frame):
 
         # set grid location
         self.checkbutton_centered.grid(row=2, column=0, sticky='w', padx=5, pady=(5, 0))
-        self.checkbutton_to_boudnary.grid(row=3, column=0, sticky='w', padx=5, pady=(0, 5))
+        self.checkbutton_to_boundary.grid(row=3, column=0, sticky='w', padx=5, pady=(0, 5))
 
         row0 = 4
         col0 = 0
@@ -259,7 +260,7 @@ class Calculator(ttk.Frame):
         #     m, n = 0.5 * W, 0.5 * H
         m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
         n = 0.5 * H if self.checkbutton_centered_v.get() == 1 else n
-        S = 2.0 * S if self.checkbutton_to_boudnary_v.get() == 1 else S
+        S = 2.0 * S if self.checkbutton_to_boundary_v.get() == 1 else S
 
         # calculate heat flux at receiver, Q2
         try:
@@ -297,7 +298,7 @@ class Calculator(ttk.Frame):
             i.delete(0, tk.END)
 
         # set Entry value to new values
-        S = S / 2 if self.checkbutton_to_boudnary_v.get() == 1 else S
+        S = S / 2 if self.checkbutton_to_boundary_v.get() == 1 else S
         self.entry_W.insert(tk.END, f'{W:.2f}')
         self.entry_H.insert(tk.END, f'{H:.2f}')
         self.entry_m.insert(tk.END, f'{m:.2f}')
@@ -333,9 +334,9 @@ class Calculator(ttk.Frame):
             raise ValueError('Unknown tk.ttk.CheckButton value.')
 
     def check_to_boundary(self):
-        if self.checkbutton_to_boudnary_v.get() == 1:
+        if self.checkbutton_to_boundary_v.get() == 1:
             self.label_S.config(text='½S, separation to boundary')
-        elif self.checkbutton_to_boudnary_v.get() == 0:
+        elif self.checkbutton_to_boundary_v.get() == 0:
             self.label_S.config(text='S, separation to surface')
         else:
             raise ValueError('Unknown tk.ttk.CheckButton value.')
