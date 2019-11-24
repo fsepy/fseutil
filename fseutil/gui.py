@@ -38,6 +38,8 @@ class Calculator(ttk.Frame):
         self.checkbutton_to_boundary: ttk.Checkbutton  # checkbox, whether to take separation to boundary or surface
         self.checkbutton_centered_v = tk.IntVar(value=1)  # set default, receiver to the center of emitter
         self.checkbutton_to_boundary_v = tk.IntVar(value=1)  # set default, separation to notional boundary
+        self.option_Q1_v = tk.StringVar(self.master)
+        self.option_Q1_v.set('168.00')
 
         self.label_W: ttk.Label
         self.label_H: ttk.Label
@@ -52,8 +54,8 @@ class Calculator(ttk.Frame):
         self.entry_m: ttk.Entry
         self.entry_n: ttk.Entry
         self.entry_S: ttk.Entry
-        self.entry_Q1: ttk.Entry
-        self.entry_Q2: ttk.Entry
+        self.entry_Q1: ttk.OptionMenu
+        # self.entry_Q2: ttk.Entry
         self.entry_upa: ttk.Entry
 
         self.button_calculate: ttk.Button
@@ -153,7 +155,8 @@ class Calculator(ttk.Frame):
         self.entry_m = ttk.Entry(self)
         self.entry_n = ttk.Entry(self)
         self.entry_S = ttk.Entry(self)
-        self.entry_Q1 = ttk.Entry(self)
+        # self.entry_Q1 = ttk.Entry(self)
+        self.option_Q1 = ttk.OptionMenu(self, self.option_Q1_v, '168.00', '84.00', '168.00')
         self.entry_Q2 = ttk.Entry(self)
         self.entry_upa = ttk.Entry(self)
 
@@ -181,14 +184,15 @@ class Calculator(ttk.Frame):
         self.label_Q2.grid(row=row0 + 6, column=col0 + 0, sticky='w', padx=(5, 0))
         self.label_upa.grid(row=row0 + 7, column=col0 + 0, sticky='w', padx=(5, 0))
 
-        self.entry_W.grid(row=row0+0, column=col0+1, sticky='e', padx=(0, 5))
-        self.entry_H.grid(row=row0+1, column=col0+1, sticky='e', padx=(0, 5))
-        self.entry_m.grid(row=row0 + 2, column=col0 + 1, sticky='e', padx=(0, 5))
-        self.entry_n.grid(row=row0 + 3, column=col0 + 1, sticky='e', padx=(0, 5))
-        self.entry_S.grid(row=row0+4, column=col0+1, sticky='e', padx=(0, 5))
-        self.entry_Q1.grid(row=row0 + 5, column=col0 + 1, sticky='e', padx=(0, 5))
-        self.entry_Q2.grid(row=row0 + 6, column=col0 + 1, sticky='e', padx=(0, 5))
-        self.entry_upa.grid(row=row0 + 7, column=col0 + 1, sticky='e', padx=(0, 5))
+        self.entry_W.grid(row=row0+0, column=col0+1, sticky='ew', padx=(0, 5))
+        self.entry_H.grid(row=row0+1, column=col0+1, sticky='ew', padx=(0, 5))
+        self.entry_m.grid(row=row0 + 2, column=col0 + 1, sticky='ew', padx=(0, 5))
+        self.entry_n.grid(row=row0 + 3, column=col0 + 1, sticky='ew', padx=(0, 5))
+        self.entry_S.grid(row=row0+4, column=col0+1, sticky='ew', padx=(0, 5))
+        # self.entry_Q1.grid(row=row0 + 5, column=col0 + 1, sticky='e', padx=(0, 5))
+        self.option_Q1.grid(row=row0 + 5, column=col0 + 1, sticky='ew', padx=(0, 5))
+        self.entry_Q2.grid(row=row0 + 6, column=col0 + 1, sticky='ew', padx=(0, 5))
+        self.entry_upa.grid(row=row0 + 7, column=col0 + 1, sticky='ew', padx=(0, 5))
 
         self.label_W_unit.grid(row=row0+0, column=col0+2, sticky='w', padx=(5, 0))
         self.label_H_unit.grid(row=row0+1, column=col0+2, sticky='w', padx=(5, 0))
@@ -205,7 +209,8 @@ class Calculator(ttk.Frame):
         self.entry_m.config(width=9)
         self.entry_n.config(width=9)
         self.entry_S.config(width=9)
-        self.entry_Q1.config(width=9)
+        # self.entry_Q1.config(width=9)
+        self.option_Q1.config(width=9)
         self.entry_Q2.config(width=9)
         self.entry_upa.config(width=9)
 
@@ -249,7 +254,7 @@ class Calculator(ttk.Frame):
             return list_entry_v
 
         list_label = [self.label_W, self.label_H, self.label_m, self.label_n, self.label_S, self.label_Q1, self.label_Q2, self.label_upa]
-        list_entry = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q1, self.entry_Q2, self.entry_upa]
+        list_entry = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.option_Q1, self.entry_Q2, self.entry_upa]
         list_entry_v = get_float_from_entry(list_entry)
 
         print('BEFORE CALCULATION')
@@ -285,7 +290,7 @@ class Calculator(ttk.Frame):
         # Update Entries
         # --------------
         # store Entry state, to restore later
-        list_tk = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q1, self.entry_Q2, self.entry_upa]
+        list_tk = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.option_Q1, self.entry_Q2, self.entry_upa]
         list_tk_states = [i['state'] for i in list_tk]
 
         # set Entry state to 'normal' to able to write value
@@ -304,7 +309,7 @@ class Calculator(ttk.Frame):
         self.entry_m.insert(tk.END, f'{m:.2f}')
         self.entry_n.insert(tk.END, f'{n:.2f}')
         self.entry_S.insert(tk.END, f'{S:.2f}')
-        self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
+        # self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
         self.entry_Q2.insert(tk.END, f'{Q2:.2f}')
         if isinstance(upa, str):
             self.entry_upa.insert(tk.END, '')
