@@ -34,7 +34,7 @@ Public version identifiers are separated into up to five segments:
 
 """
 
-__version__ = "0.0.1.dev20191113"
+__version__ = "0.0.1.dev20191124"
 
 
 def check_pip_upgrade():
