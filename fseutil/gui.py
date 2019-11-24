@@ -18,6 +18,7 @@ class Calculator(ttk.Frame):
 
         self.app_name = 'OFR B4 BR187 Calculator'
 
+        self.root = None
         if root:
             root.bind(sequence='<Return>', func=self.calculate_resultant_heat_flux)
 
@@ -68,7 +69,7 @@ class Calculator(ttk.Frame):
         # SETTINGS
         # ========
 
-        # set icon to .exe file
+        # set window icon
         _, fp_icon = tempfile.mkstemp()
         with open(fp_icon, "wb") as f:
             f.write(base64.b64decode(OFR_LOGO_SMALL_PNG_BASE64))
@@ -76,16 +77,14 @@ class Calculator(ttk.Frame):
 
         # set dialog header title
         self.master.title(self.app_name)
-
         self.pack(fill=tk.BOTH, expand=True)
-
         self.columnconfigure(1, pad=2)
 
         # STYLES
         # ======
         style = ttk.Style()
-        style.configure("TLabel", foreground="black", background="white", font=("Helvetica", 17))
-        style.configure("TCheckButton", foreground="black", background="white", font=("Helvetica", 17))
+        style.configure("TLabel", foreground="black", background=self.master.cget('bg'), font=("Helvetica", 12))
+        style.configure("TCheckbutton", foreground="black", background=self.master.cget('bg'), font=("Helvetica", 12))
 
         # GUI LAYOUT
         # ==========
@@ -95,7 +94,6 @@ class Calculator(ttk.Frame):
         _, fp_radiation_figure_image = tempfile.mkstemp()
         with open(fp_radiation_figure_image, "wb") as f:
             f.write(base64.b64decode(OFR_LOGO_LARGE_PNG_BASE64))
-        self.master.iconbitmap(fp_radiation_figure_image)
 
         label_logo_image = Image.open(os.path.realpath(fp_radiation_figure_image))
         label_logo_image = label_logo_image.resize((150, int(150/2.43)), Image.ANTIALIAS)
@@ -107,15 +105,14 @@ class Calculator(ttk.Frame):
         # Short description
         # -----------------
         description_str = f'OFR B4 BR187 Calculator\n{_ver}'
-        self.text_short_description = ttk.Label(self, text=description_str, anchor='e', foreground='grey', font=("Helvetica", 15))
-        self.text_short_description.grid(row=0, column=1, columnspan=2, sticky='wens', padx=5, pady=5)
+        self.text_short_description = ttk.Label(self, text=description_str, anchor='e', foreground='grey')
+        self.text_short_description.grid(row=0, column=1, columnspan=2, sticky='nswe', padx=5, pady=5)
 
         # Radiation figure
         # ----------------
         _, fp_logo_image = tempfile.mkstemp()
         with open(fp_logo_image, "wb") as f:
             f.write(base64.b64decode(RADIATION_FIGURE_PNG_BASE64))
-        self.master.iconbitmap(fp_logo_image)
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
         label_logo_image = label_logo_image.resize((400, int(400/1.010)), Image.ANTIALIAS)
@@ -228,16 +225,18 @@ class Calculator(ttk.Frame):
         """
 
         def update_q2_to_gui(__: str = ''):
+            state = self.entry_Q2['state']
             self.entry_Q2.config(stat=tk.NORMAL)
             self.entry_Q2.delete(0, tk.END)
             self.entry_Q2.insert(tk.END, __)
-            self.entry_Q2.config(state='readonly')
+            self.entry_Q2['state'] = state
 
         def update_upa_to_gui(__: str = ''):
-            self.entry_upa.config(stat=tk.NORMAL)
+            state = self.entry_upa['state']
             self.entry_upa.delete(0, tk.END)
             self.entry_upa.insert(tk.END, __)
             self.entry_upa.config(state='readonly')
+            self.entry_upa['state'] = state
 
         def get_float_from_entry(list_entries_: typing.List[ttk.Entry]):
             list_entry_v = list()
@@ -246,18 +245,23 @@ class Calculator(ttk.Frame):
                     list_entry_v.append(float(i.get()))
                 except:
                     list_entry_v.append(None)
-
             return list_entry_v
 
-        list_entry = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q1, self.entry_Q2]
+        list_label = [self.label_W, self.label_H, self.label_m, self.label_n, self.label_S, self.label_Q1, self.label_Q2, self.label_upa]
+        list_entry = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q1, self.entry_Q2, self.entry_upa]
         list_entry_v = get_float_from_entry(list_entry)
 
-        W, H, m, n, S, Q1, Q2 = tuple(list_entry_v)
-        m = 0.5 * W if m is None else 0.5 * W
-        n = 0.5 * H if n is None else 0.5 * H
-        S = 2.0 * S if self.checkbutton_to_boudnary_v.get() == 1 else S
-        print(S)
+        print('BEFORE CALCULATION')
+        print('\n'.join('{:40.40} {}'.format(v.cget('text')+':', list_entry_v[i]) for i, v in enumerate(list_label)))
 
+        W, H, m, n, S, Q1, Q2, upa = tuple(list_entry_v)
+        # if self.checkbutton_centered_v.get() == 1:
+        #     m, n = 0.5 * W, 0.5 * H
+        m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
+        n = 0.5 * H if self.checkbutton_centered_v.get() == 1 else n
+        S = 2.0 * S if self.checkbutton_to_boudnary_v.get() == 1 else S
+
+        # calculate heat flux at receiver, Q2
         try:
             Q2_calculated = phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1
         except Exception as e:
@@ -267,25 +271,33 @@ class Calculator(ttk.Frame):
             return 0
 
         if Q2 is None:
-            update_q2_to_gui(f'{Q2_calculated:.3f}')
-            return 0
+            # if Q2 not provided, update
+            Q2 = Q2_calculated
+            upa = ''
+        else:
+            # calculate upa
+            upa = min([Q2 / Q2_calculated * 100, 100])
 
-        # calculate upa
-        upa = min([Q2 / Q2_calculated * 100, 100])
-        update_upa_to_gui(f'{upa:.1f}')
+        print('AFTER CALCULATION')
+        print('\n'.join('{:40.40} {}'.format(v.cget('text')+':', list_entry_v[i]) for i, v in enumerate(list_label)))
 
-        # update inputs
-        list_tk = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S]
+        # Update Entries
+        # --------------
+        # store Entry state, to restore later
+        list_tk = [self.entry_W, self.entry_H, self.entry_m, self.entry_n, self.entry_S, self.entry_Q1, self.entry_Q2, self.entry_upa]
         list_tk_states = [i['state'] for i in list_tk]
+
+        # set Entry state to 'normal' to able to write value
         for i in list_tk:
             i['state'] = 'normal'
             i.delete(0, tk.END)
 
+        # delete existing Entry value
         for i in list_entry:
             i.delete(0, tk.END)
 
+        # set Entry value to new values
         S = S / 2 if self.checkbutton_to_boudnary_v.get() == 1 else S
-
         self.entry_W.insert(tk.END, f'{W:.2f}')
         self.entry_H.insert(tk.END, f'{H:.2f}')
         self.entry_m.insert(tk.END, f'{m:.2f}')
@@ -293,12 +305,14 @@ class Calculator(ttk.Frame):
         self.entry_S.insert(tk.END, f'{S:.2f}')
         self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
         self.entry_Q2.insert(tk.END, f'{Q2:.2f}')
+        if isinstance(upa, str):
+            self.entry_upa.insert(tk.END, '')
+        else:
+            self.entry_upa.insert(tk.END, f'{upa:.2f}')
 
+        # restore Entry state
         for i, v in enumerate(list_tk):
             v['state'] = list_tk_states[i]
-
-
-        # update results
 
     def check_center_receiver(self):
         if self.checkbutton_centered_v.get() == 1:
