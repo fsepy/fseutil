@@ -55,7 +55,7 @@ def check_pip_upgrade():
         v = re.findall(r"fseutil[\s]*\([\d.]+\)", str(output))[0]
         v = re.findall(r"[\d.]+", str(v))[0]
     except IndexError:
-        raise ModuleNotFoundError('Failed to fetch data from PyPI.')
+        raise ModuleNotFoundError("Failed to fetch data from PyPI.")
 
     # check if upgrade required
     from packaging import version
