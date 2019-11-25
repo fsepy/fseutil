@@ -24,7 +24,7 @@ class Calculator(ttk.Frame):
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
         self.app_description = """
-        Thermal radiation calculator for\nparalleland permendicular faced\nemitter and receiver pair.
+        Thermal radiation calculator for\nparallel and perpendicular faced\nemitter and receiver pair.
         """
 
         # set short cut, calculate when enter is pressed
