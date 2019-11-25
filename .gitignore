@@ -45,4 +45,7 @@
 /sfeprapy_demo
 /.coverage
 
+# pyinstaller build files
+pyinstaller_builds/build
+pyinstaller_builds/dist
 *.spec
