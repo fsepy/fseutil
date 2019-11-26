@@ -46,3 +46,7 @@
 /.coverage
 
 *.spec
+
+# Pyinstaller
+pyinstaller_builds/build
+pyinstaller_builds/dist
