@@ -7,9 +7,9 @@ import os
 import typing
 from fseutil import __version__ as _ver
 
-from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187
-from fseutil.etc.b4_br187 import RADIATION_FIGURE_PNG_BASE64, OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
-
+from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187, phi_perpendicular_any_br187
+from fseutil.etc.b4_br187 import OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
+from fseutil.etc.b4_br187 import PARALLEL_LARGE_FIGURE_PNG_BASE64, PERPENDICULAR_LARGE_FIGURE_PNG_BASE64
 
 class Calculator(tk.Tk):
 
@@ -59,11 +59,7 @@ class Calculator(tk.Tk):
         )
 
         self.notebook.add(CalculatorParallelPanels(self.notebook), text='Parallel Panels', compound=tk.TOP)
-        self.notebook.add(CalculatorParallelPanels(self.notebook), text='Perpendicular Panels', compound=tk.TOP)
-
-    def init_ui_perpendicular(self):
-        self.frame_perpendicular = ttk.Frame(self.notebook)
-        self.notebook.add(self.frame_perpendicular, text='Perpendicular Panels', compound=tk.TOP)
+        self.notebook.add(CalculatorPerpendicularlPanels(self.notebook), text='Perpendicular Panels', compound=tk.TOP)
 
 
 class CalculatorParallelPanels(ttk.Frame):
@@ -123,7 +119,7 @@ class CalculatorParallelPanels(ttk.Frame):
         # ----------------
         _, fp_logo_image = tempfile.mkstemp()
         with open(fp_logo_image, "wb") as f:
-            f.write(base64.b64decode(RADIATION_FIGURE_PNG_BASE64))
+            f.write(base64.b64decode(PARALLEL_LARGE_FIGURE_PNG_BASE64))
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
         label_logo_image = label_logo_image.resize(
@@ -463,7 +459,7 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
         # ----------------
         _, fp_logo_image = tempfile.mkstemp()
         with open(fp_logo_image, "wb") as f:
-            f.write(base64.b64decode(RADIATION_FIGURE_PNG_BASE64))
+            f.write(base64.b64decode(PERPENDICULAR_LARGE_FIGURE_PNG_BASE64))
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
         label_logo_image = label_logo_image.resize(
@@ -647,7 +643,7 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
         # calculate heat flux at receiver, Q2
         try:
             Q2_calculated = (
-                phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1
+                phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1
             )
         except Exception as e:
             if hasattr(e, "message"):
