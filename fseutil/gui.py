@@ -143,12 +143,12 @@ class CalculatorParallelPanels(ttk.Frame):
 
         self.label_W = ttk.Label(self, text="W, emitter width")
         self.label_H = ttk.Label(self, text="H, emitter height")
-        self.label_m = ttk.Label(self, text="m, receiver width")
-        self.label_n = ttk.Label(self, text="n, receiver height")
+        self.label_m = ttk.Label(self, text="m, receiver loc. 1")
+        self.label_n = ttk.Label(self, text="n, receiver loc. 2")
         self.label_Q1 = ttk.Label(self, text="Q1, emitter HT (84, 168)")
-        self.label_Q2 = ttk.Label(self, text="Q2, permitted HT (optional, 12.6)")
+        self.label_Q2 = ttk.Label(self, text="Q2, receiver HT (optional, 12.6)")
         self.label_S = ttk.Label(self, text="S, separation")
-        self.label_upa = ttk.Label(self, text="Calculated Permitted UPA")
+        self.label_upa = ttk.Label(self, text="Permitted UPA")
 
         self.entry_W = ttk.Entry(self)
         self.entry_H = ttk.Entry(self)
@@ -483,12 +483,12 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
 
         self.label_W = ttk.Label(self, text="W, emitter width")
         self.label_H = ttk.Label(self, text="H, emitter height")
-        self.label_m = ttk.Label(self, text="m, receiver width")
-        self.label_n = ttk.Label(self, text="n, receiver height")
+        self.label_m = ttk.Label(self, text="m, receiver loc. 1")
+        self.label_n = ttk.Label(self, text="n, receiver loc. 2")
         self.label_Q1 = ttk.Label(self, text="Q1, emitter HT (84, 168)")
-        self.label_Q2 = ttk.Label(self, text="Q2, permitted HT (optional, 12.6)")
+        self.label_Q2 = ttk.Label(self, text="Q2, receiver HT (optional, 12.6)")
         self.label_S = ttk.Label(self, text="S, separation")
-        self.label_upa = ttk.Label(self, text="Calculated Permitted UPA")
+        self.label_upa = ttk.Label(self, text="Permitted UPA")
 
         self.entry_W = ttk.Entry(self)
         self.entry_H = ttk.Entry(self)
@@ -504,8 +504,8 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
 
         self.label_W_unit = ttk.Label(self, text="m")
         self.label_H_unit = ttk.Label(self, text="m")
-        self.label_w_unit = ttk.Label(self, text="m")
-        self.label_h_unit = ttk.Label(self, text="m")
+        self.label_m_unit = ttk.Label(self, text="m")
+        self.label_n_unit = ttk.Label(self, text="m")
         self.label_Q1_unit = ttk.Label(self, text="kW/m²")
         self.label_Q2_unit = ttk.Label(self, text="kW/m²")
         self.label_S_unit = ttk.Label(self, text="m")
@@ -540,8 +540,8 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
 
         self.label_W_unit.grid(row=row0 + 0, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_H_unit.grid(row=row0 + 1, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_w_unit.grid(row=row0 + 2, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_h_unit.grid(row=row0 + 3, column=col0 + 2, sticky="w", padx=(10, 0))
+        self.label_m_unit.grid(row=row0 + 2, column=col0 + 2, sticky="w", padx=(10, 0))
+        self.label_n_unit.grid(row=row0 + 3, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_Q1_unit.grid(row=row0 + 4, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_Q2_unit.grid(row=row0 + 5, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_S_unit.grid(row=row0 + 6, column=col0 + 2, sticky="w", padx=(10, 0))
@@ -711,18 +711,18 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
     def check_center_receiver(self):
         if self.checkbutton_centered_v.get() == 1:
             self.label_n.config(state="disabled", foreground="grey")
-            self.label_m.config(state="disabled", foreground="grey")
-            self.label_h_unit.config(state="disabled", foreground="grey")
-            self.label_w_unit.config(state="disabled", foreground="grey")
+            # self.label_m.config(state="disabled", foreground="grey")
+            self.label_n_unit.config(state="disabled", foreground="grey")
+            # self.label_m_unit.config(state="disabled", foreground="grey")
             self.entry_n.config(state="disabled", foreground="grey")
-            self.entry_m.config(state="disabled", foreground="grey")
+            # self.entry_m.config(state="disabled", foreground="grey")
         elif self.checkbutton_centered_v.get() == 0:
             self.label_n.config(state="normal", foreground="black")
-            self.label_m.config(state="normal", foreground="black")
-            self.label_h_unit.config(state="normal", foreground="black")
-            self.label_w_unit.config(state="normal", foreground="black")
+            # self.label_m.config(state="normal", foreground="black")
+            self.label_n_unit.config(state="normal", foreground="black")
+            # self.label_m_unit.config(state="normal", foreground="black")
             self.entry_n.config(state="normal", foreground="black")
-            self.entry_m.config(state="normal", foreground="black")
+            # self.entry_m.config(state="normal", foreground="black")
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
