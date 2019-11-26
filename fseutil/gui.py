@@ -8,7 +8,7 @@ import typing
 from fseutil import __version__ as _ver
 
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187
-from fseutil.etc.b4_br187 import RADIATION_FIGURE_PNG_BASE64, OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
+from fseutil.etc.b4_br187 import PARALLEL_LARGE_FIGURE_PNG_BASE64, OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
 
 
 class Calculator(ttk.Frame):
@@ -114,7 +114,7 @@ class Calculator(ttk.Frame):
         # ----------------
         _, fp_logo_image = tempfile.mkstemp()
         with open(fp_logo_image, "wb") as f:
-            f.write(base64.b64decode(RADIATION_FIGURE_PNG_BASE64))
+            f.write(base64.b64decode(PARALLEL_LARGE_FIGURE_PNG_BASE64))
         self.master.iconbitmap(fp_logo_image)
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
