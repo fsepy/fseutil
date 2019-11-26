@@ -33,7 +33,10 @@ setuptools.setup(
     ],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=["fseutil", "fseutil.lib"],
+    packages=[
+        "fseutil",
+        "fseutil.lib",
+    ],
     install_requires=requirements,
     include_package_data=True,
     entry_points={"console_scripts": ["fseutil=fseutil.cli:main"]},

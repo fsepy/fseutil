@@ -6,9 +6,6 @@
 /MANIFEST
 /build
 
-# Environments
-env/
-
 # Python egg metadata, regenerated from source files by setuptools.
 /*.egg-info
 
@@ -48,7 +45,4 @@ env/
 /sfeprapy_demo
 /.coverage
 
-# pyinstaller build files
-pyinstaller_builds/build
-pyinstaller_builds/dist
 *.spec
