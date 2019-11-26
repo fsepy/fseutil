@@ -34,7 +34,7 @@ Public version identifiers are separated into up to five segments:
 
 """
 
-__version__ = "0.0.1.dev20191113"
+__version__ = "0.0.1.dev20191124"
 
 
 def check_pip_upgrade():
@@ -55,7 +55,7 @@ def check_pip_upgrade():
         v = re.findall(r"fseutil[\s]*\([\d.]+\)", str(output))[0]
         v = re.findall(r"[\d.]+", str(v))[0]
     except IndexError:
-        raise ModuleNotFoundError('Failed to fetch data from PyPI.')
+        raise ModuleNotFoundError("Failed to fetch data from PyPI.")
 
     # check if upgrade required
     from packaging import version

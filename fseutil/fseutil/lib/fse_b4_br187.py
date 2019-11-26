@@ -18,8 +18,8 @@ def phi_parallel_corner_br187(W_m, H_m, S_m, multiplier=1):
     X = W_m / S_m
     Y = H_m / S_m
     a = 1 / 2 / math.pi
-    b = X / (1 + X**2) ** 0.5
-    c = math.atan(Y / (1 + X**2) ** 0.5)
+    b = X / (1 + X ** 2) ** 0.5
+    c = math.atan(Y / (1 + X ** 2) ** 0.5)
     d = Y / (1 + Y ** 2) ** 0.5
     e = math.atan(X / (1 + Y ** 2) ** 0.5)
     phi = a * (b * c + d * e)
@@ -46,7 +46,7 @@ def phi_perpendicular_corner_br187(W_m, H_m, S_m, multiplier=1):
 
     phi = a * (b - c * d)
 
-    return phi*multiplier
+    return phi * multiplier
 
 
 def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
@@ -60,7 +60,10 @@ def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
     :param S_m:
     :return:
     """
-    phi = [phi_parallel_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_planes(W_m, H_m, w_m, h_m)]
+    phi = [
+        phi_parallel_corner_br187(*P[0:-1], S_m, P[-1])
+        for P in four_planes(W_m, H_m, w_m, h_m)
+    ]
     return sum(phi)
 
 
@@ -90,7 +93,7 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
     min_ = (min([W_m, w_m, 0]), min([H_m, h_m, 0]))
     mid_ = (median([W_m, w_m, 0]), median([H_m, h_m, 0]))
     max_ = (max([W_m, w_m, 0]), max([H_m, h_m, 0]))
-    
+
     # FOUR PLANES
     A = 0, 0, 0
     B = 0, 0, 0
@@ -109,7 +112,9 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
         # phi = A
 
     # RECEIVER ON EDGE
-    elif ((r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]) or ((r1[1] == e1[1] or r1[1] == e2[1]) and e1[0] < r1[0] < e2[0]):
+    elif ((r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]) or (
+        (r1[1] == e1[1] or r1[1] == e2[1]) and e1[0] < r1[0] < e2[0]
+    ):
         # vertical edge
         if (r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]:
             A = (max_[0] - min_[0], max_[1] - mid_[1], 1)
@@ -124,7 +129,7 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
             C = (0, 0, 0)
             D = (0, 0, 0)
         else:
-            print('error')
+            print("error")
 
     # RECEIVER WITHIN EMITTER
     elif o[0] < w_m < W_m and o[1] < h_m < H_m:
@@ -241,6 +246,6 @@ def test_phi_perpendicular_any_br187():
     assert abs(phi_perpendicular_any_br187(10, 10, 5, 20, 10) - 0.04517433814) < 1e-8
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_phi_perpendicular_any_br187()
     test_phi_parallel_any_br187()
