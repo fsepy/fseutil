@@ -8,74 +8,24 @@ import typing
 from fseutil import __version__ as _ver
 
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187
-from fseutil.etc.b4_br187 import (
-    RADIATION_FIGURE_PNG_BASE64,
-    OFR_LOGO_LARGE_PNG_BASE64,
-    OFR_LOGO_SMALL_PNG_BASE64,
-)
+from fseutil.etc.b4_br187 import RADIATION_FIGURE_PNG_BASE64, OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
 
 
-class Calculator(ttk.Frame):
-    def __init__(self, root: tk.Tk = None):
-        super().__init__()
+class Calculator(tk.Tk):
+
+    def __init__(self, *args, **kwargs):
+
+        tk.Tk.__init__(self, *args, **kwargs)
+        self.notebook = ttk.Notebook()
 
         # General App Setting
         # ===================
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
-        self.app_description = """
-        Thermal radiation calculator for\nparallel and perpendicular faced\nemitter and receiver pair.
-        """
-
-        # set short cut, calculate when enter is pressed
-        self.root = None
-        if root:
-            root.bind(sequence="<Return>", func=self.calculate_resultant_heat_flux)
-
-        # variable container, preserved to be used later, class wide
-
-        # Instantiate GUI objects
-        # -----------------------
-
-        self.label_lage_logo: ttk.Label  # large logo image
-        self.label_short_description: ttk.Label  # text short description
-
-        self.checkbutton_centered: ttk.Checkbutton  # checkbox, whether to treat the receiver as centered to emitter
-        self.checkbutton_to_boundary: ttk.Checkbutton  # checkbox, whether to take separation to boundary or surface
-        self.checkbutton_centered_v = tk.IntVar(
-            value=1
-        )  # set default, receiver to the center of emitter
-        self.checkbutton_to_boundary_v = tk.IntVar(
-            value=1
-        )  # set default, separation to notional boundary
-        self.option_Q1_v = tk.StringVar(self.master)
-        self.option_Q1_v.set("168.00")
-
-        self.label_W: ttk.Label
-        self.label_H: ttk.Label
-        self.label_m: ttk.Label
-        self.label_n: ttk.Label
-        self.label_S: ttk.Label
-        self.label_Q1: ttk.Label
-        self.label_Q2: ttk.Label
-        self.label_upa: ttk.Label
-        self.entry_W: ttk.Entry
-        self.entry_H: ttk.Entry
-        self.entry_m: ttk.Entry
-        self.entry_n: ttk.Entry
-        self.entry_S: ttk.Entry
-        self.entry_Q1: ttk.OptionMenu
-        # self.entry_Q2: ttk.Entry
-        self.entry_upa: ttk.Entry
-
-        self.button_calculate: ttk.Button
 
         self.init_ui()
 
-        self.check_center_receiver()
-        self.check_to_boundary()
-
-        self.master.resizable(0, 0)
+        self.notebook.grid(row=0)
 
     def init_ui(self):
 
@@ -86,28 +36,60 @@ class Calculator(ttk.Frame):
         _, fp_icon = tempfile.mkstemp()
         with open(fp_icon, "wb") as f:
             f.write(base64.b64decode(OFR_LOGO_SMALL_PNG_BASE64))
-        self.master.iconbitmap(fp_icon)
+        self.notebook.master.iconbitmap(fp_icon)
+        # self.master.iconbitmap(fp_icon)
 
-        # set dialog header title
-        self.master.title(self.app_name)
-        self.pack(fill=tk.BOTH, expand=True)
-        self.columnconfigure(1, pad=2)
+        self.notebook.master.title(self.app_name)
 
         # STYLES
         # ======
+
         style = ttk.Style()
         style.configure(
             "TLabel",
             foreground="black",
-            background=self.master.cget("bg"),
+            background=self.notebook.master.cget("bg"),
             font=("Helvetica", 9),
         )
         style.configure(
             "TCheckbutton",
             foreground="black",
-            background=self.master.cget("bg"),
+            background=self.notebook.master.cget("bg"),
             font=("Helvetica", 9),
         )
+
+        self.notebook.add(CalculatorParallelPanels(self.notebook), text='Parallel Panels', compound=tk.TOP)
+        self.notebook.add(CalculatorParallelPanels(self.notebook), text='Perpendicular Panels', compound=tk.TOP)
+
+    def init_ui_perpendicular(self):
+        self.frame_perpendicular = ttk.Frame(self.notebook)
+        self.notebook.add(self.frame_perpendicular, text='Perpendicular Panels', compound=tk.TOP)
+
+
+class CalculatorParallelPanels(ttk.Frame):
+    def __init__(self, parent, **kwargs):
+        ttk.Frame.__init__(self, parent, **kwargs)
+
+        # General App Setting
+        # ===================
+        self.app_name = "B4 BR187 Calculator"  # app name
+        self.app_version = _ver  # app version
+        self.app_description = """
+        Thermal radiation calculator for\nparallel and perpendicular faced\nemitter and receiver pair.
+        """
+
+        self.init_ui()
+
+        self.check_center_receiver()
+        self.check_to_boundary()
+
+        # self.master.resizable(0, 0)
+        # set short cut, calculate when enter is pressed
+        # self.root = None
+        # if root:
+        #     root.bind(sequence="<Return>", func=self.calculate_resultant_heat_flux)
+
+    def init_ui(self):
 
         # GUI LAYOUT
         # ==========
@@ -153,59 +135,51 @@ class Calculator(ttk.Frame):
         self.label_lage_logo.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
         # Input
-        # -----
-        # create objects
-        self.checkbutton_centered = ttk.Checkbutton(
-            self,
-            text="Centered receiver",
-            variable=self.checkbutton_centered_v,
-            command=self.check_center_receiver,
-        )
+        # =====
 
-        self.checkbutton_to_boundary = ttk.Checkbutton(
-            self,
-            text="Separation to boundary",
-            variable=self.checkbutton_to_boundary_v,
-            command=self.check_to_boundary,
-        )
+        # Create Objects
+        # --------------
+
+        self.checkbutton_centered_v = tk.IntVar(value=1)  # set default, receiver to the center of emitter
+        self.checkbutton_centered = ttk.Checkbutton(self, text="Centered receiver", variable=self.checkbutton_centered_v, command=self.check_center_receiver)
+        self.checkbutton_to_boundary_v = tk.IntVar(value=1)  # set default, separation to notional boundary
+        self.checkbutton_to_boundary = ttk.Checkbutton(self, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self.check_to_boundary, )
 
         self.label_W = ttk.Label(self, text="W, emitter width")
         self.label_H = ttk.Label(self, text="H, emitter height")
         self.label_m = ttk.Label(self, text="m, receiver width")
         self.label_n = ttk.Label(self, text="n, receiver height")
-        self.label_S = ttk.Label(self, text="S, separation")
         self.label_Q1 = ttk.Label(self, text="Q1, emitter HT (84, 168)")
         self.label_Q2 = ttk.Label(self, text="Q2, permitted HT (optional, 12.6)")
+        self.label_S = ttk.Label(self, text="S, separation")
         self.label_upa = ttk.Label(self, text="Calculated Permitted UPA")
 
         self.entry_W = ttk.Entry(self)
         self.entry_H = ttk.Entry(self)
         self.entry_m = ttk.Entry(self)
         self.entry_n = ttk.Entry(self)
-        self.entry_S = ttk.Entry(self)
         # self.entry_Q1 = ttk.Entry(self)
-        self.option_Q1 = ttk.OptionMenu(
-            self, self.option_Q1_v, "168.00", "84.00", "168.00"
-        )
+        self.option_Q1_v = tk.StringVar(self.master)
+        self.option_Q1_v.set("168.00")
+        self.option_Q1 = ttk.OptionMenu(self, self.option_Q1_v, "168.00", "84.00", "168.00")
         self.entry_Q2 = ttk.Entry(self)
+        self.entry_S = ttk.Entry(self)
         self.entry_upa = ttk.Entry(self)
 
         self.label_W_unit = ttk.Label(self, text="m")
         self.label_H_unit = ttk.Label(self, text="m")
         self.label_w_unit = ttk.Label(self, text="m")
         self.label_h_unit = ttk.Label(self, text="m")
-        self.label_S_unit = ttk.Label(self, text="m")
         self.label_Q1_unit = ttk.Label(self, text="kW/m²")
         self.label_Q2_unit = ttk.Label(self, text="kW/m²")
+        self.label_S_unit = ttk.Label(self, text="m")
         self.label_upa_unit = ttk.Label(self, text="%")
 
-        # set grid location
-        self.checkbutton_centered.grid(
-            row=2, column=0, sticky="w", padx=10, pady=(10, 0)
-        )
-        self.checkbutton_to_boundary.grid(
-            row=3, column=0, sticky="w", padx=10, pady=(0, 10)
-        )
+        # Set Grid Location
+        # -----------------
+
+        self.checkbutton_centered.grid(row=2, column=0, sticky="w", padx=10, pady=(10, 0))
+        self.checkbutton_to_boundary.grid(row=3, column=0, sticky="w", padx=10, pady=(0, 10))
 
         row0 = 4
         col0 = 0
@@ -213,43 +187,46 @@ class Calculator(ttk.Frame):
         self.label_H.grid(row=row0 + 1, column=col0 + 0, sticky="w", padx=(10, 0))
         self.label_m.grid(row=row0 + 2, column=col0 + 0, sticky="w", padx=(10, 0))
         self.label_n.grid(row=row0 + 3, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_S.grid(row=row0 + 4, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_Q1.grid(row=row0 + 5, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_Q2.grid(row=row0 + 6, column=col0 + 0, sticky="w", padx=(10, 0))
+        self.label_Q1.grid(row=row0 + 4, column=col0 + 0, sticky="w", padx=(10, 0))
+        self.label_Q2.grid(row=row0 + 5, column=col0 + 0, sticky="w", padx=(10, 0))
+        self.label_S.grid(row=row0 + 6, column=col0 + 0, sticky="w", padx=(10, 0))
         self.label_upa.grid(row=row0 + 7, column=col0 + 0, sticky="w", padx=(10, 0))
 
         self.entry_W.grid(row=row0 + 0, column=col0 + 1, sticky="ew", padx=(0, 10))
         self.entry_H.grid(row=row0 + 1, column=col0 + 1, sticky="ew", padx=(0, 10))
         self.entry_m.grid(row=row0 + 2, column=col0 + 1, sticky="ew", padx=(0, 10))
         self.entry_n.grid(row=row0 + 3, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_S.grid(row=row0 + 4, column=col0 + 1, sticky="ew", padx=(0, 10))
+        self.option_Q1.grid(row=row0 + 4, column=col0 + 1, sticky="ew", padx=(0, 10))
         # self.entry_Q1.grid(row=row0 + 5, column=col0 + 1, sticky='e', padx=(0, 10))
-        self.option_Q1.grid(row=row0 + 5, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_Q2.grid(row=row0 + 6, column=col0 + 1, sticky="ew", padx=(0, 10))
+        self.entry_Q2.grid(row=row0 + 5, column=col0 + 1, sticky="ew", padx=(0, 10))
+        self.entry_S.grid(row=row0 + 6, column=col0 + 1, sticky="ew", padx=(0, 10))
         self.entry_upa.grid(row=row0 + 7, column=col0 + 1, sticky="ew", padx=(0, 10))
 
         self.label_W_unit.grid(row=row0 + 0, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_H_unit.grid(row=row0 + 1, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_w_unit.grid(row=row0 + 2, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_h_unit.grid(row=row0 + 3, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_S_unit.grid(row=row0 + 4, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_Q1_unit.grid(row=row0 + 5, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_Q2_unit.grid(row=row0 + 6, column=col0 + 2, sticky="w", padx=(10, 0))
+        self.label_Q1_unit.grid(row=row0 + 4, column=col0 + 2, sticky="w", padx=(10, 0))
+        self.label_Q2_unit.grid(row=row0 + 5, column=col0 + 2, sticky="w", padx=(10, 0))
+        self.label_S_unit.grid(row=row0 + 6, column=col0 + 2, sticky="w", padx=(10, 0))
         self.label_upa_unit.grid(row=row0 + 7, column=col0 + 2, sticky="w", padx=(10, 0))
 
-        # set dimension
+        # Set Dimension
+        # -------------
+
         self.entry_W.config(width=9)
         self.entry_H.config(width=9)
         self.entry_m.config(width=9)
         self.entry_n.config(width=9)
-        self.entry_S.config(width=9)
-        # self.entry_Q1.config(width=9)
         self.option_Q1.config(width=9)
+        # self.entry_Q1.config(width=9)
         self.entry_Q2.config(width=9)
+        self.entry_S.config(width=9)
         self.entry_upa.config(width=9)
 
         # Output and calculate button
-        # ---------------------------
+        # ===========================
+
         self.entry_upa.config(stat="readonly")
         self.entry_upa.delete(0, tk.END)
 
@@ -428,9 +405,8 @@ class Calculator(ttk.Frame):
 
 
 def main():
-    root = tk.Tk()
-    my_gui = Calculator(root)
-    root.mainloop()
+    my_gui = Calculator()
+    my_gui.mainloop()
 
 
 if __name__ == "__main__":
