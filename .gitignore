@@ -11,6 +11,7 @@
 
 # Python virtual environment
 /venv
+env/
 
 # Pycharm development files
 *.idea
