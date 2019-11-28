@@ -10,6 +10,62 @@ from fseutil import __version__ as _ver
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187, phi_perpendicular_any_br187
 from fseutil.etc.b4_br187 import OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
 from fseutil.etc.b4_br187 import PARALLEL_LARGE_FIGURE_PNG_BASE64, PERPENDICULAR_LARGE_FIGURE_PNG_BASE64
+from typing import Callable
+
+
+def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: float, x_upper: float, x_lower: float, y_tol: float, iter_max: int = 1000, func_multiplier: float = 1):
+
+    if x_lower > x_upper:
+        x_lower += x_upper
+        x_upper = x_lower - x_upper
+        x_lower = x_lower - x_upper
+
+    y_target *= func_multiplier
+
+    x1 = x_lower
+    x2 = (x_lower + x_upper) / 2
+    x3 = x_upper
+
+    dict_params[x_name] = x1
+    y1 = func_multiplier * func(**dict_params)
+    dict_params[x_name] = x2
+    y2 = func_multiplier * func(**dict_params)
+    dict_params[x_name] = x3
+    y3 = func_multiplier * func(**dict_params)
+
+    if y_target < y1:
+        return None
+    if y_target > y3:
+        return None
+
+    iter_count = 0
+    while True:
+        if abs(y2 - y_target) < y_tol:
+            return x2
+        elif iter_max < iter_count:
+            return None
+        elif y2 < y_target:
+            x1 = x2
+        elif y2 > y_target:
+            x3 = x2
+        x2 = (x1 + x3) / 2
+        dict_params[x_name] = x2
+        y2 = func_multiplier * func(**dict_params)
+        iter_count += 1
+
+
+class Messenger(tk.Tk):
+    def __init__(self, msg, title=None):
+        tk.Tk.__init__(self)
+
+        title = "" if title is None else title
+        self.wm_title(title)
+        label = ttk.Label(self, text=msg, font=("Helvetica", 10))
+        label.pack(side="top", fill="x", pady=10)
+        B1 = ttk.Button(self, text="OK", command=self.destroy)
+        B1.pack()
+        self.mainloop()
+
 
 class Calculator(tk.Tk):
 
@@ -57,9 +113,22 @@ class Calculator(tk.Tk):
             background=self.notebook.master.cget("bg"),
             font=("Helvetica", 9),
         )
+        self.columnconfigure(0, pad=10)
+        self.rowconfigure(0, pad=10)
 
-        self.notebook.add(CalculatorParallelPanels(self.notebook), text='Parallel Panels', compound=tk.TOP)
-        self.notebook.add(CalculatorPerpendicularlPanels(self.notebook), text='Perpendicular Panels', compound=tk.TOP)
+        self.tab_parallel = CalculatorParallelPanels(self.notebook)
+        self.tab_perpendicular = CalculatorPerpendicularPanels(self.notebook)
+
+        self.notebook.add(self.tab_parallel, text='Parallel Panels', compound=tk.TOP)
+        self.notebook.add(self.tab_perpendicular, text='Perpendicular Panels', compound=tk.TOP)
+
+        self.bind(sequence="<Return>", func=self.key_bind_enter)
+
+    def key_bind_enter(self, _=None):
+        if 'parallel' in str(self.notebook.tab(self.notebook.select(), "text")).lower():
+            self.tab_parallel.calculate_resultant_heat_flux()
+        elif 'perpendicular' in str(self.notebook.tab(self.notebook.select(), "text")).lower():
+            self.tab_perpendicular.calculate_resultant_heat_flux()
 
 
 class CalculatorParallelPanels(ttk.Frame):
@@ -71,19 +140,13 @@ class CalculatorParallelPanels(ttk.Frame):
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
         self.app_description = """
-        Thermal radiation calculator for\nparallel and perpendicular faced\nemitter and receiver pair.
+        Thermal radiation calculator\nemitter and receiver pair\nin perpendicular.
         """
 
         self.init_ui()
 
         self.check_center_receiver()
         self.check_to_boundary()
-
-        # self.master.resizable(0, 0)
-        # set short cut, calculate when enter is pressed
-        # self.root = None
-        # if root:
-        #     root.bind(sequence="<Return>", func=self.calculate_resultant_heat_flux)
 
     def init_ui(self):
 
@@ -98,22 +161,18 @@ class CalculatorParallelPanels(ttk.Frame):
 
         label_logo_image = Image.open(os.path.realpath(fp_radiation_figure_image))
         label_logo_image = label_logo_image.resize(
-            (150, int(150 / 2.43)), Image.ANTIALIAS
+            (100, int(100 / 2.43)), Image.ANTIALIAS
         )
         label_logo_image = ImageTk.PhotoImage(label_logo_image)
-        self.label_lage_logo = ttk.Label(self, image=label_logo_image)
-        self.label_lage_logo.image = label_logo_image
-        self.label_lage_logo.grid(row=0, column=1, columnspan=2, sticky="ne", padx=10, pady=10)
+        label_lage_logo = ttk.Label(self, image=label_logo_image)
+        label_lage_logo.image = label_logo_image
+        label_lage_logo.grid(row=0, column=1, columnspan=2, sticky="se", padx=(0, 5), pady=(0, 0))
 
         # Short description
         # -----------------
-        description_str = '\n'.join([self.app_name, self.app_version, '', self.app_description.strip()])
-        self.label_short_description = ttk.Label(
-            self, text=description_str, anchor="e", foreground="grey"
-        )
-        self.label_short_description.grid(
-            row=0, column=0, sticky="w", padx=10, pady=10
-        )
+        txt = '\n'.join([self.app_description.strip(), self.app_version])
+        label_description = ttk.Label(self, text=txt, anchor="nw", foreground="grey")
+        label_description.grid(row=0, column=0, rowspan=2, sticky="ws", padx=(10, 0), pady=(10, 0))
 
         # Radiation figure
         # ----------------
@@ -123,111 +182,137 @@ class CalculatorParallelPanels(ttk.Frame):
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
         label_logo_image = label_logo_image.resize(
-            (400, int(400 / 1.010)), Image.ANTIALIAS
+            (300, int(300 * 1.04689)), Image.ANTIALIAS
         )
         label_logo_image = ImageTk.PhotoImage(label_logo_image)
         self.label_lage_logo = ttk.Label(self, image=label_logo_image)
         self.label_lage_logo.image = label_logo_image
-        self.label_lage_logo.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
-
-        # Input
-        # =====
+        self.label_lage_logo.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
 
         # Create Objects
-        # --------------
+        # ==============
+
+        # Frames
+        # ------
+
+        self.labelframe_options = ttk.Labelframe(self, text="Options")
+        self.labelframe_options.grid(row=3, column=0, rowspan=1, columnspan=3, sticky='we', padx=5, pady=5, ipadx=5, ipady=5)
+        self.labelframe_inputs = ttk.Labelframe(self, text="Inputs")
+        self.labelframe_inputs.grid(row=7, column=0, rowspan=6, columnspan=3, sticky='we', padx=5, pady=5, ipadx=5, ipady=5)
+        self.labelframe_outputs = ttk.Labelframe(self, text="Outputs")
+        self.labelframe_outputs.grid(row=13, column=0, rowspan=3, columnspan=3, sticky='we', padx=5, pady=5, ipadx=5, ipady=5)
+
+        # Options
+        # -------
 
         self.checkbutton_centered_v = tk.IntVar(value=1)  # set default, receiver to the center of emitter
-        self.checkbutton_centered = ttk.Checkbutton(self, text="Centered receiver", variable=self.checkbutton_centered_v, command=self.check_center_receiver)
+        self.checkbutton_centered = ttk.Checkbutton(self.labelframe_options, text="Centered receiver", variable=self.checkbutton_centered_v, command=self.check_center_receiver)
         self.checkbutton_to_boundary_v = tk.IntVar(value=1)  # set default, separation to notional boundary
-        self.checkbutton_to_boundary = ttk.Checkbutton(self, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self.check_to_boundary, )
+        self.checkbutton_to_boundary = ttk.Checkbutton(self.labelframe_options, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self.check_to_boundary)
+        self.list_options = [
+            self.checkbutton_centered, self.checkbutton_to_boundary
+        ]
 
-        self.label_W = ttk.Label(self, text="W, emitter width")
-        self.label_H = ttk.Label(self, text="H, emitter height")
-        self.label_m = ttk.Label(self, text="m, receiver loc. 1")
-        self.label_n = ttk.Label(self, text="n, receiver loc. 2")
-        self.label_Q1 = ttk.Label(self, text="Q1, emitter HT (84, 168)")
-        self.label_Q2 = ttk.Label(self, text="Q2, receiver HT (optional, 12.6)")
-        self.label_S = ttk.Label(self, text="S, separation")
-        self.label_upa = ttk.Label(self, text="Permitted UPA")
+        # Inputs
+        # ------
 
-        self.entry_W = ttk.Entry(self)
-        self.entry_H = ttk.Entry(self)
-        self.entry_m = ttk.Entry(self)
-        self.entry_n = ttk.Entry(self)
-        self.entry_Q1 = ttk.Entry(self)
-        # self.option_Q1_v = tk.StringVar(self.master)
-        # self.option_Q1_v.set("168.00")
-        # self.option_Q1 = ttk.OptionMenu(self, self.option_Q1_v, "168.00", "84.00", "168.00")
-        self.entry_Q2 = ttk.Entry(self)
-        self.entry_S = ttk.Entry(self)
-        self.entry_upa = ttk.Entry(self)
+        self.label_W = ttk.Label(self.labelframe_inputs, text="W, emitter width")
+        self.label_H = ttk.Label(self.labelframe_inputs, text="H, emitter height")
+        self.label_Q1 = ttk.Label(self.labelframe_inputs, text="Q1, emitter HT (84, 168)")
+        self.label_m = ttk.Label(self.labelframe_inputs, text="m, receiver loc. 1")
+        self.label_n = ttk.Label(self.labelframe_inputs, text="n, receiver loc. 2")
+        self.label_Q2 = ttk.Label(self.labelframe_inputs, text="Q2, receiver HT (12.6)")
+        self.label_S = ttk.Label(self.labelframe_inputs, text="S, separation")
+        self.list_inputs_labels = [
+            self.label_W, self.label_H, self.label_Q1, self.label_m, self.label_n, self.label_Q2, self.label_S
+        ]
 
-        self.label_W_unit = ttk.Label(self, text="m")
-        self.label_H_unit = ttk.Label(self, text="m")
-        self.label_w_unit = ttk.Label(self, text="m")
-        self.label_h_unit = ttk.Label(self, text="m")
-        self.label_Q1_unit = ttk.Label(self, text="kW/m²")
-        self.label_Q2_unit = ttk.Label(self, text="kW/m²")
-        self.label_S_unit = ttk.Label(self, text="m")
-        self.label_upa_unit = ttk.Label(self, text="%")
+        self.entry_W = ttk.Entry(self.labelframe_inputs)
+        self.entry_H = ttk.Entry(self.labelframe_inputs)
+        self.entry_Q1 = ttk.Entry(self.labelframe_inputs)
+        self.entry_m = ttk.Entry(self.labelframe_inputs)
+        self.entry_n = ttk.Entry(self.labelframe_inputs)
+        self.entry_Q2 = ttk.Entry(self.labelframe_inputs)
+        self.entry_S = ttk.Entry(self.labelframe_inputs)
+        self.list_inputs_entries = [
+            self.entry_W, self.entry_H, self.entry_Q1, self.entry_m, self.entry_n, self.entry_Q2, self.entry_S
+        ]
+
+        self.label_W_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_H_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_Q1_unit = ttk.Label(self.labelframe_inputs, text="kW/m²")
+        self.label_m_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_n_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_Q2_unit = ttk.Label(self.labelframe_inputs, text="kW/m²")
+        self.label_S_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.list_inputs_units = [
+            self.label_W_unit, self.label_H_unit, self.label_Q1_unit,
+            self.label_m_unit, self.label_n_unit, self.label_Q2_unit,
+            self.label_S_unit
+        ]
+
+        # Outputs
+        # -------
+
+        self.label_Q2r = ttk.Label(self.labelframe_outputs, text="Calculated HT at receiver")
+        self.label_Sr = ttk.Label(self.labelframe_outputs, text="Calculated separation S")
+        self.label_upa = ttk.Label(self.labelframe_outputs, text="Calculated UPA")
+        self.list_outputs_labels = [
+            self.label_Q2r, self.label_Sr, self.label_upa
+        ]
+        self.entry_Q2r = ttk.Entry(self.labelframe_outputs)
+        self.entry_Sr = ttk.Entry(self.labelframe_outputs)
+        self.entry_upa = ttk.Entry(self.labelframe_outputs)
+        self.list_outputs_entries = [
+            self.entry_Q2r, self.entry_Sr, self.entry_upa
+        ]
+        self.label_Q2r_unit = ttk.Label(self.labelframe_outputs, text="kW/m²")
+        self.label_Sr_unit = ttk.Label(self.labelframe_outputs, text="m")
+        self.label_upa_unit = ttk.Label(self.labelframe_outputs, text="%")
+        self.list_outputs_units = [
+            self.label_Q2r_unit, self.label_Sr_unit, self.label_upa_unit
+        ]
 
         # Set Grid Location
         # -----------------
 
-        self.checkbutton_centered.grid(row=2, column=0, sticky="w", padx=10, pady=(10, 0))
-        self.checkbutton_to_boundary.grid(row=3, column=0, sticky="w", padx=10, pady=(0, 10))
+        self.checkbutton_centered.grid(row=0, column=0, sticky="w", padx=5, pady=1)
+        self.checkbutton_to_boundary.grid(row=1, column=0, sticky="w", padx=5, pady=1)
 
-        row0 = 4
-        col0 = 0
-        self.label_W.grid(row=row0 + 0, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_H.grid(row=row0 + 1, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_m.grid(row=row0 + 2, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_n.grid(row=row0 + 3, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_Q1.grid(row=row0 + 4, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_Q2.grid(row=row0 + 5, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_S.grid(row=row0 + 6, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_upa.grid(row=row0 + 7, column=col0 + 0, sticky="w", padx=(10, 0))
-
-        self.entry_W.grid(row=row0 + 0, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_H.grid(row=row0 + 1, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_m.grid(row=row0 + 2, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_n.grid(row=row0 + 3, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_Q1.grid(row=row0 + 4, column=col0 + 1, sticky='ew', padx=(0, 10))
-        # self.option_Q1.grid(row=row0 + 4, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_Q2.grid(row=row0 + 5, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_S.grid(row=row0 + 6, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_upa.grid(row=row0 + 7, column=col0 + 1, sticky="ew", padx=(0, 10))
-
-        self.label_W_unit.grid(row=row0 + 0, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_H_unit.grid(row=row0 + 1, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_w_unit.grid(row=row0 + 2, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_h_unit.grid(row=row0 + 3, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_Q1_unit.grid(row=row0 + 4, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_Q2_unit.grid(row=row0 + 5, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_S_unit.grid(row=row0 + 6, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_upa_unit.grid(row=row0 + 7, column=col0 + 2, sticky="w", padx=(10, 0))
-
-        # Set Dimension
-        # -------------
-
-        self.entry_W.config(width=9)
-        self.entry_H.config(width=9)
-        self.entry_m.config(width=9)
-        self.entry_n.config(width=9)
-        self.entry_Q1.config(width=9)
-        # self.option_Q1.config(width=9)
-        self.entry_Q2.config(width=9)
-        self.entry_S.config(width=9)
-        self.entry_upa.config(width=9)
+        for i, v in enumerate(self.list_inputs_labels):
+            v.grid(row=i, column=0, sticky="w", padx=5, pady=1)
+            v.config(width=22)
+        for i, v in enumerate(self.list_inputs_entries):
+            v.grid(row=i, column=1, sticky="w", padx=5, pady=1)
+            v.config(width=10)
+        for i, v in enumerate(self.list_inputs_units):
+            v.grid(row=i, column=2, sticky="w", padx=5, pady=1)
+            v.config(width=5)
+        for i, v in enumerate(self.list_outputs_labels):
+            v.grid(row=i, column=0, sticky="w", padx=5, pady=1)
+            v.config(width=22)
+        for i, v in enumerate(self.list_outputs_entries):
+            v.grid(row=i, column=1, sticky="w", padx=5, pady=1)
+            v.config(width=10)
+        for i, v in enumerate(self.list_outputs_units):
+            v.grid(row=i, column=2, sticky="w", padx=5, pady=1)
+            v.config(width=5)
 
         # Set default value
         # -----------------
         self.entry_Q1.delete(0, tk.END)
-        self.entry_Q1.insert(tk.END, '187.00')
+        self.entry_Q1.insert(tk.END, '168.00')
+
+        self.entry_Q2.delete(0, tk.END)
+        self.entry_Q2.insert(tk.END, '12.60')
 
         # Output and calculate button
         # ===========================
 
+        self.entry_Q2r.config(stat="readonly")
+        self.entry_Q2r.delete(0, tk.END)
+        self.entry_Sr.config(stat="readonly")
+        self.entry_Sr.delete(0, tk.END)
         self.entry_upa.config(stat="readonly")
         self.entry_upa.delete(0, tk.END)
 
@@ -235,7 +320,7 @@ class CalculatorParallelPanels(ttk.Frame):
             self, text="Calculate", command=self.calculate_resultant_heat_flux
         )
         self.button_calculate.grid(
-            row=12, column=1, columnspan=2, sticky="we", padx=(0, 10), pady=10
+            row=16, column=1, columnspan=2, sticky="we", padx=(0, 10), pady=10
         )
 
     def calculate_resultant_heat_flux(self, _=None):
@@ -246,25 +331,11 @@ class CalculatorParallelPanels(ttk.Frame):
         :return: No.
         """
 
-        def update_q2_to_gui(__: str = ""):
-            state = self.entry_Q2["state"]
-            self.entry_Q2.config(stat=tk.NORMAL)
-            self.entry_Q2.delete(0, tk.END)
-            self.entry_Q2.insert(tk.END, __)
-            self.entry_Q2["state"] = state
-
-        def update_upa_to_gui(__: str = ""):
-            state = self.entry_upa["state"]
-            self.entry_upa.delete(0, tk.END)
-            self.entry_upa.insert(tk.END, __)
-            self.entry_upa.config(state="readonly")
-            self.entry_upa["state"] = state
-
         def get_float_from_entry(list_entries_: typing.List[ttk.Entry]):
             list_entry_v = list()
             for i in list_entries_:
                 try:
-                    list_entry_v.append(float(i.get()))
+                    list_entry_v.append(float(str(i.get()).strip()))
                 except:
                     list_entry_v.append(None)
             return list_entry_v
@@ -272,22 +343,20 @@ class CalculatorParallelPanels(ttk.Frame):
         list_label = [
             self.label_W,
             self.label_H,
+            self.label_Q1,
             self.label_m,
             self.label_n,
-            self.label_Q1,
             self.label_Q2,
-            self.label_S,
-            self.label_upa,
+            self.label_S
         ]
         list_entry = [
             self.entry_W,
             self.entry_H,
+            self.entry_Q1,
             self.entry_m,
             self.entry_n,
-            self.entry_Q1,
             self.entry_Q2,
-            self.entry_S,
-            self.entry_upa,
+            self.entry_S
         ]
         list_entry_v = get_float_from_entry(list_entry)
 
@@ -299,40 +368,52 @@ class CalculatorParallelPanels(ttk.Frame):
             )
         )
 
-        W, H, m, n, Q1, Q2, S, upa = tuple(list_entry_v)
-
-        # if self.checkbutton_centered_v.get() == 1:
-        #     m, n = 0.5 * W, 0.5 * H
-        m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
-        n = 0.5 * H if self.checkbutton_centered_v.get() == 1 else n
-        S = 2.0 * S if self.checkbutton_to_boundary_v.get() == 1 else S
+        W, H, Q1, m, n, Q2, S = tuple(list_entry_v)
 
         # calculate heat flux at receiver, Q2
         try:
-            Q2_calculated = (
-                phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1
+            m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
+            n = 0.5 * H if self.checkbutton_centered_v.get() == 1 else n
+            S = 2.0 * S if self.checkbutton_to_boundary_v.get() == 1 else S
+            Q2_calculated = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
+
+            Sr = linear_solver(
+                func=phi_parallel_any_br187,
+                dict_params=dict(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S),
+                x_name='S_m',
+                y_target=Q2 / Q1,
+                x_upper=0.01, x_lower=1000,
+                y_tol=0.0001,
+                iter_max=10000,
+                func_multiplier=-1
             )
+            Sr = 0. if Sr is None else Sr
+
         except Exception as e:
             if hasattr(e, "message"):
                 e = e.message
-            update_upa_to_gui(e)
+            Messenger(e, 'Error')
             return 0
 
         if Q2 is None:
-            # if Q2 not provided, update
-            Q2 = Q2_calculated
+            # if Q2 not provided, output calculated Q2 only
             upa = ""
+            Q2r = Q2_calculated
         else:
-            # calculate upa
+            # if Q2 is provided, output both calculated Q2 and upa
             upa = min([Q2 / Q2_calculated * 100, 100])
+            Q2r = Q2_calculated
 
-        print("AFTER CALCULATION")
-        print(
-            "\n".join(
-                "{:40.40} {}".format(v.cget("text") + ":", list_entry_v[i])
-                for i, v in enumerate(list_label)
+        try:
+            print("AFTER CALCULATION")
+            print(
+                "\n".join(
+                    "{:40.40} {}".format(v.cget("text") + ":", list_entry_v[i])
+                    for i, v in enumerate(list_label)
+                )
             )
-        )
+        except Exception:
+            pass
 
         # Update Entries
         # --------------
@@ -340,10 +421,13 @@ class CalculatorParallelPanels(ttk.Frame):
         list_tk = [
             self.entry_W,
             self.entry_H,
+            self.entry_Q1,
             self.entry_m,
             self.entry_n,
-            self.entry_S,
             self.entry_Q2,
+            self.entry_S,
+            self.entry_Q2r,
+            self.entry_Sr,
             self.entry_upa,
         ]
         list_tk_states = [i["state"] for i in list_tk]
@@ -354,18 +438,21 @@ class CalculatorParallelPanels(ttk.Frame):
             i.delete(0, tk.END)
 
         # delete existing Entry value
-        for i in list_entry:
+        for i in list_tk:
             i.delete(0, tk.END)
 
         # set Entry value to new values
         S = S / 2 if self.checkbutton_to_boundary_v.get() == 1 else S
+        Sr = Sr / 2 if self.checkbutton_to_boundary_v.get() == 1 else Sr
         self.entry_W.insert(tk.END, f"{W:.2f}")
         self.entry_H.insert(tk.END, f"{H:.2f}")
+        self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
         self.entry_m.insert(tk.END, f"{m:.2f}")
         self.entry_n.insert(tk.END, f"{n:.2f}")
-        self.entry_S.insert(tk.END, f"{S:.2f}")
-        self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
         self.entry_Q2.insert(tk.END, f"{Q2:.2f}")
+        self.entry_S.insert(tk.END, f"{S:.2f}")
+        self.entry_Q2r.insert(tk.END, f"{Q2r:.2f}")
+        self.entry_Sr.insert(tk.END, f"{Sr:.2f}")
         if isinstance(upa, str):
             self.entry_upa.insert(tk.END, "")
         else:
@@ -379,15 +466,15 @@ class CalculatorParallelPanels(ttk.Frame):
         if self.checkbutton_centered_v.get() == 1:
             self.label_n.config(state="disabled", foreground="grey")
             self.label_m.config(state="disabled", foreground="grey")
-            self.label_h_unit.config(state="disabled", foreground="grey")
-            self.label_w_unit.config(state="disabled", foreground="grey")
+            self.label_n_unit.config(state="disabled", foreground="grey")
+            self.label_m_unit.config(state="disabled", foreground="grey")
             self.entry_n.config(state="disabled", foreground="grey")
             self.entry_m.config(state="disabled", foreground="grey")
         elif self.checkbutton_centered_v.get() == 0:
             self.label_n.config(state="normal", foreground="black")
             self.label_m.config(state="normal", foreground="black")
-            self.label_h_unit.config(state="normal", foreground="black")
-            self.label_w_unit.config(state="normal", foreground="black")
+            self.label_n_unit.config(state="normal", foreground="black")
+            self.label_m_unit.config(state="normal", foreground="black")
             self.entry_n.config(state="normal", foreground="black")
             self.entry_m.config(state="normal", foreground="black")
         else:
@@ -396,13 +483,15 @@ class CalculatorParallelPanels(ttk.Frame):
     def check_to_boundary(self):
         if self.checkbutton_to_boundary_v.get() == 1:
             self.label_S.config(text="½S, separation to boundary")
+            self.label_Sr.config(text="Calculated separation ½S")
         elif self.checkbutton_to_boundary_v.get() == 0:
             self.label_S.config(text="S, separation to surface")
+            self.label_Sr.config(text="Calculated separation S")
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
 
-class CalculatorPerpendicularlPanels(ttk.Frame):
+class CalculatorPerpendicularPanels(ttk.Frame):
     def __init__(self, parent, **kwargs):
         ttk.Frame.__init__(self, parent, **kwargs)
 
@@ -411,7 +500,7 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
         self.app_description = """
-        Thermal radiation calculator for\nparallel and perpendicular faced\nemitter and receiver pair.
+        Thermal radiation calculator\nemitter and receiver pair\nin parallel.
         """
 
         self.init_ui()
@@ -432,142 +521,163 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
 
         # Large logo
         # ----------
-        _, fp_radiation_figure_image = tempfile.mkstemp()
-        with open(fp_radiation_figure_image, "wb") as f:
+        _, fp_logo = tempfile.mkstemp()
+        with open(fp_logo, "wb") as f:
             f.write(base64.b64decode(OFR_LOGO_LARGE_PNG_BASE64))
 
-        label_logo_image = Image.open(os.path.realpath(fp_radiation_figure_image))
+        label_logo_image = Image.open(os.path.realpath(fp_logo))
         label_logo_image = label_logo_image.resize(
-            (150, int(150 / 2.43)), Image.ANTIALIAS
+            (100, int(100 / 2.43)), Image.ANTIALIAS
         )
         label_logo_image = ImageTk.PhotoImage(label_logo_image)
-        self.label_lage_logo = ttk.Label(self, image=label_logo_image)
-        self.label_lage_logo.image = label_logo_image
-        self.label_lage_logo.grid(row=0, column=1, columnspan=2, sticky="ne", padx=10, pady=10)
+        label_lage_logo = ttk.Label(self, image=label_logo_image)
+        label_lage_logo.image = label_logo_image
+        label_lage_logo.grid(row=0, column=1, columnspan=2, sticky="se", padx=(0, 5), pady=(0, 0))
 
         # Short description
         # -----------------
-        description_str = '\n'.join([self.app_name, self.app_version, '', self.app_description.strip()])
-        self.label_short_description = ttk.Label(
-            self, text=description_str, anchor="e", foreground="grey"
-        )
-        self.label_short_description.grid(
-            row=0, column=0, sticky="w", padx=10, pady=10
-        )
+        txt = '\n'.join([self.app_description.strip(), self.app_version])
+        label_description = ttk.Label(self, text=txt, anchor="nw", foreground="grey")
+        label_description.grid(row=0, column=0, rowspan=2, sticky="ws", padx=(10, 0), pady=(10, 0))
 
         # Radiation figure
         # ----------------
-        _, fp_logo_image = tempfile.mkstemp()
-        with open(fp_logo_image, "wb") as f:
+        _, fp_main_figure = tempfile.mkstemp()
+        with open(fp_main_figure, "wb") as f:
             f.write(base64.b64decode(PERPENDICULAR_LARGE_FIGURE_PNG_BASE64))
-
-        label_logo_image = Image.open(os.path.realpath(fp_logo_image))
-        label_logo_image = label_logo_image.resize(
-            (400, int(400 / 1.010)), Image.ANTIALIAS
+        main_figure_image = Image.open(os.path.realpath(fp_main_figure))
+        main_figure_image = main_figure_image.resize(
+            (300, int(300 * 1.04689)), Image.ANTIALIAS
         )
-        label_logo_image = ImageTk.PhotoImage(label_logo_image)
-        self.label_lage_logo = ttk.Label(self, image=label_logo_image)
-        self.label_lage_logo.image = label_logo_image
-        self.label_lage_logo.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
-
-        # Input
-        # =====
+        main_figure_image = ImageTk.PhotoImage(main_figure_image)
+        label_main_figure = ttk.Label(self, image=main_figure_image)
+        label_main_figure.image = main_figure_image
+        label_main_figure.grid(row=2, column=0, columnspan=3, padx=10, pady=10)
 
         # Create Objects
-        # --------------
+        # ==============
+
+        # Frames
+        # ------
+
+        self.labelframe_options = ttk.Labelframe(self, text="Options")
+        self.labelframe_options.grid(row=3, column=0, rowspan=1, columnspan=3, sticky='we', padx=5, pady=5, ipadx=5, ipady=5)
+        self.labelframe_inputs = ttk.Labelframe(self, text="Inputs")
+        self.labelframe_inputs.grid(row=7, column=0, rowspan=6, columnspan=3, sticky='we', padx=5, pady=5, ipadx=5, ipady=5)
+        self.labelframe_outputs = ttk.Labelframe(self, text="Outputs")
+        self.labelframe_outputs.grid(row=13, column=0, rowspan=3, columnspan=3, sticky='we', padx=5, pady=5, ipadx=5, ipady=5)
+
+        # Options
+        # -------
 
         self.checkbutton_centered_v = tk.IntVar(value=1)  # set default, receiver to the center of emitter
-        self.checkbutton_centered = ttk.Checkbutton(self, text="Centered receiver", variable=self.checkbutton_centered_v, command=self.check_center_receiver)
+        self.checkbutton_centered = ttk.Checkbutton(self.labelframe_options, text="Centered receiver", variable=self.checkbutton_centered_v, command=self.check_center_receiver)
         self.checkbutton_to_boundary_v = tk.IntVar(value=1)  # set default, separation to notional boundary
-        self.checkbutton_to_boundary = ttk.Checkbutton(self, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self.check_to_boundary, )
+        self.checkbutton_to_boundary = ttk.Checkbutton(self.labelframe_options, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self.check_to_boundary)
+        self.list_options = [
+            self.checkbutton_centered, self.checkbutton_to_boundary
+        ]
 
-        self.label_W = ttk.Label(self, text="W, emitter width")
-        self.label_H = ttk.Label(self, text="H, emitter height")
-        self.label_m = ttk.Label(self, text="m, receiver loc. 1")
-        self.label_n = ttk.Label(self, text="n, receiver loc. 2")
-        self.label_Q1 = ttk.Label(self, text="Q1, emitter HT (84, 168)")
-        self.label_Q2 = ttk.Label(self, text="Q2, receiver HT (optional, 12.6)")
-        self.label_S = ttk.Label(self, text="S, separation")
-        self.label_upa = ttk.Label(self, text="Permitted UPA")
+        # Inputs
+        # ------
 
-        self.entry_W = ttk.Entry(self)
-        self.entry_H = ttk.Entry(self)
-        self.entry_m = ttk.Entry(self)
-        self.entry_n = ttk.Entry(self)
-        self.entry_Q1 = ttk.Entry(self)
-        # self.option_Q1_v = tk.StringVar(self.master)
-        # self.option_Q1_v.set("168.00")
-        # self.option_Q1 = ttk.OptionMenu(self, self.option_Q1_v, "168.00", "84.00", "168.00")
-        self.entry_Q2 = ttk.Entry(self)
-        self.entry_S = ttk.Entry(self)
-        self.entry_upa = ttk.Entry(self)
+        self.label_W = ttk.Label(self.labelframe_inputs, text="W, emitter width")
+        self.label_H = ttk.Label(self.labelframe_inputs, text="H, emitter height")
+        self.label_Q1 = ttk.Label(self.labelframe_inputs, text="Q1, emitter HT (84, 168)")
+        self.label_m = ttk.Label(self.labelframe_inputs, text="m, receiver loc. 1")
+        self.label_n = ttk.Label(self.labelframe_inputs, text="n, receiver loc. 2")
+        self.label_Q2 = ttk.Label(self.labelframe_inputs, text="Q2, receiver HT (12.6)")
+        self.label_S = ttk.Label(self.labelframe_inputs, text="S, separation")
+        self.list_inputs_labels = [
+            self.label_W, self.label_H, self.label_Q1, self.label_m, self.label_n, self.label_Q2, self.label_S
+        ]
 
-        self.label_W_unit = ttk.Label(self, text="m")
-        self.label_H_unit = ttk.Label(self, text="m")
-        self.label_m_unit = ttk.Label(self, text="m")
-        self.label_n_unit = ttk.Label(self, text="m")
-        self.label_Q1_unit = ttk.Label(self, text="kW/m²")
-        self.label_Q2_unit = ttk.Label(self, text="kW/m²")
-        self.label_S_unit = ttk.Label(self, text="m")
-        self.label_upa_unit = ttk.Label(self, text="%")
+        self.entry_W = ttk.Entry(self.labelframe_inputs)
+        self.entry_H = ttk.Entry(self.labelframe_inputs)
+        self.entry_Q1 = ttk.Entry(self.labelframe_inputs)
+        self.entry_m = ttk.Entry(self.labelframe_inputs)
+        self.entry_n = ttk.Entry(self.labelframe_inputs)
+        self.entry_Q2 = ttk.Entry(self.labelframe_inputs)
+        self.entry_S = ttk.Entry(self.labelframe_inputs)
+        self.list_inputs_entries = [
+            self.entry_W, self.entry_H, self.entry_Q1, self.entry_m, self.entry_n, self.entry_Q2, self.entry_S
+        ]
+
+        self.label_W_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_H_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_Q1_unit = ttk.Label(self.labelframe_inputs, text="kW/m²")
+        self.label_m_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_n_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.label_Q2_unit = ttk.Label(self.labelframe_inputs, text="kW/m²")
+        self.label_S_unit = ttk.Label(self.labelframe_inputs, text="m")
+        self.list_inputs_units = [
+            self.label_W_unit, self.label_H_unit, self.label_Q1_unit,
+            self.label_m_unit, self.label_n_unit, self.label_Q2_unit,
+            self.label_S_unit
+        ]
+
+        # Outputs
+        # -------
+
+        self.label_Q2r = ttk.Label(self.labelframe_outputs, text="Calculated HT at receiver")
+        self.label_Sr = ttk.Label(self.labelframe_outputs, text="Calculated separation S")
+        self.label_upa = ttk.Label(self.labelframe_outputs, text="Calculated UPA")
+        self.list_outputs_labels = [
+            self.label_Q2r, self.label_Sr, self.label_upa
+        ]
+        self.entry_Q2r = ttk.Entry(self.labelframe_outputs)
+        self.entry_Sr = ttk.Entry(self.labelframe_outputs)
+        self.entry_upa = ttk.Entry(self.labelframe_outputs)
+        self.list_outputs_entries = [
+            self.entry_Q2r, self.entry_Sr, self.entry_upa
+        ]
+        self.label_Q2r_unit = ttk.Label(self.labelframe_outputs, text="kW/m²")
+        self.label_Sr_unit = ttk.Label(self.labelframe_outputs, text="m")
+        self.label_upa_unit = ttk.Label(self.labelframe_outputs, text="%")
+        self.list_outputs_units = [
+            self.label_Q2r_unit, self.label_Sr_unit, self.label_upa_unit
+        ]
 
         # Set Grid Location
         # -----------------
 
-        self.checkbutton_centered.grid(row=2, column=0, sticky="w", padx=10, pady=(10, 0))
-        self.checkbutton_to_boundary.grid(row=3, column=0, sticky="w", padx=10, pady=(0, 10))
+        self.checkbutton_centered.grid(row=0, column=0, sticky="w", padx=5, pady=1)
+        self.checkbutton_to_boundary.grid(row=1, column=0, sticky="w", padx=5, pady=1)
 
-        row0 = 4
-        col0 = 0
-        self.label_W.grid(row=row0 + 0, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_H.grid(row=row0 + 1, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_m.grid(row=row0 + 2, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_n.grid(row=row0 + 3, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_Q1.grid(row=row0 + 4, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_Q2.grid(row=row0 + 5, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_S.grid(row=row0 + 6, column=col0 + 0, sticky="w", padx=(10, 0))
-        self.label_upa.grid(row=row0 + 7, column=col0 + 0, sticky="w", padx=(10, 0))
-
-        self.entry_W.grid(row=row0 + 0, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_H.grid(row=row0 + 1, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_m.grid(row=row0 + 2, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_n.grid(row=row0 + 3, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_Q1.grid(row=row0 + 4, column=col0 + 1, sticky='ew', padx=(0, 10))
-        # self.option_Q1.grid(row=row0 + 4, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_Q2.grid(row=row0 + 5, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_S.grid(row=row0 + 6, column=col0 + 1, sticky="ew", padx=(0, 10))
-        self.entry_upa.grid(row=row0 + 7, column=col0 + 1, sticky="ew", padx=(0, 10))
-
-        self.label_W_unit.grid(row=row0 + 0, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_H_unit.grid(row=row0 + 1, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_m_unit.grid(row=row0 + 2, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_n_unit.grid(row=row0 + 3, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_Q1_unit.grid(row=row0 + 4, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_Q2_unit.grid(row=row0 + 5, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_S_unit.grid(row=row0 + 6, column=col0 + 2, sticky="w", padx=(10, 0))
-        self.label_upa_unit.grid(row=row0 + 7, column=col0 + 2, sticky="w", padx=(10, 0))
-
-        # Set Dimension
-        # -------------
-
-        self.entry_W.config(width=9)
-        self.entry_H.config(width=9)
-        self.entry_m.config(width=9)
-        self.entry_n.config(width=9)
-        self.entry_Q1.config(width=9)
-        # self.option_Q1.config(width=9)
-        self.entry_Q2.config(width=9)
-        self.entry_S.config(width=9)
-        self.entry_upa.config(width=9)
+        for i, v in enumerate(self.list_inputs_labels):
+            v.grid(row=i, column=0, sticky="w", padx=5, pady=1)
+            v.config(width=22)
+        for i, v in enumerate(self.list_inputs_entries):
+            v.grid(row=i, column=1, sticky="w", padx=5, pady=1)
+            v.config(width=10)
+        for i, v in enumerate(self.list_inputs_units):
+            v.grid(row=i, column=2, sticky="w", padx=5, pady=1)
+            v.config(width=5)
+        for i, v in enumerate(self.list_outputs_labels):
+            v.grid(row=i, column=0, sticky="w", padx=5, pady=1)
+            v.config(width=22)
+        for i, v in enumerate(self.list_outputs_entries):
+            v.grid(row=i, column=1, sticky="w", padx=5, pady=1)
+            v.config(width=10)
+        for i, v in enumerate(self.list_outputs_units):
+            v.grid(row=i, column=2, sticky="w", padx=5, pady=1)
+            v.config(width=5)
 
         # Set default value
         # -----------------
         self.entry_Q1.delete(0, tk.END)
-        self.entry_Q1.insert(tk.END, '187.00')
+        self.entry_Q1.insert(tk.END, '168.00')
+
+        self.entry_Q2.delete(0, tk.END)
+        self.entry_Q2.insert(tk.END, '12.60')
 
         # Output and calculate button
         # ===========================
 
+        self.entry_Q2r.config(stat="readonly")
+        self.entry_Q2r.delete(0, tk.END)
+        self.entry_Sr.config(stat="readonly")
+        self.entry_Sr.delete(0, tk.END)
         self.entry_upa.config(stat="readonly")
         self.entry_upa.delete(0, tk.END)
 
@@ -575,29 +685,22 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
             self, text="Calculate", command=self.calculate_resultant_heat_flux
         )
         self.button_calculate.grid(
-            row=12, column=1, columnspan=2, sticky="we", padx=(0, 10), pady=10
+            row=16, column=1, columnspan=2, sticky="we", padx=(0, 10), pady=10
         )
 
     def calculate_resultant_heat_flux(self, _=None):
         """
-        Yan FU, 26 Nov 2019
+        Yan FU, 23 Nov 2019
         Calculates and outputs the resultant heat flux at the exposed surface based on user defined inputs from the GUI.
         :param _: Placeholder, no use. No idea why tk.Tk.root.binder would forcefully feed a parameter to the func.
         :return: No.
         """
 
-        def update_upa_to_gui(__: str = ""):
-            state = self.entry_upa["state"]
-            self.entry_upa.delete(0, tk.END)
-            self.entry_upa.insert(tk.END, __)
-            self.entry_upa.config(state="readonly")
-            self.entry_upa["state"] = state
-
         def get_float_from_entry(list_entries_: typing.List[ttk.Entry]):
             list_entry_v = list()
             for i in list_entries_:
                 try:
-                    list_entry_v.append(float(i.get()))
+                    list_entry_v.append(float(str(i.get()).strip()))
                 except:
                     list_entry_v.append(None)
             return list_entry_v
@@ -605,22 +708,20 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
         list_label = [
             self.label_W,
             self.label_H,
+            self.label_Q1,
             self.label_m,
             self.label_n,
-            self.label_Q1,
             self.label_Q2,
-            self.label_S,
-            self.label_upa,
+            self.label_S
         ]
         list_entry = [
             self.entry_W,
             self.entry_H,
+            self.entry_Q1,
             self.entry_m,
             self.entry_n,
-            self.entry_Q1,
             self.entry_Q2,
-            self.entry_S,
-            self.entry_upa,
+            self.entry_S
         ]
         list_entry_v = get_float_from_entry(list_entry)
 
@@ -632,40 +733,52 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
             )
         )
 
-        W, H, m, n, Q1, Q2, S, upa = tuple(list_entry_v)
-
-        # if self.checkbutton_centered_v.get() == 1:
-        #     m, n = 0.5 * W, 0.5 * H
-        m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
-        n = 0.5 * H if self.checkbutton_centered_v.get() == 1 else n
-        S = 2.0 * S if self.checkbutton_to_boundary_v.get() == 1 else S
+        W, H, Q1, m, n, Q2, S = tuple(list_entry_v)
 
         # calculate heat flux at receiver, Q2
         try:
-            Q2_calculated = (
-                phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1
+            m = 0.5 * W if self.checkbutton_centered_v.get() == 1 else m
+            n = 0.5 * H if self.checkbutton_centered_v.get() == 1 else n
+            S = 2.0 * S if self.checkbutton_to_boundary_v.get() == 1 else S
+            Q2_calculated = (phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
+
+            Sr = linear_solver(
+                func=phi_perpendicular_any_br187,
+                dict_params=dict(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S),
+                x_name='S_m',
+                y_target=Q2 / Q1,
+                x_upper=0.01, x_lower=1000,
+                y_tol=0.0001,
+                iter_max=10000,
+                func_multiplier=-1
             )
+            Sr = 0. if Sr is None else Sr
+
         except Exception as e:
             if hasattr(e, "message"):
                 e = e.message
-            update_upa_to_gui(e)
+            Messenger(e, 'Error')
             return 0
 
         if Q2 is None:
-            # if Q2 not provided, update
-            Q2 = Q2_calculated
+            # if Q2 not provided, output calculated Q2 only
             upa = ""
+            Q2r = Q2_calculated
         else:
-            # calculate upa
+            # if Q2 is provided, output both calculated Q2 and upa
             upa = min([Q2 / Q2_calculated * 100, 100])
+            Q2r = Q2_calculated
 
-        print("AFTER CALCULATION")
-        print(
-            "\n".join(
-                "{:40.40} {}".format(v.cget("text") + ":", list_entry_v[i])
-                for i, v in enumerate(list_label)
+        try:
+            print("AFTER CALCULATION")
+            print(
+                "\n".join(
+                    "{:40.40} {}".format(v.cget("text") + ":", list_entry_v[i])
+                    for i, v in enumerate(list_label)
+                )
             )
-        )
+        except Exception:
+            pass
 
         # Update Entries
         # --------------
@@ -673,10 +786,13 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
         list_tk = [
             self.entry_W,
             self.entry_H,
+            self.entry_Q1,
             self.entry_m,
             self.entry_n,
-            self.entry_S,
             self.entry_Q2,
+            self.entry_S,
+            self.entry_Q2r,
+            self.entry_Sr,
             self.entry_upa,
         ]
         list_tk_states = [i["state"] for i in list_tk]
@@ -687,18 +803,21 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
             i.delete(0, tk.END)
 
         # delete existing Entry value
-        for i in list_entry:
+        for i in list_tk:
             i.delete(0, tk.END)
 
         # set Entry value to new values
         S = S / 2 if self.checkbutton_to_boundary_v.get() == 1 else S
+        Sr = Sr / 2 if self.checkbutton_to_boundary_v.get() == 1 else Sr
         self.entry_W.insert(tk.END, f"{W:.2f}")
         self.entry_H.insert(tk.END, f"{H:.2f}")
+        self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
         self.entry_m.insert(tk.END, f"{m:.2f}")
         self.entry_n.insert(tk.END, f"{n:.2f}")
-        self.entry_S.insert(tk.END, f"{S:.2f}")
-        self.entry_Q1.insert(tk.END, f'{Q1:.2f}')
         self.entry_Q2.insert(tk.END, f"{Q2:.2f}")
+        self.entry_S.insert(tk.END, f"{S:.2f}")
+        self.entry_Q2r.insert(tk.END, f"{Q2r:.2f}")
+        self.entry_Sr.insert(tk.END, f"{Sr:.2f}")
         if isinstance(upa, str):
             self.entry_upa.insert(tk.END, "")
         else:
@@ -729,8 +848,10 @@ class CalculatorPerpendicularlPanels(ttk.Frame):
     def check_to_boundary(self):
         if self.checkbutton_to_boundary_v.get() == 1:
             self.label_S.config(text="½S, separation to boundary")
+            self.label_Sr.config(text="Calculated separation ½S")
         elif self.checkbutton_to_boundary_v.get() == 0:
             self.label_S.config(text="S, separation to surface")
+            self.label_Sr.config(text="Calculated separation S")
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
