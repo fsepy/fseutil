@@ -11,7 +11,7 @@ def build_gui():
     cmd_pyinstaller = "pyinstaller"
 
     cmd_option_list = [
-        '-n "OFR B4 BR187 Calculator (parallel)"',
+        '-n "OFR B4 BR187 Calculator"',
         "--noconsole",
         "--onefile",
         "--windowed",
