@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 import os
 import typing
 from fseutil import __version__ as _ver
-import numpy as np
 
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187, phi_perpendicular_any_br187
 from fseutil.etc.b4_br187 import OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
@@ -141,7 +140,7 @@ class CalculatorParallelPanels(ttk.Frame):
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
         self.app_description = """
-        Thermal radiation calculator\nemitter and receiver pair\nin perpendicular.
+        Thermal radiation calculator\nemitter and receiver pair\nin parallel.
         """
         # self.app_description = """
         # Thermal radiation calculator\nemitter and receiver pair\nin parallel.
@@ -319,6 +318,7 @@ class CalculatorParallelPanels(ttk.Frame):
 
         # Set default value
         # -----------------
+
         self.entry_Q1.delete(0, tk.END)
         self.entry_Q1.insert(tk.END, '168.00')
 
@@ -376,15 +376,17 @@ class CalculatorParallelPanels(ttk.Frame):
         if self.checkbutton_centered_v.get() == 1:
             m = 0.5 * W
             n = 0.5 * H
+
         # correction for separation, to surface or boundary
         if self.checkbutton_to_boundary_v.get() == 1:
             if S is not None:
                 S = 2.0 * S
+
         # limit upa input between 0.001 and 100
         if UPA is not None:
             UPA = float(max([0.001, min([100., UPA])]))
 
-        # step 2, calculate separation for given upa
+        # calculate separation for given upa
         if self.checkbutton_solve_separation_v.get() == 1:
             try:
                 Sr = linear_solver(
@@ -406,7 +408,7 @@ class CalculatorParallelPanels(ttk.Frame):
         else:
             Sr = ''
 
-        # step 3, calculate UPA for given separation only
+        # calculate UPA for given separation only
         if self.checkbutton_solve_UPA_v.get() == 1:
             try:
                 Q2r = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
@@ -526,9 +528,6 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         # ===================
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
-        # self.app_description = """
-        # Thermal radiation calculator\nemitter and receiver pair\nin perpendicular.
-        # """
         self.app_description = """
         Thermal radiation calculator\nemitter and receiver pair\nin parallel.
         """
@@ -705,6 +704,7 @@ class CalculatorPerpendicularPanels(ttk.Frame):
 
         # Set default value
         # -----------------
+
         self.entry_Q1.delete(0, tk.END)
         self.entry_Q1.insert(tk.END, '168.00')
 
@@ -760,21 +760,22 @@ class CalculatorPerpendicularPanels(ttk.Frame):
 
         # correction for centered receiver
         if self.checkbutton_centered_v.get() == 1:
-            m = 0.5 * W
             n = 0.5 * H
+
         # correction for separation, to surface or boundary
         if self.checkbutton_to_boundary_v.get() == 1:
             if S is not None:
                 S = 2.0 * S
+
         # limit upa input between 0.001 and 100
         if UPA is not None:
             UPA = float(max([0.001, min([100., UPA])]))
 
-        # step 2, calculate separation for given upa
+        # calculate separation for given upa
         if self.checkbutton_solve_separation_v.get() == 1:
             try:
                 Sr = linear_solver(
-                    func=phi_parallel_any_br187,
+                    func=phi_perpendicular_any_br187,
                     dict_params=dict(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S),
                     x_name='S_m',
                     y_target=Q2 / (Q1*UPA/100),
@@ -792,10 +793,10 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         else:
             Sr = ''
 
-        # step 3, calculate UPA for given separation only
+        # calculate UPA for given separation only
         if self.checkbutton_solve_UPA_v.get() == 1:
             try:
-                Q2r = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
+                Q2r = (phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
                 UPAr = min([Q2 / Q2r * 100, 100])
             except Exception as e:
                 if hasattr(e, "message"):
