@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 import os
 import typing
 from fseutil import __version__ as _ver
-import numpy as np
 
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187, phi_perpendicular_any_br187
 from fseutil.etc.b4_br187 import OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
@@ -152,7 +151,7 @@ class CalculatorParallelPanels(ttk.Frame):
         self._check_center_receiver()
         self._check_to_boundary()
         self._check_solve_separation()
-        self._check_solve_upa()
+        self._check_solve_UA()
 
     def init_ui(self):
 
@@ -217,10 +216,10 @@ class CalculatorParallelPanels(ttk.Frame):
         self.checkbutton_to_boundary = ttk.Checkbutton(self.labelframe_options, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self._check_to_boundary)
         self.checkbutton_solve_separation_v = tk.IntVar(value=1)
         self.checkbutton_solve_separation = ttk.Checkbutton(self.labelframe_options, text="Solve separation", variable=self.checkbutton_solve_separation_v, command=self._check_solve_separation)
-        self.checkbutton_solve_UPA_v = tk.IntVar(value=1)
-        self.checkbutton_solve_UPA = ttk.Checkbutton(self.labelframe_options, text="Solve unprotected area", variable=self.checkbutton_solve_UPA_v, command=self._check_solve_upa)
+        self.checkbutton_solve_UA_v = tk.IntVar(value=1)
+        self.checkbutton_solve_UA = ttk.Checkbutton(self.labelframe_options, text="Solve unprotected area", variable=self.checkbutton_solve_UA_v, command=self._check_solve_UA)
         self.list_options = [
-            self.checkbutton_centered, self.checkbutton_to_boundary, self.checkbutton_solve_separation, self.checkbutton_solve_UPA,
+            self.checkbutton_centered, self.checkbutton_to_boundary, self.checkbutton_solve_separation, self.checkbutton_solve_UA,
         ]
 
         # Inputs
@@ -233,11 +232,11 @@ class CalculatorParallelPanels(ttk.Frame):
         self.label_n = ttk.Label(self.labelframe_inputs, text="n, receiver loc. 2")
         self.label_Q2 = ttk.Label(self.labelframe_inputs, text="Q2, receiver critical HT (12.6)")
         self.label_S = ttk.Label(self.labelframe_inputs, text="S, separation")
-        self.label_UPA = ttk.Label(self.labelframe_inputs, text="UPA to solve separation")
+        self.label_UA = ttk.Label(self.labelframe_inputs, text="UA to solve separation")
         self.list_inputs_labels = [
             self.label_W, self.label_H, self.label_Q1,
             self.label_m, self.label_n, self.label_Q2,
-            self.label_S, self.label_UPA
+            self.label_S, self.label_UA
         ]
 
         self.entry_W = ttk.Entry(self.labelframe_inputs)
@@ -247,11 +246,11 @@ class CalculatorParallelPanels(ttk.Frame):
         self.entry_n = ttk.Entry(self.labelframe_inputs)
         self.entry_Q2 = ttk.Entry(self.labelframe_inputs)
         self.entry_S = ttk.Entry(self.labelframe_inputs)
-        self.entry_UPA = ttk.Entry(self.labelframe_inputs)
+        self.entry_UA = ttk.Entry(self.labelframe_inputs)
         self.list_inputs_entries = [
             self.entry_W, self.entry_H, self.entry_Q1,
             self.entry_m, self.entry_n, self.entry_Q2,
-            self.entry_S, self.entry_UPA
+            self.entry_S, self.entry_UA
         ]
 
         self.label_W_unit = ttk.Label(self.labelframe_inputs, text="m")
@@ -261,33 +260,33 @@ class CalculatorParallelPanels(ttk.Frame):
         self.label_n_unit = ttk.Label(self.labelframe_inputs, text="m")
         self.label_Q2_unit = ttk.Label(self.labelframe_inputs, text="kW/m²")
         self.label_S_unit = ttk.Label(self.labelframe_inputs, text="m")
-        self.label_UPA_unit = ttk.Label(self.labelframe_inputs, text='%')
+        self.label_UA_unit = ttk.Label(self.labelframe_inputs, text='%')
         self.list_inputs_units = [
             self.label_W_unit, self.label_H_unit, self.label_Q1_unit,
             self.label_m_unit, self.label_n_unit, self.label_Q2_unit,
-            self.label_S_unit, self.label_UPA_unit
+            self.label_S_unit, self.label_UA_unit
         ]
 
         # Outputs
         # -------
 
-        self.label_Q2r = ttk.Label(self.labelframe_outputs, text="Solved Q2 at receiver")
+        self.label_Q2r = ttk.Label(self.labelframe_outputs, text="Solved Q2 for 100% UA")
         self.label_Sr = ttk.Label(self.labelframe_outputs, text="Solved separation S")
-        self.label_UPAr = ttk.Label(self.labelframe_outputs, text="Solved UPA")
+        self.label_UAr = ttk.Label(self.labelframe_outputs, text="Solved UA")
         self.list_outputs_labels = [
-            self.label_Q2r, self.label_Sr, self.label_UPAr
+            self.label_Q2r, self.label_Sr, self.label_UAr
         ]
         self.entry_Q2r = ttk.Entry(self.labelframe_outputs)
         self.entry_Sr = ttk.Entry(self.labelframe_outputs)
-        self.entry_UPAr = ttk.Entry(self.labelframe_outputs)
+        self.entry_UAr = ttk.Entry(self.labelframe_outputs)
         self.list_outputs_entries = [
-            self.entry_Q2r, self.entry_Sr, self.entry_UPAr
+            self.entry_Q2r, self.entry_Sr, self.entry_UAr
         ]
         self.label_Q2r_unit = ttk.Label(self.labelframe_outputs, text="kW/m²")
         self.label_Sr_unit = ttk.Label(self.labelframe_outputs, text="m")
-        self.label_UPAr_unit = ttk.Label(self.labelframe_outputs, text="%")
+        self.label_UAr_unit = ttk.Label(self.labelframe_outputs, text="%")
         self.list_outputs_units = [
-            self.label_Q2r_unit, self.label_Sr_unit, self.label_UPAr_unit
+            self.label_Q2r_unit, self.label_Sr_unit, self.label_UAr_unit
         ]
 
         # Set Grid Location
@@ -332,8 +331,8 @@ class CalculatorParallelPanels(ttk.Frame):
         self.entry_Q2r.delete(0, tk.END)
         self.entry_Sr.config(stat="readonly")
         self.entry_Sr.delete(0, tk.END)
-        self.entry_UPAr.config(stat="readonly")
-        self.entry_UPAr.delete(0, tk.END)
+        self.entry_UAr.config(stat="readonly")
+        self.entry_UAr.delete(0, tk.END)
 
         self.button_calculate = ttk.Button(
             self, text="Calculate", command=self.calculate_resultant_heat_flux
@@ -367,10 +366,10 @@ class CalculatorParallelPanels(ttk.Frame):
             self.entry_n,
             self.entry_Q2,
             self.entry_S,
-            self.entry_UPA,
+            self.entry_UA,
         ]
         list_entry_v = get_float_from_entry(list_entry)
-        W, H, Q1, m, n, Q2, S, UPA = tuple(list_entry_v)
+        W, H, Q1, m, n, Q2, S, UA = tuple(list_entry_v)
 
         # correction for centered receiver
         if self.checkbutton_centered_v.get() == 1:
@@ -380,18 +379,18 @@ class CalculatorParallelPanels(ttk.Frame):
         if self.checkbutton_to_boundary_v.get() == 1:
             if S is not None:
                 S = 2.0 * S
-        # limit upa input between 0.001 and 100
-        if UPA is not None:
-            UPA = float(max([0.001, min([100., UPA])]))
+        # limit UA input between 0.001 and 100
+        if UA is not None:
+            UA = float(max([0.001, min([100., UA])]))
 
-        # step 2, calculate separation for given upa
+        # step 2, calculate separation for given UA
         if self.checkbutton_solve_separation_v.get() == 1:
             try:
                 Sr = linear_solver(
                     func=phi_parallel_any_br187,
                     dict_params=dict(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S),
                     x_name='S_m',
-                    y_target=Q2 / (Q1*UPA/100),
+                    y_target=Q2 / (Q1*UA/100),
                     x_upper=0.01, x_lower=1000,
                     y_tol=0.0001,
                     iter_max=10000,
@@ -406,20 +405,20 @@ class CalculatorParallelPanels(ttk.Frame):
         else:
             Sr = ''
 
-        # step 3, calculate UPA for given separation only
-        if self.checkbutton_solve_UPA_v.get() == 1:
+        # step 3, calculate UA for given separation only
+        if self.checkbutton_solve_UA_v.get() == 1:
             try:
                 Q2r = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
-                UPAr = min([Q2 / Q2r * 100, 100])
+                UAr = min([Q2 / Q2r * 100, 100])
             except Exception as e:
                 if hasattr(e, "message"):
                     e = e.message
                 Messenger(e, 'Error')
                 Q2r = ''
-                UPAr = ''
+                UAr = ''
         else:
             Q2r = ''
-            UPAr = ''
+            UAr = ''
 
         # Address separation to boundary or to surface
         if self.checkbutton_to_boundary_v.get() == 1:
@@ -456,10 +455,10 @@ class CalculatorParallelPanels(ttk.Frame):
         update_entry(self.entry_n, n)
         update_entry(self.entry_Q2, Q2)
         update_entry(self.entry_S, S)
-        update_entry(self.entry_UPA, UPA)
+        update_entry(self.entry_UA, UA)
         update_entry(self.entry_Q2r, Q2r)
         update_entry(self.entry_Sr, Sr)
-        update_entry(self.entry_UPAr, UPAr)
+        update_entry(self.entry_UAr, UAr)
 
     def _check_center_receiver(self):
         if self.checkbutton_centered_v.get() == 1:
@@ -481,36 +480,36 @@ class CalculatorParallelPanels(ttk.Frame):
 
     def _check_to_boundary(self):
         if self.checkbutton_to_boundary_v.get() == 1:
-            self.label_S.config(text="½S, separation to solve UPA")
+            self.label_S.config(text="½S, separation to to boundary")
             self.label_Sr.config(text="Solved ½S separation")
-            self.label_UPA.config(text="UPA, to solve ½S")
+            self.label_UA.config(text="UA, unprotected area")
         elif self.checkbutton_to_boundary_v.get() == 0:
-            self.label_S.config(text="S, separation to solve UPA")
+            self.label_S.config(text="S, separation to surface")
             self.label_Sr.config(text="Solved S separation")
-            self.label_UPA.config(text="UPA, to solve S")
+            self.label_UA.config(text="UA, unprotected area")
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
     def _check_solve_separation(self):
         if self.checkbutton_solve_separation_v.get() == 1:
-            self.label_UPA.config(state='normal', foreground='black')
-            self.entry_UPA.config(state='normal', foreground='black')
-            self.label_UPA_unit.config(state='normal', foreground='black')
+            self.label_UA.config(state='normal', foreground='black')
+            self.entry_UA.config(state='normal', foreground='black')
+            self.label_UA_unit.config(state='normal', foreground='black')
         elif self.checkbutton_solve_separation_v.get() == 0:
-            self.label_UPA.config(state='disabled', foreground='grey')
-            self.entry_UPA.config(state='normal', foreground='grey')
-            self.entry_UPA.delete(0, tk.END)
-            self.entry_UPA.config(state='disabled', foreground='grey')
-            self.label_UPA_unit.config(state='disabled', foreground='grey')
+            self.label_UA.config(state='disabled', foreground='grey')
+            self.entry_UA.config(state='normal', foreground='grey')
+            self.entry_UA.delete(0, tk.END)
+            self.entry_UA.config(state='disabled', foreground='grey')
+            self.label_UA_unit.config(state='disabled', foreground='grey')
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
-    def _check_solve_upa(self):
-        if self.checkbutton_solve_UPA_v.get() == 1:
+    def _check_solve_UA(self):
+        if self.checkbutton_solve_UA_v.get() == 1:
             self.label_S.config(state='normal', foreground='black')
             self.entry_S.config(state='normal', foreground='black')
             self.label_S_unit.config(state='normal', foreground='black')
-        elif self.checkbutton_solve_UPA_v.get() == 0:
+        elif self.checkbutton_solve_UA_v.get() == 0:
             self.label_S.config(state='disabled', foreground='grey')
             self.entry_S.config(state='normal', foreground='grey')
             self.entry_S.delete(0, tk.END)
@@ -538,7 +537,7 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         self._check_center_receiver()
         self._check_to_boundary()
         self._check_solve_separation()
-        self._check_solve_upa()
+        self._check_solve_UA()
 
     def init_ui(self):
 
@@ -603,10 +602,10 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         self.checkbutton_to_boundary = ttk.Checkbutton(self.labelframe_options, text="Separation to boundary", variable=self.checkbutton_to_boundary_v, command=self._check_to_boundary)
         self.checkbutton_solve_separation_v = tk.IntVar(value=1)
         self.checkbutton_solve_separation = ttk.Checkbutton(self.labelframe_options, text="Solve separation", variable=self.checkbutton_solve_separation_v, command=self._check_solve_separation)
-        self.checkbutton_solve_UPA_v = tk.IntVar(value=1)
-        self.checkbutton_solve_UPA = ttk.Checkbutton(self.labelframe_options, text="Solve unprotected area", variable=self.checkbutton_solve_UPA_v, command=self._check_solve_upa)
+        self.checkbutton_solve_UA_v = tk.IntVar(value=1)
+        self.checkbutton_solve_UA = ttk.Checkbutton(self.labelframe_options, text="Solve unprotected area", variable=self.checkbutton_solve_UA_v, command=self._check_solve_UA)
         self.list_options = [
-            self.checkbutton_centered, self.checkbutton_to_boundary, self.checkbutton_solve_separation, self.checkbutton_solve_UPA,
+            self.checkbutton_centered, self.checkbutton_to_boundary, self.checkbutton_solve_separation, self.checkbutton_solve_UA,
         ]
 
         # Inputs
@@ -619,11 +618,11 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         self.label_n = ttk.Label(self.labelframe_inputs, text="n, receiver loc. 2")
         self.label_Q2 = ttk.Label(self.labelframe_inputs, text="Q2, receiver critical HT (12.6)")
         self.label_S = ttk.Label(self.labelframe_inputs, text="S, separation")
-        self.label_UPA = ttk.Label(self.labelframe_inputs, text="UPA to solve separation")
+        self.label_UA = ttk.Label(self.labelframe_inputs, text="UA to solve separation")
         self.list_inputs_labels = [
             self.label_W, self.label_H, self.label_Q1,
             self.label_m, self.label_n, self.label_Q2,
-            self.label_S, self.label_UPA
+            self.label_S, self.label_UA
         ]
 
         self.entry_W = ttk.Entry(self.labelframe_inputs)
@@ -633,11 +632,11 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         self.entry_n = ttk.Entry(self.labelframe_inputs)
         self.entry_Q2 = ttk.Entry(self.labelframe_inputs)
         self.entry_S = ttk.Entry(self.labelframe_inputs)
-        self.entry_UPA = ttk.Entry(self.labelframe_inputs)
+        self.entry_UA = ttk.Entry(self.labelframe_inputs)
         self.list_inputs_entries = [
             self.entry_W, self.entry_H, self.entry_Q1,
             self.entry_m, self.entry_n, self.entry_Q2,
-            self.entry_S, self.entry_UPA
+            self.entry_S, self.entry_UA
         ]
 
         self.label_W_unit = ttk.Label(self.labelframe_inputs, text="m")
@@ -647,11 +646,11 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         self.label_n_unit = ttk.Label(self.labelframe_inputs, text="m")
         self.label_Q2_unit = ttk.Label(self.labelframe_inputs, text="kW/m²")
         self.label_S_unit = ttk.Label(self.labelframe_inputs, text="m")
-        self.label_UPA_unit = ttk.Label(self.labelframe_inputs, text='%')
+        self.label_UA_unit = ttk.Label(self.labelframe_inputs, text='%')
         self.list_inputs_units = [
             self.label_W_unit, self.label_H_unit, self.label_Q1_unit,
             self.label_m_unit, self.label_n_unit, self.label_Q2_unit,
-            self.label_S_unit, self.label_UPA_unit
+            self.label_S_unit, self.label_UA_unit
         ]
 
         # Outputs
@@ -659,21 +658,21 @@ class CalculatorPerpendicularPanels(ttk.Frame):
 
         self.label_Q2r = ttk.Label(self.labelframe_outputs, text="Solved Q2 at receiver")
         self.label_Sr = ttk.Label(self.labelframe_outputs, text="Solved separation S")
-        self.label_UPAr = ttk.Label(self.labelframe_outputs, text="Solved UPA")
+        self.label_UAr = ttk.Label(self.labelframe_outputs, text="Solved UA")
         self.list_outputs_labels = [
-            self.label_Q2r, self.label_Sr, self.label_UPAr
+            self.label_Q2r, self.label_Sr, self.label_UAr
         ]
         self.entry_Q2r = ttk.Entry(self.labelframe_outputs)
         self.entry_Sr = ttk.Entry(self.labelframe_outputs)
-        self.entry_UPAr = ttk.Entry(self.labelframe_outputs)
+        self.entry_UAr = ttk.Entry(self.labelframe_outputs)
         self.list_outputs_entries = [
-            self.entry_Q2r, self.entry_Sr, self.entry_UPAr
+            self.entry_Q2r, self.entry_Sr, self.entry_UAr
         ]
         self.label_Q2r_unit = ttk.Label(self.labelframe_outputs, text="kW/m²")
         self.label_Sr_unit = ttk.Label(self.labelframe_outputs, text="m")
-        self.label_UPAr_unit = ttk.Label(self.labelframe_outputs, text="%")
+        self.label_UAr_unit = ttk.Label(self.labelframe_outputs, text="%")
         self.list_outputs_units = [
-            self.label_Q2r_unit, self.label_Sr_unit, self.label_UPAr_unit
+            self.label_Q2r_unit, self.label_Sr_unit, self.label_UAr_unit
         ]
 
         # Set Grid Location
@@ -718,8 +717,8 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         self.entry_Q2r.delete(0, tk.END)
         self.entry_Sr.config(stat="readonly")
         self.entry_Sr.delete(0, tk.END)
-        self.entry_UPAr.config(stat="readonly")
-        self.entry_UPAr.delete(0, tk.END)
+        self.entry_UAr.config(stat="readonly")
+        self.entry_UAr.delete(0, tk.END)
 
         self.button_calculate = ttk.Button(
             self, text="Calculate", command=self.calculate_resultant_heat_flux
@@ -753,10 +752,10 @@ class CalculatorPerpendicularPanels(ttk.Frame):
             self.entry_n,
             self.entry_Q2,
             self.entry_S,
-            self.entry_UPA,
+            self.entry_UA,
         ]
         list_entry_v = get_float_from_entry(list_entry)
-        W, H, Q1, m, n, Q2, S, UPA = tuple(list_entry_v)
+        W, H, Q1, m, n, Q2, S, UA = tuple(list_entry_v)
 
         # correction for centered receiver
         if self.checkbutton_centered_v.get() == 1:
@@ -766,18 +765,18 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         if self.checkbutton_to_boundary_v.get() == 1:
             if S is not None:
                 S = 2.0 * S
-        # limit upa input between 0.001 and 100
-        if UPA is not None:
-            UPA = float(max([0.001, min([100., UPA])]))
+        # limit UA input between 0.001 and 100
+        if UA is not None:
+            UA = float(max([0.001, min([100., UA])]))
 
-        # step 2, calculate separation for given upa
+        # step 2, calculate separation for given UA
         if self.checkbutton_solve_separation_v.get() == 1:
             try:
                 Sr = linear_solver(
                     func=phi_parallel_any_br187,
                     dict_params=dict(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S),
                     x_name='S_m',
-                    y_target=Q2 / (Q1*UPA/100),
+                    y_target=Q2 / (Q1*UA/100),
                     x_upper=0.01, x_lower=1000,
                     y_tol=0.0001,
                     iter_max=10000,
@@ -792,20 +791,20 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         else:
             Sr = ''
 
-        # step 3, calculate UPA for given separation only
-        if self.checkbutton_solve_UPA_v.get() == 1:
+        # step 3, calculate UA for given separation only
+        if self.checkbutton_solve_UA_v.get() == 1:
             try:
                 Q2r = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
-                UPAr = min([Q2 / Q2r * 100, 100])
+                UAr = min([Q2 / Q2r * 100, 100])
             except Exception as e:
                 if hasattr(e, "message"):
                     e = e.message
                 Messenger(e, 'Error')
                 Q2r = ''
-                UPAr = ''
+                UAr = ''
         else:
             Q2r = ''
-            UPAr = ''
+            UAr = ''
 
         # Address separation to boundary or to surface
         if self.checkbutton_to_boundary_v.get() == 1:
@@ -842,10 +841,10 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         update_entry(self.entry_n, n)
         update_entry(self.entry_Q2, Q2)
         update_entry(self.entry_S, S)
-        update_entry(self.entry_UPA, UPA)
+        update_entry(self.entry_UA, UA)
         update_entry(self.entry_Q2r, Q2r)
         update_entry(self.entry_Sr, Sr)
-        update_entry(self.entry_UPAr, UPAr)
+        update_entry(self.entry_UAr, UAr)
 
     def _check_center_receiver(self):
         if self.checkbutton_centered_v.get() == 1:
@@ -861,36 +860,36 @@ class CalculatorPerpendicularPanels(ttk.Frame):
 
     def _check_to_boundary(self):
         if self.checkbutton_to_boundary_v.get() == 1:
-            self.label_S.config(text="½S, separation to solve UPA")
+            self.label_S.config(text="½S, separation to solve UA")
             self.label_Sr.config(text="Solved ½S separation")
-            self.label_UPA.config(text="UPA, to solve ½S")
+            self.label_UA.config(text="UA, to solve ½S")
         elif self.checkbutton_to_boundary_v.get() == 0:
-            self.label_S.config(text="S, separation to solve UPA")
+            self.label_S.config(text="S, separation to solve UA")
             self.label_Sr.config(text="Solved S separation")
-            self.label_UPA.config(text="UPA, to solve S")
+            self.label_UA.config(text="UA, to solve S")
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
     def _check_solve_separation(self):
         if self.checkbutton_solve_separation_v.get() == 1:
-            self.label_UPA.config(state='normal', foreground='black')
-            self.entry_UPA.config(state='normal', foreground='black')
-            self.label_UPA_unit.config(state='normal', foreground='black')
+            self.label_UA.config(state='normal', foreground='black')
+            self.entry_UA.config(state='normal', foreground='black')
+            self.label_UA_unit.config(state='normal', foreground='black')
         elif self.checkbutton_solve_separation_v.get() == 0:
-            self.label_UPA.config(state='disabled', foreground='grey')
-            self.entry_UPA.config(state='normal', foreground='grey')
-            self.entry_UPA.delete(0, tk.END)
-            self.entry_UPA.config(state='disabled', foreground='grey')
-            self.label_UPA_unit.config(state='disabled', foreground='grey')
+            self.label_UA.config(state='disabled', foreground='grey')
+            self.entry_UA.config(state='normal', foreground='grey')
+            self.entry_UA.delete(0, tk.END)
+            self.entry_UA.config(state='disabled', foreground='grey')
+            self.label_UA_unit.config(state='disabled', foreground='grey')
         else:
             raise ValueError("Unknown tk.ttk.CheckButton value.")
 
-    def _check_solve_upa(self):
-        if self.checkbutton_solve_UPA_v.get() == 1:
+    def _check_solve_UA(self):
+        if self.checkbutton_solve_UA_v.get() == 1:
             self.label_S.config(state='normal', foreground='black')
             self.entry_S.config(state='normal', foreground='black')
             self.label_S_unit.config(state='normal', foreground='black')
-        elif self.checkbutton_solve_UPA_v.get() == 0:
+        elif self.checkbutton_solve_UA_v.get() == 0:
             self.label_S.config(state='disabled', foreground='grey')
             self.entry_S.config(state='normal', foreground='grey')
             self.entry_S.delete(0, tk.END)
