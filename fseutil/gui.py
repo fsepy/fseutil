@@ -151,7 +151,7 @@ class CalculatorParallelPanels(ttk.Frame):
         self._check_center_receiver()
         self._check_to_boundary()
         self._check_solve_separation()
-        self._check_solve_upa()
+        self._check_solve_UA()
 
     def init_ui(self):
 
@@ -526,11 +526,8 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         # ===================
         self.app_name = "B4 BR187 Calculator"  # app name
         self.app_version = _ver  # app version
-        # self.app_description = """
-        # Thermal radiation calculator\nemitter and receiver pair\nin perpendicular.
-        # """
         self.app_description = """
-        Thermal radiation calculator\nemitter and receiver pair\nin parallel.
+        Thermal radiation calculator\nemitter and receiver pair\nin perpendicular.
         """
 
         self.init_ui()
