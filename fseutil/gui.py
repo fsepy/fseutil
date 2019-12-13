@@ -1,16 +1,16 @@
+import os
 import base64
+import typing
+from typing import Callable
 import tempfile
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
-import os
-import typing
 from fseutil import __version__ as _ver
 
 from fseutil.lib.fse_b4_br187 import phi_parallel_any_br187, phi_perpendicular_any_br187
 from fseutil.etc.b4_br187 import OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
 from fseutil.etc.b4_br187 import PARALLEL_LARGE_FIGURE_PNG_BASE64, PERPENDICULAR_LARGE_FIGURE_PNG_BASE64
-from typing import Callable
 
 
 def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: float, x_upper: float, x_lower: float, y_tol: float, iter_max: int = 1000, func_multiplier: float = 1):
@@ -116,7 +116,14 @@ class Calculator(tk.Tk):
         self.columnconfigure(0, pad=10)
         self.rowconfigure(0, pad=10)
 
-        self.tab_parallel = CalculatorParallelPanels(self.notebook)
+        self.tab_parallel = CalculatorParallelPanels(
+            parent=self.notebook,
+            app_name="B4 BR187 Calculator",
+            app_version=_ver,
+            app_description='Thermal radiation calculator\nemitter and receiver pair\nin parallel.',
+            app_figure_main_base64=PARALLEL_LARGE_FIGURE_PNG_BASE64,
+            app_phi_func=phi_parallel_any_br187
+        )
         self.tab_perpendicular = CalculatorPerpendicularPanels(self.notebook)
 
         self.notebook.add(self.tab_parallel, text='Parallel Panels', compound=tk.TOP)
@@ -132,28 +139,38 @@ class Calculator(tk.Tk):
 
 
 class CalculatorParallelPanels(ttk.Frame):
-    def __init__(self, parent, **kwargs):
+    def __init__(
+            self,
+            parent,
+            app_name: str,
+            app_version: str,
+            app_description: str,
+            app_figure_main_base64: str,
+            app_phi_func: Callable,
+            **kwargs
+    ):
         ttk.Frame.__init__(self, parent, **kwargs)
 
         # General App Setting
         # ===================
-        self.app_name = "B4 BR187 Calculator"  # app name
-        self.app_version = _ver  # app version
-        self.app_description = """
-        Thermal radiation calculator\nemitter and receiver pair\nin parallel.
-        """
-        # self.app_description = """
-        # Thermal radiation calculator\nemitter and receiver pair\nin parallel.
-        # """
+        self.app_name = app_name  # app name
+        self.app_version = app_version  # app version
+        self.app_description = app_description
+        self.app_phi_func = app_phi_func
 
-        self.init_ui()
+        self.init_ui(
+            app_figure_main_base64=app_figure_main_base64
+        )
 
         self._check_center_receiver()
         self._check_to_boundary()
         self._check_solve_separation()
         self._check_solve_UA()
 
-    def init_ui(self):
+    def init_ui(
+            self,
+            app_figure_main_base64,
+    ):
 
         # GUI LAYOUT
         # ==========
@@ -183,12 +200,10 @@ class CalculatorParallelPanels(ttk.Frame):
         # ----------------
         _, fp_logo_image = tempfile.mkstemp()
         with open(fp_logo_image, "wb") as f:
-            f.write(base64.b64decode(PARALLEL_LARGE_FIGURE_PNG_BASE64))
+            f.write(base64.b64decode(app_figure_main_base64))
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
-        label_logo_image = label_logo_image.resize(
-            (300, int(300 * 1.04689)), Image.ANTIALIAS
-        )
+        label_logo_image = label_logo_image.resize((300, int(300 * 1.04689)), Image.ANTIALIAS)
         label_logo_image = ImageTk.PhotoImage(label_logo_image)
         self.label_lage_logo = ttk.Label(self, image=label_logo_image)
         self.label_lage_logo.image = label_logo_image
@@ -388,7 +403,7 @@ class CalculatorParallelPanels(ttk.Frame):
         if self.checkbutton_solve_separation_v.get() == 1:
             try:
                 Sr = linear_solver(
-                    func=phi_parallel_any_br187,
+                    func=self.app_phi_func,
                     dict_params=dict(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S),
                     x_name='S_m',
                     y_target=Q2 / (Q1*UA/100),
@@ -409,7 +424,8 @@ class CalculatorParallelPanels(ttk.Frame):
         # step 3, calculate UA for given separation only
         if self.checkbutton_solve_UA_v.get() == 1:
             try:
-                Q2r = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
+                Q2r = self.app_phi_func(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S)
+                Q2r *= Q1
                 UAr = min([Q2 / Q2r * 100, 100])
             except Exception as e:
                 if hasattr(e, "message"):
@@ -793,7 +809,8 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         # step 3, calculate UA for given separation only
         if self.checkbutton_solve_UA_v.get() == 1:
             try:
-                Q2r = (phi_parallel_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S) * Q1)
+                Q2r = phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=m, h_m=n, S_m=S)
+                Q2r *= Q1
                 UAr = min([Q2 / Q2r * 100, 100])
             except Exception as e:
                 if hasattr(e, "message"):
