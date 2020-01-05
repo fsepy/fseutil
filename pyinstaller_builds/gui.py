@@ -2,6 +2,6 @@
 
 
 if __name__ == "__main__":
-    from fseutil.gui import main
+    from fseutil.lib.fse_thermal_radiation_gui import main
 
     main()
