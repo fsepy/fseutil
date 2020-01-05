@@ -19,7 +19,7 @@ def build_gui():
         + os.path.realpath(os.path.join("etc", "ofr-colour-618_618.ico")),
     ]
     cmd_extra_files_list = []
-    cmd_script = "gui.py"
+    cmd_script = "fse_thermal_radiation_gui.py"
 
     cmd_options = " ".join(cmd_option_list)
     cmd_extra_files = " ".join(cmd_extra_files_list)
