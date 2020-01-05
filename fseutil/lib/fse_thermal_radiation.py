@@ -1,58 +1,11 @@
 # coding: utf-8
 
-# import numpy
-import math
-from statistics import median
-
-
-def phi_parallel_corner_br187(W_m, H_m, S_m, multiplier=1):
-    """
-
-    :param W_m: width of emitter panel
-    :param H_m: height of emitter panel
-    :param S_m: separation distance from EMITTER TO RECEIVER
-    :return phi: configuration factor
-    """
-
-    # Calculate view factor, phi
-    X = W_m / S_m
-    Y = H_m / S_m
-    a = 1 / 2 / math.pi
-    b = X / (1 + X ** 2) ** 0.5
-    c = math.atan(Y / (1 + X ** 2) ** 0.5)
-    d = Y / (1 + Y ** 2) ** 0.5
-    e = math.atan(X / (1 + Y ** 2) ** 0.5)
-    phi = a * (b * c + d * e)
-
-    return phi * multiplier
-
-
-def phi_perpendicular_corner_br187(W_m, H_m, S_m, multiplier=1):
-    """
-
-    :param W_m:
-    :param H_m:
-    :param S_m:
-    :param multiplier:
-    :return:
-    """
-    X = W_m / S_m
-    Y = H_m / S_m
-
-    a = 1 / 2 / math.pi
-    b = math.atan(X)
-    c = 1 / (Y ** 2 + 1) ** 0.5
-    d = math.atan(X / (Y ** 2 + 1) ** 0.5)
-
-    phi = a * (b - c * d)
-
-    return phi * multiplier
+from fseutil.lib.bre_br_187_2014 import eq_A4_phi_parallel_corner
+from fseutil.lib.bre_br_187_2014 import eq_A5_phi_perpendicular_corner
 
 
 def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
     r"""
-    Equation in LaTeX \phi=\frac{1}{2\pi}\left(\frac{X}{\sqrt{1+X^2}}\cdot\tan^{-1}\left({\frac{Y}{\sqrt{1+X^2}}}\right)
-    +\frac{Y}{\sqrt{1+Y^2}}\cdot\tan^{-1}\left({\frac{X}{\sqrt{1+Y^2}}}\right)\right)
     :param W_m:
     :param H_m:
     :param w_m:
@@ -61,7 +14,7 @@ def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
     :return:
     """
     phi = [
-        phi_parallel_corner_br187(*P[0:-1], S_m, P[-1])
+        eq_A4_phi_parallel_corner(*P[0:-1], S_m, P[-1])
         for P in four_planes(W_m, H_m, w_m, h_m)
     ]
     return sum(phi)
@@ -69,13 +22,12 @@ def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):
 
 def phi_perpendicular_any_br187(W_m, H_m, w_m, h_m, S_m):
     four_P = four_planes(W_m, H_m, w_m, h_m)
-    phi = [phi_perpendicular_corner_br187(*P[0:-1], S_m, P[-1]) for P in four_P]
+    phi = [eq_A5_phi_perpendicular_corner(*P[0:-1], S_m, P[-1]) for P in four_P]
     return sum(phi)
 
 
 def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
     """
-
     :param W_m:
     :param H_m:
     :param w_m:
