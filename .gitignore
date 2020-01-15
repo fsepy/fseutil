@@ -42,8 +42,6 @@ env/
 !/input_template/benchmarks.csv
 
 # Dev files
-/sfeprapy/dev
-/sfeprapy_demo
 /.coverage
 
 *.spec
@@ -51,3 +49,5 @@ env/
 # Pyinstaller
 pyinstaller_builds/build
 pyinstaller_builds/dist
+/fseutil/build
+/fseutil/dist
