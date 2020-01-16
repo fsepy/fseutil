@@ -4,7 +4,7 @@ import subprocess
 
 
 def build_gui():
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    os.chdir(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'fseutil'))
     print(os.getcwd())
 
     cmd_pyinstaller = "python -m PyInstaller"
@@ -15,11 +15,11 @@ def build_gui():
         "--noconsole",
         "--onefile",
         "--windowed",
-        "--icon="
-        + os.path.realpath(os.path.join("etc", "ofr-colour-618_618.ico")),
+        # "--icon="
+        # + os.path.realpath(os.path.join("etc", "ofr-colour-618_618.ico")),
     ]
     cmd_extra_files_list = []
-    cmd_script = "fse_thermal_radiation_gui.py"
+    cmd_script = "lib/fse_thermal_radiation_gui.py"
 
     cmd_options = " ".join(cmd_option_list)
     cmd_extra_files = " ".join(cmd_extra_files_list)

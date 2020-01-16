@@ -163,10 +163,15 @@ def _test_heat_detector_activation_ceiling_pd7974():
         detector_to_fire_vertical_distance=2.4,
         detector_to_fire_horizontal_distance=2.75,
         detector_response_time_index=115,
-        detector_conduction_factor=	0.4,
+        detector_conduction_factor=0.4,
         fire_hrr_density_kWm2=510,
         fire_convection_fraction=1/1.5,
     )
+
+    for i, time in enumerate(t):
+        jet_temperature = res['jet_temperature'][i]
+        detector_temperature = res['detector_temperature'][i]
+        print(f'{time:5.1f} s, {jet_temperature-273.15:10.1f} °C, {detector_temperature-273.15:10.1f} °C')
 
     import seaborn as sns
     from matplotlib import pyplot as plt
