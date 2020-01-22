@@ -499,7 +499,7 @@ class CalculatorParallelPanels(ttk.Frame):
 
     def _check_to_boundary(self):
         if self.checkbutton_to_boundary_v.get() == 1:
-            self.label_S.config(text="½S, separation to to boundary")
+            self.label_S.config(text="½S, separation to boundary")
             self.label_Sr.config(text="Solved ½S separation")
             self.label_UA.config(text="UA, unprotected area")
         elif self.checkbutton_to_boundary_v.get() == 0:
