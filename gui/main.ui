@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>520</height>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
-      <width>501</width>
+      <y>360</y>
+      <width>321</width>
       <height>101</height>
      </rect>
     </property>
@@ -54,6 +54,36 @@ Parallel</string>
 Perp.</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_4">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BR 187
+Parallel
+Complex</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_5">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BR 187
+Perp.
+Complex</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QLabel" name="label_logo">
     <property name="geometry">
@@ -68,8 +98,116 @@ Perp.</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>ofr-colour-194_80.png</pixmap>
+     <pixmap>images/ofr-colour-194_80.png</pixmap>
     </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>111</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Miscellaneous</string>
+    </property>
+    <widget class="QPushButton" name="b4_01_br187_parallel_6">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>File
+Naming
+Protocol</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>130</y>
+      <width>251</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>B1 Means of escape</string>
+    </property>
+    <widget class="QPushButton" name="b4_01_br187_parallel_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>BS 9999</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_3">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ADB 2</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_8">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Merging
+Flow</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>181</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>B3 Internal fire spread (structure)</string>
+    </property>
+    <widget class="QPushButton" name="b4_01_br187_parallel_7">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Compatment
+Size</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
