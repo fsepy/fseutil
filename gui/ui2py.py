@@ -6,7 +6,9 @@ def ui2py():
 
     list_ui_file_names = [
         'main.ui',
-        'dialog_4_1_br187_parallel.ui'
+        'dialog_1_1_adb_datasheet_1.ui',
+        'dialog_4_1_br187_parallel_simple.ui',
+        'dialog_4_3_br187_parallel_complex.ui'
     ]
 
     cwd = os.path.dirname(os.path.realpath(__file__))

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\ian\Documents\GitHub\fseutil\gui\dialog_4_1_br187_parallel.ui',
-# licensing of 'C:\Users\ian\Documents\GitHub\fseutil\gui\dialog_4_1_br187_parallel.ui' applies.
+# Form implementation generated from reading ui file 'C:\Users\IanFu\Documents\github\fseutil\gui\dialog_4_1_br187_parallel_simple.ui',
+# licensing of 'C:\Users\IanFu\Documents\github\fseutil\gui\dialog_4_1_br187_parallel_simple.ui' applies.
 #
-# Created: Wed Jan 22 23:12:37 2020
-#      by: pyside2-uic  running on PySide2 5.13.0
+# Created: Thu Jan 23 18:34:06 2020
+#      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 

@@ -58,11 +58,11 @@ def main():
 
     app = QtWidgets.QApplication(sys.argv)
     #
-    # window = MainWindow()
-    # window.show()
+    window = MainWindow()
+    window.show()
 
-    b4_1 = Dialog0401_br187ParallelSimple()
-    b4_1.show()
+    # b4_1 = Dialog0401_br187ParallelSimple()
+    # b4_1.show()
     #
     sys.exit(app.exec_())
 

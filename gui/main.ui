@@ -18,8 +18,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>360</y>
-      <width>321</width>
+      <y>470</y>
+      <width>301</width>
       <height>101</height>
      </rect>
     </property>
@@ -29,7 +29,7 @@
     <widget class="QPushButton" name="b4_01_br187_parallel">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
@@ -43,7 +43,7 @@ Parallel</string>
     <widget class="QPushButton" name="b4_02_perpendicular">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>80</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
@@ -57,7 +57,7 @@ Perp.</string>
     <widget class="QPushButton" name="b4_01_br187_parallel_4">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>150</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
@@ -72,7 +72,7 @@ Complex</string>
     <widget class="QPushButton" name="b4_01_br187_parallel_5">
      <property name="geometry">
       <rect>
-       <x>230</x>
+       <x>220</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
@@ -106,7 +106,7 @@ Complex</string>
      <rect>
       <x>10</x>
       <y>130</y>
-      <width>111</width>
+      <width>91</width>
       <height>101</height>
      </rect>
     </property>
@@ -116,7 +116,7 @@ Complex</string>
     <widget class="QPushButton" name="b4_01_br187_parallel_6">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
@@ -132,9 +132,9 @@ Protocol</string>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>130</y>
-      <width>251</width>
+      <x>10</x>
+      <y>240</y>
+      <width>371</width>
       <height>101</height>
      </rect>
     </property>
@@ -144,33 +144,37 @@ Protocol</string>
     <widget class="QPushButton" name="b4_01_br187_parallel_2">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
      </property>
      <property name="text">
-      <string>BS 9999</string>
+      <string>BS 9999
+Datasheet
+No. 1</string>
      </property>
     </widget>
     <widget class="QPushButton" name="b4_01_br187_parallel_3">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>80</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
      </property>
      <property name="text">
-      <string>ADB 2</string>
+      <string>ADB 2
+Datasheet
+No. 1</string>
      </property>
     </widget>
     <widget class="QPushButton" name="b4_01_br187_parallel_8">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>150</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
@@ -181,12 +185,41 @@ Protocol</string>
 Flow</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_9">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>HD
+Activation
+Time</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_10">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Zone
+Model</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>250</y>
+      <y>360</y>
       <width>181</width>
       <height>101</height>
      </rect>
@@ -197,7 +230,7 @@ Flow</string>
     <widget class="QPushButton" name="b4_01_br187_parallel_7">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
