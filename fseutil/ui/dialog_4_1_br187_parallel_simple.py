@@ -3,22 +3,22 @@
 # Form implementation generated from reading ui file 'C:\Users\IanFu\Documents\github\fseutil\gui\dialog_4_1_br187_parallel_simple.ui',
 # licensing of 'C:\Users\IanFu\Documents\github\fseutil\gui\dialog_4_1_br187_parallel_simple.ui' applies.
 #
-# Created: Thu Jan 23 18:34:06 2020
+# Created: Thu Jan 23 18:42:22 2020
 #      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-class Ui_dialog_4_1_br187_parallel(object):
-    def setupUi(self, dialog_4_1_br187_parallel):
-        dialog_4_1_br187_parallel.setObjectName("dialog_4_1_br187_parallel")
-        dialog_4_1_br187_parallel.resize(680, 350)
-        self.groupBox_2 = QtWidgets.QGroupBox(dialog_4_1_br187_parallel)
+class Ui_dialog_4_1_br187_parallel_simple(object):
+    def setupUi(self, dialog_4_1_br187_parallel_simple):
+        dialog_4_1_br187_parallel_simple.setObjectName("dialog_4_1_br187_parallel_simple")
+        dialog_4_1_br187_parallel_simple.resize(680, 350)
+        self.groupBox_2 = QtWidgets.QGroupBox(dialog_4_1_br187_parallel_simple)
         self.groupBox_2.setGeometry(QtCore.QRect(450, 170, 171, 101))
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.groupBox_2)
-        self.gridLayoutWidget_2.setGeometry(QtCore.QRect(10, 20, 154, 74))
+        self.gridLayoutWidget_2.setGeometry(QtCore.QRect(10, 20, 157, 74))
         self.gridLayoutWidget_2.setObjectName("gridLayoutWidget_2")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -89,11 +89,11 @@ class Ui_dialog_4_1_br187_parallel(object):
         self.lineEdit_10.setMaximumSize(QtCore.QSize(60, 16777215))
         self.lineEdit_10.setObjectName("lineEdit_10")
         self.gridLayout_2.addWidget(self.lineEdit_10, 2, 1, 1, 1)
-        self.groupBox = QtWidgets.QGroupBox(dialog_4_1_br187_parallel)
+        self.groupBox = QtWidgets.QGroupBox(dialog_4_1_br187_parallel_simple)
         self.groupBox.setGeometry(QtCore.QRect(450, 20, 171, 131))
         self.groupBox.setObjectName("groupBox")
         self.gridLayoutWidget_3 = QtWidgets.QWidget(self.groupBox)
-        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(10, 20, 154, 100))
+        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(10, 20, 157, 100))
         self.gridLayoutWidget_3.setObjectName("gridLayoutWidget_3")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.gridLayoutWidget_3)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -186,38 +186,38 @@ class Ui_dialog_4_1_br187_parallel(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.gridLayout_3.addWidget(self.comboBox, 3, 0, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(dialog_4_1_br187_parallel)
+        self.pushButton = QtWidgets.QPushButton(dialog_4_1_br187_parallel_simple)
         self.pushButton.setGeometry(QtCore.QRect(540, 290, 81, 31))
         self.pushButton.setObjectName("pushButton")
-        self.label = QtWidgets.QLabel(dialog_4_1_br187_parallel)
+        self.label = QtWidgets.QLabel(dialog_4_1_br187_parallel_simple)
         self.label.setGeometry(QtCore.QRect(20, 10, 400, 321))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("phi_calculator_400_321.png"))
         self.label.setObjectName("label")
 
-        self.retranslateUi(dialog_4_1_br187_parallel)
-        QtCore.QMetaObject.connectSlotsByName(dialog_4_1_br187_parallel)
+        self.retranslateUi(dialog_4_1_br187_parallel_simple)
+        QtCore.QMetaObject.connectSlotsByName(dialog_4_1_br187_parallel_simple)
 
-    def retranslateUi(self, dialog_4_1_br187_parallel):
-        dialog_4_1_br187_parallel.setWindowTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "BR 187 Thermal Radiation Calculator (Parallel)", None, -1))
-        self.groupBox_2.setTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Outputs", None, -1))
-        self.label_25.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "[kW/m²]", None, -1))
-        self.label_22.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "[m]", None, -1))
-        self.label_11.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Φ", None, -1))
-        self.label_12.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "q", None, -1))
-        self.label_10.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "UA", None, -1))
-        self.groupBox.setTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Inputs", None, -1))
-        self.label_30.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Width of emitter", None, -1))
-        self.label_30.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "W", None, -1))
-        self.label_38.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "[m]", None, -1))
-        self.label_32.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "[m]", None, -1))
-        self.label_23.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Heat flux of emitter", None, -1))
-        self.label_23.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Q", None, -1))
-        self.label_34.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "[kW/m²]", None, -1))
-        self.label_26.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Height of emitter", None, -1))
-        self.label_26.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "H", None, -1))
-        self.label_33.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "[m]", None, -1))
-        self.comboBox.setItemText(0, QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "S", None, -1))
-        self.comboBox.setItemText(1, QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "UA", None, -1))
-        self.pushButton.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel", "Calculate", None, -1))
+    def retranslateUi(self, dialog_4_1_br187_parallel_simple):
+        dialog_4_1_br187_parallel_simple.setWindowTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "BR 187 Thermal Radiation Calculator (Parallel)", None, -1))
+        self.groupBox_2.setTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Outputs", None, -1))
+        self.label_25.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "[kW/m²]", None, -1))
+        self.label_22.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "[m]", None, -1))
+        self.label_11.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Φ", None, -1))
+        self.label_12.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "q", None, -1))
+        self.label_10.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "UA", None, -1))
+        self.groupBox.setTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Inputs", None, -1))
+        self.label_30.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Width of emitter", None, -1))
+        self.label_30.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "W", None, -1))
+        self.label_38.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "[m]", None, -1))
+        self.label_32.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "[m]", None, -1))
+        self.label_23.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Heat flux of emitter", None, -1))
+        self.label_23.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Q", None, -1))
+        self.label_34.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "[kW/m²]", None, -1))
+        self.label_26.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Height of emitter", None, -1))
+        self.label_26.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "H", None, -1))
+        self.label_33.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "[m]", None, -1))
+        self.comboBox.setItemText(0, QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "S", None, -1))
+        self.comboBox.setItemText(1, QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "UA", None, -1))
+        self.pushButton.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Calculate", None, -1))
 

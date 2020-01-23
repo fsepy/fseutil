@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file 'C:\Users\IanFu\Documents\github\fseutil\gui\main.ui',
 # licensing of 'C:\Users\IanFu\Documents\github\fseutil\gui\main.ui' applies.
 #
-# Created: Thu Jan 23 18:34:05 2020
+# Created: Thu Jan 23 18:42:21 2020
 #      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -46,11 +46,8 @@ class Ui_MainWindow(object):
         self.groupBox_3.setGeometry(QtCore.QRect(10, 240, 371, 101))
         self.groupBox_3.setObjectName("groupBox_3")
         self.b4_01_br187_parallel_2 = QtWidgets.QPushButton(self.groupBox_3)
-        self.b4_01_br187_parallel_2.setGeometry(QtCore.QRect(10, 20, 70, 70))
+        self.b4_01_br187_parallel_2.setGeometry(QtCore.QRect(80, 20, 70, 70))
         self.b4_01_br187_parallel_2.setObjectName("b4_01_br187_parallel_2")
-        self.b4_01_br187_parallel_3 = QtWidgets.QPushButton(self.groupBox_3)
-        self.b4_01_br187_parallel_3.setGeometry(QtCore.QRect(80, 20, 70, 70))
-        self.b4_01_br187_parallel_3.setObjectName("b4_01_br187_parallel_3")
         self.b4_01_br187_parallel_8 = QtWidgets.QPushButton(self.groupBox_3)
         self.b4_01_br187_parallel_8.setGeometry(QtCore.QRect(150, 20, 70, 70))
         self.b4_01_br187_parallel_8.setObjectName("b4_01_br187_parallel_8")
@@ -60,6 +57,9 @@ class Ui_MainWindow(object):
         self.b4_01_br187_parallel_10 = QtWidgets.QPushButton(self.groupBox_3)
         self.b4_01_br187_parallel_10.setGeometry(QtCore.QRect(290, 20, 70, 70))
         self.b4_01_br187_parallel_10.setObjectName("b4_01_br187_parallel_10")
+        self.btn_b1_01_adb2_datasheet_1 = QtWidgets.QPushButton(self.groupBox_3)
+        self.btn_b1_01_adb2_datasheet_1.setGeometry(QtCore.QRect(10, 20, 70, 70))
+        self.btn_b1_01_adb2_datasheet_1.setObjectName("btn_b1_01_adb2_datasheet_1")
         self.groupBox_4 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_4.setGeometry(QtCore.QRect(10, 360, 181, 101))
         self.groupBox_4.setObjectName("groupBox_4")
@@ -103,9 +103,6 @@ class Ui_MainWindow(object):
         self.b4_01_br187_parallel_2.setText(QtWidgets.QApplication.translate("MainWindow", "BS 9999\n"
 "Datasheet\n"
 "No. 1", None, -1))
-        self.b4_01_br187_parallel_3.setText(QtWidgets.QApplication.translate("MainWindow", "ADB 2\n"
-"Datasheet\n"
-"No. 1", None, -1))
         self.b4_01_br187_parallel_8.setText(QtWidgets.QApplication.translate("MainWindow", "Merging\n"
 "Flow", None, -1))
         self.b4_01_br187_parallel_9.setText(QtWidgets.QApplication.translate("MainWindow", "HD\n"
@@ -113,6 +110,9 @@ class Ui_MainWindow(object):
 "Time", None, -1))
         self.b4_01_br187_parallel_10.setText(QtWidgets.QApplication.translate("MainWindow", "Zone\n"
 "Model", None, -1))
+        self.btn_b1_01_adb2_datasheet_1.setText(QtWidgets.QApplication.translate("MainWindow", "ADB 2\n"
+"Datasheet\n"
+"No. 1", None, -1))
         self.groupBox_4.setTitle(QtWidgets.QApplication.translate("MainWindow", "B3 Internal fire spread (structure)", None, -1))
         self.b4_01_br187_parallel_7.setText(QtWidgets.QApplication.translate("MainWindow", "Compatment\n"
 "Size", None, -1))

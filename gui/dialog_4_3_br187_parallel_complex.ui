@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dialog_4_1_br187_parallel</class>
- <widget class="QDialog" name="dialog_4_1_br187_parallel">
+ <class>dialog_4_1_br187_parallel_complex</class>
+ <widget class="QDialog" name="dialog_4_1_br187_parallel_complex">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -30,7 +30,7 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>201</width>
+      <width>202</width>
       <height>101</height>
      </rect>
     </property>

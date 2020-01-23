@@ -144,21 +144,6 @@ Protocol</string>
     <widget class="QPushButton" name="b4_01_br187_parallel_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>70</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>BS 9999
-Datasheet
-No. 1</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="b4_01_br187_parallel_3">
-     <property name="geometry">
-      <rect>
        <x>80</x>
        <y>20</y>
        <width>70</width>
@@ -166,7 +151,7 @@ No. 1</string>
       </rect>
      </property>
      <property name="text">
-      <string>ADB 2
+      <string>BS 9999
 Datasheet
 No. 1</string>
      </property>
@@ -212,6 +197,21 @@ Time</string>
      <property name="text">
       <string>Zone
 Model</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_b1_01_adb2_datasheet_1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ADB 2
+Datasheet
+No. 1</string>
      </property>
     </widget>
    </widget>
