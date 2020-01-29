@@ -1,8 +1,52 @@
 # coding: utf-8
 
+from typing import Callable
 from statistics import median
 from fseutil.lib.bre_br_187_2014 import eq_A4_phi_parallel_corner
 from fseutil.lib.bre_br_187_2014 import eq_A5_phi_perpendicular_corner
+
+
+def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: float, x_upper: float, x_lower: float, y_tol: float, iter_max: int = 1000, func_multiplier: float = 1):
+
+    if x_lower > x_upper:
+        x_lower += x_upper
+        x_upper = x_lower - x_upper
+        x_lower = x_lower - x_upper
+
+    y_target *= func_multiplier
+
+    x1 = x_lower
+    x2 = (x_lower + x_upper) / 2
+    x3 = x_upper
+
+    dict_params[x_name] = x1
+    y1 = func_multiplier * func(**dict_params)
+    dict_params[x_name] = x2
+    y2 = func_multiplier * func(**dict_params)
+    dict_params[x_name] = x3
+    y3 = func_multiplier * func(**dict_params)
+
+    if y_target < y1:
+        return None
+    if y_target > y3:
+        return None
+
+    iter_count = 0
+    while True:
+        if abs(y2 - y_target) < y_tol:
+            return x2
+        elif iter_max < iter_count:
+            return None
+        elif y2 < y_target:
+            x1 = x2
+        elif y2 > y_target:
+            x3 = x2
+        x2 = (x1 + x3) / 2
+        dict_params[x_name] = x2
+        y2 = func_multiplier * func(**dict_params)
+        iter_count += 1
+
+    return None  # this shouldn't be possible, should always terminate within the while loop above
 
 
 def phi_parallel_any_br187(W_m, H_m, w_m, h_m, S_m):

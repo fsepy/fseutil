@@ -53,6 +53,8 @@ def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: floa
         y2 = func_multiplier * func(**dict_params)
         iter_count += 1
 
+    return None  # this shouldn't be possible, should always terminate within the while loop above
+
 
 class Messenger(tk.Tk):
     def __init__(self, msg, title=None):

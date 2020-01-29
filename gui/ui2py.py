@@ -8,7 +8,8 @@ def ui2py():
         'main.ui',
         'dialog_1_1_adb_datasheet_1.ui',
         'dialog_4_1_br187_parallel_simple.ui',
-        'dialog_4_3_br187_parallel_complex.ui'
+        'dialog_4_3_br187_parallel_complex.ui',
+        'dialog_6_1_naming_convention.ui',
     ]
 
     cwd = os.path.dirname(os.path.realpath(__file__))

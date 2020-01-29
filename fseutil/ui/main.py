@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\IanFu\Documents\github\fseutil\gui\main.ui',
-# licensing of 'C:\Users\IanFu\Documents\github\fseutil\gui\main.ui' applies.
+# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/main.ui',
+# licensing of '/Users/ian/Documents/GitHub/fseutil/gui/main.ui' applies.
 #
-# Created: Thu Jan 23 18:42:21 2020
-#      by: pyside2-uic  running on PySide2 5.12.0
+# Created: Wed Jan 29 00:05:11 2020
+#      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -32,7 +32,7 @@ class Ui_MainWindow(object):
         self.b4_01_br187_parallel_5.setGeometry(QtCore.QRect(220, 20, 70, 70))
         self.b4_01_br187_parallel_5.setObjectName("b4_01_br187_parallel_5")
         self.label_logo = QtWidgets.QLabel(self.centralwidget)
-        self.label_logo.setGeometry(QtCore.QRect(310, 30, 194, 80))
+        self.label_logo.setGeometry(QtCore.QRect(310, 15, 194, 80))
         self.label_logo.setText("")
         self.label_logo.setPixmap(QtGui.QPixmap("images/ofr-colour-194_80.png"))
         self.label_logo.setObjectName("label_logo")
@@ -59,6 +59,9 @@ class Ui_MainWindow(object):
         self.b4_01_br187_parallel_10.setObjectName("b4_01_br187_parallel_10")
         self.btn_b1_01_adb2_datasheet_1 = QtWidgets.QPushButton(self.groupBox_3)
         self.btn_b1_01_adb2_datasheet_1.setGeometry(QtCore.QRect(10, 20, 70, 70))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.btn_b1_01_adb2_datasheet_1.setFont(font)
         self.btn_b1_01_adb2_datasheet_1.setObjectName("btn_b1_01_adb2_datasheet_1")
         self.groupBox_4 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_4.setGeometry(QtCore.QRect(10, 360, 181, 101))
@@ -66,6 +69,19 @@ class Ui_MainWindow(object):
         self.b4_01_br187_parallel_7 = QtWidgets.QPushButton(self.groupBox_4)
         self.b4_01_br187_parallel_7.setGeometry(QtCore.QRect(10, 20, 70, 70))
         self.b4_01_br187_parallel_7.setObjectName("b4_01_br187_parallel_7")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(20, 10, 105, 22))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(130, 15, 86, 16))
+        self.label_2.setObjectName("label_2")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(20, 35, 271, 16))
+        self.label_4.setWordWrap(True)
+        self.label_4.setObjectName("label_4")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -116,6 +132,9 @@ class Ui_MainWindow(object):
         self.groupBox_4.setTitle(QtWidgets.QApplication.translate("MainWindow", "B3 Internal fire spread (structure)", None, -1))
         self.b4_01_br187_parallel_7.setText(QtWidgets.QApplication.translate("MainWindow", "Compatment\n"
 "Size", None, -1))
+        self.label.setText(QtWidgets.QApplication.translate("MainWindow", "OFR FSEUTL", None, -1))
+        self.label_2.setText(QtWidgets.QApplication.translate("MainWindow", "Version 0.0.1", None, -1))
+        self.label_4.setText(QtWidgets.QApplication.translate("MainWindow", "© OFR Consultants Ltd. All rights reserved.", None, -1))
         self.actionhello_1.setText(QtWidgets.QApplication.translate("MainWindow", "hello 1", None, -1))
         self.actionhello_2.setText(QtWidgets.QApplication.translate("MainWindow", "hello 2", None, -1))
         self.actionhello_3.setText(QtWidgets.QApplication.translate("MainWindow", "hello 3", None, -1))
