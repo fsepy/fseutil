@@ -3,8 +3,8 @@
 # Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/dialog_4_1_br187_parallel_simple.ui',
 # licensing of '/Users/ian/Documents/GitHub/fseutil/gui/dialog_4_1_br187_parallel_simple.ui' applies.
 #
-# Created: Wed Jan 29 00:05:11 2020
-#      by: pyside2-uic  running on PySide2 5.13.0
+# Created: Thu Jan 30 13:06:29 2020
+#      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -102,7 +102,7 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.label_33.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label_33.setObjectName("label_33")
         self.label_32 = QtWidgets.QLabel(self.groupBox)
-        self.label_32.setGeometry(QtCore.QRect(140, 30, 146, 16))
+        self.label_32.setGeometry(QtCore.QRect(140, 25, 146, 21))
         self.label_32.setMinimumSize(QtCore.QSize(0, 0))
         self.label_32.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.label_32.setObjectName("label_32")
@@ -151,7 +151,7 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.lineEdit_Q.setBaseSize(QtCore.QSize(0, 0))
         self.lineEdit_Q.setObjectName("lineEdit_Q")
         self.comboBox_S_or_UA = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_S_or_UA.setGeometry(QtCore.QRect(5, 95, 71, 30))
+        self.comboBox_S_or_UA.setGeometry(QtCore.QRect(0, 100, 71, 21))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -187,9 +187,9 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.label_30.setMinimumSize(QtCore.QSize(0, 0))
         self.label_30.setMaximumSize(QtCore.QSize(50, 30))
         self.label_30.setObjectName("label_30")
-        self.pushButton = QtWidgets.QPushButton(dialog_4_1_br187_parallel_simple)
-        self.pushButton.setGeometry(QtCore.QRect(590, 390, 81, 31))
-        self.pushButton.setObjectName("pushButton")
+        self.pushButton_calculate = QtWidgets.QPushButton(dialog_4_1_br187_parallel_simple)
+        self.pushButton_calculate.setGeometry(QtCore.QRect(590, 390, 81, 31))
+        self.pushButton_calculate.setObjectName("pushButton_calculate")
         self.label = QtWidgets.QLabel(dialog_4_1_br187_parallel_simple)
         self.label.setGeometry(QtCore.QRect(20, 40, 341, 285))
         self.label.setText("")
@@ -200,6 +200,9 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
+        self.pushButton_test = QtWidgets.QPushButton(dialog_4_1_br187_parallel_simple)
+        self.pushButton_test.setGeometry(QtCore.QRect(15, 390, 81, 31))
+        self.pushButton_test.setObjectName("pushButton_test")
 
         self.retranslateUi(dialog_4_1_br187_parallel_simple)
         QtCore.QMetaObject.connectSlotsByName(dialog_4_1_br187_parallel_simple)
@@ -207,8 +210,8 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         dialog_4_1_br187_parallel_simple.setTabOrder(self.lineEdit_H, self.lineEdit_Q)
         dialog_4_1_br187_parallel_simple.setTabOrder(self.lineEdit_Q, self.comboBox_S_or_UA)
         dialog_4_1_br187_parallel_simple.setTabOrder(self.comboBox_S_or_UA, self.lineEdit_S_or_UA)
-        dialog_4_1_br187_parallel_simple.setTabOrder(self.lineEdit_S_or_UA, self.pushButton)
-        dialog_4_1_br187_parallel_simple.setTabOrder(self.pushButton, self.lineEdit_out_Phi)
+        dialog_4_1_br187_parallel_simple.setTabOrder(self.lineEdit_S_or_UA, self.pushButton_calculate)
+        dialog_4_1_br187_parallel_simple.setTabOrder(self.pushButton_calculate, self.lineEdit_out_Phi)
         dialog_4_1_br187_parallel_simple.setTabOrder(self.lineEdit_out_Phi, self.lineEdit_out_q)
         dialog_4_1_br187_parallel_simple.setTabOrder(self.lineEdit_out_q, self.lineEdit_out_S_or_UA)
 
@@ -236,5 +239,6 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.label_26.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "H", None, -1))
         self.label_30.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Width of emitter", None, -1))
         self.label_30.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "W", None, -1))
-        self.pushButton.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Calculate", None, -1))
+        self.pushButton_calculate.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Calculate", None, -1))
+        self.pushButton_test.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_simple", "Test", None, -1))
 

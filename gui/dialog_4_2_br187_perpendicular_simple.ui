@@ -16,8 +16,8 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>425</x>
-     <y>170</y>
+     <x>375</x>
+     <y>150</y>
      <width>186</width>
      <height>106</height>
     </rect>
@@ -241,8 +241,8 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>425</x>
-     <y>25</y>
+     <x>375</x>
+     <y>10</y>
      <width>186</width>
      <height>131</height>
     </rect>
@@ -621,7 +621,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="pushButton_calculate">
    <property name="geometry">
     <rect>
      <x>590</x>
@@ -637,8 +637,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>40</y>
+     <x>10</x>
+     <y>10</y>
      <width>341</width>
      <height>285</height>
     </rect>
@@ -663,6 +663,19 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_test">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Test</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>lineEdit_W</tabstop>
@@ -670,7 +683,7 @@
   <tabstop>lineEdit_Q</tabstop>
   <tabstop>comboBox_S_or_UA</tabstop>
   <tabstop>lineEdit_S_or_UA</tabstop>
-  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_calculate</tabstop>
   <tabstop>lineEdit_out_Phi</tabstop>
   <tabstop>lineEdit_out_q</tabstop>
   <tabstop>lineEdit_out_S_or_UA</tabstop>

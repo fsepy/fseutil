@@ -3,8 +3,8 @@
 # Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/dialog_1_1_adb_datasheet_1.ui',
 # licensing of '/Users/ian/Documents/GitHub/fseutil/gui/dialog_1_1_adb_datasheet_1.ui' applies.
 #
-# Created: Wed Jan 29 00:05:11 2020
-#      by: pyside2-uic  running on PySide2 5.13.0
+# Created: Thu Jan 30 13:06:28 2020
+#      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 
