@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>898</width>
-    <height>429</height>
+    <width>612</width>
+    <height>385</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>BR 187 Thermal Radiation Calculator (Parallel)</string>
+   <string>PD 7974-1 Heat Detecting Element Activation Time Calculator</string>
   </property>
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>655</x>
-     <y>45</y>
+     <x>375</x>
+     <y>275</y>
      <width>221</width>
      <height>56</height>
     </rect>
@@ -104,8 +104,8 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>415</x>
-     <y>45</y>
+     <x>375</x>
+     <y>10</y>
      <width>221</width>
      <height>256</height>
     </rect>
@@ -875,8 +875,8 @@
   <widget class="QPushButton" name="pushButton_calculate">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>390</y>
+     <x>515</x>
+     <y>350</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -889,7 +889,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>40</y>
+     <y>30</y>
      <width>341</width>
      <height>285</height>
     </rect>
@@ -898,16 +898,16 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>images/phi_calculator_perpendicular_simple_341x285.png</pixmap>
+    <pixmap>images/heat_detector_activation_341x285.png</pixmap>
    </property>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>370</y>
-     <width>896</width>
-     <height>21</height>
+     <y>340</y>
+     <width>611</width>
+     <height>10</height>
     </rect>
    </property>
    <property name="orientation">
@@ -918,7 +918,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>390</y>
+     <y>350</y>
      <width>81</width>
      <height>31</height>
     </rect>

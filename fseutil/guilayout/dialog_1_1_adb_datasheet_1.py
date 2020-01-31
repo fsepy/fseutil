@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/dialog_1_1_adb_datasheet_1.ui',
-# licensing of '/Users/ian/Documents/GitHub/fseutil/gui/dialog_1_1_adb_datasheet_1.ui' applies.
+# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_1_1_adb_datasheet_1.ui',
+# licensing of '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_1_1_adb_datasheet_1.ui' applies.
 #
-# Created: Thu Jan 30 13:06:28 2020
-#      by: pyside2-uic  running on PySide2 5.12.0
+# Created: Fri Jan 31 01:08:01 2020
+#      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -24,5 +24,5 @@ class Ui_dialog_1_1_adb_datasheet_1(object):
         QtCore.QMetaObject.connectSlotsByName(dialog_1_1_adb_datasheet_1)
 
     def retranslateUi(self, dialog_1_1_adb_datasheet_1):
-        dialog_1_1_adb_datasheet_1.setWindowTitle(QtWidgets.QApplication.translate("dialog_1_1_adb_datasheet_1", "Dialog", None, -1))
+        dialog_1_1_adb_datasheet_1.setWindowTitle(QtWidgets.QApplication.translate("dialog_1_1_adb_datasheet_1", "ADB Vol. 2 2019 Data Sheet No. 1", None, -1))
 

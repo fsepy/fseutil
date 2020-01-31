@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>ADB Vol. 2 2019 Data Sheet No. 1</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">

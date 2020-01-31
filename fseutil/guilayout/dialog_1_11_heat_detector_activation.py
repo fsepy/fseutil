@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/dialog_1_11_heat_detector_activation.ui',
-# licensing of '/Users/ian/Documents/GitHub/fseutil/gui/dialog_1_11_heat_detector_activation.ui' applies.
+# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_1_11_heat_detector_activation.ui',
+# licensing of '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_1_11_heat_detector_activation.ui' applies.
 #
-# Created: Thu Jan 30 13:06:29 2020
-#      by: pyside2-uic  running on PySide2 5.12.0
+# Created: Fri Jan 31 01:08:02 2020
+#      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,9 +13,9 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_dialog_1_11_heat_detector_activation(object):
     def setupUi(self, dialog_1_11_heat_detector_activation):
         dialog_1_11_heat_detector_activation.setObjectName("dialog_1_11_heat_detector_activation")
-        dialog_1_11_heat_detector_activation.resize(898, 429)
+        dialog_1_11_heat_detector_activation.resize(612, 385)
         self.groupBox_2 = QtWidgets.QGroupBox(dialog_1_11_heat_detector_activation)
-        self.groupBox_2.setGeometry(QtCore.QRect(655, 45, 221, 56))
+        self.groupBox_2.setGeometry(QtCore.QRect(375, 275, 221, 56))
         self.groupBox_2.setObjectName("groupBox_2")
         self.lineEdit_out_t_act = QtWidgets.QLineEdit(self.groupBox_2)
         self.lineEdit_out_t_act.setGeometry(QtCore.QRect(85, 25, 60, 21))
@@ -41,7 +41,7 @@ class Ui_dialog_1_11_heat_detector_activation(object):
         self.label_25.setGeometry(QtCore.QRect(160, 25, 50, 21))
         self.label_25.setObjectName("label_25")
         self.groupBox = QtWidgets.QGroupBox(dialog_1_11_heat_detector_activation)
-        self.groupBox.setGeometry(QtCore.QRect(415, 45, 221, 256))
+        self.groupBox.setGeometry(QtCore.QRect(375, 10, 221, 256))
         self.groupBox.setObjectName("groupBox")
         self.label_51 = QtWidgets.QLabel(self.groupBox)
         self.label_51.setGeometry(QtCore.QRect(155, 225, 146, 21))
@@ -228,20 +228,20 @@ class Ui_dialog_1_11_heat_detector_activation(object):
         self.lineEdit_in_HRRPUA.setBaseSize(QtCore.QSize(0, 0))
         self.lineEdit_in_HRRPUA.setObjectName("lineEdit_in_HRRPUA")
         self.pushButton_calculate = QtWidgets.QPushButton(dialog_1_11_heat_detector_activation)
-        self.pushButton_calculate.setGeometry(QtCore.QRect(590, 390, 81, 31))
+        self.pushButton_calculate.setGeometry(QtCore.QRect(515, 350, 81, 31))
         self.pushButton_calculate.setObjectName("pushButton_calculate")
         self.label = QtWidgets.QLabel(dialog_1_11_heat_detector_activation)
-        self.label.setGeometry(QtCore.QRect(20, 40, 341, 285))
+        self.label.setGeometry(QtCore.QRect(20, 30, 341, 285))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("images/phi_calculator_perpendicular_simple_341x285.png"))
+        self.label.setPixmap(QtGui.QPixmap("images/heat_detector_activation_341x285.png"))
         self.label.setObjectName("label")
         self.line = QtWidgets.QFrame(dialog_1_11_heat_detector_activation)
-        self.line.setGeometry(QtCore.QRect(0, 370, 896, 21))
+        self.line.setGeometry(QtCore.QRect(0, 340, 611, 10))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.pushButton_test = QtWidgets.QPushButton(dialog_1_11_heat_detector_activation)
-        self.pushButton_test.setGeometry(QtCore.QRect(10, 390, 81, 31))
+        self.pushButton_test.setGeometry(QtCore.QRect(10, 350, 81, 31))
         self.pushButton_test.setObjectName("pushButton_test")
 
         self.retranslateUi(dialog_1_11_heat_detector_activation)
@@ -258,7 +258,7 @@ class Ui_dialog_1_11_heat_detector_activation(object):
         dialog_1_11_heat_detector_activation.setTabOrder(self.pushButton_calculate, self.lineEdit_out_t_act)
 
     def retranslateUi(self, dialog_1_11_heat_detector_activation):
-        dialog_1_11_heat_detector_activation.setWindowTitle(QtWidgets.QApplication.translate("dialog_1_11_heat_detector_activation", "BR 187 Thermal Radiation Calculator (Parallel)", None, -1))
+        dialog_1_11_heat_detector_activation.setWindowTitle(QtWidgets.QApplication.translate("dialog_1_11_heat_detector_activation", "PD 7974-1 Heat Detecting Element Activation Time Calculator", None, -1))
         self.groupBox_2.setTitle(QtWidgets.QApplication.translate("dialog_1_11_heat_detector_activation", "Outputs", None, -1))
         self.label_11.setToolTip(QtWidgets.QApplication.translate("dialog_1_11_heat_detector_activation", "Solved view factor", None, -1))
         self.label_11.setText(QtWidgets.QApplication.translate("dialog_1_11_heat_detector_activation", "t<sub>act<sub>", None, -1))

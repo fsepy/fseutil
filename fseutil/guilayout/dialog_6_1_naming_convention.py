@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/dialog_6_1_naming_convention.ui',
-# licensing of '/Users/ian/Documents/GitHub/fseutil/gui/dialog_6_1_naming_convention.ui' applies.
+# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_6_1_naming_convention.ui',
+# licensing of '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_6_1_naming_convention.ui' applies.
 #
-# Created: Thu Jan 30 13:06:29 2020
-#      by: pyside2-uic  running on PySide2 5.12.0
+# Created: Fri Jan 31 01:08:02 2020
+#      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -161,7 +161,7 @@ class Ui_dialog_6_1_naming_convention(object):
         QtCore.QMetaObject.connectSlotsByName(dialog_6_1_naming_convention)
 
     def retranslateUi(self, dialog_6_1_naming_convention):
-        dialog_6_1_naming_convention.setWindowTitle(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Dialog", None, -1))
+        dialog_6_1_naming_convention.setWindowTitle(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "OFR Naming Convention", None, -1))
         self.f_comboBox_type.setItemText(0, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "GA", None, -1))
         self.f_comboBox_type.setItemText(1, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "MD", None, -1))
         self.f_comboBox_type.setItemText(2, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "FP", None, -1))
@@ -180,20 +180,20 @@ class Ui_dialog_6_1_naming_convention(object):
         self.f_comboBox_type.setItemText(15, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "XO", None, -1))
         self.label_3.setText(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "MA16001", None, -1))
         self.label_16.setText(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "DATE", None, -1))
-        self.b_comboBox_revision.setItemText(0, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Q00", None, -1))
-        self.b_comboBox_revision.setItemText(1, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Q01", None, -1))
-        self.b_comboBox_revision.setItemText(2, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Q02", None, -1))
-        self.b_comboBox_revision.setItemText(3, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "D00", None, -1))
-        self.b_comboBox_revision.setItemText(4, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "D01", None, -1))
-        self.b_comboBox_revision.setItemText(5, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "D02", None, -1))
-        self.b_comboBox_revision.setItemText(6, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "R00", None, -1))
-        self.b_comboBox_revision.setItemText(7, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "R01", None, -1))
-        self.b_comboBox_revision.setItemText(8, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "R02", None, -1))
+        self.b_comboBox_revision.setItemText(16, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Q00", None, -1))
+        self.b_comboBox_revision.setItemText(17, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Q01", None, -1))
+        self.b_comboBox_revision.setItemText(18, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "Q02", None, -1))
+        self.b_comboBox_revision.setItemText(19, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "D00", None, -1))
+        self.b_comboBox_revision.setItemText(20, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "D01", None, -1))
+        self.b_comboBox_revision.setItemText(21, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "D02", None, -1))
+        self.b_comboBox_revision.setItemText(22, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "R00", None, -1))
+        self.b_comboBox_revision.setItemText(23, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "R01", None, -1))
+        self.b_comboBox_revision.setItemText(24, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "R02", None, -1))
         self.label_18.setText(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "FILE TITLE (PLAIN ENGLISH)", None, -1))
-        self.comboBox_3.setItemText(0, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "CIC", None, -1))
-        self.comboBox_3.setItemText(1, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "WPC", None, -1))
-        self.comboBox_3.setItemText(2, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "SDS", None, -1))
-        self.comboBox_3.setItemText(3, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "FID", None, -1))
+        self.comboBox_3.setItemText(25, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "CIC", None, -1))
+        self.comboBox_3.setItemText(26, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "WPC", None, -1))
+        self.comboBox_3.setItemText(27, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "SDS", None, -1))
+        self.comboBox_3.setItemText(28, QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "FID", None, -1))
         self.label_19.setText(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "DOCUMENT TYPE", None, -1))
         self.label_15.setText(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "REVISION", None, -1))
         self.label_10.setText(QtWidgets.QApplication.translate("dialog_6_1_naming_convention", "-", None, -1))

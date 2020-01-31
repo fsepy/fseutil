@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/dialog_4_3_br187_parallel_complex.ui',
-# licensing of '/Users/ian/Documents/GitHub/fseutil/gui/dialog_4_3_br187_parallel_complex.ui' applies.
+# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_4_3_br187_parallel_complex.ui',
+# licensing of '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_4_3_br187_parallel_complex.ui' applies.
 #
-# Created: Thu Jan 30 13:06:29 2020
-#      by: pyside2-uic  running on PySide2 5.12.0
+# Created: Fri Jan 31 01:08:02 2020
+#      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-class Ui_dialog_4_1_br187_parallel_complex(object):
-    def setupUi(self, dialog_4_1_br187_parallel_complex):
-        dialog_4_1_br187_parallel_complex.setObjectName("dialog_4_1_br187_parallel_complex")
-        dialog_4_1_br187_parallel_complex.resize(557, 640)
-        self.groupBox_2 = QtWidgets.QGroupBox(dialog_4_1_br187_parallel_complex)
+class Ui_dialog_4_3_br187_parallel_complex(object):
+    def setupUi(self, dialog_4_3_br187_parallel_complex):
+        dialog_4_3_br187_parallel_complex.setObjectName("dialog_4_3_br187_parallel_complex")
+        dialog_4_3_br187_parallel_complex.resize(557, 640)
+        self.groupBox_2 = QtWidgets.QGroupBox(dialog_4_3_br187_parallel_complex)
         self.groupBox_2.setGeometry(QtCore.QRect(280, 340, 251, 161))
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.groupBox_2)
@@ -136,7 +136,7 @@ class Ui_dialog_4_1_br187_parallel_complex(object):
         self.checkBox_2.setText("")
         self.checkBox_2.setObjectName("checkBox_2")
         self.gridLayout_2.addWidget(self.checkBox_2, 3, 2, 1, 1)
-        self.groupBox = QtWidgets.QGroupBox(dialog_4_1_br187_parallel_complex)
+        self.groupBox = QtWidgets.QGroupBox(dialog_4_3_br187_parallel_complex)
         self.groupBox.setGeometry(QtCore.QRect(10, 340, 271, 281))
         self.groupBox.setObjectName("groupBox")
         self.gridLayoutWidget_3 = QtWidgets.QWidget(self.groupBox)
@@ -334,52 +334,52 @@ class Ui_dialog_4_1_br187_parallel_complex(object):
         self.label_39 = QtWidgets.QLabel(self.gridLayoutWidget_3)
         self.label_39.setObjectName("label_39")
         self.gridLayout_3.addWidget(self.label_39, 7, 1, 1, 1)
-        self.pushButton = QtWidgets.QPushButton(dialog_4_1_br187_parallel_complex)
+        self.pushButton = QtWidgets.QPushButton(dialog_4_3_br187_parallel_complex)
         self.pushButton.setGeometry(QtCore.QRect(350, 590, 112, 32))
         self.pushButton.setObjectName("pushButton")
-        self.label = QtWidgets.QLabel(dialog_4_1_br187_parallel_complex)
+        self.label = QtWidgets.QLabel(dialog_4_3_br187_parallel_complex)
         self.label.setGeometry(QtCore.QRect(40, 20, 400, 321))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("images/phi_calculator_400_321.png"))
         self.label.setObjectName("label")
 
-        self.retranslateUi(dialog_4_1_br187_parallel_complex)
-        QtCore.QMetaObject.connectSlotsByName(dialog_4_1_br187_parallel_complex)
+        self.retranslateUi(dialog_4_3_br187_parallel_complex)
+        QtCore.QMetaObject.connectSlotsByName(dialog_4_3_br187_parallel_complex)
 
-    def retranslateUi(self, dialog_4_1_br187_parallel_complex):
-        dialog_4_1_br187_parallel_complex.setWindowTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Dialog", None, -1))
-        self.groupBox_2.setTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Outputs", None, -1))
-        self.label_25.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[kW/m²]", None, -1))
-        self.label_11.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Φ", None, -1))
-        self.label_21.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[%]", None, -1))
-        self.label_9.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "UA", None, -1))
-        self.label_10.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "S", None, -1))
-        self.label_12.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "q", None, -1))
-        self.label_22.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[m]", None, -1))
-        self.groupBox.setTitle(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Inputs", None, -1))
-        self.label_23.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Heat flux of emitter", None, -1))
-        self.label_23.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Q", None, -1))
-        self.label_24.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Height of receiver", None, -1))
-        self.label_24.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "h", None, -1))
-        self.label_26.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Height of emitter", None, -1))
-        self.label_26.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "H", None, -1))
-        self.label_27.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Acceptable heat flux at receiver", None, -1))
-        self.label_27.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "q", None, -1))
-        self.label_28.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Separation distance between emitter and receiver", None, -1))
-        self.label_28.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "S", None, -1))
-        self.label_29.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Width of receiver", None, -1))
-        self.label_29.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "w", None, -1))
-        self.label_30.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Width of emitter", None, -1))
-        self.label_30.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "W", None, -1))
-        self.label_31.setToolTip(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Unprotected area", None, -1))
-        self.label_31.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "UA", None, -1))
-        self.label_32.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[m]", None, -1))
-        self.label_33.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[m]", None, -1))
-        self.label_34.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[kW/m²]", None, -1))
-        self.label_35.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[m]", None, -1))
-        self.label_36.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[m]", None, -1))
-        self.label_37.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[kW/m²]", None, -1))
-        self.label_38.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[m]", None, -1))
-        self.label_39.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "[%]", None, -1))
-        self.pushButton.setText(QtWidgets.QApplication.translate("dialog_4_1_br187_parallel_complex", "Calculate", None, -1))
+    def retranslateUi(self, dialog_4_3_br187_parallel_complex):
+        dialog_4_3_br187_parallel_complex.setWindowTitle(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "BR 187 Thermal Radiation Calculation (Parallel Complex)", None, -1))
+        self.groupBox_2.setTitle(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Outputs", None, -1))
+        self.label_25.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[kW/m²]", None, -1))
+        self.label_11.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Φ", None, -1))
+        self.label_21.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[%]", None, -1))
+        self.label_9.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "UA", None, -1))
+        self.label_10.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "S", None, -1))
+        self.label_12.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "q", None, -1))
+        self.label_22.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[m]", None, -1))
+        self.groupBox.setTitle(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Inputs", None, -1))
+        self.label_23.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Heat flux of emitter", None, -1))
+        self.label_23.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Q", None, -1))
+        self.label_24.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Height of receiver", None, -1))
+        self.label_24.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "h", None, -1))
+        self.label_26.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Height of emitter", None, -1))
+        self.label_26.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "H", None, -1))
+        self.label_27.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Acceptable heat flux at receiver", None, -1))
+        self.label_27.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "q", None, -1))
+        self.label_28.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Separation distance between emitter and receiver", None, -1))
+        self.label_28.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "S", None, -1))
+        self.label_29.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Width of receiver", None, -1))
+        self.label_29.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "w", None, -1))
+        self.label_30.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Width of emitter", None, -1))
+        self.label_30.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "W", None, -1))
+        self.label_31.setToolTip(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Unprotected area", None, -1))
+        self.label_31.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "UA", None, -1))
+        self.label_32.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[m]", None, -1))
+        self.label_33.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[m]", None, -1))
+        self.label_34.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[kW/m²]", None, -1))
+        self.label_35.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[m]", None, -1))
+        self.label_36.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[m]", None, -1))
+        self.label_37.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[kW/m²]", None, -1))
+        self.label_38.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[m]", None, -1))
+        self.label_39.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "[%]", None, -1))
+        self.pushButton.setText(QtWidgets.QApplication.translate("dialog_4_3_br187_parallel_complex", "Calculate", None, -1))
 

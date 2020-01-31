@@ -12,7 +12,7 @@ def build_gui():
         "--noconsole",
         "--onefile",
         "--windowed",
-        "--icon=" + os.path.join("etc", "ofr-colour-618_618.ico"),
+        "--icon=" + os.path.realpath(os.path.join("etc", "ofr-colour-618_618.ico")),
     ]
     cmd_script = "gui.py"
 

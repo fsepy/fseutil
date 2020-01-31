@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/gui/main.ui',
-# licensing of '/Users/ian/Documents/GitHub/fseutil/gui/main.ui' applies.
+# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/main.ui',
+# licensing of '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/main.ui' applies.
 #
-# Created: Thu Jan 30 13:06:28 2020
-#      by: pyside2-uic  running on PySide2 5.12.0
+# Created: Fri Jan 31 01:08:01 2020
+#      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -39,9 +39,9 @@ class Ui_MainWindow(object):
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(10, 130, 91, 101))
         self.groupBox_2.setObjectName("groupBox_2")
-        self.b4_01_br187_parallel_6 = QtWidgets.QPushButton(self.groupBox_2)
-        self.b4_01_br187_parallel_6.setGeometry(QtCore.QRect(10, 20, 70, 70))
-        self.b4_01_br187_parallel_6.setObjectName("b4_01_br187_parallel_6")
+        self.pushButton_0601_naming_convention = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton_0601_naming_convention.setGeometry(QtCore.QRect(10, 20, 70, 70))
+        self.pushButton_0601_naming_convention.setObjectName("pushButton_0601_naming_convention")
         self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_3.setGeometry(QtCore.QRect(10, 240, 371, 101))
         self.groupBox_3.setObjectName("groupBox_3")
@@ -60,7 +60,7 @@ class Ui_MainWindow(object):
         self.pushButton_0101_adb2_datasheet_1 = QtWidgets.QPushButton(self.groupBox_3)
         self.pushButton_0101_adb2_datasheet_1.setGeometry(QtCore.QRect(10, 20, 70, 70))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(13)
         self.pushButton_0101_adb2_datasheet_1.setFont(font)
         self.pushButton_0101_adb2_datasheet_1.setObjectName("pushButton_0101_adb2_datasheet_1")
         self.groupBox_4 = QtWidgets.QGroupBox(self.centralwidget)
@@ -105,7 +105,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "MainWindow", None, -1))
+        MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "OFR FSEUTIL", None, -1))
         self.groupBox.setTitle(QtWidgets.QApplication.translate("MainWindow", "B4 External flame spread", None, -1))
         self.pushButton_0401_br187_parallel_simple.setText(QtWidgets.QApplication.translate("MainWindow", "BR 187\n"
 "Parallel", None, -1))
@@ -118,7 +118,7 @@ class Ui_MainWindow(object):
 "Perp.\n"
 "Complex", None, -1))
         self.groupBox_2.setTitle(QtWidgets.QApplication.translate("MainWindow", "Miscellaneous", None, -1))
-        self.b4_01_br187_parallel_6.setText(QtWidgets.QApplication.translate("MainWindow", "File\n"
+        self.pushButton_0601_naming_convention.setText(QtWidgets.QApplication.translate("MainWindow", "File\n"
 "Naming\n"
 "Protocol", None, -1))
         self.groupBox_3.setTitle(QtWidgets.QApplication.translate("MainWindow", "B1 Means of escape", None, -1))
