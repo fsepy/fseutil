@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_4_2_br187_perpendicular_simple.ui',
-# licensing of '/Users/ian/Documents/GitHub/fseutil/fseutil/guilayout/dialog_4_2_br187_perpendicular_simple.ui' applies.
+# Form implementation generated from reading ui file 'C:\Users\ian\Documents\GitHub\fseutil\fseutil\guilayout\dialog_4_2_br187_perpendicular_simple.ui',
+# licensing of 'C:\Users\ian\Documents\GitHub\fseutil\fseutil\guilayout\dialog_4_2_br187_perpendicular_simple.ui' applies.
 #
-# Created: Fri Jan 31 01:08:02 2020
+# Created: Sun Feb  2 23:37:11 2020
 #      by: pyside2-uic  running on PySide2 5.13.0
 #
 # WARNING! All changes made in this file will be lost!

@@ -6,28 +6,75 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>970</width>
-    <height>690</height>
+    <width>833</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ADB Vol. 2 2019 Data Sheet No. 1</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QScrollArea" name="scrollArea">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>947</width>
-     <height>670</height>
+     <width>800</width>
+     <height>600</height>
     </rect>
    </property>
-   <property name="text">
-    <string/>
+   <property name="maximumSize">
+    <size>
+     <width>800</width>
+     <height>600</height>
+    </size>
    </property>
-   <property name="pixmap">
-    <pixmap>images/adb2_datasheet_1_947_670.png</pixmap>
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
    </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="widgetResizable">
+    <bool>false</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>781</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>947</width>
+       <height>670</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>947</width>
+       <height>670</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>images/adb2_datasheet_1_947_670.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
