@@ -333,17 +333,107 @@ Complex</string>
      <x>0</x>
      <y>0</y>
      <width>474</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuHello_world">
+   <widget class="QMenu" name="menu_B1">
     <property name="title">
-     <string>Hello world</string>
+     <string>B1</string>
+    </property>
+    <addaction name="action_0101_ADB_Vol_2_Datasheet"/>
+    <addaction name="action_0102_BS_9999_Datasheet"/>
+    <addaction name="action_0103_BS_9999_Merging_flow"/>
+    <addaction name="action_0104_PD_7974_HD_activation"/>
+   </widget>
+   <widget class="QMenu" name="menu_B2">
+    <property name="title">
+     <string>B2</string>
     </property>
    </widget>
-   <addaction name="menuHello_world"/>
+   <widget class="QMenu" name="menu_B3">
+    <property name="title">
+     <string>B3</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_B4">
+    <property name="title">
+     <string>B4</string>
+    </property>
+    <addaction name="action_0401_BR_187_parallel_simple"/>
+    <addaction name="action_0402_BR_187_perpendicular_simple"/>
+    <addaction name="action_0403_BR_187_parallel_complex"/>
+    <addaction name="action_0404_BR_187_perpendicular_complex"/>
+   </widget>
+   <widget class="QMenu" name="menu_B5">
+    <property name="title">
+     <string>B5</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_Misc">
+    <property name="title">
+     <string>Misc.</string>
+    </property>
+    <addaction name="action_0601_OFR_naming_protocol"/>
+   </widget>
+   <addaction name="menu_B1"/>
+   <addaction name="menu_B2"/>
+   <addaction name="menu_B3"/>
+   <addaction name="menu_B4"/>
+   <addaction name="menu_B5"/>
+   <addaction name="menu_Misc"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_0101_ADB_Vol_2_Datasheet">
+   <property name="text">
+    <string>ADB Vol. 2 Datasheet No. 1</string>
+   </property>
+  </action>
+  <action name="action_0102_BS_9999_Datasheet">
+   <property name="text">
+    <string>BS 9999 Datasheet No. 1</string>
+   </property>
+  </action>
+  <action name="action_0103_BS_9999_Merging_flow">
+   <property name="text">
+    <string>BS 9999 Merging flow calculation</string>
+   </property>
+  </action>
+  <action name="action_0104_PD_7974_HD_activation">
+   <property name="text">
+    <string>PD 7974 HD activation time calculation</string>
+   </property>
+  </action>
+  <action name="action_0401_BR_187_parallel_simple">
+   <property name="text">
+    <string>BR 187 parallel plane calculation</string>
+   </property>
+  </action>
+  <action name="action_0402_BR_187_perpendicular_simple">
+   <property name="text">
+    <string>BR 187 perpendicular plane calculation</string>
+   </property>
+  </action>
+  <action name="action_0403_BR_187_parallel_complex">
+   <property name="text">
+    <string>BR 187 parallel plane calculation (complex)</string>
+   </property>
+  </action>
+  <action name="action_0404_BR_187_perpendicular_complex">
+   <property name="text">
+    <string>BR 187 perpendicular plain calculation (complex)</string>
+   </property>
+  </action>
+  <action name="action_0601_OFR_naming_protocol">
+   <property name="text">
+    <string>OFR file naming protocol</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
