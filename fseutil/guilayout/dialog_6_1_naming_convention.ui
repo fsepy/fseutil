@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1348</width>
-    <height>497</height>
+    <width>1253</width>
+    <height>101</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,117 +18,269 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>1333</width>
-     <height>441</height>
+     <width>1141</width>
+     <height>54</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="10">
-     <widget class="QComboBox" name="f_comboBox_type">
-      <item>
-       <property name="text">
-        <string>GA</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>MD</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FP</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>LT</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>DN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>OF</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>DF</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>RF</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FA</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FS</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>MN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>CS</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SK</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>DW</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>XO</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QLabel" name="label_3">
+    <item row="0" column="10">
+     <widget class="QLabel" name="label_19">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string>MA16001</string>
+       <string>DOCUMENT TYPE</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="2" column="8">
-     <widget class="QTextEdit" name="e_textEdit_title">
+    <item row="0" column="7">
+     <widget class="QLabel" name="label_7">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="9">
+     <widget class="QLabel" name="label_6">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="10">
+     <widget class="QComboBox" name="comboBox_6_type">
+      <item>
+       <property name="text">
+        <string>GA: General admin</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MD: Marketing</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FP: Fee proposal</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LT: Letter</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DN: Design note</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>OF: Outline strategy</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DF: Detailed strategy</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>RF: Retrospective strategy</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FA: Fire risk assessment</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FS: Fire survey report</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FN: File note</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MN: Meeting notes</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CS: Calculation sheet</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SK: Sketch</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>DW: Drawing</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>XO: Expert opinion</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_15">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>REVISION</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="12">
+     <widget class="QComboBox" name="comboBox_7_security_status">
+      <item>
+       <property name="text">
+        <string>CIC: Commercial in confidence</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>WPC: Without prejudice and confidential</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SDS: Secure document</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>FID: Free issue document (no security status)</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_9">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QComboBox" name="comboBox_2_revision">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
-        <height>32</height>
+        <height>16777215</height>
        </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>Q00: First issue for internal review</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Q01: Reviewer's comments</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Q02: Authoriser's comments</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>D00: First issue to others for comment</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>D01: Sub-sequent external reviews</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>R00: First issue</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>R01: Second issue</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="5">
+     <widget class="QLabel" name="label_4">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
       </property>
      </widget>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="label_16">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string>DATE</string>
       </property>
@@ -137,57 +289,14 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QComboBox" name="b_comboBox_revision">
-      <item>
-       <property name="text">
-        <string>Q00</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Q01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Q02</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>D00</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>D01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>D02</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>R00</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>R01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>R02</string>
-       </property>
-      </item>
-     </widget>
-    </item>
     <item row="0" column="8">
      <widget class="QLabel" name="label_18">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string>FILE TITLE (PLAIN ENGLISH)</string>
       </property>
@@ -196,241 +305,88 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="12">
-     <widget class="QComboBox" name="comboBox_3">
-      <item>
-       <property name="text">
-        <string>CIC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>WPC</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SDS</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>FID</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="0" column="10">
-     <widget class="QLabel" name="label_19">
-      <property name="text">
-       <string>DOCUMENT TYPE</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
-     <widget class="QLabel" name="label_15">
-      <property name="text">
-       <string>REVISION</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="5">
-     <widget class="QLabel" name="label_10">
-      <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="4">
-     <widget class="QTextEdit" name="c_textEdit_project_no">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>32</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLabel" name="label_2">
-      <property name="minimumSize">
-       <size>
-        <width>250</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>250</width>
-        <height>600</height>
-       </size>
+    <item row="0" column="12">
+     <widget class="QLabel" name="label_20">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Q##: Internal review drafts&lt;br/&gt;Q00: First issue for internal review&lt;br/&gt;Q01: Reviewer's comments&lt;br/&gt;Q02: Authoriser's comments&lt;/p&gt;&lt;p&gt;D##: Draft issued outside for comment&lt;br/&gt;D00: First issue to others for comment&lt;br/&gt;D01: Sub-sequent external reviews&lt;/p&gt;&lt;p&gt;R##: Formal issue revision&lt;br/&gt;R00: First issue&lt;br/&gt;R01: Second issue&lt;/p&gt;&lt;p&gt;Note:&lt;br/&gt;Reports should change formal issue revision when information that they are based upon changes.&lt;br/&gt;It is not the intent to use the Draft status to pick up design churn etc.&lt;br/&gt;At each revision change (including Q and D) the reason for change should be notd on the QA sheet and changes made using track changes with each version being saved to provide an audit trail.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>SECURITY STATUS</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <set>Qt::AlignCenter</set>
       </property>
-      <property name="wordWrap">
-       <bool>true</bool>
+     </widget>
+    </item>
+    <item row="0" column="11">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
       </property>
      </widget>
     </item>
     <item row="1" column="6">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>WP3</string>
+     <widget class="QLineEdit" name="lineEdit_4_project_stage">
+      <property name="maximumSize">
+       <size>
+        <width>90</width>
+        <height>16777215</height>
+       </size>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
+      <property name="text">
+       <string>WP1</string>
       </property>
      </widget>
     </item>
     <item row="1" column="8">
-     <widget class="QLabel" name="label_5">
+     <widget class="QLineEdit" name="lineEdit_5_title">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="text">
        <string>Outline_fire_strategy_report</string>
       </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QTextEdit" name="a_textEdit_date">
+    <item row="1" column="4">
+     <widget class="QLineEdit" name="lineEdit_3_project_no">
       <property name="maximumSize">
        <size>
-        <width>16777215</width>
-        <height>32</height>
+        <width>90</width>
+        <height>16777215</height>
        </size>
       </property>
-      <property name="html">
-       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.AppleSystemUIFont';&quot;&gt;20151021&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="6">
-     <widget class="QTextEdit" name="d_textEdit_stage">
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>32</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="label_8">
       <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="6">
-     <widget class="QLabel" name="label_17">
-      <property name="text">
-       <string>PROJECT STAGE</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="12">
-     <widget class="QLabel" name="label_20">
-      <property name="text">
-       <string>SECURITY STATUS</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="12">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>CIC: Commercial in confidence
-WPC: Without prejudice and confidential
-SDS: Secure document
-FID: Free issue document (no security status)</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>20151021</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QLabel" name="label_9">
-      <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="11">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="10">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>GA: General admin
-MD: Marketing
-FP: Fee proposal
-LT: Letter
-DN: Design note
-OF: Outline strategy
-DF: Detailed strategy
-RF: Retrospective strategy
-FA: Fire risk assessment
-FS: Fire survey report
-FN: File note
-MN: Meeting notes
-CS: Calculation sheet
-SK: Sketch
-DW: Drawing
-XO: Expert opinion</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="9">
-     <widget class="QLabel" name="label_13">
-      <property name="text">
-       <string>-</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="7">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>-</string>
+       <string>OX2001</string>
       </property>
      </widget>
     </item>
     <item row="0" column="4">
      <widget class="QLabel" name="label_14">
+      <property name="maximumSize">
+       <size>
+        <width>90</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string>PROJECT NO.</string>
       </property>
@@ -439,19 +395,111 @@ XO: Expert opinion</string>
       </property>
      </widget>
     </item>
+    <item row="0" column="6">
+     <widget class="QLabel" name="label_17">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>PROJECT STAGE</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="lineEdit_1_date">
+      <property name="maximumSize">
+       <size>
+        <width>70</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>20151021</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="lineEdit_result">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>460</y>
-     <width>1331</width>
+     <y>71</y>
+     <width>1141</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>140</y>
+     <width>4</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>190</y>
+     <width>4</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>220</y>
+     <width>4</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_copy">
+   <property name="geometry">
+    <rect>
+     <x>1160</x>
+     <y>10</y>
+     <width>81</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Copy file name</string>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_1_date</tabstop>
+  <tabstop>comboBox_2_revision</tabstop>
+  <tabstop>lineEdit_3_project_no</tabstop>
+  <tabstop>lineEdit_4_project_stage</tabstop>
+  <tabstop>lineEdit_5_title</tabstop>
+  <tabstop>comboBox_6_type</tabstop>
+  <tabstop>comboBox_7_security_status</tabstop>
+  <tabstop>pushButton_copy</tabstop>
+  <tabstop>lineEdit_result</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

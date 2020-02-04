@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>680</width>
-    <height>429</height>
+    <width>551</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>425</x>
+     <x>360</x>
      <y>170</y>
-     <width>186</width>
+     <width>181</width>
      <height>106</height>
     </rect>
    </property>
@@ -241,9 +241,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>425</x>
-     <y>25</y>
-     <width>186</width>
+     <x>360</x>
+     <y>30</y>
+     <width>181</width>
      <height>131</height>
     </rect>
    </property>
@@ -489,9 +489,9 @@
    <widget class="QComboBox" name="comboBox_S_or_UA">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>100</y>
-      <width>71</width>
+      <width>51</width>
       <height>21</height>
      </rect>
     </property>
@@ -624,8 +624,8 @@
   <widget class="QPushButton" name="pushButton_calculate">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>390</y>
+     <x>460</x>
+     <y>320</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -637,8 +637,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>40</y>
+     <x>10</x>
+     <y>10</y>
      <width>341</width>
      <height>285</height>
     </rect>
@@ -647,15 +647,15 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>images/phi calculator parallel simple 341x285.png</pixmap>
+    <pixmap>images/phi_calculator_parallel simple_341x285.png</pixmap>
    </property>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>370</y>
-     <width>681</width>
+     <y>300</y>
+     <width>551</width>
      <height>21</height>
     </rect>
    </property>
@@ -666,8 +666,8 @@
   <widget class="QPushButton" name="pushButton_test">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>390</y>
+     <x>10</x>
+     <y>320</y>
      <width>81</width>
      <height>31</height>
     </rect>
