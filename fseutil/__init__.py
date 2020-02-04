@@ -1,5 +1,5 @@
 """
-VERSION IDENTIFICATION RULES DOCUMENTED IN PEP 440 ARE FOLLOWED.
+VERSION IDENTIFICATION RULES DOCUMENTED IN PEP 440.
 
 Version scheme
 ==============
@@ -36,40 +36,6 @@ Public version identifiers are separated into up to five segments:
 
 __version__ = "0.0.1.dev20191202"
 
-
-def check_pip_upgrade():
-
-    # Parse the latest version string
-    import subprocess
-    from subprocess import STDOUT, check_output
-
-    try:
-        output = check_output("pip search --version sfeprapy", stderr=STDOUT, timeout=5)
-    except (subprocess.TimeoutExpired, subprocess.CalledProcessError) as e:
-        return
-
-    # extract the version number string
-    import re
-
-    try:
-        v = re.findall(r"fseutil[\s]*\([\d.]+\)", str(output))[0]
-        v = re.findall(r"[\d.]+", str(v))[0]
-    except IndexError:
-        raise ModuleNotFoundError("Failed to fetch data from PyPI.")
-
-    # check if upgrade required
-    from packaging import version
-
-    is_new_version_available = version.parse(v) > version.parse(__version__)
-
-    # raise message if upgrade is needed
-    if is_new_version_available:
-        print(
-            "New SfePrapy version is available, use `pip install sfeprapy --upgrade` to install the latest version."
-        )
-        print(f"Current: {__version__}\nLatest: {v}\n\n")
-
-
 if __name__ == "__main__":
     import re
 
@@ -83,5 +49,3 @@ if __name__ == "__main__":
         )
 
     assert is_canonical(__version__)
-
-    check_pip_upgrade()
