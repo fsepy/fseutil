@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\ian\Documents\GitHub\fseutil\fseutil\guilayout\dialog_4_1_br187_parallel_simple.ui',
-# licensing of 'C:\Users\ian\Documents\GitHub\fseutil\fseutil\guilayout\dialog_4_1_br187_parallel_simple.ui' applies.
+# Form implementation generated from reading ui file 'C:\Users\IanFu\Documents\github\fseutil\fseutil\guilayout\ui\dialog_4_1_br187_parallel_simple.ui',
+# licensing of 'C:\Users\IanFu\Documents\github\fseutil\fseutil\guilayout\ui\dialog_4_1_br187_parallel_simple.ui' applies.
 #
-# Created: Sun Feb  2 23:37:11 2020
-#      by: pyside2-uic  running on PySide2 5.13.0
+# Created: Tue Feb  4 13:42:35 2020
+#      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,9 +13,9 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_dialog_4_1_br187_parallel_simple(object):
     def setupUi(self, dialog_4_1_br187_parallel_simple):
         dialog_4_1_br187_parallel_simple.setObjectName("dialog_4_1_br187_parallel_simple")
-        dialog_4_1_br187_parallel_simple.resize(680, 429)
+        dialog_4_1_br187_parallel_simple.resize(551, 361)
         self.groupBox_2 = QtWidgets.QGroupBox(dialog_4_1_br187_parallel_simple)
-        self.groupBox_2.setGeometry(QtCore.QRect(425, 170, 186, 106))
+        self.groupBox_2.setGeometry(QtCore.QRect(360, 170, 181, 106))
         self.groupBox_2.setObjectName("groupBox_2")
         self.lineEdit_out_Phi = QtWidgets.QLineEdit(self.groupBox_2)
         self.lineEdit_out_Phi.setGeometry(QtCore.QRect(75, 25, 60, 21))
@@ -84,7 +84,7 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.label_out_unit_S_or_UA.setGeometry(QtCore.QRect(140, 75, 50, 21))
         self.label_out_unit_S_or_UA.setObjectName("label_out_unit_S_or_UA")
         self.groupBox = QtWidgets.QGroupBox(dialog_4_1_br187_parallel_simple)
-        self.groupBox.setGeometry(QtCore.QRect(425, 25, 186, 131))
+        self.groupBox.setGeometry(QtCore.QRect(360, 30, 181, 131))
         self.groupBox.setObjectName("groupBox")
         self.label_unit_S_or_UA = QtWidgets.QLabel(self.groupBox)
         self.label_unit_S_or_UA.setGeometry(QtCore.QRect(140, 100, 145, 21))
@@ -151,7 +151,7 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.lineEdit_Q.setBaseSize(QtCore.QSize(0, 0))
         self.lineEdit_Q.setObjectName("lineEdit_Q")
         self.comboBox_S_or_UA = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_S_or_UA.setGeometry(QtCore.QRect(0, 100, 71, 21))
+        self.comboBox_S_or_UA.setGeometry(QtCore.QRect(10, 100, 51, 21))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -188,20 +188,20 @@ class Ui_dialog_4_1_br187_parallel_simple(object):
         self.label_30.setMaximumSize(QtCore.QSize(50, 30))
         self.label_30.setObjectName("label_30")
         self.pushButton_calculate = QtWidgets.QPushButton(dialog_4_1_br187_parallel_simple)
-        self.pushButton_calculate.setGeometry(QtCore.QRect(590, 390, 81, 31))
+        self.pushButton_calculate.setGeometry(QtCore.QRect(460, 320, 81, 31))
         self.pushButton_calculate.setObjectName("pushButton_calculate")
         self.label = QtWidgets.QLabel(dialog_4_1_br187_parallel_simple)
-        self.label.setGeometry(QtCore.QRect(20, 40, 341, 285))
+        self.label.setGeometry(QtCore.QRect(10, 10, 341, 285))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("images/phi calculator parallel simple 341x285.png"))
+        self.label.setPixmap(QtGui.QPixmap("images/phi_calculator_parallel simple_341x285.png"))
         self.label.setObjectName("label")
         self.line = QtWidgets.QFrame(dialog_4_1_br187_parallel_simple)
-        self.line.setGeometry(QtCore.QRect(0, 370, 681, 21))
+        self.line.setGeometry(QtCore.QRect(0, 300, 551, 21))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.pushButton_test = QtWidgets.QPushButton(dialog_4_1_br187_parallel_simple)
-        self.pushButton_test.setGeometry(QtCore.QRect(15, 390, 81, 31))
+        self.pushButton_test.setGeometry(QtCore.QRect(10, 320, 81, 31))
         self.pushButton_test.setObjectName("pushButton_test")
 
         self.retranslateUi(dialog_4_1_br187_parallel_simple)

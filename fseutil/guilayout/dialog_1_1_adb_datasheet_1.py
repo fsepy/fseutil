@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\ian\Documents\GitHub\fseutil\fseutil\guilayout\dialog_1_1_adb_datasheet_1.ui',
-# licensing of 'C:\Users\ian\Documents\GitHub\fseutil\fseutil\guilayout\dialog_1_1_adb_datasheet_1.ui' applies.
+# Form implementation generated from reading ui file 'C:\Users\IanFu\Documents\github\fseutil\fseutil\guilayout\ui\dialog_1_1_adb_datasheet_1.ui',
+# licensing of 'C:\Users\IanFu\Documents\github\fseutil\fseutil\guilayout\ui\dialog_1_1_adb_datasheet_1.ui' applies.
 #
-# Created: Sun Feb  2 23:37:11 2020
-#      by: pyside2-uic  running on PySide2 5.13.0
+# Created: Tue Feb  4 13:42:35 2020
+#      by: pyside2-uic  running on PySide2 5.12.0
 #
 # WARNING! All changes made in this file will be lost!
 
