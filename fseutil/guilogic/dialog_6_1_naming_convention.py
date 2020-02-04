@@ -1,5 +1,6 @@
 from PySide2 import QtWidgets, QtCore, QtGui
 from fseutil.guilayout.dialog_6_1_naming_convention import Ui_dialog_6_1_naming_convention
+from datetime import datetime
 
 
 class Dialog0601_NamingConvention(QtWidgets.QDialog):
@@ -7,6 +8,8 @@ class Dialog0601_NamingConvention(QtWidgets.QDialog):
         super(Dialog0601_NamingConvention, self).__init__(parent)
         self.ui = Ui_dialog_6_1_naming_convention()
         self.ui.setupUi(self)
+
+        self.ui.lineEdit_1_date.setText(datetime.today().strftime('%Y%m%d')[2:])
 
         self.make_file_name()
 
