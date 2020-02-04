@@ -9,8 +9,8 @@ from PIL import Image, ImageTk
 from fseutil import __version__ as _ver
 
 from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, phi_perpendicular_any_br187
-from fseutil.etc.images_base64 import OFR_LOGO_LARGE_PNG_BASE64, OFR_LOGO_SMALL_PNG_BASE64
-from fseutil.etc.images_base64 import PARALLEL_LARGE_FIGURE_PNG_BASE64, PERPENDICULAR_LARGE_FIGURE_PNG_BASE64
+from fseutil.etc.images_base64 import OFR_LOGO_LARGE_PNG, OFR_LOGO_SMALL_PNG
+from fseutil.etc.images_base64 import PARALLEL_LARGE_FIGURE_PNG, PERPENDICULAR_LARGE_FIGURE_PNG
 
 
 def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: float, x_upper: float, x_lower: float, y_tol: float, iter_max: int = 1000, func_multiplier: float = 1):
@@ -95,7 +95,7 @@ class Calculator(tk.Tk):
         # set window icon
         _, fp_icon = tempfile.mkstemp()
         with open(fp_icon, "wb") as f:
-            f.write(base64.b64decode(OFR_LOGO_SMALL_PNG_BASE64))
+            f.write(base64.b64decode(OFR_LOGO_SMALL_PNG))
         self.notebook.master.iconbitmap(fp_icon)
         # self.master.iconbitmap(fp_icon)
 
@@ -125,7 +125,7 @@ class Calculator(tk.Tk):
             app_name="B4 BR187 Calculator",
             app_version=_ver,
             app_description='Thermal radiation calculator\nemitter and receiver pair\nin parallel.',
-            app_figure_main_base64=PARALLEL_LARGE_FIGURE_PNG_BASE64,
+            app_figure_main_base64=PARALLEL_LARGE_FIGURE_PNG,
             app_phi_func=phi_parallel_any_br187
         )
         self.tab_perpendicular = CalculatorPerpendicularPanels(self.notebook)
@@ -183,7 +183,7 @@ class CalculatorParallelPanels(ttk.Frame):
         # ----------
         _, fp_radiation_figure_image = tempfile.mkstemp()
         with open(fp_radiation_figure_image, "wb") as f:
-            f.write(base64.b64decode(OFR_LOGO_LARGE_PNG_BASE64))
+            f.write(base64.b64decode(OFR_LOGO_LARGE_PNG))
 
         label_logo_image = Image.open(os.path.realpath(fp_radiation_figure_image))
         label_logo_image = label_logo_image.resize(
@@ -566,7 +566,7 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         # ----------
         _, fp_radiation_figure_image = tempfile.mkstemp()
         with open(fp_radiation_figure_image, "wb") as f:
-            f.write(base64.b64decode(OFR_LOGO_LARGE_PNG_BASE64))
+            f.write(base64.b64decode(OFR_LOGO_LARGE_PNG))
 
         label_logo_image = Image.open(os.path.realpath(fp_radiation_figure_image))
         label_logo_image = label_logo_image.resize(
@@ -587,7 +587,7 @@ class CalculatorPerpendicularPanels(ttk.Frame):
         # ----------------
         _, fp_logo_image = tempfile.mkstemp()
         with open(fp_logo_image, "wb") as f:
-            f.write(base64.b64decode(PERPENDICULAR_LARGE_FIGURE_PNG_BASE64))
+            f.write(base64.b64decode(PERPENDICULAR_LARGE_FIGURE_PNG))
 
         label_logo_image = Image.open(os.path.realpath(fp_logo_image))
         label_logo_image = label_logo_image.resize(
