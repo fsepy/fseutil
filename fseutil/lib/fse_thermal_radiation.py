@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import math
 from typing import Callable
 from statistics import median
 from fseutil.lib.bre_br_187_2014 import eq_A4_phi_parallel_corner
@@ -192,7 +193,7 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
     return A, B, C, D
 
 
-def test_phi_parallel_any_br187():
+def _test_phi_parallel_any_br187():
 
     # All testing values are taken from independent sources
 
@@ -225,7 +226,7 @@ def test_phi_parallel_any_br187():
     assert abs(phi_parallel_any_br187(*(10, 10, -10, 15, 10)) - 0.0195607021) < 1e-8
 
 
-def test_phi_perpendicular_any_br187():
+def _test_phi_perpendicular_any_br187():
 
     # All testing values are taken from independent sources
 
@@ -244,5 +245,5 @@ def test_phi_perpendicular_any_br187():
 
 
 if __name__ == "__main__":
-    test_phi_perpendicular_any_br187()
-    test_phi_parallel_any_br187()
+    _test_phi_perpendicular_any_br187()
+    _test_phi_parallel_any_br187()
