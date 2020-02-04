@@ -16,6 +16,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.init_tabs()
+        self.init_logos()
+        self.init_buttons()
+
+    def init_tabs(self):
+        self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(self.activate_0101_adb2_datasheet_1)
+
+    def init_logos(self):
         ba = QtCore.QByteArray.fromBase64(OFR_LOGO_SMALL_PNG)
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
@@ -26,6 +34,7 @@ class MainWindow(QtWidgets.QMainWindow):
         pix_map.loadFromData(ba)
         self.ui.label_logo.setPixmap(pix_map)
 
+    def init_buttons(self):
         self.ui.pushButton_0101_adb2_datasheet_1.clicked.connect(self.activate_0101_adb2_datasheet_1)
         self.ui.pushButton_0111_heat_detector_activation.clicked.connect(self.activate_0111_heat_detector_activation)
         self.ui.pushButton_0401_br187_parallel_simple.clicked.connect(self.activate_0401_br187_parallel_simple)
