@@ -1,8 +1,10 @@
+import numpy as np
+import typing
 
 
 def heat_detector_temperature_pd7974(
-        gas_time: list,
-        gas_hrr_kWm2: list,
+        gas_time: typing.Union[np.ndarray, list],
+        gas_hrr_kWm2: typing.Union[np.ndarray, list],
         detector_to_fire_vertical_distance: float,
         detector_to_fire_horizontal_distance: float,
         detector_response_time_index: float,
@@ -31,6 +33,12 @@ def heat_detector_temperature_pd7974(
     :param ambient_gravity_acceleration:
     :return:
     """
+
+    # Check and convert input types
+    if isinstance(gas_time, list):
+        gas_time = np.array(gas_time)
+    if isinstance(gas_hrr_kWm2, list):
+        gas_hrr_kWm2 = np.array(gas_hrr_kWm2)
 
     # Validate parameters
     # ===================
@@ -142,10 +150,10 @@ def heat_detector_temperature_pd7974(
     # ===============
 
     res = dict(
-        detector_temperature=detector_temperature,
-        jet_temperature=jet_temperature,
-        jet_velocity=jet_velocity,
-        fire_diameter=fire_diameter,
+        detector_temperature=np.array(detector_temperature),
+        jet_temperature=np.array(jet_temperature),
+        jet_velocity=np.array(jet_velocity),
+        fire_diameter=np.array(fire_diameter),
     )
 
     return res
@@ -155,8 +163,10 @@ def _test_heat_detector_activation_ceiling_pd7974():
 
     from fseutil.lib.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
+    # Pre-calculated results
+
     # Code results
-    t = [i * 0.5 for i in range(1200)]
+    t = np.array([i * 0.5 for i in range(1200)])
     res = heat_detector_temperature_pd7974(
         gas_time=t,
         gas_hrr_kWm2=[eq_22_t_squared_fire_growth(alpha=0.0117, t=i)/1000. for i in t],
@@ -167,17 +177,12 @@ def _test_heat_detector_activation_ceiling_pd7974():
         fire_hrr_density_kWm2=510,
         fire_convection_fraction=1/1.5,
     )
+    detector_activation_temperature = 58 + 273.15
 
-    for i, time in enumerate(t):
-        jet_temperature = res['jet_temperature'][i]
-        detector_temperature = res['detector_temperature'][i]
-        print(f'{time:5.1f} s, {jet_temperature-273.15:10.1f} °C, {detector_temperature-273.15:10.1f} °C')
-
-    import seaborn as sns
-    from matplotlib import pyplot as plt
-    sns.lineplot([i/60 for i in t], [i - 273.15 for i in res['jet_temperature']])
-    sns.lineplot([i/60 for i in t], [i - 273.15 for i in res['detector_temperature']])
-    plt.show()
+    # find the activation time
+    calculated_activation_time = t[np.argmin(np.abs(res['detector_temperature'] - detector_activation_temperature))]
+    given_activation_time = 237.5
+    assert abs(calculated_activation_time - given_activation_time) <= 1.
 
 
 if __name__ == '__main__':
