@@ -26,7 +26,7 @@ if __name__ == "__main__":
     build_gui(
         options=[
             "--noconsole",  # disable console display
-            "--onedir",
+            "--onedir",  # output unpacked dist to one directory, including an .exe file
             "--windowed",  # make it a windowed application
             "--noconfirm",  # replace output directory without asking for confirmation
             "--clean",  # clean pyinstaller cache and remove temporary files
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     build_gui(
         options=[
             "--noconsole",  # disable console display
-            "--onefile",
+            "--onefile",  # output one .exe file
             "--windowed",  # make it a windowed application
             "--noconfirm",  # replace output directory without asking for confirmation
         ]

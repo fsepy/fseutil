@@ -1,12 +1,10 @@
 # !/usr/bin/python
 # coding:utf-8
 
-import datetime
 import sys
 
 from PySide2 import QtCore, QtWidgets
 
-import fseutil
 from fseutil.guilogic.main import MainWindow
 
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)

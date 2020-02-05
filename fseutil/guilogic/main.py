@@ -14,42 +14,7 @@ from fseutil.guilogic.dialog_4_2_br187_perpendicular_simple import Dialog0402_br
 from fseutil.guilogic.dialog_4_3_br187_parallel_complex import Dialog0403_br187ParallelComplex
 from fseutil.guilogic.dialog_4_4_br187_perpendicular_complex import Dialog0404_br187PerpendicularComplex
 from fseutil.guilogic.dialog_6_1_naming_convention import Dialog0601_NamingConvention
-
-EXPIRY_DATE_PERIOD = 90
-PASS_CODE = None
-
-
-class ExpDateForm(QtWidgets.QDialog):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-        # ui elements instantiation
-        self.label = QtWidgets.QLabel(
-            'Software is too old to run.\nEither to get the latest version or enter passcode.')
-        self.edit = QtWidgets.QLineEdit()
-        self.button = QtWidgets.QPushButton('Submit')
-
-        # layout
-        layout = QtWidgets.QVBoxLayout()
-        layout.addWidget(self.label)
-        layout.addWidget(self.edit)
-        layout.addWidget(self.button)
-        self.setLayout(layout)
-
-        # window properties
-        ba = QtCore.QByteArray.fromBase64(OFR_LOGO_1_PNG)
-        pix_map = QtGui.QPixmap()
-        pix_map.loadFromData(ba)
-        self.setWindowIcon(pix_map)
-        self.setWindowTitle('Warning')
-
-        # signals and slots
-        self.button.clicked.connect(self.submit)
-
-    def submit(self):
-        global PASS_CODE
-        PASS_CODE = self.edit.text()
-        self.close()
+from fseutil.guilogic.dialog_0_1_pass_code import Dialog0001PassCode
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -66,14 +31,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.label_2.setText('Version ' + fseutil.__version__)
 
     def init_check_expiry_date(self):
-        global EXPIRY_DATE_PERIOD
-        global PASS_CODE
 
         # check expiry date, whether the tool is over 90 days old
-        if datetime.datetime.now() - datetime.timedelta(days=EXPIRY_DATE_PERIOD) > fseutil.__date_released__:
-            self.activate_app(ExpDateForm)
-            if PASS_CODE is not '0164153':
+        if datetime.datetime.now() > fseutil.__date_released__ - datetime.timedelta(days=90):
+            app_ = self.activate_app(Dialog0001PassCode)
+            if app_.pass_code != '0164153':
                 raise ValueError
+            app_.close()
 
     def init_tabs(self):
         self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(lambda: self.activate_app(Dialog0101_ADB2Datasheet1))
@@ -106,3 +70,4 @@ class MainWindow(QtWidgets.QMainWindow):
         app_ = app_(self)
         app_.show()
         app_.exec_()
+        return app_
