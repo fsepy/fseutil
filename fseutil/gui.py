@@ -1,10 +1,12 @@
 # !/usr/bin/python
 # coding:utf-8
 
+import datetime
 import sys
 
 from PySide2 import QtCore, QtWidgets
 
+import fseutil
 from fseutil.guilogic.main import MainWindow
 
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -22,6 +24,4 @@ def main(app_window=None):
 
 
 if __name__ == "__main__":
-    from fseutil.guilayout.ui2py import ui2py
-    # ui2py()
     main()
