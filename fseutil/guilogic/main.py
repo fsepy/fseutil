@@ -32,8 +32,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def init_check_expiry_date(self):
 
-        # check expiry date, whether the tool is over 90 days old
-        if datetime.datetime.now() > fseutil.__date_released__ - datetime.timedelta(days=90):
+        # check expiry date, whether the tool is over 180 days old
+        if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=180):
             app_ = self.activate_app(Dialog0001PassCode)
             if app_.pass_code != '0164153':
                 raise ValueError
