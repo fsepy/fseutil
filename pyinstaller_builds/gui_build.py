@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import sys
 import subprocess
 
 
@@ -8,16 +9,20 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
     cmd_option_list = [
-        f'-n {app_name}',
+        f'-n={app_name}',
         "--icon=" + os.path.realpath(os.path.join("etc", "ofr_logo_1_80_80.ico")),
     ]
     if options:
         cmd_option_list.extend(options)
 
     cmd = ['pyinstaller'] + cmd_option_list + [fp_target_py]
+    print('\n'*5, ' '.join(cmd))
 
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    proc.wait()
+    with open('test.log', 'wb') as f:
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        for c in iter(lambda: process.stdout.read(1), b''):  # replace '' with b'' for Python 3
+            sys.stdout.write(c.decode('utf-8'))
+            f.write(c)
 
 
 if __name__ == "__main__":
