@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_4_1_br187_parallel_figure_1
-from fseutil.guilayout.dialog_4_1_br187_parallel_simple import Ui_dialog_4_1_br187_parallel_simple
+from fseutil.guilayout.dialog_4_1_br187_parallel_simple import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_solver
 
 
@@ -11,7 +11,7 @@ class Dialog0401_br187ParallelSimple(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
         super(Dialog0401_br187ParallelSimple, self).__init__(parent)
-        self.ui = Ui_dialog_4_1_br187_parallel_simple()
+        self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
         # set up radiation figure
@@ -96,7 +96,7 @@ class Dialog0401_br187ParallelSimple(QtWidgets.QDialog):
         elif self.ui.comboBox_S_or_UA.currentText() == 'UA':  # to calculate minimum separation distance to boundary
             UA = float(self.ui.lineEdit_S_or_UA.text()) / 100.
             UA = max([0.0001, min([UA, 1])])
-            self.ui.lineEdit_S_or_UA.setText(f'{UA*100:.0f}')
+            self.ui.lineEdit_S_or_UA.setText(f'{UA*100:.2f}')
 
             phi_target = q_target/(Q*UA)
             S_solved = linear_solver(

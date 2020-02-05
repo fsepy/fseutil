@@ -23,5 +23,5 @@ def main(app_window=None):
 
 if __name__ == "__main__":
     from fseutil.guilayout.ui2py import ui2py
-    ui2py()
+    # ui2py()
     main()

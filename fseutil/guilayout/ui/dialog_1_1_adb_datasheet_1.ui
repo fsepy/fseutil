@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>833</width>
-    <height>625</height>
+    <width>1211</width>
+    <height>812</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,26 +16,11 @@
   <widget class="QScrollArea" name="scrollArea">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>800</width>
-     <height>600</height>
+     <x>5</x>
+     <y>5</y>
+     <width>1200</width>
+     <height>800</height>
     </rect>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>800</width>
-     <height>600</height>
-    </size>
-   </property>
-   <property name="contextMenuPolicy">
-    <enum>Qt::DefaultContextMenu</enum>
-   </property>
-   <property name="verticalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOn</enum>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOn</enum>
    </property>
    <property name="widgetResizable">
     <bool>false</bool>
@@ -45,30 +30,30 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>781</width>
-      <height>581</height>
+      <width>1599</width>
+      <height>1134</height>
      </rect>
     </property>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>947</width>
-       <height>670</height>
+       <x>5</x>
+       <y>5</y>
+       <width>1587</width>
+       <height>1122</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>947</width>
-       <height>670</height>
+       <width>1587</width>
+       <height>1122</height>
       </size>
      </property>
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>images/adb2_datasheet_1_947_670.png</pixmap>
+      <pixmap>../images/adb2_datasheet_1_1587_1122.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>false</bool>

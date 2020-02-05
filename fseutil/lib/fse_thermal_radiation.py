@@ -7,7 +7,17 @@ from fseutil.lib.bre_br_187_2014 import eq_A4_phi_parallel_corner
 from fseutil.lib.bre_br_187_2014 import eq_A5_phi_perpendicular_corner
 
 
-def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: float, x_upper: float, x_lower: float, y_tol: float, iter_max: int = 1000, func_multiplier: float = 1):
+def linear_solver(
+        func: Callable,
+        dict_params: dict,
+        x_name: str,
+        y_target: float,
+        x_upper: float,
+        x_lower: float,
+        y_tol: float,
+        iter_max: int = 1000,
+        func_multiplier: float = 1
+):
 
     if x_lower > x_upper:
         x_lower += x_upper
@@ -28,9 +38,9 @@ def linear_solver(func: Callable, dict_params: dict, x_name: str, y_target: floa
     y3 = func_multiplier * func(**dict_params)
 
     if y_target < y1:
-        return None
+        return x1
     if y_target > y3:
-        return None
+        return x3
 
     iter_count = 0
     while True:

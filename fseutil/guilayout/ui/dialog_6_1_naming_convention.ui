@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>441</width>
-    <height>281</height>
+    <height>267</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,14 +16,14 @@
   <widget class="QPushButton" name="pushButton_copy">
    <property name="geometry">
     <rect>
-     <x>350</x>
-     <y>240</y>
-     <width>81</width>
-     <height>31</height>
+     <x>280</x>
+     <y>235</y>
+     <width>151</width>
+     <height>26</height>
     </rect>
    </property>
    <property name="text">
-    <string>Copy file name</string>
+    <string>Copy File Name (Press Enter)</string>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">

@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
-from fseutil.etc.images_base64 import OFR_LOGO_LARGE_PNG
-from fseutil.etc.images_base64 import OFR_LOGO_SMALL_PNG
+from fseutil.etc.images_base64 import OFR_LOGO_2_PNG
+from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 from fseutil.guilayout.main import Ui_MainWindow
 from fseutil.guilogic.dialog_1_11_heat_detector_activation import Dialog0111_HeatDetectorActivation
 from fseutil.guilogic.dialog_1_1_adb_datasheet_1 import Dialog0101_ADB2Datasheet1
@@ -26,12 +26,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(self.activate_0101_adb2_datasheet_1)
 
     def init_logos(self):
-        ba = QtCore.QByteArray.fromBase64(OFR_LOGO_SMALL_PNG)
+        ba = QtCore.QByteArray.fromBase64(OFR_LOGO_1_PNG)
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.setWindowIcon(pix_map)
 
-        ba = QtCore.QByteArray.fromBase64(OFR_LOGO_LARGE_PNG)
+        ba = QtCore.QByteArray.fromBase64(OFR_LOGO_2_PNG)
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.ui.label_logo.setPixmap(pix_map)

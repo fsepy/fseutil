@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_4_4_br187_perpendicular_figure_1
-from fseutil.guilayout.dialog_4_1_br187_parallel_simple import Ui_dialog_4_1_br187_parallel_simple
+from fseutil.guilayout.dialog_4_3_br187_parallel_complex import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_perpendicular_any_br187, linear_solver
 
 
@@ -11,8 +11,9 @@ class Dialog0404_br187PerpendicularComplex(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
         super(Dialog0404_br187PerpendicularComplex, self).__init__(parent)
-        self.ui = Ui_dialog_4_1_br187_parallel_simple()
+        self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.setWindowTitle('BR 187 Thermal Radiation Calculator (Perpendicular Complex)')
 
         # set up radiation figure
         ba = QtCore.QByteArray.fromBase64(dialog_4_4_br187_perpendicular_figure_1)
@@ -28,6 +29,8 @@ class Dialog0404_br187PerpendicularComplex(QtWidgets.QDialog):
 
         self.ui.lineEdit_W.setText('50')
         self.ui.lineEdit_H.setText('50')
+        self.ui.lineEdit_w.setText('0')
+        self.ui.lineEdit_h.setText('0')
         self.ui.lineEdit_Q.setText('84')
         self.ui.comboBox_S_or_UA.setCurrentIndex(0)
         self.change_mode_S_and_UA()
@@ -74,6 +77,8 @@ class Dialog0404_br187PerpendicularComplex(QtWidgets.QDialog):
 
         W = float(self.ui.lineEdit_W.text())
         H = float(self.ui.lineEdit_H.text())
+        w = float(self.ui.lineEdit_w.text())
+        h = float(self.ui.lineEdit_h.text())
         Q = float(self.ui.lineEdit_Q.text())
 
         # calculate
@@ -85,7 +90,7 @@ class Dialog0404_br187PerpendicularComplex(QtWidgets.QDialog):
             S = max(1, min([S, 200]))
             self.ui.lineEdit_S_or_UA.setText(f'{S/2:.2f}')
 
-            phi_solved = phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=0., h_m=0., S_m=S)
+            phi_solved = phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=-w, h_m=-h, S_m=S)
             q_solved = Q * phi_solved
             UA_solved = max([min([q_target/q_solved * 100, 100]), 0])
 
@@ -102,7 +107,7 @@ class Dialog0404_br187PerpendicularComplex(QtWidgets.QDialog):
             phi_target = q_target/(Q*UA)
             S_solved = linear_solver(
                 func=phi_perpendicular_any_br187,
-                dict_params=dict(W_m=W, H_m=H, w_m=0., h_m=0., S_m=0),
+                dict_params=dict(W_m=W, H_m=H, w_m=w, h_m=h, S_m=0),
                 x_name='S_m',
                 y_target=phi_target,
                 x_upper=1000,
@@ -111,6 +116,7 @@ class Dialog0404_br187PerpendicularComplex(QtWidgets.QDialog):
                 iter_max=500,
                 func_multiplier=-1
             )
+            S_solved = max(S_solved, 1.)  # to make sure that separation distance to boundary is no less than 0.5 m
             phi_solved = phi_perpendicular_any_br187(W_m=W, H_m=H, w_m=0.5*W, h_m=0.5*H, S_m=S_solved)
             q_solved = Q * phi_solved
 

@@ -18,10 +18,17 @@ def ui2py():
     cwd = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ui')
     destination_dir = os.path.dirname(os.path.realpath(__file__))
 
+    cmds_list = list()
     for ui_file_name in list_ui_file_names:
-        cmd = f'pyside2-uic {os.path.join(cwd, ui_file_name)} > {os.path.join(destination_dir, ui_file_name.replace(".ui", ".py"))}'
-        print(cmd)
-        subprocess.call(cmd, shell=True)
+        cmd = [
+            'pyside2-uic',
+            '--output', f'{os.path.join(destination_dir, ui_file_name.replace(".ui", ".py"))}',
+            f'{os.path.join(cwd, ui_file_name)}'
+        ]
+        cmds_list.append(cmd)
+    procs_list = [subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE) for cmd in cmds_list]
+    for proc in procs_list:
+        proc.wait()
 
 
 if __name__ == '__main__':

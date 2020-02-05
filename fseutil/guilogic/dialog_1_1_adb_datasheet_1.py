@@ -14,3 +14,5 @@ class Dialog0101_ADB2Datasheet1(QtWidgets.QDialog):
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.ui.label.setPixmap(pix_map)
+
+        self.repaint()
