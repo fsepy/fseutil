@@ -69,7 +69,7 @@ Size</string>
     <property name="title">
      <string>B1 Means of escape</string>
     </property>
-    <widget class="QPushButton" name="b4_01_br187_parallel_2">
+    <widget class="QPushButton" name="pushButton_0102_bs9999_datasheet_1">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -157,7 +157,7 @@ No. 1</string>
      <rect>
       <x>20</x>
       <y>120</y>
-      <width>91</width>
+      <width>231</width>
       <height>96</height>
      </rect>
     </property>
@@ -177,6 +177,35 @@ No. 1</string>
       <string>File
 Naming
 Protocol</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_11">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>15</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CFD
+Required
+Vent. Size</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="b4_01_br187_parallel_12">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>15</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CFD
+Mesh Size</string>
      </property>
     </widget>
    </widget>
