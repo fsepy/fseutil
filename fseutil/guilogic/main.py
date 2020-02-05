@@ -7,6 +7,8 @@ from fseutil.guilogic.dialog_1_11_heat_detector_activation import Dialog0111_Hea
 from fseutil.guilogic.dialog_1_1_adb_datasheet_1 import Dialog0101_ADB2Datasheet1
 from fseutil.guilogic.dialog_4_1_br187_parallel_simple import Dialog0401_br187ParallelSimple
 from fseutil.guilogic.dialog_4_2_br187_perpendicular_simple import Dialog0402_br187PerpendicularSimple
+from fseutil.guilogic.dialog_4_3_br187_parallel_complex import Dialog0403_br187ParallelComplex
+from fseutil.guilogic.dialog_4_4_br187_perpendicular_complex import Dialog0404_br187PerpendicularComplex
 from fseutil.guilogic.dialog_6_1_naming_convention import Dialog0601_NamingConvention
 
 
@@ -37,8 +39,12 @@ class MainWindow(QtWidgets.QMainWindow):
     def init_buttons(self):
         self.ui.pushButton_0101_adb2_datasheet_1.clicked.connect(self.activate_0101_adb2_datasheet_1)
         self.ui.pushButton_0111_heat_detector_activation.clicked.connect(self.activate_0111_heat_detector_activation)
+
         self.ui.pushButton_0401_br187_parallel_simple.clicked.connect(self.activate_0401_br187_parallel_simple)
         self.ui.pushButton_0402_br187_perpendicular_simple.clicked.connect(self.activate_0402_br187_perpendicular_simple)
+        self.ui.pushButton_0403_br187_parallel_complex.clicked.connect(self.activate_0403_br187_parallel_complex)
+        self.ui.pushButton_0404_br187_perpendicular_complex.clicked.connect(self.activate_0404_br187_parallel_complex)
+
         self.ui.pushButton_0601_naming_convention.clicked.connect(self.activate_0601_naming_convention)
 
     @staticmethod
@@ -51,6 +57,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def activate_0402_br187_perpendicular_simple(self):
         self.activate_app(Dialog0402_br187PerpendicularSimple(self))
+
+    def activate_0403_br187_parallel_complex(self):
+        self.activate_app(Dialog0403_br187ParallelComplex(self))
+
+    def activate_0404_br187_parallel_complex(self):
+        self.activate_app(Dialog0404_br187PerpendicularComplex(self))
 
     def activate_0101_adb2_datasheet_1(self):
         self.activate_app(Dialog0101_ADB2Datasheet1(self))
