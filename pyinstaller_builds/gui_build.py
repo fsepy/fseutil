@@ -10,7 +10,7 @@ def build_gui(app_name: str = 'OFRUTIL', fp_target_py: str = 'gui.py'):
     cmd_option_list = [
         f'-n "{app_name}"',
         "--noconsole",
-        "--onefile",
+        "--onedir",
         "--windowed",
         "--icon=" + os.path.realpath(os.path.join("etc", "ofr-colour-618_618.ico")),
     ]
