@@ -145,4 +145,4 @@ pyinstaller_builds/dist
 fseutil/guilayout/*.py
 
 # Include project files
-!fseutil/lib/*.py
+!fseutil/lib
