@@ -36,11 +36,13 @@ class MainWindow(QtWidgets.QMainWindow):
     def init_check_expiry_date(self):
 
         # check expiry date, whether the tool is over 180 days old
-        if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=180):
+        expiry_date_duration = -1
+        if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=expiry_date_duration):
             app_ = self.activate_app(Dialog0001)
-            if app_.pass_code != '0164153':
-                raise ValueError
-            app_.close()
+            if app_.pass_code != '123':
+                raise ValueError('Incorrect password.')
+            else:
+                app_.close()
 
     def init_tabs(self):
         self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(lambda: self.activate_app(Dialog0101))
