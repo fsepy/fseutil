@@ -15,6 +15,7 @@ from fseutil.guilogic.dialog_0402_br187_perpendicular_simple import Dialog0402 a
 from fseutil.guilogic.dialog_0403_br187_parallel_complex import Dialog0403 as Dialog0403
 from fseutil.guilogic.dialog_0404_br187_perpendicular_complex import Dialog0404 as Dialog0404
 from fseutil.guilogic.dialog_0601_naming_convention import Dialog0601 as Dialog0601
+from fseutil.guilogic.dialog_0602_flame_height import Dialog0602 as Dialog0602
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -22,13 +23,15 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle('OFR Fire Safety Engineering Utility Tools')
 
         self.init_check_expiry_date()
         self.init_tabs()
         self.init_logos()
         self.init_buttons()
 
-        self.ui.label_2.setText('Version ' + fseutil.__version__)
+        self.ui.label_big_name.setText('FSEUTIL')
+        self.ui.label_version.setText('Version ' + fseutil.__version__)
 
     def init_check_expiry_date(self):
 
@@ -65,6 +68,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_0404_br187_perpendicular_complex.clicked.connect(lambda: self.activate_app(Dialog0404))
 
         self.ui.pushButton_0601_naming_convention.clicked.connect(lambda: self.activate_app(Dialog0601))
+        self.ui.pushButton_0602_pd7974_flame_height.clicked.connect(lambda: self.activate_app(Dialog0602))
 
     def activate_app(self, app_):
         app_ = app_(self)

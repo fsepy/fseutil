@@ -228,7 +228,7 @@ Vent. Size</string>
 Mesh Size</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_0602_flame_height">
+    <widget class="QPushButton" name="pushButton_0602_pd7974_flame_height">
      <property name="geometry">
       <rect>
        <x>225</x>
@@ -241,7 +241,8 @@ Mesh Size</string>
       <string>File name generator in accordance with OFR file naming protocal</string>
      </property>
      <property name="text">
-      <string>Flame
+      <string>PD 7974
+Flame
 Height</string>
      </property>
     </widget>
@@ -351,7 +352,7 @@ Extreme</string>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_big_name">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -372,7 +373,7 @@ Extreme</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="label_copy_right">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -389,7 +390,7 @@ All rights reserved.</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label_version">
          <property name="minimumSize">
           <size>
            <width>0</width>

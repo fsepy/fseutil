@@ -250,7 +250,7 @@
      <string>m</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_32">
+   <widget class="QLabel" name="label_Q_dot_or_Q_dot_l_unit">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -275,7 +275,7 @@
      <string>kW</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_Q_dot">
+   <widget class="QLineEdit" name="lineEdit_Q_dot_or_Q_dot_l">
     <property name="geometry">
      <rect>
       <x>75</x>
@@ -485,7 +485,7 @@
      <string>L&lt;sub&gt;A&lt;\sub&gt;</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_30">
+   <widget class="QLabel" name="label_Q_dot_or_Q_dot_l">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -640,7 +640,7 @@
      <string>1.2</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_36">
+   <widget class="QLabel" name="label_L_B_unit">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -1029,7 +1029,7 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_Q_dot</tabstop>
+  <tabstop>lineEdit_Q_dot_or_Q_dot_l</tabstop>
   <tabstop>lineEdit_L_A_or_D</tabstop>
   <tabstop>lineEdit_c_p_0</tabstop>
   <tabstop>lineEdit_T_0</tabstop>
