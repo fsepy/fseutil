@@ -3,8 +3,8 @@
 import math
 from typing import Callable
 from statistics import median
-from fseutil.lib.bre_br_187_2014 import eq_A4_phi_parallel_corner
-from fseutil.lib.bre_br_187_2014 import eq_A5_phi_perpendicular_corner
+from fseutil.libstd.bre_br_187_2014 import eq_A4_phi_parallel_corner
+from fseutil.libstd.bre_br_187_2014 import eq_A5_phi_perpendicular_corner
 
 
 def linear_solver(

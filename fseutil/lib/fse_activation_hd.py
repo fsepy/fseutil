@@ -48,12 +48,12 @@ def heat_detector_temperature_pd7974(
         raise ValueError('Gas time `gas_time` and temperature array `gas_temperature` length do not match.')
 
     # Imports
-    from fseutil.lib.pd_7974_1_2019 import eq_10_virtual_origin
-    from fseutil.lib.pd_7974_1_2019 import eq_14_plume_temperature
-    from fseutil.lib.pd_7974_1_2019 import eq_15_plume_velocity
-    from fseutil.lib.pd_7974_1_2019 import eq_55_activation_of_heat_detector_device
-    from fseutil.lib.pd_7974_1_2019 import eq_26_axisymmetric_ceiling_jet_temperature
-    from fseutil.lib.pd_7974_1_2019 import eq_27_axisymmetric_ceiling_jet_velocity
+    from fseutil.libstd.pd_7974_1_2019 import eq_10_virtual_origin
+    from fseutil.libstd.pd_7974_1_2019 import eq_14_plume_temperature
+    from fseutil.libstd.pd_7974_1_2019 import eq_15_plume_velocity
+    from fseutil.libstd.pd_7974_1_2019 import eq_55_activation_of_heat_detector_device
+    from fseutil.libstd.pd_7974_1_2019 import eq_26_axisymmetric_ceiling_jet_temperature
+    from fseutil.libstd.pd_7974_1_2019 import eq_27_axisymmetric_ceiling_jet_velocity
 
     # Result containers
     # =================
@@ -161,7 +161,7 @@ def heat_detector_temperature_pd7974(
 
 def _test_heat_detector_activation_ceiling_pd7974():
 
-    from fseutil.lib.pd_7974_1_2019 import eq_22_t_squared_fire_growth
+    from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
     # Pre-calculated results
 

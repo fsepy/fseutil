@@ -1,10 +1,10 @@
 from PySide2 import QtWidgets
 
 from fseutil.guilayout.dialog_0602_pd_7974_flame_height import Ui_Dialog
-from fseutil.lib.pd_7974_1_2019 import eq_11_dimensionless_hrr_rectangular
-from fseutil.lib.pd_7974_1_2019 import eq_12_dimensionless_hrr_line
-from fseutil.lib.pd_7974_1_2019 import eq_5_dimensionless_hrr
-from fseutil.lib.fse_flame_height_ import mean_flame_height_pd_7974
+from fseutil.libstd.pd_7974_1_2019 import eq_11_dimensionless_hrr_rectangular
+from fseutil.libstd.pd_7974_1_2019 import eq_12_dimensionless_hrr_line
+from fseutil.libstd.pd_7974_1_2019 import eq_5_dimensionless_hrr
+from fseutil.lib.fse_flame_height import mean_flame_height_pd_7974
 
 
 class Dialog0602(QtWidgets.QDialog):
