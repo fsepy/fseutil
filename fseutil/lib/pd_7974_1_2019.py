@@ -3,6 +3,148 @@ All SI UNITS unless specified.
 """
 
 
+def eq_5_dimensionless_hrr(
+        Q_dot_kW: float,
+        rho_0: float,
+        c_p_0_kJ_kg_K: float,
+        T_0: float,
+        g: float,
+        D: float,
+) -> float:
+    """Equation 5 in Section 8.3.2.2 PD 7974-1:2019 calculates dimensionless for rectangular fire source.
+
+    :param Q_dot_kW: in kW, fire heat release rate.
+    :param rho_0: in kg/m^3, density of ambient air.
+    :param c_p_0_kJ_kg_K: in kJ/kg/K, specific heat capacity of ambient air.
+    :param T_0: in K, ambient air temperature.
+    :param g: in m/s^2, acceleration due to gravity.
+    :param D: in m, diameter.
+    :return Q_dot_star: dimensionless, dimensionless heat release rate
+    """
+
+    # equation starts
+    aa = Q_dot_kW
+    bb = rho_0 * c_p_0_kJ_kg_K * T_0 * (g ** 0.5) * (D ** (5/2))
+    Q_dot_star = aa / bb
+
+    return Q_dot_star
+
+
+def _test_eq_5_dimensionless_hrr():
+
+    # function results
+    function_results = eq_5_dimensionless_hrr(
+        Q_dot_kW=500,
+        rho_0=1.2,
+        c_p_0_kJ_kg_K=1.,
+        T_0=293.15,
+        g=9.81,
+        D=2,
+    )
+
+    # pre calculated results
+    pre_calc_results = 0.08022  # 500 / 6232.76335
+
+    # check
+    assert abs(function_results - pre_calc_results) < 0.0001
+
+
+def eq_11_dimensionless_hrr_rectangular(
+        Q_dot_kW: float,
+        rho_0: float,
+        c_p_0_kJ_kg_K: float,
+        T_0: float,
+        g: float,
+        L_A: float,
+        L_B: float
+) -> float:
+    """Equation 11 in Section 8.3.2.2 PD 7974-1:2019 calculates dimensionless for rectangular fire source.
+
+    :param Q_dot_kW: in kW, fire heat release rate.
+    :param rho_0: in kg/m^3, density of ambient air.
+    :param c_p_0_kJ_kg_K: in kJ/kg/K, specific heat capacity of ambient air.
+    :param T_0: in K, ambient air temperature.
+    :param g: in m/s^2, acceleration due to gravity.
+    :param L_A: in m, rectangular shape dimension's shorter edge.
+    :param L_B: in m, rectangular shape dimension's longer edge.
+    :return Q_dot_star_rect: dimensionless, dimensionless heat release rate
+    """
+
+    # equation starts
+    aa = Q_dot_kW
+    bb = rho_0 * c_p_0_kJ_kg_K * T_0 * (g ** 0.5) * (L_A ** 1.5) * L_B
+    Q_dot_star_rect = aa / bb
+
+    return Q_dot_star_rect
+
+
+def _test_eq_11_dimensionless_hrr_rectangle():
+
+    # function results
+    function_results = eq_11_dimensionless_hrr_rectangular(
+        Q_dot_kW=500,
+        rho_0=1.2,
+        c_p_0_kJ_kg_K=1.,
+        T_0=293.15,
+        g=9.81,
+        L_A=5,
+        L_B=2
+    )
+
+    # pre calculated results
+    pre_calc_results = 0.02029  # 500 / 24637.16037
+
+    # check
+    assert abs(function_results - pre_calc_results) < 0.0001
+
+
+def eq_12_dimensionless_hrr_line(
+        Q_dot_l_kW_m: float,
+        rho_0: float,
+        c_p_0_kJ_kg_K: float,
+        T_0: float,
+        g: float,
+        L_A: float,
+) -> float:
+    """Equation 12 in Section 8.3.2.2 PD 7974-1:2019 calculates dimensionless heat release rate for line fire source.
+    Note dimension ratio should be less than 0.4 (i.e. L_A / L_B) to use line fire source correlation.
+
+    :param Q_dot_l_kW_m: in kW/m, fire heat release rate per unit length along the line.
+    :param rho_0: in kg/m^3, density of ambient air.
+    :param c_p_0_kJ_kg_K: in kJ/kg/K, specific heat capacity of ambient air.
+    :param T_0: in K, ambient air temperature.
+    :param g: in m/s^2, acceleration due to gravity.
+    :param L_A: in m, length of line shaped fire source.
+    :return Q_dot_star_rect: dimensionless, dimensionless heat release rate
+    """
+
+    # equation starts
+    aa = Q_dot_l_kW_m
+    bb = rho_0 * c_p_0_kJ_kg_K * T_0 * (g ** 0.5) * (L_A ** 1.5)
+    Q_dot_star_line = aa / bb
+
+    return Q_dot_star_line
+
+
+def _test_eq_12_dimensionless_hrr_line():
+
+    # function results
+    function_results = eq_12_dimensionless_hrr_line(
+        Q_dot_l_kW_m=250,
+        rho_0=1.2,
+        c_p_0_kJ_kg_K=1.,
+        T_0=293.15,
+        g=9.81,
+        L_A=5,
+    )
+
+    # pre calculated results
+    pre_calc_results = 0.02029  # 250 / 12318.58018
+
+    # check
+    assert abs(function_results - pre_calc_results) < 0.0001
+
+
 def eq_10_virtual_origin(D: float, Q_dot_kW: float):
     """Equation 10 in Section 8.3.1 PD 7974-1:2019 calculates virtual fire origin.
 
@@ -151,7 +293,7 @@ def eq_22_t_squared_fire_growth(
     :param t: in s, current time.
     :param t_i: in s, initial time, default is 0.
     :param n: fire growth power, default is 2, only use 3 for racked storage.
-    :return Q_dot: in W, calculated heat release rate.
+    :return Q_dot_kW: in W, calculated heat release rate.
     """
 
     Q_dot = alpha * (t - t_i) ** n
@@ -295,7 +437,7 @@ def _test_eq_26_axisymmetric_ceiling_jet_temperature():
     test_1 = eq_26_axisymmetric_ceiling_jet_temperature(
         Q_dot_c_kW=1000.,
         z_H=3,
-        z_0=0.29546,  # based on a fire with D = 1 m, Q_dot = 1000 kW
+        z_0=0.29546,  # based on a fire with D = 1 m, Q_dot_kW = 1000 kW
         r=1.75,
     )
 
@@ -357,7 +499,7 @@ def _test_eq_27_axisymmetric_ceiling_jet_velocity():
     test_1 = eq_27_axisymmetric_ceiling_jet_velocity(
         Q_dot_c_kW=1000.,
         z_H=3,
-        z_0=0.29546,  # based on a fire with D = 1 m, Q_dot = 1000 kW
+        z_0=0.29546,  # based on a fire with D = 1 m, Q_dot_kW = 1000 kW
         r=1.75,
     )
 
@@ -370,13 +512,16 @@ def _test_eq_27_axisymmetric_ceiling_jet_velocity():
 
 
 def _test_all():
+    _test_eq_5_dimensionless_hrr()
+    _test_eq_10_virtual_origin()
+    _test_eq_11_dimensionless_hrr_rectangle()
+    _test_eq_12_dimensionless_hrr_line()
+    _test_eq_14_plume_temperature()
+    _test_eq_15_plume_velocity()
     _test_eq_22_t_squared_fire_growth()
     _test_eq_26_axisymmetric_ceiling_jet_temperature()
     _test_eq_27_axisymmetric_ceiling_jet_velocity()
     _test_eq_55_activation_of_heat_detector_device()
-    _test_eq_10_virtual_origin()
-    _test_eq_14_plume_temperature()
-    _test_eq_15_plume_velocity()
 
 
 if __name__ == '__main__':
