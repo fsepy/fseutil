@@ -30,6 +30,9 @@
      <string>B3 Internal fire spread (structure)</string>
     </property>
     <widget class="QPushButton" name="b4_01_br187_parallel_7">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>15</x>
@@ -146,15 +149,6 @@ Model</string>
        <width>70</width>
        <height>70</height>
       </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>8</pointsize>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="text">
       <string>ADB 2
@@ -301,8 +295,7 @@ Perp.</string>
      </property>
      <property name="text">
       <string>BR 187
-Parallel
-Complex</string>
+Parallel 2</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_0404_br187_perpendicular_complex">
@@ -316,8 +309,7 @@ Complex</string>
      </property>
      <property name="text">
       <string>BR 187
-Perp.
-Complex</string>
+Perp. 2</string>
      </property>
     </widget>
     <widget class="QPushButton" name="pushButton_0404_br187_perpendicular_complex_2">

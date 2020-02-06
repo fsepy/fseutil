@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>BR 187 Thermal Radiation Calculation (Parallel Complex)</string>
+   <string>PD 7974-1:2019 Flame Height Estimation</string>
   </property>
   <widget class="QGroupBox" name="groupBox_outputs">
    <property name="geometry">
@@ -109,7 +109,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Solved view factor</string>
+     <string/>
     </property>
     <property name="text">
      <string>Q_dot_star</string>
@@ -143,7 +143,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Solved heat flux at receiver surface 100 % unprotected.</string>
+     <string/>
     </property>
     <property name="text">
      <string>Z&lt;sub&gt;f&lt;sub&gt;</string>
@@ -445,7 +445,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Heat flux of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>c&lt;sub&gt;p,0&lt;sub&gt;</string>
@@ -479,7 +479,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Height of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>L&lt;sub&gt;A&lt;\sub&gt;</string>
@@ -507,7 +507,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>Q_dot</string>
@@ -535,7 +535,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>L&lt;sub&gt;B&lt;sub&gt;</string>
@@ -563,7 +563,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>ρ&lt;sub&gt;0&lt;sub&gt;</string>
@@ -761,7 +761,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Heat flux of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>Fuel Type</string>
@@ -795,7 +795,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Heat flux of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>T&lt;sub&gt;0&lt;sub&gt;</string>
@@ -891,7 +891,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Heat flux of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>g</string>
@@ -968,7 +968,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Heat flux of emitter</string>
+     <string/>
     </property>
     <property name="text">
      <string>Fire Shape</string>
@@ -999,6 +999,9 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../images/flame_height_341x285.png</pixmap>
    </property>
   </widget>
   <widget class="Line" name="line">
