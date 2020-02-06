@@ -5,12 +5,12 @@ from fseutil.guilayout.dialog_4_1_br187_parallel_simple import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_solver
 
 
-class Dialog0401_br187ParallelSimple(QtWidgets.QDialog):
+class Dialog0401(QtWidgets.QDialog):
 
     maximum_acceptable_thermal_radiation_heat_flux = 12.6
 
     def __init__(self, parent=None):
-        super(Dialog0401_br187ParallelSimple, self).__init__(parent)
+        super(Dialog0401, self).__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 

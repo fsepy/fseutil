@@ -3,9 +3,9 @@ from fseutil.guilayout.dialog_6_1_naming_convention import Ui_dialog_6_1_naming_
 from datetime import datetime
 
 
-class Dialog0601_NamingConvention(QtWidgets.QDialog):
+class Dialog0601(QtWidgets.QDialog):
     def __init__(self, parent=None):
-        super(Dialog0601_NamingConvention, self).__init__(parent)
+        super(Dialog0601, self).__init__(parent)
         self.ui = Ui_dialog_6_1_naming_convention()
         self.ui.setupUi(self)
 

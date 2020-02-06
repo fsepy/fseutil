@@ -11,10 +11,10 @@ from fseutil.lib.fse_activation_hd import heat_detector_temperature_pd7974
 from fseutil.lib.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
 
-class Dialog0111_HeatDetectorActivation(QtWidgets.QDialog):
+class Dialog0111(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
-        super(Dialog0111_HeatDetectorActivation, self).__init__(parent)
+        super(Dialog0111, self).__init__(parent)
         self.ui = Ui_dialog_1_11_heat_detector_activation()
         self.ui.setupUi(self)
 

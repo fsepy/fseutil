@@ -6,15 +6,15 @@ import fseutil
 from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 from fseutil.etc.images_base64 import OFR_LOGO_2_PNG
 from fseutil.guilayout.main import Ui_MainWindow
-from fseutil.guilogic.dialog_1_11_heat_detector_activation import Dialog0111_HeatDetectorActivation
-from fseutil.guilogic.dialog_1_1_adb_datasheet_1 import Dialog0101_ADB2Datasheet1
-from fseutil.guilogic.dialog_1_2_bs9999_datasheet_1 import Dialog0102_BS9999Datasheet1
-from fseutil.guilogic.dialog_4_1_br187_parallel_simple import Dialog0401_br187ParallelSimple
-from fseutil.guilogic.dialog_4_2_br187_perpendicular_simple import Dialog0402_br187PerpendicularSimple
-from fseutil.guilogic.dialog_4_3_br187_parallel_complex import Dialog0403_br187ParallelComplex
-from fseutil.guilogic.dialog_4_4_br187_perpendicular_complex import Dialog0404_br187PerpendicularComplex
-from fseutil.guilogic.dialog_6_1_naming_convention import Dialog0601_NamingConvention
-from fseutil.guilogic.dialog_0_1_pass_code import Dialog0001PassCode
+from fseutil.guilogic.dialog_0_1_pass_code import Dialog0001 as Dialog0001
+from fseutil.guilogic.dialog_1_1_adb_datasheet_1 import Dialog0101 as Dialog0101
+from fseutil.guilogic.dialog_1_2_bs9999_datasheet_1 import Dialog0102 as Dialog0102
+from fseutil.guilogic.dialog_1_11_heat_detector_activation import Dialog0111 as Dialog0111
+from fseutil.guilogic.dialog_4_1_br187_parallel_simple import Dialog0401 as Dialog0401
+from fseutil.guilogic.dialog_4_2_br187_perpendicular_simple import Dialog0402 as Dialog0402
+from fseutil.guilogic.dialog_4_3_br187_parallel_complex import Dialog0403 as Dialog0403
+from fseutil.guilogic.dialog_4_4_br187_perpendicular_complex import Dialog0404 as Dialog0404
+from fseutil.guilogic.dialog_6_1_naming_convention import Dialog0601 as Dialog0601
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -34,13 +34,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # check expiry date, whether the tool is over 180 days old
         if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=180):
-            app_ = self.activate_app(Dialog0001PassCode)
+            app_ = self.activate_app(Dialog0001)
             if app_.pass_code != '0164153':
                 raise ValueError
             app_.close()
 
     def init_tabs(self):
-        self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(lambda: self.activate_app(Dialog0101_ADB2Datasheet1))
+        self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(lambda: self.activate_app(Dialog0101))
 
     def init_logos(self):
         ba = QtCore.QByteArray.fromBase64(OFR_LOGO_1_PNG)
@@ -55,16 +55,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def init_buttons(self):
 
-        self.ui.pushButton_0101_adb2_datasheet_1.clicked.connect(lambda: self.activate_app(Dialog0101_ADB2Datasheet1))
-        self.ui.pushButton_0102_bs9999_datasheet_1.clicked.connect(lambda: self.activate_app(Dialog0102_BS9999Datasheet1))
-        self.ui.pushButton_0111_heat_detector_activation.clicked.connect(lambda: self.activate_app(Dialog0111_HeatDetectorActivation))
+        self.ui.pushButton_0101_adb2_datasheet_1.clicked.connect(lambda: self.activate_app(Dialog0101))
+        self.ui.pushButton_0102_bs9999_datasheet_1.clicked.connect(lambda: self.activate_app(Dialog0102))
+        self.ui.pushButton_0111_heat_detector_activation.clicked.connect(lambda: self.activate_app(Dialog0111))
 
-        self.ui.pushButton_0401_br187_parallel_simple.clicked.connect(lambda: self.activate_app(Dialog0401_br187ParallelSimple))
-        self.ui.pushButton_0402_br187_perpendicular_simple.clicked.connect(lambda: self.activate_app(Dialog0402_br187PerpendicularSimple))
-        self.ui.pushButton_0403_br187_parallel_complex.clicked.connect(lambda: self.activate_app(Dialog0403_br187ParallelComplex))
-        self.ui.pushButton_0404_br187_perpendicular_complex.clicked.connect(lambda: self.activate_app(Dialog0404_br187PerpendicularComplex))
+        self.ui.pushButton_0401_br187_parallel_simple.clicked.connect(lambda: self.activate_app(Dialog0401))
+        self.ui.pushButton_0402_br187_perpendicular_simple.clicked.connect(lambda: self.activate_app(Dialog0402))
+        self.ui.pushButton_0403_br187_parallel_complex.clicked.connect(lambda: self.activate_app(Dialog0403))
+        self.ui.pushButton_0404_br187_perpendicular_complex.clicked.connect(lambda: self.activate_app(Dialog0404))
 
-        self.ui.pushButton_0601_naming_convention.clicked.connect(lambda: self.activate_app(Dialog0601_NamingConvention))
+        self.ui.pushButton_0601_naming_convention.clicked.connect(lambda: self.activate_app(Dialog0601))
 
     def activate_app(self, app_):
         app_ = app_(self)

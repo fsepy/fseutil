@@ -5,7 +5,7 @@ from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 EXPIRY_DATE_PERIOD = 90
 
 
-class Dialog0001PassCode(QtWidgets.QDialog):
+class Dialog0001(QtWidgets.QDialog):
 
     _pass_code = None
 
