@@ -1,10 +1,11 @@
-from PySide2 import QtWidgets
+from PySide2 import QtWidgets, QtCore, QtGui
 
 from fseutil.guilayout.dialog_0602_pd_7974_flame_height import Ui_Dialog
 from fseutil.libstd.pd_7974_1_2019 import eq_11_dimensionless_hrr_rectangular
 from fseutil.libstd.pd_7974_1_2019 import eq_12_dimensionless_hrr_line
 from fseutil.libstd.pd_7974_1_2019 import eq_5_dimensionless_hrr
 from fseutil.lib.fse_flame_height import mean_flame_height_pd_7974
+from fseutil.etc.images_base64 import dialog_0602_pd_7974_flame_height_figure_1
 
 
 class Dialog0602(QtWidgets.QDialog):
@@ -19,10 +20,10 @@ class Dialog0602(QtWidgets.QDialog):
         self.ui.setupUi(self)
 
         # set up figures
-        # ba = QtCore.QByteArray.fromBase64(dialog_4_3_br187_parallel_figure_1)
-        # pix_map = QtGui.QPixmap()
-        # pix_map.loadFromData(ba)
-        # self.ui.label.setPixmap(pix_map)
+        ba = QtCore.QByteArray.fromBase64(dialog_0602_pd_7974_flame_height_figure_1)
+        pix_map = QtGui.QPixmap()
+        pix_map.loadFromData(ba)
+        self.ui.label_figure_flame_height.setPixmap(pix_map)
 
         # set default values
         # todo
