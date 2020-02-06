@@ -18,7 +18,7 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
     cmd = ['pyinstaller'] + cmd_option_list + [fp_target_py]
     print('\n'*5, ' '.join(cmd))
 
-    with open('test.log', 'wb') as f:
+    with open('gui_build.log', 'wb') as f:
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         for c in iter(lambda: process.stdout.read(1), b''):  # replace '' with b'' for Python 3
             sys.stdout.write(c.decode('utf-8'))
