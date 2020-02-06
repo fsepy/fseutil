@@ -19,7 +19,7 @@ def eq_5_dimensionless_hrr(
     :param T_0: in K, ambient air temperature.
     :param g: in m/s^2, acceleration due to gravity.
     :param D: in m, diameter.
-    :return Q_dot_star: dimensionless, dimensionless heat release rate
+    :return Q_dot_star: dimensionless, dimensionless heat release rate.
     """
 
     # equation starts
