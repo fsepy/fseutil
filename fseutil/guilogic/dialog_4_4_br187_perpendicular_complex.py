@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_4_4_br187_perpendicular_figure_1
-from fseutil.guilayout.dialog_4_3_br187_parallel_complex import Ui_Dialog
+from fseutil.guilayout.dialog_0403_br187_parallel_complex import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_perpendicular_any_br187, linear_solver
 
 

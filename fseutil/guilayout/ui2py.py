@@ -6,13 +6,14 @@ def ui2py():
 
     list_ui_file_names = [
         'main.ui',
-        'dialog_1_1_adb_datasheet_1.ui',
-        'dialog_1_11_heat_detector_activation.ui',
-        'dialog_4_1_br187_parallel_simple.ui',
-        'dialog_4_2_br187_perpendicular_simple.ui',
-        'dialog_4_3_br187_parallel_complex.ui',
-        'dialog_4_4_br187_perpendicular_complex.ui',
-        'dialog_6_1_naming_convention.ui',
+        'dialog_0101_adb_datasheet_1.ui',
+        'dialog_0111_heat_detector_activation.ui',
+        'dialog_0401_br187_parallel_simple.ui',
+        'dialog_0402_br187_perpendicular_simple.ui',
+        'dialog_0403_br187_parallel_complex.ui',
+        'dialog_0404_br187_perpendicular_complex.ui',
+        'dialog_0601_naming_convention.ui',
+        'dialog_0602_flame_height.ui',
     ]
 
     cwd = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ui')

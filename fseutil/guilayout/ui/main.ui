@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>474</width>
-    <height>585</height>
+    <height>613</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <x>20</x>
       <y>220</y>
       <width>181</width>
-      <height>96</height>
+      <height>106</height>
      </rect>
     </property>
     <property name="title">
@@ -32,8 +32,8 @@
     <widget class="QPushButton" name="b4_01_br187_parallel_7">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>15</y>
+       <x>15</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -49,8 +49,8 @@ Size</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>85</x>
-       <y>15</y>
+       <x>90</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -67,8 +67,8 @@ Transfer
      <rect>
       <x>20</x>
       <y>110</y>
-      <width>371</width>
-      <height>96</height>
+      <width>381</width>
+      <height>106</height>
      </rect>
     </property>
     <property name="title">
@@ -77,8 +77,8 @@ Transfer
     <widget class="QPushButton" name="pushButton_0102_bs9999_datasheet_1">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>15</y>
+       <x>85</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -95,8 +95,8 @@ No. 1</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>15</y>
+       <x>155</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -109,8 +109,8 @@ Flow</string>
     <widget class="QPushButton" name="pushButton_0111_heat_detector_activation">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>15</y>
+       <x>225</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -127,8 +127,8 @@ Time</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>15</y>
+       <x>295</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -141,8 +141,8 @@ Model</string>
     <widget class="QPushButton" name="pushButton_0101_adb2_datasheet_1">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>15</y>
+       <x>15</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -168,8 +168,8 @@ No. 1</string>
      <rect>
       <x>20</x>
       <y>440</y>
-      <width>231</width>
-      <height>96</height>
+      <width>311</width>
+      <height>106</height>
      </rect>
     </property>
     <property name="title">
@@ -178,8 +178,8 @@ No. 1</string>
     <widget class="QPushButton" name="pushButton_0601_naming_convention">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>15</y>
+       <x>15</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -199,8 +199,8 @@ Protocol</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>15</y>
+       <x>85</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -217,8 +217,8 @@ Vent. Size</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>15</y>
+       <x>155</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -228,14 +228,31 @@ Vent. Size</string>
 Mesh Size</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_0602_flame_height">
+     <property name="geometry">
+      <rect>
+       <x>225</x>
+       <y>20</y>
+       <width>70</width>
+       <height>70</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>File name generator in accordance with OFR file naming protocal</string>
+     </property>
+     <property name="text">
+      <string>Flame
+Height</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>330</y>
-      <width>371</width>
-      <height>96</height>
+      <width>381</width>
+      <height>106</height>
      </rect>
     </property>
     <property name="title">
@@ -244,8 +261,8 @@ Mesh Size</string>
     <widget class="QPushButton" name="pushButton_0401_br187_parallel_simple">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>15</y>
+       <x>15</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -261,8 +278,8 @@ Parallel</string>
     <widget class="QPushButton" name="pushButton_0402_br187_perpendicular_simple">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>15</y>
+       <x>85</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -275,8 +292,8 @@ Perp.</string>
     <widget class="QPushButton" name="pushButton_0403_br187_parallel_complex">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>15</y>
+       <x>155</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -290,8 +307,8 @@ Complex</string>
     <widget class="QPushButton" name="pushButton_0404_br187_perpendicular_complex">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>15</y>
+       <x>225</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>
@@ -308,8 +325,8 @@ Complex</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>15</y>
+       <x>295</x>
+       <y>20</y>
        <width>70</width>
        <height>70</height>
       </rect>

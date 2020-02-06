@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_4_1_br187_parallel_figure_1
-from fseutil.guilayout.dialog_4_1_br187_parallel_simple import Ui_Dialog
+from fseutil.guilayout.dialog_0401_br187_parallel_simple import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_solver
 
 
