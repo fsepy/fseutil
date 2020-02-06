@@ -1,14 +1,12 @@
 import base64
-import base64
 import tempfile
-import numpy as np
 
 from PySide2 import QtWidgets, QtGui
 
 from fseutil.etc.images_base64 import dialog_1_11_heat_detector_activation_figure_1
 from fseutil.guilayout.dialog_0111_heat_detector_activation import Ui_dialog_1_11_heat_detector_activation
 from fseutil.lib.fse_activation_hd import heat_detector_temperature_pd7974
-from fseutil.lib.pd_7974_1_2019 import eq_22_t_squared_fire_growth
+from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
 
 class Dialog0111(QtWidgets.QDialog):
