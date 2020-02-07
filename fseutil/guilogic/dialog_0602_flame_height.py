@@ -18,7 +18,6 @@ class Dialog0602(QtWidgets.QDialog):
         super(Dialog0602, self).__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint)
 
         # set up figures
         ba = QtCore.QByteArray.fromBase64(dialog_0602_pd_7974_flame_height_figure_1)
