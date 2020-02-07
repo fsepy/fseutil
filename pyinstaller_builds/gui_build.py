@@ -41,7 +41,6 @@ if __name__ == "__main__":
     build_gui(
         options=[
             "--onedir",  # output unpacked dist to one directory, including an .exe file
-            "--windowed",  # make it a windowed application
             "--noconfirm",  # replace output directory without asking for confirmation
             "--clean",  # clean pyinstaller cache and remove temporary files
         ]
