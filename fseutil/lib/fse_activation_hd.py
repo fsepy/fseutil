@@ -1,5 +1,6 @@
-import numpy as np
 import typing
+
+import numpy as np
 
 
 def heat_detector_temperature_pd7974(
@@ -62,6 +63,7 @@ def heat_detector_temperature_pd7974(
     jet_temperature = [ambient_gas_temperature]
     jet_velocity = [0.]
     detector_temperature = [ambient_gas_temperature]
+    virtual_source_location = [0]
 
     # Main heat detector temperature calculation starts
     # =================================================
@@ -70,7 +72,6 @@ def heat_detector_temperature_pd7974(
 
         # Calculate change in time, dt
         # ----------------------------
-        t = gas_time[i]
         dt = gas_time[i] - gas_time[i-1]
 
         # Calculate convective heat release rate
@@ -79,11 +80,12 @@ def heat_detector_temperature_pd7974(
 
         # Calculate fire diameter
         # -----------------------
-        D = ((Q_dot_c_kW / fire_hrr_density_kWm2) / 3.1415926) ** 0.5 * 2
+        D = ((gas_hrr_kWm2[i] / fire_hrr_density_kWm2) / 3.1415926) ** 0.5 * 2
 
         # Calculate virtual fire origin
         # -----------------------------
         z_0 = eq_10_virtual_origin(D=D, Q_dot_kW=gas_hrr_kWm2[i])
+        virtual_source_location.append(z_0)
 
         # Calculate ceiling jet temperature
         # ---------------------------------
@@ -154,6 +156,7 @@ def heat_detector_temperature_pd7974(
         jet_temperature=np.array(jet_temperature),
         jet_velocity=np.array(jet_velocity),
         fire_diameter=np.array(fire_diameter),
+        virtual_source_location=np.array(virtual_source_location),
     )
 
     return res
@@ -170,19 +173,26 @@ def _test_heat_detector_activation_ceiling_pd7974():
     res = heat_detector_temperature_pd7974(
         gas_time=t,
         gas_hrr_kWm2=[eq_22_t_squared_fire_growth(alpha=0.0117, t=i)/1000. for i in t],
-        detector_to_fire_vertical_distance=2.4,
-        detector_to_fire_horizontal_distance=2.75,
+        detector_to_fire_vertical_distance=3.6,
+        detector_to_fire_horizontal_distance=2.83,
         detector_response_time_index=115,
         detector_conduction_factor=0.4,
         fire_hrr_density_kWm2=510,
-        fire_convection_fraction=1/1.5,
+        fire_convection_fraction=0.7,
     )
-    detector_activation_temperature = 58 + 273.15
+    detector_activation_temperature = 68 + 273.15
 
     # find the activation time
     calculated_activation_time = t[np.argmin(np.abs(res['detector_temperature'] - detector_activation_temperature))]
-    given_activation_time = 237.5
+    given_activation_time = 333  # checked against Chris Mayfield's calculation on 7th Feb 2020 15:20, Bicester
     assert abs(calculated_activation_time - given_activation_time) <= 1.
+
+    import pandas as pd
+    res['time'] = t
+    res['HRR'] = [eq_22_t_squared_fire_growth(alpha=0.0117, t=i)/1000. for i in t]
+    res = pd.DataFrame.from_dict(res)
+    res.set_index('time')
+    print(res)
 
 
 if __name__ == '__main__':
