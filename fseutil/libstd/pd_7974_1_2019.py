@@ -1,6 +1,9 @@
 """
 All SI UNITS unless specified.
 """
+import typing
+
+import numpy as np
 
 
 def eq_5_dimensionless_hrr(
@@ -279,10 +282,10 @@ def _test_eq_15_plume_velocity():
 
 def eq_22_t_squared_fire_growth(
         alpha: float,
-        t: float,
+        t: typing.Union[np.ndarray, float],
         t_i: float = 0,
         n: float = 2
-) -> float:
+) -> typing.Union[np.ndarray, float]:
     """Equation 22 in Section 8.4.1 PD 7974-1:2019 calculates t-square fire growth heat release rate.
 
     :param alpha: in kW/m^2.
