@@ -15,6 +15,18 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
     if options:
         cmd_option_list.extend(options)
 
+    # add encryption to pyz
+    try:
+        with open('key.txt', 'r') as f:
+            key = f.read()
+            if len(key) > 0:
+                cmd_option_list.append(f'--key={key}')
+                print('Encryption is enabled.')
+            else:
+                print('Encryption is not enabled.')
+    except FileNotFoundError:
+        print('Encryption is not enabled.')
+
     cmd = ['pyinstaller'] + cmd_option_list + [fp_target_py]
     print('\n'*5, ' '.join(cmd))
 
