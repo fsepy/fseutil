@@ -15,9 +15,10 @@ class Dialog0601(QtWidgets.QDialog):
         self.ui.comboBox_6_type.setCurrentIndex(4)
 
         # validators
-        self.ui.lineEdit_1_date.setValidator((QtGui.QRegExpValidator(QtCore.QRegExp('^[0-9]{6,8}'))))
-        self.ui.lineEdit_3_project_no.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp('^[A-Z]{1,2}[0-9]{1,5}')))
-        self.ui.lineEdit_5_title.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp('^[\w\-. ]+$')))
+        self.ui.lineEdit_1_date.setValidator((QtGui.QRegExpValidator(QtCore.QRegExp(r'^[0-9]{6,8}'))))
+        self.ui.lineEdit_3_project_no.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[A-Z]{1,2}[0-9]{1,5}')))
+        self.ui.lineEdit_4_project_stage.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[\w\-. ]+$')))
+        self.ui.lineEdit_5_title.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[\w\-. ]+$')))
 
         # signal and slots
         self.ui.lineEdit_1_date.textChanged.connect(self.make_file_name)
@@ -27,6 +28,7 @@ class Dialog0601(QtWidgets.QDialog):
         self.ui.lineEdit_5_title.textChanged.connect(self.make_file_name)
         self.ui.comboBox_6_type.currentTextChanged.connect(self.make_file_name)
         self.ui.comboBox_7_security_status.currentTextChanged.connect(self.make_file_name)
+        self.ui.checkBox_replace_spaces.stateChanged.connect(self.make_file_name)
         self.ui.pushButton_copy.clicked.connect(self.copy_file_name)
 
         # clean up
@@ -38,11 +40,17 @@ class Dialog0601(QtWidgets.QDialog):
         bb = self.ui.comboBox_2_revision.currentText()[0:3]
         cc = self.ui.lineEdit_3_project_no.text()
         dd = self.ui.lineEdit_4_project_stage.text()
-        ee = self.ui.lineEdit_5_title.text().replace(' ', '_')
+        ee = self.ui.lineEdit_5_title.text()
         ff = self.ui.comboBox_6_type.currentText()[0:2]
         gg = self.ui.comboBox_7_security_status.currentText()[0:3]
 
+        if self.ui.checkBox_replace_spaces.isChecked():
+            dd = dd.replace(' ', '_')
+            ee = ee.replace(' ', '_')
+
         self.ui.lineEdit_result.setText('-'.join([aa, bb, cc, dd, ee, ff, gg]))
+
+        self.repaint()
 
     def copy_file_name(self):
         clipboard = QtGui.QGuiApplication.clipboard()

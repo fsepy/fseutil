@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>476</width>
-    <height>291</height>
+    <height>311</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>305</x>
-     <y>245</y>
+     <y>265</y>
      <width>151</width>
      <height>26</height>
     </rect>
@@ -32,7 +32,7 @@
      <x>20</x>
      <y>20</y>
      <width>437</width>
-     <height>206</height>
+     <height>230</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -159,7 +159,7 @@
          </size>
         </property>
         <property name="text">
-         <string>OX2001</string>
+         <string>OX20001</string>
         </property>
        </widget>
       </item>
@@ -364,6 +364,13 @@
      </layout>
     </item>
     <item>
+     <widget class="QCheckBox" name="checkBox_replace_spaces">
+      <property name="text">
+       <string>Replace Spaces with Underscore</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QLineEdit" name="lineEdit_result"/>
     </item>
    </layout>
@@ -372,7 +379,7 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>230</y>
+     <y>250</y>
      <width>476</width>
      <height>16</height>
     </rect>
