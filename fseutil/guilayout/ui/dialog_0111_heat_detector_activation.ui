@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>612</width>
-    <height>385</height>
+    <width>611</width>
+    <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -876,9 +876,9 @@
    <property name="geometry">
     <rect>
      <x>515</x>
-     <y>350</y>
+     <y>355</y>
      <width>81</width>
-     <height>31</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="text">
@@ -898,7 +898,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>images/heat_detector_activation_341x285.png</pixmap>
+    <pixmap>../images/heat_detector_activation_341x285.png</pixmap>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -917,10 +917,10 @@
   <widget class="QPushButton" name="pushButton_test">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>350</y>
+     <x>15</x>
+     <y>355</y>
      <width>81</width>
-     <height>31</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="text">

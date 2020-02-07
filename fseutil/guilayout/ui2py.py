@@ -9,9 +9,7 @@ def ui2py():
         'dialog_0101_adb_datasheet_1.ui',
         'dialog_0111_heat_detector_activation.ui',
         'dialog_0401_br187_parallel_simple.ui',
-        'dialog_0402_br187_perpendicular_simple.ui',
         'dialog_0403_br187_parallel_complex.ui',
-        'dialog_0404_br187_perpendicular_complex.ui',
         'dialog_0601_naming_convention.ui',
         'dialog_0602_pd_7974_flame_height.ui',
     ]
