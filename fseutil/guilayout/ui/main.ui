@@ -440,58 +440,6 @@ All rights reserved.</string>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_B1">
-    <property name="title">
-     <string>B1</string>
-    </property>
-    <addaction name="action_0101_ADB_Vol_2_Datasheet"/>
-    <addaction name="action_0102_BS_9999_Datasheet"/>
-    <addaction name="action_0103_BS_9999_Merging_flow"/>
-    <addaction name="action_0104_PD_7974_HD_activation"/>
-   </widget>
-   <widget class="QMenu" name="menu_B2">
-    <property name="title">
-     <string>B2</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_B3">
-    <property name="title">
-     <string>B3</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menu_B4">
-    <property name="title">
-     <string>B4</string>
-    </property>
-    <addaction name="action_0401_BR_187_parallel_simple"/>
-    <addaction name="action_0402_BR_187_perpendicular_simple"/>
-    <addaction name="action_0403_BR_187_parallel_complex"/>
-    <addaction name="action_0404_BR_187_perpendicular_complex"/>
-   </widget>
-   <widget class="QMenu" name="menu_B5">
-    <property name="title">
-     <string>B5</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout"/>
-   </widget>
-   <widget class="QMenu" name="menu_Misc">
-    <property name="title">
-     <string>Misc.</string>
-    </property>
-    <addaction name="action_0601_OFR_naming_protocol"/>
-   </widget>
-   <addaction name="menu_B1"/>
-   <addaction name="menu_B2"/>
-   <addaction name="menu_B3"/>
-   <addaction name="menu_B4"/>
-   <addaction name="menu_B5"/>
-   <addaction name="menu_Misc"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_0101_ADB_Vol_2_Datasheet">
