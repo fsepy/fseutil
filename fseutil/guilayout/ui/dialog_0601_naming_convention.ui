@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
+    <width>476</width>
     <height>291</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="pushButton_copy">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>305</x>
      <y>245</y>
      <width>151</width>
      <height>26</height>
@@ -31,7 +31,7 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>421</width>
+     <width>437</width>
      <height>206</height>
     </rect>
    </property>
@@ -47,7 +47,7 @@
          </font>
         </property>
         <property name="text">
-         <string>DATE</string>
+         <string>DATE (Format YYMMDD)</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -373,7 +373,7 @@
     <rect>
      <x>0</x>
      <y>230</y>
-     <width>461</width>
+     <width>476</width>
      <height>16</height>
     </rect>
    </property>
