@@ -147,3 +147,4 @@ fseutil/guilayout/*.py
 # Include project files
 !fseutil/lib
 *key.txt
+*key.py
