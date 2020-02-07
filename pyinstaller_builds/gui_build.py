@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-import sys
 import subprocess
+import sys
 
 
 def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: list = None):
+    print('\n' * 2)
 
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -28,7 +29,7 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
         print('Encryption is not enabled.')
 
     cmd = ['pyinstaller'] + cmd_option_list + [fp_target_py]
-    print('\n'*5, ' '.join(cmd))
+    print('COMMAND:', ' '.join(cmd))
 
     with open('gui_build.log', 'wb') as f:
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -40,6 +41,7 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
 if __name__ == "__main__":
     build_gui(
         options=[
+            # "--windowed",  # make it a windowed application
             "--onedir",  # output unpacked dist to one directory, including an .exe file
             "--noconfirm",  # replace output directory without asking for confirmation
             "--clean",  # clean pyinstaller cache and remove temporary files
@@ -47,9 +49,9 @@ if __name__ == "__main__":
     )
     build_gui(
         options=[
+            # "--windowed",  # make it a windowed application
             "--noconsole",  # disable console display
             "--onefile",  # output one .exe file
-            "--windowed",  # make it a windowed application
             "--noconfirm",  # replace output directory without asking for confirmation
         ]
     )

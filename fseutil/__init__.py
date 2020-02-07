@@ -36,19 +36,21 @@ Public version identifiers are separated into up to five segments:
 
 import datetime
 
-__version__ = "0.0.1.dev20200205"
-__date_released__ = datetime.datetime(2020, 2, 5)
+__version__ = "0.0.1.dev20200207"
+__date_released__ = datetime.datetime(2020, 2, 7)
 
 if __name__ == "__main__":
     import re
 
+
     def is_canonical(version):
         return (
-            re.match(
-                r"^([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$",
-                version,
-            )
-            is not None
+                re.match(
+                    r"^([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$",
+                    version,
+                )
+                is not None
         )
+
 
     assert is_canonical(__version__)

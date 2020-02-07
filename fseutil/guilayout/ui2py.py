@@ -1,5 +1,3 @@
-
-
 def ui2py():
     import os
     import subprocess

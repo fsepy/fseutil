@@ -1,5 +1,3 @@
-
-
 def clause_15_6_6_e_merging_flow_1(
         N: float,
         X: float,

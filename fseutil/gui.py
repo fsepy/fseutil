@@ -11,7 +11,6 @@ QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 
 def main(app_window=None):
-
     app = QtWidgets.QApplication(sys.argv)
     if app_window is None:
         window = MainWindow()

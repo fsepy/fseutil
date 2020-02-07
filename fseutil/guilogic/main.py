@@ -16,12 +16,13 @@ from fseutil.guilogic.dialog_0403_br187_parallel_complex import Dialog0403 as Di
 from fseutil.guilogic.dialog_0404_br187_perpendicular_complex import Dialog0404 as Dialog0404
 from fseutil.guilogic.dialog_0601_naming_convention import Dialog0601 as Dialog0601
 from fseutil.guilogic.dialog_0602_flame_height import Dialog0602 as Dialog0602
+
 try:
     from fseutil.key import key
+
     KEY = key()
 except ModuleNotFoundError:
     KEY = None
-
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -43,7 +44,7 @@ class MainWindow(QtWidgets.QMainWindow):
         global KEY
 
         # check expiry date, whether the tool is over 180 days old
-        expiry_date_duration = 30
+        expiry_date_duration = 7
         if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=expiry_date_duration):
             app_ = self.activate_app(Dialog0001)
             if app_.pass_code != KEY and KEY is not None:

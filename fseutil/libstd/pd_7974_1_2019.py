@@ -27,14 +27,13 @@ def eq_5_dimensionless_hrr(
 
     # equation starts
     aa = Q_dot_kW
-    bb = rho_0 * c_p_0_kJ_kg_K * T_0 * (g ** 0.5) * (D ** (5/2))
+    bb = rho_0 * c_p_0_kJ_kg_K * T_0 * (g ** 0.5) * (D ** (5 / 2))
     Q_dot_star = aa / bb
 
     return Q_dot_star
 
 
 def _test_eq_5_dimensionless_hrr():
-
     # function results
     function_results = eq_5_dimensionless_hrr(
         Q_dot_kW=500,
@@ -82,7 +81,6 @@ def eq_11_dimensionless_hrr_rectangular(
 
 
 def _test_eq_11_dimensionless_hrr_rectangle():
-
     # function results
     function_results = eq_11_dimensionless_hrr_rectangular(
         Q_dot_kW=500,
@@ -130,7 +128,6 @@ def eq_12_dimensionless_hrr_line(
 
 
 def _test_eq_12_dimensionless_hrr_line():
-
     # function results
     function_results = eq_12_dimensionless_hrr_line(
         Q_dot_l_kW_m=250,

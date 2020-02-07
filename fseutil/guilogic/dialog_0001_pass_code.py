@@ -6,7 +6,6 @@ EXPIRY_DATE_PERIOD = 90
 
 
 class Dialog0001(QtWidgets.QDialog):
-
     _pass_code = None
 
     def __init__(self, parent=None):

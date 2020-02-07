@@ -1,7 +1,7 @@
 import base64
 import tempfile
-import numpy as np
 
+import numpy as np
 from PySide2 import QtWidgets, QtGui
 
 from fseutil.etc.images_base64 import dialog_1_11_heat_detector_activation_figure_1
@@ -32,7 +32,6 @@ class Dialog0111(QtWidgets.QDialog):
         self.parent().statusBar().showMessage('Hello from sub class.')
 
     def test(self):
-
         self.ui.lineEdit_in_t.setText('600')
         self.ui.lineEdit_in_alpha.setText('0.0117')
         self.ui.lineEdit_in_H.setText('2.4')
@@ -50,12 +49,11 @@ class Dialog0111(QtWidgets.QDialog):
         self.repaint()
 
     def calculate(self):
-
         # clear outputs
         self.ui.lineEdit_out_t_act.setText('')
 
         # get data
-        gas_time = float(self.ui.lineEdit_in_t.text())
+        time = float(self.ui.lineEdit_in_t.text())
         alpha = float(self.ui.lineEdit_in_alpha.text())
         detector_to_fire_vertical_distance = float(self.ui.lineEdit_in_H.text())
         detector_to_fire_horizontal_distance = float(self.ui.lineEdit_in_R.text())
@@ -66,11 +64,11 @@ class Dialog0111(QtWidgets.QDialog):
         detector_activation_temperature = float(self.ui.lineEdit_in_T_act.text())
 
         # calculate all sorts of things
-        gas_time = np.arange(0, gas_time, 1.)
-        gas_hrr_kWm2 = eq_22_t_squared_fire_growth(alpha, gas_time) / 1000.
+        time = np.arange(0, time, 1.)
+        gas_hrr_kW = eq_22_t_squared_fire_growth(alpha, time) / 1000.
         res = heat_detector_temperature_pd7974(
-            gas_time=gas_time,
-            gas_hrr_kWm2=gas_hrr_kWm2,
+            gas_time=time,
+            gas_hrr_kW=gas_hrr_kW,
             detector_to_fire_vertical_distance=detector_to_fire_vertical_distance,
             detector_to_fire_horizontal_distance=detector_to_fire_horizontal_distance,
             detector_response_time_index=detector_response_time_index,
@@ -78,18 +76,26 @@ class Dialog0111(QtWidgets.QDialog):
             fire_hrr_density_kWm2=fire_hrr_density_kWm2,
             fire_convection_fraction=fire_convection_fraction,
         )
+        res['time'], res['gas_hrr_kW'] = time, gas_hrr_kW
 
         # work out activation time
-        activation_time = gas_time[np.argmin(np.abs((res['detector_temperature']-273.15) - detector_activation_temperature))]
+        activation_time = time[
+            np.argmin(np.abs((res['detector_temperature'] - 273.15) - detector_activation_temperature))]
         self.ui.lineEdit_out_t_act.setText(f'{activation_time:.1f}')
 
         # print results (for console enabled version only)
-        for i, time in enumerate(gas_time):
-            fire_hrr = gas_hrr_kWm2[i]
-            detector_temperature = res['detector_temperature'][i]
-            jet_velocity = res['jet_velocity'][i]
-            jet_temperature = res['jet_temperature'][i]
-            virtual_origin = res['virtual_origin'][i]
-            print(f'{time:5.2f} s, {fire_hrr:10.2f} kW {virtual_origin:10.2f} m {jet_velocity:10.2f} m/s {jet_temperature - 273.15:10.2f} °C, {detector_temperature - 273.15:10.2f} °C')
+        list_title = ['Time', 'HRR', 'V. Origin', 'Jet T.', 'Jet Vel.', 'Detector T.']
+        list_param = ['time', 'gas_hrr_kW', 'virtual_origin', 'jet_temperature', 'jet_velocity', 'detector_temperature']
+        list_units = ['s', 'kW', 'm', '°C', 'm/s', '°C']
+        for i, time_ in enumerate(time):
+            fs1_ = list()
+            for i_, param in enumerate(list_param):
+                v = res[param][i]
+                unit = list_units[i_]
+                fs1_.append('{:<15.14}'.format(f'{v:<.2f} {unit:<}'))
+
+            if i % 25 == 0:
+                print('\n'+''.join(f'{i_:<15.15}' for i_ in list_title))
+            print(''.join(fs1_))
 
         self.repaint()

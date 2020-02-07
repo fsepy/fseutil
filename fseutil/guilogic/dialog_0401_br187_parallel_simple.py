@@ -6,7 +6,6 @@ from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_sol
 
 
 class Dialog0401(QtWidgets.QDialog):
-
     maximum_acceptable_thermal_radiation_heat_flux = 12.6
 
     def __init__(self, parent=None):
@@ -83,11 +82,11 @@ class Dialog0401(QtWidgets.QDialog):
         if self.ui.comboBox_S_or_UA.currentText() == '½S':  # to calculate maximum unprotected area
             S = float(self.ui.lineEdit_S_or_UA.text()) * 2
             S = max(1, min([S, 200]))
-            self.ui.lineEdit_S_or_UA.setText(f'{S/2:.2f}')
+            self.ui.lineEdit_S_or_UA.setText(f'{S / 2:.2f}')
 
-            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5*W, h_m=0.5*H, S_m=S)
+            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5 * W, h_m=0.5 * H, S_m=S)
             q_solved = Q * phi_solved
-            UA_solved = max([min([q_target/q_solved * 100, 100]), 0])
+            UA_solved = max([min([q_target / q_solved * 100, 100]), 0])
 
             self.ui.lineEdit_out_Phi.setText(f'{phi_solved:.4f}')
             self.ui.lineEdit_out_q.setText(f'{q_solved:.2f}')
@@ -96,12 +95,12 @@ class Dialog0401(QtWidgets.QDialog):
         elif self.ui.comboBox_S_or_UA.currentText() == 'UA':  # to calculate minimum separation distance to boundary
             UA = float(self.ui.lineEdit_S_or_UA.text()) / 100.
             UA = max([0.0001, min([UA, 1])])
-            self.ui.lineEdit_S_or_UA.setText(f'{UA*100:.2f}')
+            self.ui.lineEdit_S_or_UA.setText(f'{UA * 100:.2f}')
 
-            phi_target = q_target/(Q*UA)
+            phi_target = q_target / (Q * UA)
             S_solved = linear_solver(
                 func=phi_parallel_any_br187,
-                dict_params=dict(W_m=W, H_m=H, w_m=0.5*W, h_m=0.5*H, S_m=0),
+                dict_params=dict(W_m=W, H_m=H, w_m=0.5 * W, h_m=0.5 * H, S_m=0),
                 x_name='S_m',
                 y_target=phi_target,
                 x_upper=200,
@@ -110,11 +109,11 @@ class Dialog0401(QtWidgets.QDialog):
                 iter_max=100,
                 func_multiplier=-1
             )
-            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5*W, h_m=0.5*H, S_m=S_solved)
+            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5 * W, h_m=0.5 * H, S_m=S_solved)
             q_solved = Q * phi_solved
 
             self.ui.lineEdit_out_Phi.setText(f'{phi_solved:.4f}')
             self.ui.lineEdit_out_q.setText(f'{q_solved:.2f}')
-            self.ui.lineEdit_out_S_or_UA.setText(f'{S_solved/2:.2f}')
+            self.ui.lineEdit_out_S_or_UA.setText(f'{S_solved / 2:.2f}')
 
             self.repaint()

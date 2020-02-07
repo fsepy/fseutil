@@ -6,7 +6,6 @@ from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_sol
 
 
 class Dialog0403(QtWidgets.QDialog):
-
     maximum_acceptable_thermal_radiation_heat_flux = 12.6
 
     def __init__(self, parent=None):
@@ -88,14 +87,14 @@ class Dialog0403(QtWidgets.QDialog):
             # obtain separation distance
             S = float(self.ui.lineEdit_S_or_UA.text()) * 2
             S = max(1, min([S, 200]))
-            self.ui.lineEdit_S_or_UA.setText(f'{S/2:.2f}')
+            self.ui.lineEdit_S_or_UA.setText(f'{S / 2:.2f}')
 
             # calculate view factor
-            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5*W+w, h_m=0.5*H+h, S_m=S)
+            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5 * W + w, h_m=0.5 * H + h, S_m=S)
             # calculate imposed thermal heat flux at receiver surface
             q_solved = Q * phi_solved
             # calculate maximum permissible unprotected area
-            UA_solved = max([min([q_target/q_solved * 100, 100]), 0])
+            UA_solved = max([min([q_target / q_solved * 100, 100]), 0])
 
             # output results to ui
             self.ui.lineEdit_out_Phi.setText(f'{phi_solved:.4f}')
@@ -106,13 +105,13 @@ class Dialog0403(QtWidgets.QDialog):
             # obtain unprotected area
             UA = float(self.ui.lineEdit_S_or_UA.text()) / 100.
             UA = max([0.0001, min([UA, 1])])
-            self.ui.lineEdit_S_or_UA.setText(f'{UA*100:.2f}')
+            self.ui.lineEdit_S_or_UA.setText(f'{UA * 100:.2f}')
 
             # Solve separation distance for target view factor, i.e. SOLVE `f(S) = phi` for `S` at `phi == phi_target`
-            phi_target = q_target/(Q*UA)
+            phi_target = q_target / (Q * UA)
             S_solved = linear_solver(
                 func=phi_parallel_any_br187,
-                dict_params=dict(W_m=W, H_m=H, w_m=0.5*W+w, h_m=0.5*H+h, S_m=0),
+                dict_params=dict(W_m=W, H_m=H, w_m=0.5 * W + w, h_m=0.5 * H + h, S_m=0),
                 x_name='S_m',
                 y_target=phi_target,
                 x_upper=200,
@@ -122,13 +121,13 @@ class Dialog0403(QtWidgets.QDialog):
                 func_multiplier=-1
             )
             # calculate view factor for solved separation distance
-            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5*W+w, h_m=0.5*H+h, S_m=S_solved)
+            phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5 * W + w, h_m=0.5 * H + h, S_m=S_solved)
             # calculate imposed heat flux at receiver surface
             q_solved = Q * phi_solved
 
             # write results to ui
             self.ui.lineEdit_out_Phi.setText(f'{phi_solved:.4f}')
             self.ui.lineEdit_out_q.setText(f'{q_solved:.2f}')
-            self.ui.lineEdit_out_S_or_UA.setText(f'{S_solved/2:.2f}')
+            self.ui.lineEdit_out_S_or_UA.setText(f'{S_solved / 2:.2f}')
 
         self.repaint()

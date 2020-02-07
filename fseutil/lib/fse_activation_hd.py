@@ -2,10 +2,17 @@ import typing
 
 import numpy as np
 
+from fseutil.libstd.pd_7974_1_2019 import eq_10_virtual_origin
+from fseutil.libstd.pd_7974_1_2019 import eq_14_plume_temperature
+from fseutil.libstd.pd_7974_1_2019 import eq_15_plume_velocity
+from fseutil.libstd.pd_7974_1_2019 import eq_26_axisymmetric_ceiling_jet_temperature
+from fseutil.libstd.pd_7974_1_2019 import eq_27_axisymmetric_ceiling_jet_velocity
+from fseutil.libstd.pd_7974_1_2019 import eq_55_activation_of_heat_detector_device
+
 
 def heat_detector_temperature_pd7974(
         gas_time: typing.Union[np.ndarray, list],
-        gas_hrr_kWm2: typing.Union[np.ndarray, list],
+        gas_hrr_kW: typing.Union[np.ndarray, list],
         detector_to_fire_vertical_distance: float,
         detector_to_fire_horizontal_distance: float,
         detector_response_time_index: float,
@@ -21,7 +28,7 @@ def heat_detector_temperature_pd7974(
     rate.
 
     :param gas_time:
-    :param gas_hrr_kWm2:
+    :param gas_hrr_kW:
     :param detector_to_fire_vertical_distance:
     :param detector_to_fire_horizontal_distance:
     :param detector_response_time_index:
@@ -38,28 +45,20 @@ def heat_detector_temperature_pd7974(
     # Check and convert input types
     if isinstance(gas_time, list):
         gas_time = np.array(gas_time)
-    if isinstance(gas_hrr_kWm2, list):
-        gas_hrr_kWm2 = np.array(gas_hrr_kWm2)
+    if isinstance(gas_hrr_kW, list):
+        gas_hrr_kW = np.array(gas_hrr_kW)
 
     # Validate parameters
     # ===================
     try:
-        assert len(gas_time) == len(gas_hrr_kWm2)
+        assert len(gas_time) == len(gas_hrr_kW)
     except AssertionError:
         raise ValueError('Gas time `gas_time` and temperature array `gas_temperature` length do not match.')
-
-    # Imports
-    from fseutil.libstd.pd_7974_1_2019 import eq_10_virtual_origin
-    from fseutil.libstd.pd_7974_1_2019 import eq_14_plume_temperature
-    from fseutil.libstd.pd_7974_1_2019 import eq_15_plume_velocity
-    from fseutil.libstd.pd_7974_1_2019 import eq_55_activation_of_heat_detector_device
-    from fseutil.libstd.pd_7974_1_2019 import eq_26_axisymmetric_ceiling_jet_temperature
-    from fseutil.libstd.pd_7974_1_2019 import eq_27_axisymmetric_ceiling_jet_velocity
 
     # Result containers
     # =================
 
-    fire_diameter = [((gas_hrr_kWm2[0] * fire_convection_fraction / fire_hrr_density_kWm2) / 3.1415926) ** 0.5 * 2]
+    fire_diameter = [((gas_hrr_kW[0] * fire_convection_fraction / fire_hrr_density_kWm2) / 3.1415926) ** 0.5 * 2]
     jet_temperature = [ambient_gas_temperature]
     jet_velocity = [0.]
     detector_temperature = [ambient_gas_temperature]
@@ -67,24 +66,24 @@ def heat_detector_temperature_pd7974(
 
     # Main heat detector temperature calculation starts
     # =================================================
-    
+
     for i in range(1, len(gas_time), 1):
 
         # Calculate change in time, dt
         # ----------------------------
-        dt = gas_time[i] - gas_time[i-1]
+        dt = gas_time[i] - gas_time[i - 1]
 
         # Calculate convective heat release rate
         # --------------------------------------
-        Q_dot_c_kW = gas_hrr_kWm2[i] * fire_convection_fraction
+        Q_dot_c_kW = gas_hrr_kW[i] * fire_convection_fraction
 
         # Calculate fire diameter
         # -----------------------
-        D = ((gas_hrr_kWm2[i] / fire_hrr_density_kWm2) / 3.1415926) ** 0.5 * 2
+        D = ((gas_hrr_kW[i] / fire_hrr_density_kWm2) / 3.1415926) ** 0.5 * 2
 
         # Calculate virtual fire origin
         # -----------------------------
-        z_0 = eq_10_virtual_origin(D=D, Q_dot_kW=gas_hrr_kWm2[i])
+        z_0 = eq_10_virtual_origin(D=D, Q_dot_kW=gas_hrr_kW[i])
         virtual_origin.append(z_0)
 
         # Calculate ceiling jet temperature
@@ -134,11 +133,11 @@ def heat_detector_temperature_pd7974(
             u=u_jet,
             RTI=detector_response_time_index,
             Delta_T_g=theta_jet - ambient_gas_temperature,
-            Delta_T_e=detector_temperature[i-1] - ambient_gas_temperature,
+            Delta_T_e=detector_temperature[i - 1] - ambient_gas_temperature,
             C=detector_conduction_factor
         )
         dTe = dTe_dt * dt
-        Te = dTe + detector_temperature[i-1]
+        Te = dTe + detector_temperature[i - 1]
         # Te = dTe + ambient_gas_temperature
 
         # Record results
@@ -163,7 +162,6 @@ def heat_detector_temperature_pd7974(
 
 
 def _test_heat_detector_activation_ceiling_pd7974():
-
     from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
     # Pre-calculated results
@@ -172,7 +170,7 @@ def _test_heat_detector_activation_ceiling_pd7974():
     t = np.array([i * 0.5 for i in range(1200)])
     res = heat_detector_temperature_pd7974(
         gas_time=t,
-        gas_hrr_kWm2=[eq_22_t_squared_fire_growth(alpha=0.0117, t=i)/1000. for i in t],
+        gas_hrr_kW=[eq_22_t_squared_fire_growth(alpha=0.0117, t=i) / 1000. for i in t],
         detector_to_fire_vertical_distance=3.6,
         detector_to_fire_horizontal_distance=2.83,
         detector_response_time_index=115,
@@ -187,15 +185,8 @@ def _test_heat_detector_activation_ceiling_pd7974():
     given_activation_time = 333  # checked against Chris Mayfield's calculation on 7th Feb 2020 15:20, Bicester
     assert abs(calculated_activation_time - given_activation_time) <= 1.
 
-    import pandas as pd
-    res['time'] = t
-    res['fire_heat_release_rate'] = [eq_22_t_squared_fire_growth(alpha=0.0117, t=i)/1000. for i in t]
-    res = pd.DataFrame.from_dict(res).set_index('time', drop=False)
-    print(res)
-
 
 def _test_heat_detector_activation_ceiling_pd7974_2():
-
     from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
     # Pre-calculated results
@@ -205,7 +196,7 @@ def _test_heat_detector_activation_ceiling_pd7974_2():
     gas_hrr_kWm2 = eq_22_t_squared_fire_growth(0.0117, gas_time) / 1000.
     res = heat_detector_temperature_pd7974(
         gas_time=gas_time,
-        gas_hrr_kWm2=gas_hrr_kWm2,
+        gas_hrr_kW=gas_hrr_kWm2,
         detector_to_fire_vertical_distance=3.,
         detector_to_fire_horizontal_distance=2.5,
         detector_response_time_index=115,
@@ -216,17 +207,12 @@ def _test_heat_detector_activation_ceiling_pd7974_2():
     detector_activation_temperature = 68 + 273.15
 
     # find the activation time
-    calculated_activation_time = gas_time[np.argmin(np.abs(res['detector_temperature'] - detector_activation_temperature))]
-    given_activation_time = 287  # checked against Chris Mayfield's calculation on 7th Feb 2020 15:20, Bicester
+    calculated_activation_time = gas_time[
+        np.argmin(np.abs(res['detector_temperature'] - detector_activation_temperature))]
+    given_activation_time = 287  # checked against Danny Hopkin's calculation on 7th Feb 2020 16:20, Bicester
     assert abs(calculated_activation_time - given_activation_time) <= 1.
-
-    import pandas as pd
-    res['time'] = gas_time
-    res['fire_heat_release_rate'] = [eq_22_t_squared_fire_growth(alpha=0.0117, t=i)/1000. for i in gas_time]
-    res = pd.DataFrame.from_dict(res).set_index('time', drop=False)
-    print(res)
 
 
 if __name__ == '__main__':
-    # _test_heat_detector_activation_ceiling_pd7974()
+    _test_heat_detector_activation_ceiling_pd7974()
     _test_heat_detector_activation_ceiling_pd7974_2()

@@ -1,8 +1,9 @@
 # coding: utf-8
 
 import math
-from typing import Callable
 from statistics import median
+from typing import Callable
+
 from fseutil.libstd.bre_br_187_2014 import eq_A4_phi_parallel_corner
 from fseutil.libstd.bre_br_187_2014 import eq_A5_phi_perpendicular_corner
 
@@ -18,7 +19,6 @@ def linear_solver(
         iter_max: int = 1000,
         func_multiplier: float = 1
 ):
-
     if x_lower > x_upper:
         x_lower += x_upper
         x_upper = x_lower - x_upper
@@ -121,7 +121,7 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
 
     # RECEIVER ON EDGE
     elif ((r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]) or (
-        (r1[1] == e1[1] or r1[1] == e2[1]) and e1[0] < r1[0] < e2[0]
+            (r1[1] == e1[1] or r1[1] == e2[1]) and e1[0] < r1[0] < e2[0]
     ):
         # vertical edge
         if (r1[0] == e1[0] or r1[0] == e2[0]) and e1[1] < r1[1] < e2[1]:
@@ -204,7 +204,6 @@ def four_planes(W_m: float, H_m: float, w_m: float, h_m: float) -> tuple:
 
 
 def _test_phi_parallel_any_br187():
-
     # All testing values are taken from independent sources
 
     # check receiver at emitter corner
@@ -237,7 +236,6 @@ def _test_phi_parallel_any_br187():
 
 
 def _test_phi_perpendicular_any_br187():
-
     # All testing values are taken from independent sources
 
     # check receiver at emitter corner
