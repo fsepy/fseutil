@@ -12,7 +12,7 @@ from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 class Dialog0111(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
-        super(Dialog0111, self).__init__(parent)
+        super().__init__(parent)
         self.ui = Ui_dialog_1_11_heat_detector_activation()
         self.ui.setupUi(self)
 
@@ -27,6 +27,8 @@ class Dialog0111(QtWidgets.QDialog):
 
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
+
+        self.parent().statusBar().showMessage('Hello from sub class.')
 
     def test(self):
 
@@ -47,6 +49,9 @@ class Dialog0111(QtWidgets.QDialog):
         self.repaint()
 
     def calculate(self):
+
+        # clear outputs
+        self.ui.lineEdit_out_t_act.setText('')
 
         # get data
         t = float(self.ui.lineEdit_in_t.text())
@@ -73,7 +78,6 @@ class Dialog0111(QtWidgets.QDialog):
         )
 
         for i, time in enumerate(t):
-            jet_temperature = res['jet_temperature'][i]
             detector_temperature = res['detector_temperature'][i]
             if detector_temperature-273.15 >= detector_activation_temperature:
                 self.ui.lineEdit_out_t_act.setText(f'{time:.1f}')

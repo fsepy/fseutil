@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.init_tabs()
         self.init_logos()
         self.init_buttons()
-
+        
         self.ui.label_big_name.setText('FSEUTIL')
         self.ui.label_version.setText('Version ' + fseutil.__version__)
 
@@ -39,7 +39,7 @@ class MainWindow(QtWidgets.QMainWindow):
         expiry_date_duration = 30
         if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=expiry_date_duration):
             app_ = self.activate_app(Dialog0001)
-            if app_.pass_code != '':
+            if app_.pass_code != '0164153':
                 raise ValueError('Incorrect password.')
             else:
                 app_.close()
