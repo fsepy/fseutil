@@ -81,7 +81,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Solved view factor</string>
+     <string>Solved heat detecting element activation time</string>
     </property>
     <property name="text">
      <string>t&lt;sub&gt;act&lt;sub&gt;</string>
@@ -185,7 +185,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Lateral distance between HD and fire central axis</string>
     </property>
     <property name="text">
      <string>R</string>
@@ -213,7 +213,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Heat release rate density</string>
     </property>
     <property name="text">
      <string>HRRPUA</string>
@@ -275,7 +275,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Fire duration and this should be longer than detection time</string>
     </property>
     <property name="text">
      <string>t</string>
@@ -396,7 +396,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Conduction reduction factor</string>
     </property>
     <property name="text">
      <string>C</string>
@@ -508,7 +508,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Fire growth factor for t-square fire</string>
     </property>
     <property name="text">
      <string>α</string>
@@ -536,7 +536,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Height of fire origin room</string>
     </property>
     <property name="text">
      <string>H</string>
@@ -750,7 +750,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Percentage of convective heat release rate</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;C&lt;span style=&quot; vertical-align:sub;&quot;&gt;conv&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -803,7 +803,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Heat detecting element activation temperature</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;T&lt;span style=&quot; vertical-align:sub;&quot;&gt;act&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -831,7 +831,7 @@
      </size>
     </property>
     <property name="toolTip">
-     <string>Width of emitter</string>
+     <string>Heat detecting element response time index</string>
     </property>
     <property name="text">
      <string>RTI</string>
