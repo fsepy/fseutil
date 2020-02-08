@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_1_1_adb2_datasheet_1
-from fseutil.guilayout.dialog_0101_adb_datasheet_1 import Ui_Dialog
+from fseutil.gui.layout.dialog_0101_adb_datasheet_1 import Ui_Dialog
 
 
 class Dialog0101(QtWidgets.QDialog):

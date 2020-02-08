@@ -5,7 +5,7 @@ import sys
 
 from PySide2 import QtCore, QtWidgets
 
-from fseutil.guilogic.main import MainWindow
+from fseutil.gui.logic.main import MainWindow
 
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 

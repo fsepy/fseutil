@@ -5,17 +5,17 @@ from PySide2 import QtWidgets, QtGui, QtCore
 import fseutil
 from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 from fseutil.etc.images_base64 import OFR_LOGO_2_PNG
-from fseutil.guilayout.main import Ui_MainWindow
-from fseutil.guilogic.dialog_0001_pass_code import Dialog0001 as Dialog0001
-from fseutil.guilogic.dialog_0101_adb_datasheet_1 import Dialog0101 as Dialog0101
-from fseutil.guilogic.dialog_0102_bs9999_datasheet_1 import Dialog0102 as Dialog0102
-from fseutil.guilogic.dialog_0111_heat_detector_activation import Dialog0111 as Dialog0111
-from fseutil.guilogic.dialog_0401_br187_parallel_simple import Dialog0401 as Dialog0401
-from fseutil.guilogic.dialog_0402_br187_perpendicular_simple import Dialog0402 as Dialog0402
-from fseutil.guilogic.dialog_0403_br187_parallel_complex import Dialog0403 as Dialog0403
-from fseutil.guilogic.dialog_0404_br187_perpendicular_complex import Dialog0404 as Dialog0404
-from fseutil.guilogic.dialog_0601_naming_convention import Dialog0601 as Dialog0601
-from fseutil.guilogic.dialog_0602_flame_height import Dialog0602 as Dialog0602
+from fseutil.gui.layout.main import Ui_MainWindow
+from fseutil.gui.logic.dialog_0001_pass_code import Dialog0001 as Dialog0001
+from fseutil.gui.logic.dialog_0101_adb_datasheet_1 import Dialog0101 as Dialog0101
+from fseutil.gui.logic.dialog_0102_bs9999_datasheet_1 import Dialog0102 as Dialog0102
+from fseutil.gui.logic.dialog_0111_heat_detector_activation import Dialog0111 as Dialog0111
+from fseutil.gui.logic.dialog_0401_br187_parallel_simple import Dialog0401 as Dialog0401
+from fseutil.gui.logic.dialog_0402_br187_perpendicular_simple import Dialog0402 as Dialog0402
+from fseutil.gui.logic.dialog_0403_br187_parallel_complex import Dialog0403 as Dialog0403
+from fseutil.gui.logic.dialog_0404_br187_perpendicular_complex import Dialog0404 as Dialog0404
+from fseutil.gui.logic.dialog_0601_naming_convention import Dialog0601 as Dialog0601
+from fseutil.gui.logic.dialog_0602_flame_height import Dialog0602 as Dialog0602
 
 try:
     from fseutil.key import key

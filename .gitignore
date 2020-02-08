@@ -142,7 +142,7 @@ pyinstaller_builds/dist
 /fseutil/dist
 
 # Temporary UI files
-fseutil/guilayout/*.py
+fseutil/gui/layout/*.py
 
 # Include project files
 !fseutil/lib
