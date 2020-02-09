@@ -1,4 +1,6 @@
+import itertools
 from typing import Union
+
 import numpy as np
 from matplotlib.path import Path
 
@@ -249,8 +251,6 @@ def thermal_radiation_dose(xyz: np.ndarray, heat_flux: np.ndarray, ):
 
 
 def _test_phi_perpendicular():
-    import itertools
-    import numpy as np
 
     # PROPERTIE
 
@@ -288,8 +288,6 @@ def _test_phi_perpendicular():
 
 
 def _test_phi_parallel():
-    import itertools
-    import numpy as np
 
     # PROPERTIE
 

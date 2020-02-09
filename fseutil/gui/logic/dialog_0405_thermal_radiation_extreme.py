@@ -53,7 +53,6 @@ class Dialog0405(QtWidgets.QDialog):
         for i in [i.split(',') for i in str.strip(self.ui.plainTextEdit_in_emiter_xyz.toPlainText()).replace(' ', '').split('\n')]:
             if len(i) == 0:
                 continue
-            print(i)
             i_ = list()
             for j in i:
                 i_.append(float(j))
