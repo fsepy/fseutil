@@ -15,6 +15,7 @@ class Dialog0601(QtWidgets.QDialog):
         # default values
         self.ui.lineEdit_1_date.setText(datetime.today().strftime('%Y%m%d')[2:])
         self.ui.comboBox_6_type.setCurrentIndex(4)
+        self.ui.checkBox_replace_spaces.setChecked(True)
 
         # validators
         self.ui.lineEdit_1_date.setValidator((QtGui.QRegExpValidator(QtCore.QRegExp(r'^[0-9]{6,8}'))))
