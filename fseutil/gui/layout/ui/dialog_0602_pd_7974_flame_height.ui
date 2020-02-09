@@ -1033,7 +1033,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Test</string>
+    <string>Example</string>
    </property>
   </widget>
  </widget>

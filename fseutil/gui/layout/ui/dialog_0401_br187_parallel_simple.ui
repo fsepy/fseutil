@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>530</x>
      <y>445</y>
-     <width>341</width>
+     <width>185</width>
      <height>106</height>
     </rect>
    </property>
@@ -241,9 +241,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>530</x>
      <y>315</y>
-     <width>341</width>
+     <width>185</width>
      <height>131</height>
     </rect>
    </property>
@@ -673,7 +673,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Test</string>
+    <string>Example</string>
    </property>
   </widget>
   <zorder>pushButton_calculate</zorder>
