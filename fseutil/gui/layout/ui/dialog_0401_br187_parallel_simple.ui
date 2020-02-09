@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>360</height>
+    <width>816</width>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>175</y>
-     <width>181</width>
-     <height>96</height>
+     <x>440</x>
+     <y>445</y>
+     <width>341</width>
+     <height>106</height>
     </rect>
    </property>
    <property name="title">
@@ -29,7 +29,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>15</y>
+      <y>25</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -57,7 +57,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>40</y>
+      <y>50</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -85,7 +85,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>65</y>
+      <y>75</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -113,7 +113,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>15</y>
+      <y>25</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -147,7 +147,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>50</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -181,7 +181,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>65</y>
+      <y>75</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -215,7 +215,7 @@
     <property name="geometry">
      <rect>
       <x>135</x>
-      <y>40</y>
+      <y>50</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -228,7 +228,7 @@
     <property name="geometry">
      <rect>
       <x>135</x>
-      <y>65</y>
+      <y>75</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -241,10 +241,10 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>35</y>
-     <width>181</width>
-     <height>121</height>
+     <x>440</x>
+     <y>315</y>
+     <width>341</width>
+     <height>131</height>
     </rect>
    </property>
    <property name="title">
@@ -254,7 +254,7 @@
     <property name="geometry">
      <rect>
       <x>135</x>
-      <y>90</y>
+      <y>100</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -279,7 +279,7 @@
     <property name="geometry">
      <rect>
       <x>135</x>
-      <y>65</y>
+      <y>75</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -304,7 +304,7 @@
     <property name="geometry">
      <rect>
       <x>135</x>
-      <y>40</y>
+      <y>50</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -329,7 +329,7 @@
     <property name="geometry">
      <rect>
       <x>135</x>
-      <y>15</y>
+      <y>25</y>
       <width>40</width>
       <height>21</height>
      </rect>
@@ -354,7 +354,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>15</y>
+      <y>25</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -388,7 +388,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>40</y>
+      <y>50</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -422,7 +422,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>90</y>
+      <y>100</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -456,7 +456,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>65</y>
+      <y>75</y>
       <width>60</width>
       <height>21</height>
      </rect>
@@ -490,7 +490,7 @@
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>90</y>
+      <y>100</y>
       <width>51</width>
       <height>21</height>
      </rect>
@@ -528,7 +528,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>65</y>
+      <y>75</y>
       <width>43</width>
       <height>21</height>
      </rect>
@@ -562,7 +562,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>50</y>
       <width>43</width>
       <height>21</height>
      </rect>
@@ -596,7 +596,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>15</y>
+      <y>25</y>
       <width>43</width>
       <height>21</height>
      </rect>
@@ -624,8 +624,8 @@
   <widget class="QPushButton" name="pushButton_calculate">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>325</y>
+     <x>730</x>
+     <y>585</y>
      <width>81</width>
      <height>26</height>
     </rect>
@@ -638,24 +638,24 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>15</y>
-     <width>341</width>
-     <height>285</height>
+     <y>5</y>
+     <width>796</width>
+     <height>566</height>
     </rect>
    </property>
    <property name="text">
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../images/phi_calculator_perpendicular_simple_341x285.png</pixmap>
+    <pixmap>../images/phi_calculator_parallel_simple_794x560.png</pixmap>
    </property>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>305</y>
-     <width>571</width>
+     <y>570</y>
+     <width>816</width>
      <height>21</height>
     </rect>
    </property>
@@ -666,8 +666,8 @@
   <widget class="QPushButton" name="pushButton_test">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>325</y>
+     <x>5</x>
+     <y>585</y>
      <width>81</width>
      <height>26</height>
     </rect>
@@ -676,6 +676,12 @@
     <string>Test</string>
    </property>
   </widget>
+  <zorder>pushButton_calculate</zorder>
+  <zorder>label</zorder>
+  <zorder>line</zorder>
+  <zorder>pushButton_test</zorder>
+  <zorder>groupBox</zorder>
+  <zorder>groupBox_2</zorder>
  </widget>
  <tabstops>
   <tabstop>lineEdit_W</tabstop>
