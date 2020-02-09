@@ -10,6 +10,7 @@ def ui2py():
         'dialog_0403_br187_parallel_complex.ui',
         'dialog_0601_naming_convention.ui',
         'dialog_0602_pd_7974_flame_height.ui',
+        'dialog_0405_thermal_radiation_extreme.ui',
     ]
 
     cwd = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'ui')

@@ -312,9 +312,9 @@ Parallel 2</string>
 Perp. 2</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_0404_br187_perpendicular_complex_2">
+    <widget class="QPushButton" name="pushButton_0405_thermal_radiation_extreme">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -326,8 +326,7 @@ Perp. 2</string>
      </property>
      <property name="text">
       <string>Therm. Rad.
-Analysis
-Extreme</string>
+Analysis</string>
      </property>
     </widget>
    </widget>
