@@ -41,6 +41,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.label_big_name.setText('FSEUTIL')
         self.ui.label_version.setText('Version ' + fseutil.__version__)
 
+        self.ui.dialog_error = QtWidgets.QErrorMessage(self)
+        self.ui.dialog_error.setWindowTitle('Message')
+
     def init_check_expiry_date(self):
         global KEY
 

@@ -19,6 +19,13 @@ class Dialog0401(QtWidgets.QDialog):
         pix_map.loadFromData(ba)
         self.ui.label.setPixmap(pix_map)
 
+        # set up validators
+        self.ui.lineEdit_W.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_H.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_Q.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_S_or_UA.validator.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
+
+        # signal and slots
         self.ui.comboBox_S_or_UA.currentTextChanged.connect(self.change_mode_S_and_UA)
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
