@@ -76,7 +76,7 @@ class Dialog0405(QtWidgets.QDialog):
         )
 
         # write results to ui
-        self.ui.lineEdit_out_Phi.setText(f'{phi:.2f}')
+        self.ui.lineEdit_out_Phi.setText(f'{phi:.4f}')
         self.ui.lineEdit_out_q.setText(f'{receiver_heat_flux/1000:.2f}')
         self.ui.lineEdit_out_T.setText(f'{emitter_temperature:.2f}')
 

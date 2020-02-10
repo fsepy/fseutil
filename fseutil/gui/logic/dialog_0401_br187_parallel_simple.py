@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
-from fseutil.etc.images_base64 import dialog_0401_br187_parallel_figure_1
+from fseutil.etc.images_base64 import dialog_0401_br187_parallel_figure_1 as figure_1
 from fseutil.gui.layout.dialog_0401_br187_parallel_simple import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_solver
 
@@ -14,16 +14,16 @@ class Dialog0401(QtWidgets.QDialog):
         self.ui.setupUi(self)
 
         # set up radiation figure
-        ba = QtCore.QByteArray.fromBase64(dialog_0401_br187_parallel_figure_1)
+        ba = QtCore.QByteArray.fromBase64(figure_1)
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.ui.label.setPixmap(pix_map)
 
         # set up validators
-        self.ui.lineEdit_W.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
-        self.ui.lineEdit_H.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
-        self.ui.lineEdit_Q.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
-        self.ui.lineEdit_S_or_UA.validator.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[1-9][0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_W.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_H.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_Q.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[0-9]*\.{0,1}[0-9]*!')))
+        self.ui.lineEdit_S_or_UA.setValidator(QtGui.QRegExpValidator(QtCore.QRegExp(r'^[0-9]*\.{0,1}[0-9]*!')))
 
         # signal and slots
         self.ui.comboBox_S_or_UA.currentTextChanged.connect(self.change_mode_S_and_UA)
@@ -123,4 +123,4 @@ class Dialog0401(QtWidgets.QDialog):
             self.ui.lineEdit_out_q.setText(f'{q_solved:.2f}')
             self.ui.lineEdit_out_S_or_UA.setText(f'{S_solved / 2:.2f}')
 
-            self.repaint()
+        self.repaint()

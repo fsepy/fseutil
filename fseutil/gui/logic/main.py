@@ -7,8 +7,8 @@ from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 from fseutil.etc.images_base64 import OFR_LOGO_2_PNG
 from fseutil.gui.layout.main import Ui_MainWindow
 from fseutil.gui.logic.dialog_0001_pass_code import Dialog0001 as Dialog0001
-from fseutil.gui.logic.dialog_0101_adb_datasheet_1 import Dialog0101 as Dialog0101
-from fseutil.gui.logic.dialog_0102_bs9999_datasheet_1 import Dialog0102 as Dialog0102
+from fseutil.gui.logic.dialog_0101_adb_datasheet_1 import Dialog as Dialog0101
+from fseutil.gui.logic.dialog_0102_bs9999_datasheet_1 import Dialog as Dialog0102
 from fseutil.gui.logic.dialog_0111_heat_detector_activation import Dialog0111 as Dialog0111
 from fseutil.gui.logic.dialog_0401_br187_parallel_simple import Dialog0401 as Dialog0401
 from fseutil.gui.logic.dialog_0402_br187_perpendicular_simple import Dialog0402 as Dialog0402
@@ -19,8 +19,7 @@ from fseutil.gui.logic.dialog_0601_naming_convention import Dialog0601 as Dialog
 from fseutil.gui.logic.dialog_0602_flame_height import Dialog0602 as Dialog0602
 
 try:
-    from fseutil.key import key
-
+    from fseutil.__key__ import key
     KEY = key()
 except ModuleNotFoundError:
     KEY = None
@@ -34,7 +33,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setWindowTitle('OFR Fire Safety Engineering Utility Tools')
 
         self.init_check_expiry_date()
-        self.init_tabs()
         self.init_logos()
         self.init_buttons()
 
@@ -55,9 +53,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 raise ValueError('Incorrect password.')
             else:
                 app_.close()
-
-    def init_tabs(self):
-        self.ui.action_0101_ADB_Vol_2_Datasheet.triggered.connect(lambda: self.activate_app(Dialog0101))
 
     def init_logos(self):
         ba = QtCore.QByteArray.fromBase64(OFR_LOGO_1_PNG)
