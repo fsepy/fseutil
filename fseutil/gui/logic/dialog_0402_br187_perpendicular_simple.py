@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
-from fseutil.etc.images_base64 import dialog_4_2_br187_perpendicular_figure_1
+from fseutil.etc.images_base64 import dialog_0402_br187_perpendicular_figure_1
 from fseutil.gui.layout.dialog_0401_br187_parallel_simple import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_perpendicular_any_br187, linear_solver
 
@@ -16,7 +16,7 @@ class Dialog0402(QtWidgets.QDialog):
         self.setWindowTitle('BR 187 Thermal Radiation Calculation (Perpendicular)')
 
         # set up radiation figure
-        ba = QtCore.QByteArray.fromBase64(dialog_4_2_br187_perpendicular_figure_1)
+        ba = QtCore.QByteArray.fromBase64(dialog_0402_br187_perpendicular_figure_1)
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.ui.label.setPixmap(pix_map)

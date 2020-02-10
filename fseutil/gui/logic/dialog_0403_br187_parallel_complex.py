@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
-from fseutil.etc.images_base64 import dialog_4_3_br187_parallel_figure_1
+from fseutil.etc.images_base64 import dialog_0401_br187_parallel_figure_1
 from fseutil.gui.layout.dialog_0403_br187_parallel_complex import Ui_Dialog
 from fseutil.lib.fse_thermal_radiation import phi_parallel_any_br187, linear_solver
 
@@ -14,7 +14,7 @@ class Dialog0403(QtWidgets.QDialog):
         self.ui.setupUi(self)
 
         # set up radiation figure
-        ba = QtCore.QByteArray.fromBase64(dialog_4_3_br187_parallel_figure_1)
+        ba = QtCore.QByteArray.fromBase64(dialog_0401_br187_parallel_figure_1)
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.ui.label.setPixmap(pix_map)

@@ -6,245 +6,75 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>360</height>
+    <width>816</width>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>BR 187 Thermal Radiation Calculation (Parallel Complex)</string>
+   <string>BR 187 Thermal Radiation Calculation (Parallel)</string>
   </property>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QPushButton" name="pushButton_calculate">
    <property name="geometry">
     <rect>
-     <x>375</x>
-     <y>195</y>
-     <width>186</width>
-     <height>111</height>
+     <x>730</x>
+     <y>585</y>
+     <width>81</width>
+     <height>26</height>
     </rect>
    </property>
-   <property name="title">
-    <string>Outputs</string>
+   <property name="text">
+    <string>Calculate</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_out_Phi">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>25</y>
-      <width>60</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>60</width>
-      <height>16777215</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_out_q">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>50</y>
-      <width>60</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>60</width>
-      <height>16777215</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_out_S_or_UA">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>75</y>
-      <width>60</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>60</width>
-      <height>16777215</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>25</y>
-      <width>40</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>40</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>Solved view factor</string>
-    </property>
-    <property name="text">
-     <string>Φ</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>40</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>20</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>Solved heat flux at receiver surface 100 % unprotected.</string>
-    </property>
-    <property name="text">
-     <string>q</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_out_S_or_UA">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>75</y>
-      <width>40</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>20</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>Solved maximum permissible unprotected area</string>
-    </property>
-    <property name="text">
-     <string>UA</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_25">
-    <property name="geometry">
-     <rect>
-      <x>135</x>
-      <y>50</y>
-      <width>50</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>kW/m²</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_out_unit_S_or_UA">
-    <property name="geometry">
-     <rect>
-      <x>135</x>
-      <y>75</y>
-      <width>50</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>%</string>
-    </property>
-   </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>5</y>
+     <width>796</width>
+     <height>566</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../images/phi_calculator_parallel_simple_794x560.png</pixmap>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>570</y>
+     <width>816</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_test">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>585</y>
+     <width>81</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Example</string>
+   </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>375</x>
-     <y>5</y>
+     <x>515</x>
+     <y>285</y>
      <width>186</width>
-     <height>186</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="title">
@@ -795,72 +625,234 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton_calculate">
+  <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>325</y>
-     <width>81</width>
-     <height>26</height>
+     <x>515</x>
+     <y>470</y>
+     <width>186</width>
+     <height>106</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Calculate</string>
+   <property name="title">
+    <string>Outputs</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>341</width>
-     <height>285</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../images/phi_calculator_parallel_complex_341x285.png</pixmap>
-   </property>
-  </widget>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>305</y>
-     <width>571</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_test">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>325</y>
-     <width>81</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Exmaple</string>
-   </property>
+   <widget class="QLineEdit" name="lineEdit_out_Phi">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>25</y>
+      <width>60</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>16777215</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_out_q">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>50</y>
+      <width>60</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>16777215</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_out_S_or_UA">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>75</y>
+      <width>60</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>16777215</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>25</y>
+      <width>40</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>40</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>40</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>Solved view factor</string>
+    </property>
+    <property name="text">
+     <string>Φ</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>40</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>40</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>Solved heat flux at receiver surface 100 % unprotected.</string>
+    </property>
+    <property name="text">
+     <string>q</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_out_S_or_UA">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>75</y>
+      <width>40</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>20</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>40</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>Solved maximum permissible unprotected area</string>
+    </property>
+    <property name="text">
+     <string>UA</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_25">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>50</y>
+      <width>50</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>kW/m²</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_out_unit_S_or_UA">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>75</y>
+      <width>50</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>%</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_W</tabstop>
-  <tabstop>lineEdit_H</tabstop>
-  <tabstop>lineEdit_Q</tabstop>
-  <tabstop>comboBox_S_or_UA</tabstop>
-  <tabstop>lineEdit_S_or_UA</tabstop>
   <tabstop>pushButton_calculate</tabstop>
-  <tabstop>lineEdit_out_Phi</tabstop>
-  <tabstop>lineEdit_out_q</tabstop>
-  <tabstop>lineEdit_out_S_or_UA</tabstop>
  </tabstops>
  <resources/>
  <connections/>
