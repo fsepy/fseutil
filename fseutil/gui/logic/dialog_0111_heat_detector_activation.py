@@ -32,7 +32,7 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
 
-        self.parent().statusBar().showMessage('Hello from sub class.')
+        self.statusBar().showMessage('hello world')
 
     def set_plume_temperature_correlation(self, val):
         self.ui.checkBox_option_use_plume_temperature.setChecked(val)
