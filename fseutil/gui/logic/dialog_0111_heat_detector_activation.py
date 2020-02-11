@@ -2,34 +2,44 @@ import base64
 import tempfile
 
 import numpy as np
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_0111_heat_detector_activation_figure_1
-from fseutil.gui.layout.dialog_0111_heat_detector_activation import Ui_Dialog
+from fseutil.gui.layout.dialog_0111_heat_detector_activation import Ui_MainWindow as Ui_Dialog
 from fseutil.lib.fse_activation_hd import heat_detector_temperature_pd7974
 from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 
 
-class Dialog0111(QtWidgets.QDialog):
+class Dialog0111(QtWidgets.QMainWindow):
+
+    _results = None
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        # set up radiation figure
-
-        _, fp_image_1 = tempfile.mkstemp()
-        with open(fp_image_1, "wb") as f:
-            f.write(base64.b64decode(dialog_0111_heat_detector_activation_figure_1))
-
-        pixmap = QtGui.QPixmap(fp_image_1)
+        # default values
+        self.set_plume_temperature_correlation(False)
+        pixmap = QtGui.QPixmap()
+        pixmap.loadFromData(QtCore.QByteArray.fromBase64(dialog_0111_heat_detector_activation_figure_1))
         self.ui.label.setPixmap(pixmap)
 
+        # signals
+        self.ui.checkBox_option_use_plume_temperature.stateChanged.connect(
+            lambda x=self.ui.checkBox_option_use_plume_temperature.isChecked(): self.set_plume_temperature_correlation(x)
+        )
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
 
         self.parent().statusBar().showMessage('Hello from sub class.')
+
+    def set_plume_temperature_correlation(self, val):
+        self.ui.checkBox_option_use_plume_temperature.setChecked(val)
+        if val:
+            self.ui.lineEdit_in_R.setEnabled(False)
+        else:
+            self.ui.lineEdit_in_R.setEnabled(True)
 
     def test(self):
         self.ui.lineEdit_in_t.setText('600')
@@ -56,7 +66,10 @@ class Dialog0111(QtWidgets.QDialog):
         time = float(self.ui.lineEdit_in_t.text())
         alpha = float(self.ui.lineEdit_in_alpha.text())
         detector_to_fire_vertical_distance = float(self.ui.lineEdit_in_H.text())
-        detector_to_fire_horizontal_distance = float(self.ui.lineEdit_in_R.text())
+        try:  # `detector_to_fire_horizontal_distance` may be disabled if plume temperature correlation is checked.
+            detector_to_fire_horizontal_distance = float(self.ui.lineEdit_in_R.text())
+        except ValueError:
+            detector_to_fire_horizontal_distance = 0.
         detector_response_time_index = float(self.ui.lineEdit_in_RTI.text())
         detector_conduction_factor = float(self.ui.lineEdit_in_C.text())
         fire_hrr_density_kWm2 = float(self.ui.lineEdit_in_HRRPUA.text())
@@ -75,6 +88,7 @@ class Dialog0111(QtWidgets.QDialog):
             detector_conduction_factor=detector_conduction_factor,
             fire_hrr_density_kWm2=fire_hrr_density_kWm2,
             fire_convection_fraction=fire_convection_fraction,
+            force_plume_temperature_correlation=self.ui.checkBox_option_use_plume_temperature.isChecked()
         )
         res['time'], res['gas_hrr_kW'] = time, gas_hrr_kW
 
@@ -97,5 +111,8 @@ class Dialog0111(QtWidgets.QDialog):
             if i % 25 == 0:
                 print('\n'+''.join(f'{i_:<15.15}' for i_ in list_title))
             print(''.join(fs1_))
+
+        # store calculated results
+        self._results = res
 
         self.repaint()
