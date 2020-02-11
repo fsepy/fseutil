@@ -83,5 +83,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def activate_app(self, app_):
         app_ = app_(self)
         app_.show()
-        app_.exec_()
+        try:
+            app_.exec_()
+        except AttributeError:
+            pass
         return app_
