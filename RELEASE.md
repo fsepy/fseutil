@@ -29,7 +29,7 @@ This file documents the release history of `fseutil`.
 - [ ] Created GUI layout template guidance.
 - [ ] Converted all independent modules into QMainWindow objects, i.e. to have status bar.
 - [ ] Finalised GUI interface for:
-    - [ ] 0111\.
+    - [x] 0111\.
     - [ ] 0602\.
 - [ ] 0401 0402 0403 0404 implemented tableview for batch process calculation.
 - [ ] Implemented error handling.

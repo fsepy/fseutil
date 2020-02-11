@@ -81,7 +81,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.pushButton_0602_pd7974_flame_height.clicked.connect(lambda: self.activate_app(Dialog0602))
 
     def activate_app(self, app_):
-        app_ = app_()
+        app_ = app_(self)
         app_.show()
         try:
             app_.exec_()
