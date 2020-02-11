@@ -1,111 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dialog_1_11_heat_detector_activation</class>
- <widget class="QDialog" name="dialog_1_11_heat_detector_activation">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>611</width>
-    <height>396</height>
+    <width>816</width>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PD 7974-1 Heat Detecting Element Activation Time Calculator</string>
+   <string>BR 187 Thermal Radiation Calculation (Parallel)</string>
   </property>
-  <widget class="QGroupBox" name="groupBox_2">
+  <widget class="QPushButton" name="pushButton_calculate">
    <property name="geometry">
     <rect>
-     <x>375</x>
-     <y>275</y>
-     <width>221</width>
-     <height>56</height>
+     <x>730</x>
+     <y>585</y>
+     <width>81</width>
+     <height>26</height>
     </rect>
    </property>
-   <property name="title">
-    <string>Outputs</string>
+   <property name="text">
+    <string>Calculate</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_out_t_act">
-    <property name="geometry">
-     <rect>
-      <x>85</x>
-      <y>25</y>
-      <width>60</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>60</width>
-      <height>16777215</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>25</y>
-      <width>40</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>40</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="toolTip">
-     <string>Solved heat detecting element activation time</string>
-    </property>
-    <property name="text">
-     <string>t&lt;sub&gt;act&lt;sub&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_25">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>25</y>
-      <width>50</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>s</string>
-    </property>
-   </widget>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>5</y>
+     <width>796</width>
+     <height>566</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>../images/0111_heat_detector_794_560.png</pixmap>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>570</y>
+     <width>816</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_test">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>585</y>
+     <width>81</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Example</string>
+   </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>375</x>
-     <y>10</y>
+     <x>365</x>
+     <y>315</y>
      <width>221</width>
      <height>256</height>
     </rect>
@@ -872,74 +839,97 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton_calculate">
+  <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>515</x>
-     <y>355</y>
-     <width>81</width>
-     <height>26</height>
+     <x>585</x>
+     <y>515</y>
+     <width>221</width>
+     <height>56</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Calculate</string>
+   <property name="title">
+    <string>Outputs</string>
    </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>341</width>
-     <height>285</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../images/heat_detector_activation_341x285.png</pixmap>
-   </property>
-  </widget>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>340</y>
-     <width>611</width>
-     <height>10</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_test">
-   <property name="geometry">
-    <rect>
-     <x>15</x>
-     <y>355</y>
-     <width>81</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Example</string>
-   </property>
+   <widget class="QLineEdit" name="lineEdit_out_t_act">
+    <property name="geometry">
+     <rect>
+      <x>85</x>
+      <y>25</y>
+      <width>60</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>16777215</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>25</y>
+      <width>40</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>40</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>40</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="toolTip">
+     <string>Solved heat detecting element activation time</string>
+    </property>
+    <property name="text">
+     <string>t&lt;sub&gt;act&lt;sub&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_25">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>25</y>
+      <width>50</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>s</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_in_t</tabstop>
-  <tabstop>lineEdit_in_alpha</tabstop>
-  <tabstop>lineEdit_in_H</tabstop>
-  <tabstop>lineEdit_in_R</tabstop>
-  <tabstop>lineEdit_in_RTI</tabstop>
-  <tabstop>lineEdit_in_C</tabstop>
-  <tabstop>lineEdit_in_HRRPUA</tabstop>
-  <tabstop>lineEdit_in_C_conv</tabstop>
-  <tabstop>lineEdit_in_T_act</tabstop>
   <tabstop>pushButton_calculate</tabstop>
-  <tabstop>lineEdit_out_t_act</tabstop>
  </tabstops>
  <resources/>
  <connections/>
