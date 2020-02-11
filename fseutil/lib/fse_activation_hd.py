@@ -22,7 +22,8 @@ def heat_detector_temperature_pd7974(
         ambient_gravity_acceleration: float = 9.81,
         ambient_gas_temperature: float = 293.15,
         ambient_gas_specific_heat: float = 1.2,
-        ambient_gas_density: float = 1.0
+        ambient_gas_density: float = 1.0,
+        force_plume_temperature_correlation: bool = False,
 ):
     """This function calculates heat detector device time - temperature revolution based on specified fire heat release
     rate.
@@ -39,6 +40,7 @@ def heat_detector_temperature_pd7974(
     :param ambient_gas_density:
     :param ambient_gas_specific_heat:
     :param ambient_gravity_acceleration:
+    :param force_plume_temperature_correlation:
     :return:
     """
 
@@ -88,14 +90,14 @@ def heat_detector_temperature_pd7974(
 
         # Calculate ceiling jet temperature
         # ---------------------------------
-        try:
+        if not force_plume_temperature_correlation:
             theta_jet_rise = eq_26_axisymmetric_ceiling_jet_temperature(
                 Q_dot_c_kW=Q_dot_c_kW,
                 z_H=detector_to_fire_vertical_distance,
                 z_0=z_0,
                 r=detector_to_fire_horizontal_distance,
             )
-        except AssertionError:
+        else:
             theta_jet_rise = eq_14_plume_temperature(
                 T_0=ambient_gas_temperature,
                 g=ambient_gravity_acceleration,
@@ -103,20 +105,20 @@ def heat_detector_temperature_pd7974(
                 rho_0=ambient_gas_density,
                 Q_dot_c_kW=Q_dot_c_kW,
                 z=detector_to_fire_vertical_distance,
-                z_0=z_0,
+                z_0=z_0
             )
         theta_jet = theta_jet_rise + ambient_gas_temperature
 
         # Calculate ceiling jet velocity
         # ------------------------------
-        try:
+        if not force_plume_temperature_correlation:
             u_jet = eq_27_axisymmetric_ceiling_jet_velocity(
                 Q_dot_c_kW=Q_dot_c_kW,
                 z_H=detector_to_fire_vertical_distance,
                 z_0=z_0,
                 r=detector_to_fire_horizontal_distance,
             )
-        except AssertionError:
+        else:
             u_jet = eq_15_plume_velocity(
                 T_0=ambient_gas_temperature,
                 g=ambient_gravity_acceleration,
