@@ -416,7 +416,12 @@ def eq_26_axisymmetric_ceiling_jet_temperature(
     """
 
     # Limitations see docstring
-    assert r / (z_H - z_0) > 0.134
+    try:
+        assert r / (z_H - z_0) > 0.134
+    except AssertionError:
+        errmsg = f'Failed to assert `r / (z_H - z_0) = {r / (z_H - z_0):.3f} > 0.134`. ' \
+                 f'Inputs are outside of the Alpert\'s ceiling jet correlation limits.'
+        raise ValueError(errmsg)
 
     # intermediate variables
     aa = 6.721
@@ -478,7 +483,12 @@ def eq_27_axisymmetric_ceiling_jet_velocity(
     """
 
     # Limitations see docstring
-    assert r / (z_H - z_0) > 0.246
+    try:
+        assert r / (z_H - z_0) > 0.246
+    except AssertionError:
+        errmsg = f'Failed to assert `r / (z_H - z_0) = {r / (z_H - z_0)} > 0.246`. ' \
+                 f'Inputs are outside of the Alpert\'s ceiling jet correlation limits.'
+        raise ValueError(errmsg)
 
     # intermediate variables
     aa = 0.2526

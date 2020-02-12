@@ -32,6 +32,12 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
         self.ui.radioButton_fire_plume.toggled.connect(self.set_temperature_correlation)
+        self.ui.groupBox.clicked.connect(lambda: print('hello'))
+
+    def error(self, msg: str, stop: bool = False):
+        self.statusBar().showMessage(msg)
+        if stop:
+            raise ValueError
 
     def set_temperature_correlation(self):
         if self.ui.radioButton_fire_plume.isChecked():
@@ -67,33 +73,43 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_t_act.setText('')
 
         # get data
-        time = float(self.ui.lineEdit_in_t.text())
-        alpha = float(self.ui.lineEdit_in_alpha.text())
-        detector_to_fire_vertical_distance = float(self.ui.lineEdit_in_H.text())
-        try:  # `detector_to_fire_horizontal_distance` may be disabled if plume temperature correlation is checked.
-            detector_to_fire_horizontal_distance = float(self.ui.lineEdit_in_R.text())
-        except ValueError:
-            detector_to_fire_horizontal_distance = 0.
-        detector_response_time_index = float(self.ui.lineEdit_in_RTI.text())
-        detector_conduction_factor = float(self.ui.lineEdit_in_C.text())
-        fire_hrr_density_kWm2 = float(self.ui.lineEdit_in_HRRPUA.text())
-        fire_convection_fraction = float(self.ui.lineEdit_in_C_conv.text())
-        detector_activation_temperature = float(self.ui.lineEdit_in_T_act.text())
+        try:
+            time = float(self.ui.lineEdit_in_t.text())
+            alpha = float(self.ui.lineEdit_in_alpha.text())
+            detector_to_fire_vertical_distance = float(self.ui.lineEdit_in_H.text())
+            if self.ui.radioButton_ceiling_jet.isChecked():  # `detector_to_fire_horizontal_distance` may be disabled if plume temperature correlation is checked.
+                detector_to_fire_horizontal_distance = float(self.ui.lineEdit_in_R.text())
+            else:
+                detector_to_fire_horizontal_distance = 0.
+            detector_response_time_index = float(self.ui.lineEdit_in_RTI.text())
+            detector_conduction_factor = float(self.ui.lineEdit_in_C.text())
+            fire_hrr_density_kWm2 = float(self.ui.lineEdit_in_HRRPUA.text())
+            fire_convection_fraction = float(self.ui.lineEdit_in_C_conv.text())
+            detector_activation_temperature = float(self.ui.lineEdit_in_T_act.text())
+        except Exception as e:
+            self.error('Calculation incomplete. Failed to parse inputs')
+            raise e
 
         # calculate all sorts of things
         time = np.arange(0, time, 1.)
         gas_hrr_kW = eq_22_t_squared_fire_growth(alpha, time) / 1000.
-        res = heat_detector_temperature_pd7974(
-            gas_time=time,
-            gas_hrr_kW=gas_hrr_kW,
-            detector_to_fire_vertical_distance=detector_to_fire_vertical_distance,
-            detector_to_fire_horizontal_distance=detector_to_fire_horizontal_distance,
-            detector_response_time_index=detector_response_time_index,
-            detector_conduction_factor=detector_conduction_factor,
-            fire_hrr_density_kWm2=fire_hrr_density_kWm2,
-            fire_convection_fraction=fire_convection_fraction,
-            force_plume_temperature_correlation=self.ui.radioButton_fire_plume.isChecked()
-        )
+
+        try:
+            res = heat_detector_temperature_pd7974(
+                gas_time=time,
+                gas_hrr_kW=gas_hrr_kW,
+                detector_to_fire_vertical_distance=detector_to_fire_vertical_distance,
+                detector_to_fire_horizontal_distance=detector_to_fire_horizontal_distance,
+                detector_response_time_index=detector_response_time_index,
+                detector_conduction_factor=detector_conduction_factor,
+                fire_hrr_density_kWm2=fire_hrr_density_kWm2,
+                fire_convection_fraction=fire_convection_fraction,
+                force_plume_temperature_correlation=self.ui.radioButton_fire_plume.isChecked()
+            )
+        except Exception as e:
+            self.error('Calculation incomplete. ' + str(e))
+            raise e
+
         res['time'], res['gas_hrr_kW'] = time, gas_hrr_kW
 
         # work out activation time
