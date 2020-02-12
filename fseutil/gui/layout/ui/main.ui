@@ -52,7 +52,7 @@ Size</string>
      </property>
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>95</x>
        <y>20</y>
        <width>70</width>
        <height>70</height>
