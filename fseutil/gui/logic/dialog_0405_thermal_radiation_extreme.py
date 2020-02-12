@@ -2,15 +2,15 @@ from PySide2 import QtWidgets, QtGui, QtCore
 import numpy as np
 from fseutil.lib.fse_thermal_radiation_3d import single_receiver, heat_flux_to_temperature
 from fseutil.etc.images_base64 import dialog_0404_br187_perpendicular_figure_1
-from fseutil.gui.layout.dialog_0405_thermal_radiation_extreme import Ui_Dialog
+from fseutil.gui.layout.dialog_0405_thermal_radiation_extreme import Ui_MainWindow
 
 
-class Dialog0405(QtWidgets.QDialog):
+class Dialog0405(QtWidgets.QMainWindow):
     maximum_acceptable_thermal_radiation_heat_flux = 12.6
 
     def __init__(self, parent=None):
         super(Dialog0405, self).__init__(parent)
-        self.ui = Ui_Dialog()
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle('Thermal Radiation Analysis Extreme')
 

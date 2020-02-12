@@ -2,14 +2,14 @@ from datetime import datetime
 
 from PySide2 import QtWidgets, QtCore, QtGui
 
-from fseutil.gui.layout.dialog_0601_naming_convention import Ui_dialog_6_1_naming_convention
+from fseutil.gui.layout.dialog_0601_naming_convention import Ui_MainWindow
 
 
-class Dialog0601(QtWidgets.QDialog):
+class Dialog0601(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         # init
         super(Dialog0601, self).__init__(parent)
-        self.ui = Ui_dialog_6_1_naming_convention()
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
         # default values

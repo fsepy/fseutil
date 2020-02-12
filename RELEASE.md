@@ -26,8 +26,7 @@ This file documents the release history of `fseutil`.
 ### XX/XX/2020 VERSION: 0.0.1.dev20200214
 
 - [x] 0111 provided an option to switch to plume temperature correlations (i.e. near-field).
-- [ ] Created GUI layout template guidance.
-- [ ] Converted all independent modules into QMainWindow objects, i.e. to have status bar.
+- [x] Converted all independent modules into QMainWindow objects, i.e. to have a status bar.
 - [ ] Finalised GUI interface for:
     - [x] 0111\.
     - [ ] 0602\.
@@ -39,13 +38,13 @@ This file documents the release history of `fseutil`.
     - [ ] 0403\.
     - [ ] 0404\.
     - [ ] 0602\.
-- [ ] Sanity Check GUI floating tip text.
-    - [ ] 0111\.
-    - [ ] 0401\.
-    - [ ] 0402\.
-    - [ ] 0403\.
-    - [ ] 0404\.
-    - [ ] 0405\.
-    - [ ] 0601\.
-    - [ ] 0602\.
+- [ ] Sanity Check GUI tip text.
+    - [x] 0111\.
+    - [x] 0401\.
+    - [x] 0402\.
+    - [x] 0403\.
+    - [x] 0404\.
+    - [x] 0405\.
+    - [x] 0601\.
+    - [x] 0602\.
 - [ ] 0111 Implemented graphical output.

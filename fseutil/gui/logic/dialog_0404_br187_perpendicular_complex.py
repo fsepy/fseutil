@@ -1,16 +1,16 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_0404_br187_perpendicular_figure_1 as figure_1
-from fseutil.gui.layout.dialog_0403_br187_parallel_complex import Ui_Dialog
+from fseutil.gui.layout.dialog_0403_br187_parallel_complex import Ui_MainWindow
 from fseutil.lib.fse_thermal_radiation import phi_perpendicular_any_br187, linear_solver
 
 
-class Dialog0404(QtWidgets.QDialog):
+class Dialog0404(QtWidgets.QMainWindow):
     maximum_acceptable_thermal_radiation_heat_flux = 12.6
 
     def __init__(self, parent=None):
         super(Dialog0404, self).__init__(parent)
-        self.ui = Ui_Dialog()
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle('BR 187 Thermal Radiation Calculator (Perpendicular Complex)')
 

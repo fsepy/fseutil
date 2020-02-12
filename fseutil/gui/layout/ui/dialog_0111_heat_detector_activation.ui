@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>826</width>
-    <height>681</height>
+    <height>669</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="pushButton_calculate">
     <property name="geometry">
      <rect>
-      <x>740</x>
+      <x>735</x>
       <y>610</y>
       <width>76</width>
       <height>24</height>
@@ -154,13 +154,13 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>../images/0111_heat_detector_794_560.png</pixmap>
+     <pixmap>../images/0111_1_heat_detector_794_560.png</pixmap>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>400</x>
       <y>320</y>
       <width>201</width>
       <height>256</height>
@@ -269,7 +269,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Heat release rate density</string>
+      <string>Heat release rate per unit area</string>
      </property>
      <property name="text">
       <string>HRRPUA</string>
@@ -308,6 +308,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string/>
+     </property>
     </widget>
     <widget class="QLabel" name="label_31">
      <property name="geometry">
@@ -331,7 +334,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Fire duration and this should be longer than detection time</string>
+      <string>Fire duration</string>
      </property>
      <property name="text">
       <string>t</string>
@@ -369,6 +372,9 @@
        <width>0</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="label_49">
@@ -429,6 +435,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string/>
+     </property>
     </widget>
     <widget class="QLabel" name="label_39">
      <property name="geometry">
@@ -452,7 +461,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Conduction reduction factor</string>
+      <string>Conduction factor</string>
      </property>
      <property name="text">
       <string>C</string>
@@ -515,6 +524,9 @@
        <width>0</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="label_47">
@@ -592,7 +604,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Height of fire origin room</string>
+      <string>Vertical distance between the fire bed and the detecting element</string>
      </property>
      <property name="text">
       <string>H</string>
@@ -630,6 +642,9 @@
        <width>0</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="label_45">
@@ -690,6 +705,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string/>
+     </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit_in_t">
      <property name="geometry">
@@ -723,6 +741,9 @@
        <width>0</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string>Calculation time duration</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_43">
@@ -783,6 +804,9 @@
        <height>0</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string>Fire growth factor (t-square fire)</string>
+     </property>
     </widget>
     <widget class="QLabel" name="label_41">
      <property name="geometry">
@@ -806,7 +830,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Percentage of convective heat release rate</string>
+      <string>Percentage of convective heat release rate to total heat release rate</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;C&lt;span style=&quot; vertical-align:sub;&quot;&gt;conv&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -887,7 +911,7 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Heat detecting element response time index</string>
+      <string>Response time index</string>
      </property>
      <property name="text">
       <string>RTI</string>
@@ -926,13 +950,16 @@
        <height>0</height>
       </size>
      </property>
+     <property name="toolTip">
+      <string/>
+     </property>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_gas_temperature">
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>440</y>
+      <y>435</y>
       <width>201</width>
       <height>80</height>
      </rect>
@@ -949,8 +976,11 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>To use ceiling jet equations for calculating temperature and velocity</string>
+     </property>
      <property name="text">
-      <string>Ceiling Jet Temperature</string>
+      <string>Use Ceiling Jet Equations</string>
      </property>
     </widget>
     <widget class="QRadioButton" name="radioButton_fire_plume">
@@ -962,8 +992,11 @@
        <height>20</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>To use plume equations for calculating temperature and velocity</string>
+     </property>
      <property name="text">
-      <string>Fire Plume Temperature</string>
+      <string>Use Plume Equations</string>
      </property>
     </widget>
    </widget>
@@ -988,8 +1021,19 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>lineEdit_out_t_act</tabstop>
+  <tabstop>lineEdit_in_t</tabstop>
+  <tabstop>lineEdit_in_alpha</tabstop>
+  <tabstop>lineEdit_in_H</tabstop>
+  <tabstop>lineEdit_in_R</tabstop>
+  <tabstop>lineEdit_in_RTI</tabstop>
+  <tabstop>lineEdit_in_C</tabstop>
+  <tabstop>lineEdit_in_HRRPUA</tabstop>
+  <tabstop>lineEdit_in_C_conv</tabstop>
+  <tabstop>lineEdit_in_T_act</tabstop>
+  <tabstop>radioButton_ceiling_jet</tabstop>
+  <tabstop>radioButton_fire_plume</tabstop>
   <tabstop>pushButton_calculate</tabstop>
+  <tabstop>lineEdit_out_t_act</tabstop>
   <tabstop>pushButton_test</tabstop>
  </tabstops>
  <resources/>
