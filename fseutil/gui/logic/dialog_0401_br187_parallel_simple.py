@@ -30,8 +30,6 @@ class Dialog0401(QtWidgets.QMainWindow):
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
 
-        print(self.window().frameGeometry())
-
     def change_mode_S_and_UA(self):
         """update ui to align with whether to calculate boundary distance or unprotected area %"""
 

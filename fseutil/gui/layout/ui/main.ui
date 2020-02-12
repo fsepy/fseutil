@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>474</width>
-    <height>613</height>
+    <width>461</width>
+    <height>621</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,8 +20,8 @@
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>220</y>
+      <x>15</x>
+      <y>225</y>
       <width>181</width>
       <height>106</height>
      </rect>
@@ -68,7 +68,7 @@ Transfer
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>15</x>
       <y>110</y>
       <width>381</width>
       <height>106</height>
@@ -160,8 +160,8 @@ No. 1</string>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>440</y>
+      <x>15</x>
+      <y>455</y>
       <width>311</width>
       <height>106</height>
      </rect>
@@ -244,8 +244,8 @@ Height</string>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>330</y>
+      <x>15</x>
+      <y>340</y>
       <width>381</width>
       <height>106</height>
      </rect>
@@ -333,8 +333,8 @@ Analysis</string>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
+      <x>15</x>
+      <y>15</y>
       <width>431</width>
       <height>84</height>
      </rect>
@@ -380,22 +380,6 @@ All rights reserved.</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="label_version">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>14</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>Version #.#.#</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
       </layout>
      </item>
      <item>
@@ -429,13 +413,40 @@ All rights reserved.</string>
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label_version">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>565</y>
+      <width>157</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>14</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>6</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Version #.#.#</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>474</width>
+     <width>461</width>
      <height>22</height>
     </rect>
    </property>

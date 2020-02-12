@@ -38,7 +38,7 @@ This file documents the release history of `fseutil`.
     - [ ] 0403\.
     - [ ] 0404\.
     - [ ] 0602\.
-- [ ] Sanity Check GUI tip text.
+- [ ] Sanity check GUI tip text.
     - [x] 0111\.
     - [x] 0401\.
     - [x] 0402\.
@@ -47,4 +47,5 @@ This file documents the release history of `fseutil`.
     - [x] 0405\.
     - [x] 0601\.
     - [x] 0602\.
-- [ ] 0111 Implemented graphical output.
+- [ ] 0111 implemented graphical output.
+- [ ] 0103 added.

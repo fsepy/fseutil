@@ -27,6 +27,7 @@ except ModuleNotFoundError:
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
+        # UI setup
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -36,8 +37,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.init_logos()
         self.init_buttons()
 
+        # default values
         self.ui.label_big_name.setText('FSEUTIL')
         self.ui.label_version.setText('Version ' + fseutil.__version__)
+        self.ui.label_version.setStyleSheet('color: grey;')
 
         self.ui.dialog_error = QtWidgets.QErrorMessage(self)
         self.ui.dialog_error.setWindowTitle('Message')
