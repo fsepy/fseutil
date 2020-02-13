@@ -10,8 +10,14 @@
     <height>621</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
-   <string>OFR BOX Fire Safety Engineering Toolbox</string>
+   <string/>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Rounded</enum>
@@ -41,6 +47,12 @@
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Not implemented.</string>
+     </property>
+     <property name="statusTip">
+      <string>Not implemented.</string>
+     </property>
      <property name="text">
       <string>Compart.
 Size</string>
@@ -57,6 +69,12 @@ Size</string>
        <width>70</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Not implemented.</string>
+     </property>
+     <property name="statusTip">
+      <string>Not implemented.</string>
      </property>
      <property name="text">
       <string>Heat
@@ -86,6 +104,12 @@ Transfer
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Data sheet 1 for BS 9999:2017, for B1.</string>
+     </property>
+     <property name="statusTip">
+      <string>Data sheet 1 for BS 9999:2017, for B1.</string>
+     </property>
      <property name="text">
       <string>BS 9999
 Datasheet
@@ -104,6 +128,12 @@ No. 1</string>
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Merging flow calculation in accordance with BS 9999:2017.</string>
+     </property>
+     <property name="statusTip">
+      <string>Merging flow calculation in accordance with BS 9999:2017.</string>
+     </property>
      <property name="text">
       <string>Merging
 Flow</string>
@@ -118,8 +148,15 @@ Flow</string>
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Heat detector activation time (ceiling jet) in accordance with PD 7974-1:2019.</string>
+     </property>
+     <property name="statusTip">
+      <string>Heat detector activation time (ceiling jet) in accordance with PD 7974-1:2019.</string>
+     </property>
      <property name="text">
-      <string>HD
+      <string>PD 7974
+HD
 Activation
 Time</string>
      </property>
@@ -136,6 +173,12 @@ Time</string>
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Not implemented.</string>
+     </property>
+     <property name="statusTip">
+      <string>Not implemented.</string>
+     </property>
      <property name="text">
       <string>Zone
 Model</string>
@@ -149,6 +192,12 @@ Model</string>
        <width>70</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Data sheet 1 for Approved Document B (2019) Vol. 2, for B1.</string>
+     </property>
+     <property name="statusTip">
+      <string>Data sheet 1 for Approved Document B (2019) Vol. 2, for B1.</string>
      </property>
      <property name="text">
       <string>ADB 2
@@ -179,7 +228,10 @@ No. 1</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>File name generator in accordance with OFR file naming protocal</string>
+      <string>File name generator in accordance with OFR file naming protocal.</string>
+     </property>
+     <property name="statusTip">
+      <string>File name generator in accordance with OFR file naming protocal.</string>
      </property>
      <property name="text">
       <string>File
@@ -217,6 +269,12 @@ Vent. Size</string>
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>To estimate optimal mesh resolution.</string>
+     </property>
+     <property name="statusTip">
+      <string>To estimate optimal mesh resolution.</string>
+     </property>
      <property name="text">
       <string>CFD
 Mesh Size</string>
@@ -232,7 +290,10 @@ Mesh Size</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>File name generator in accordance with OFR file naming protocal</string>
+      <string>Flame height in accordance with PD 7974-1:2019.</string>
+     </property>
+     <property name="statusTip">
+      <string>Flame height in accordance with PD 7974-1:2019.</string>
      </property>
      <property name="text">
       <string>PD 7974
@@ -263,7 +324,10 @@ Height</string>
       </rect>
      </property>
      <property name="toolTip">
-      <string>Thermal radiation calculation methodology in accordance with BR 187, only for parallel faced emitter receiver arrangement.</string>
+      <string>Thermal radiation calculation following BR 187 (Parallel rectangular orientation).</string>
+     </property>
+     <property name="statusTip">
+      <string>Thermal radiation calculation following BR 187 (Parallel rectangular orientation).</string>
      </property>
      <property name="text">
       <string>BR 187
@@ -279,6 +343,12 @@ Parallel</string>
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Thermal radiation calculation following BR 187 (Perpendicular rectangular orientation).</string>
+     </property>
+     <property name="statusTip">
+      <string>Thermal radiation calculation following BR 187 (Perpendicular rectangular orientation).</string>
+     </property>
      <property name="text">
       <string>BR 187
 Perp.</string>
@@ -293,6 +363,12 @@ Perp.</string>
        <height>70</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Thermal radiation calculation following BR 187 (Parallel rectangular orientation).</string>
+     </property>
+     <property name="statusTip">
+      <string>Thermal radiation calculation following BR 187 (Parallel rectangular orientation).</string>
+     </property>
      <property name="text">
       <string>BR 187
 Parallel 2</string>
@@ -306,6 +382,12 @@ Parallel 2</string>
        <width>70</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Thermal radiation calculation following BR 187 (Perpendicular rectangular orientation).</string>
+     </property>
+     <property name="statusTip">
+      <string>Thermal radiation calculation following BR 187 (Perpendicular rectangular orientation).</string>
      </property>
      <property name="text">
       <string>BR 187
@@ -323,6 +405,12 @@ Perp. 2</string>
        <width>70</width>
        <height>70</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>General purpose thermal radiation calculator.</string>
+     </property>
+     <property name="statusTip">
+      <string>General purpose thermal radiation calculator.</string>
      </property>
      <property name="text">
       <string>Therm. Rad.

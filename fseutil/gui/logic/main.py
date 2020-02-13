@@ -32,6 +32,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle('OFR Fire Safety Engineering Utility Tools')
+        self.statusBar().setSizeGripEnabled(False)
+        self.setFixedSize(self.width(), self.height())
 
         self.init_check_expiry_date()
         self.init_logos()

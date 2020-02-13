@@ -756,10 +756,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Positive float, {'slow': , 'medium': 0.0117, 'fast': , 'ultra-fast': }</string>
+      <string>Positive float, {'slow': 0.0029, 'medium': 0.0117, 'fast': 0.0469, 'ultra-fast': 0.1876}</string>
      </property>
      <property name="statusTip">
-      <string>Positive float, {'slow': , 'medium': 0.0117, 'fast': , 'ultra-fast': }</string>
+      <string>Positive float, {'slow': 0.0029, 'medium': 0.0117, 'fast': 0.0469, 'ultra-fast': 0.1876}</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_41">

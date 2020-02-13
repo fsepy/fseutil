@@ -19,6 +19,20 @@ def linear_solver(
         iter_max: int = 1000,
         func_multiplier: float = 1
 ):
+    """Solver of single-root function (single variable), i.e. f(x)=a x + b
+
+    :param func:            The function to be solved.
+    :param dict_params:     Additional parameters of the function.
+    :param x_name:          The variable (name) to be solved for.
+    :param y_target:        The target to be solved for, i.e. solve for `f(x)==y_target`.
+    :param x_upper:         The upper limit of the variable.
+    :param x_lower:         The lower limit of the variable.
+    :param y_tol:           Solver tolerance, i.e. actually solve for `abs(f(x)-y_target)<y_tal`.
+    :param iter_max:        Maximum iteration of the solver.
+    :param func_multiplier: 1 if f(x) is proportional to x, -1 if f(x) is inversely proportional to x.
+    :return:                The solved value, i.e. x_solved when following is true `abs(f(x_solved)-y_target)<y_tal`.
+
+    """
     if x_lower > x_upper:
         x_lower += x_upper
         x_upper = x_lower - x_upper

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>466</width>
-    <height>341</height>
+    <height>334</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,8 +47,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Date in YYMMDD (i.e. 201231) or YYYYMMDD (i.e. 20201231) format.</string>
+         </property>
+         <property name="statusTip">
+          <string>Date in YYMMDD (i.e. 201231) or YYYYMMDD (i.e. 20201231) format.</string>
+         </property>
          <property name="text">
-          <string>DATE (Format YYMMDD)</string>
+          <string>Date</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -76,8 +82,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Revision indicator.</string>
+         </property>
+         <property name="statusTip">
+          <string>Revision indicator.</string>
+         </property>
          <property name="text">
-          <string>REVISION</string>
+          <string>Revision</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -143,8 +155,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Project number.</string>
+         </property>
+         <property name="statusTip">
+          <string>Project number.</string>
+         </property>
          <property name="text">
-          <string>PROJECT NO.</string>
+          <string>Project No.</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -172,8 +190,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Project stage.</string>
+         </property>
+         <property name="statusTip">
+          <string>Project stage.</string>
+         </property>
          <property name="text">
-          <string>PROJECT STAGE</string>
+          <string>Project Stage</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -201,8 +225,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>File title in plain English.</string>
+         </property>
+         <property name="statusTip">
+          <string>File title in plain English.</string>
+         </property>
          <property name="text">
-          <string>FILE TITLE (PLAIN ENGLISH)</string>
+          <string>File Title</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -230,8 +260,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Document type.</string>
+         </property>
+         <property name="statusTip">
+          <string>Document type.</string>
+         </property>
          <property name="text">
-          <string>DOCUMENT TYPE</string>
+          <string>Document Type</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -330,8 +366,14 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Security status.</string>
+         </property>
+         <property name="statusTip">
+          <string>Security status.</string>
+         </property>
          <property name="text">
-          <string>SECURITY STATUS</string>
+          <string>Security Status</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -366,13 +408,26 @@
      </item>
      <item>
       <widget class="QCheckBox" name="checkBox_replace_spaces">
+       <property name="toolTip">
+        <string>Replace all spaces in the file name to underscore `_`.</string>
+       </property>
+       <property name="statusTip">
+        <string>Replace all spaces in the file name to underscore `_`.</string>
+       </property>
        <property name="text">
         <string>Replace Spaces with Underscore</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_result"/>
+      <widget class="QLineEdit" name="lineEdit_result">
+       <property name="toolTip">
+        <string>Composed file name.</string>
+       </property>
+       <property name="statusTip">
+        <string>Composed file name.</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

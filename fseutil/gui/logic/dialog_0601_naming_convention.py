@@ -38,6 +38,10 @@ class Dialog0601(QtWidgets.QMainWindow):
         self.make_file_name()  # make file name, do not leave the output slot empty
         self.repaint()
 
+    def keyPressEvent(self, event):
+        if event.key() == 16777221:
+            self.copy_file_name()
+
     def make_file_name(self):
         aa = self.ui.lineEdit_1_date.text()
         bb = self.ui.comboBox_2_revision.currentText()[0:3]
@@ -59,3 +63,5 @@ class Dialog0601(QtWidgets.QMainWindow):
         clipboard = QtGui.QGuiApplication.clipboard()
         clipboard.setText(self.ui.lineEdit_result.text())
         self.ui.lineEdit_result.selectAll()
+
+        self.ui.statusbar.showMessage('File name is copied.')

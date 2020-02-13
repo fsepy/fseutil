@@ -49,6 +49,12 @@
       <height>24</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>To generate example input parameters.</string>
+    </property>
+    <property name="statusTip">
+     <string>To generate example input parameters.</string>
+    </property>
     <property name="text">
      <string>Example</string>
     </property>

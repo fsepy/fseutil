@@ -3,6 +3,14 @@ import os
 import subprocess
 import sys
 
+import fseutil
+
+try:
+    from .__key__ import key as key_
+    key = key_()
+except ImportError:
+    key = None
+
 
 def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: list = None):
     print('\n' * 2)
@@ -13,19 +21,17 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
         f'-n={app_name}',
         "--icon=" + os.path.realpath(os.path.join("etc", "ofr_logo_1_80_80.ico")),
     ]
+    if 'dev' in fseutil.__version__:
+        print('Dev. build enabled.')
+        cmd_option_list.append('--windowed')
     if options:
         cmd_option_list.extend(options)
 
     # add encryption to pyz
-    try:
-        with open('key.txt', 'r') as f:
-            key = f.read()
-            if len(key) > 0:
-                cmd_option_list.append(f'--key={key}')
-                print('Encryption is enabled.')
-            else:
-                print('Encryption is not enabled.')
-    except FileNotFoundError:
+    if key:
+        cmd_option_list.append(f'--key={key}')
+        print('Encryption is enabled.')
+    else:
         print('Encryption is not enabled.')
 
     cmd = ['pyinstaller'] + cmd_option_list + [fp_target_py]
@@ -41,7 +47,6 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
 if __name__ == "__main__":
     build_gui(
         options=[
-            # "--windowed",  # make it a windowed application
             "--onedir",  # output unpacked dist to one directory, including an .exe file
             "--noconfirm",  # replace output directory without asking for confirmation
             "--clean",  # clean pyinstaller cache and remove temporary files
@@ -49,7 +54,6 @@ if __name__ == "__main__":
     )
     build_gui(
         options=[
-            # "--windowed",  # make it a windowed application
             "--noconsole",  # disable console display
             "--onefile",  # output one .exe file
             "--noconfirm",  # replace output directory without asking for confirmation
