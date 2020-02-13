@@ -6,6 +6,7 @@ from fseutil.etc.images_base64 import dialog_0111_heat_detector_activation_figur
 from fseutil.gui.layout.dialog_0111_heat_detector_activation import Ui_MainWindow as Ui_Dialog
 from fseutil.lib.fse_activation_hd import heat_detector_temperature_pd7974
 from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
+from fseutil.gui.logic.dialog_0002_tableview import TableWindow
 
 
 class Dialog0111(QtWidgets.QMainWindow):
@@ -19,6 +20,7 @@ class Dialog0111(QtWidgets.QMainWindow):
 
         # window properties
         self.setWindowTitle('PD 7974-1:2019 Heat Detecting Element Activation Time')
+        self.ui.pushButton_show_results_in_table.setEnabled(False)
 
         # default values
         self._figure_1 = QtGui.QPixmap()
@@ -33,6 +35,7 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui.pushButton_test.clicked.connect(self.test)
         self.ui.radioButton_fire_plume.toggled.connect(self.set_temperature_correlation)
         self.ui.groupBox.clicked.connect(lambda: print('hello'))
+        self.ui.pushButton_show_results_in_table.clicked.connect(self.show_results_in_table)
 
     def keyPressEvent(self, event):
         if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
@@ -132,6 +135,7 @@ class Dialog0111(QtWidgets.QMainWindow):
                 unit = list_units[i_]
                 fs1_.append('{:<15.14}'.format(f'{v:<.2f} {unit:<}'))
 
+
             if i % 25 == 0:
                 print('\n'+''.join(f'{i_:<15.15}' for i_ in list_title))
             print(''.join(fs1_))
@@ -139,7 +143,42 @@ class Dialog0111(QtWidgets.QMainWindow):
         # store calculated results
         self._results = res
 
-        self.repaint()
-
         # status feedback
         self.statusBar().showMessage('Calculation complete.')
+
+        self.ui.pushButton_show_results_in_table.setEnabled(True)
+
+        self.repaint()
+
+    def show_results_in_table(self):
+
+        res = self._results
+        res['jet_temperature'] -= 273.15
+        res['detector_temperature'] -= 273.15
+
+        # print results (for console enabled version only)
+        list_title = ['Time [s]', 'HRR [kW]', 'V. Origin [m]', 'Jet T. [°C]', 'Jet Vel. [m/s]', 'Detector T. [°C]']
+        list_param = ['time', 'gas_hrr_kW', 'virtual_origin', 'jet_temperature', 'jet_velocity', 'detector_temperature']
+        list_content = list()
+        for i, time_ in enumerate(self._results['time']):
+            list_content_ = list()
+            for i_, param in enumerate(list_param):
+                v = self._results[param][i]
+                list_content_.append(float(v))
+            list_content.append(list_content_)
+
+        app_ = TableWindow(
+            parent=self,
+            data_list=list_content,
+            header=list_title,
+            window_title='Numerical Results'
+        )
+
+        app_.TableModel.sort(0, QtCore.Qt.AscendingOrder)
+
+        app_.show()
+        try:
+            app_.exec_()
+        except AttributeError:
+            pass
+        return app_

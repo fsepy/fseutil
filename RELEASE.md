@@ -26,6 +26,7 @@ This file documents the release history of `fseutil`.
 ### XX/XX/2020 VERSION: 0.0.1.dev20200214
 
 - [x] 0111 provided an option to switch to plume temperature correlations (i.e. near-field).
+- [x] 0111 implemented display numerical results in table.
 - [x] Converted all independent modules into QMainWindow objects, i.e. to have a status bar.
 - [ ] Finalised GUI interface for:
     - [x] 0111\.

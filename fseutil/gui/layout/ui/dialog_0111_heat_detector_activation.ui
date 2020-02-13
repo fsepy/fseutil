@@ -30,9 +30,9 @@
    <widget class="QPushButton" name="pushButton_calculate">
     <property name="geometry">
      <rect>
-      <x>735</x>
+      <x>715</x>
       <y>610</y>
-      <width>76</width>
+      <width>96</width>
       <height>24</height>
      </rect>
     </property>
@@ -45,7 +45,7 @@
      <rect>
       <x>15</x>
       <y>610</y>
-      <width>81</width>
+      <width>96</width>
       <height>24</height>
      </rect>
     </property>
@@ -1066,6 +1066,22 @@
      </property>
     </widget>
    </widget>
+   <widget class="QPushButton" name="pushButton_show_results_in_table">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>615</x>
+      <y>610</y>
+      <width>96</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Full Results</string>
+    </property>
+   </widget>
    <zorder>label</zorder>
    <zorder>line</zorder>
    <zorder>pushButton_calculate</zorder>
@@ -1073,6 +1089,7 @@
    <zorder>groupBox</zorder>
    <zorder>groupBox_gas_temperature</zorder>
    <zorder>groupBox_2</zorder>
+   <zorder>pushButton_show_results_in_table</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

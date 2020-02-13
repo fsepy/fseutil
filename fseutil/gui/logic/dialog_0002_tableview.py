@@ -4,16 +4,17 @@ from PySide2 import QtGui
 from PySide2 import QtCore
 
 
-class TableWindow(QtWidgets.QWidget):
-    def __init__(self, data_list, header, window_title:str = None, *args):
-        QtWidgets.QWidget.__init__(self, *args)
+class TableWindow(QtWidgets.QDialog):
+    def __init__(self, data_list, header, window_title: str = None, parent=None, *args):
+        super().__init__(parent, *args)
+        # QtWidgets.QWidget.__init__(self, *args)
         # setGeometry(x_pos, y_pos, width, height)
         self.setGeometry(300, 200, 570, 450)
         if window_title:
             self.setWindowTitle(window_title)
-        table_model = TableModel(self, data_list, header)
+        self.TableModel = TableModel(self, data_list, header)
         table_view = QtWidgets.QTableView()
-        table_view.setModel(table_model)
+        table_view.setModel(self.TableModel)
         # set font
         font = QtGui.QFont("Courier New", 14)
         table_view.setFont(font)
@@ -53,8 +54,9 @@ class TableModel(QtCore.QAbstractTableModel):
     def sort(self, col, order):
         """sort table by given column number col"""
         self.emit(QtCore.SIGNAL("layoutAboutToBeChanged()"))
-        self.content = sorted(self.content,
-                              key=operator.itemgetter(col))
+        self.content = sorted(
+            self.content,
+            key=operator.itemgetter(col))
         if order == QtCore.Qt.DescendingOrder:
             self.content.reverse()
         self.emit(QtCore.SIGNAL("layoutChanged()"))
