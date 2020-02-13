@@ -43,8 +43,8 @@ class Dialog0401(QtWidgets.QMainWindow):
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
 
-    def keyPressEvent(self, event:QtGui.QKeyEvent):
-        if event.key() == 16777221:
+    def keyPressEvent(self, event):
+        if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
             self.calculate()
 
     def change_mode_S_and_UA(self):
@@ -96,10 +96,17 @@ class Dialog0401(QtWidgets.QMainWindow):
         self.ui.lineEdit_out_q.setText('')
 
         # parse inputs from ui
-
-        W = float(self.ui.lineEdit_W.text())
-        H = float(self.ui.lineEdit_H.text())
-        Q = float(self.ui.lineEdit_Q.text())
+        try:
+            W = float(self.ui.lineEdit_W.text())
+            H = float(self.ui.lineEdit_H.text())
+            Q = float(self.ui.lineEdit_Q.text())
+        except ValueError:
+            self.statusBar().showMessage(
+                'Calculation unsuccessful. '
+                'Unable to parse input parameters.'
+            )
+            self.repaint()
+            raise ValueError
 
         # calculate
 
@@ -112,6 +119,7 @@ class Dialog0401(QtWidgets.QMainWindow):
                     'Calculation incomplete. '
                     'Separation to notional boundary should be > 1.0 m.'
                 )
+                self.repaint()
                 raise ValueError
 
             try:
@@ -122,6 +130,7 @@ class Dialog0401(QtWidgets.QMainWindow):
                     'Failed due to an unknown erorr. '
                     'Please raise this issue for further investigation.'
                 )
+                self.repaint()
                 raise ValueError
 
             q_solved = Q * phi_solved
@@ -144,6 +153,7 @@ class Dialog0401(QtWidgets.QMainWindow):
                     'Calculation failed. '
                     'Unprotected area should be greater >0% and <100%.'
                 )
+                self.repaint()
                 raise ValueError
 
             phi_target = q_target / (Q * UA)
@@ -164,12 +174,14 @@ class Dialog0401(QtWidgets.QMainWindow):
                 self.statusBar().showMessage(
                     'Calculation failed. Inspect input parameters.'
                 )
+                self.repaint()
                 raise ValueError
             if S_solved is None:
                 self.statusBar().showMessage(
                     'Calculation failed. '
                     'Maximum iteration reached.'
                 )
+                self.repaint()
                 raise ValueError
 
             phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5 * W, h_m=0.5 * H, S_m=S_solved)

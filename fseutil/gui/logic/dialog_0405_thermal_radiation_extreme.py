@@ -28,6 +28,10 @@ class Dialog0405(QtWidgets.QMainWindow):
         self.ui.pushButton_test.clicked.connect(self.test)
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
 
+    def keyPressEvent(self, event):
+        if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
+            self.copy_file_name()
+
     def test(self):
 
         self.ui.plainTextEdit_in_emiter_xyz.setPlainText('0,0,5\n0,5,5\n5,5,5\n5,0,5')

@@ -39,7 +39,7 @@ class Dialog0601(QtWidgets.QMainWindow):
         self.repaint()
 
     def keyPressEvent(self, event):
-        if event.key() == 16777221:
+        if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
             self.copy_file_name()
 
     def make_file_name(self):

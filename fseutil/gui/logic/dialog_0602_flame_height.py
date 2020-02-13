@@ -34,6 +34,10 @@ class Dialog0602(QtWidgets.QMainWindow):
         self.ui.pushButton_test.clicked.connect(self.test)
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
 
+    def keyPressEvent(self, event):
+        if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
+            self.copy_file_name()
+
     def change_fire_shape(self):
         if self.ui.comboBox_fire_shape.currentIndex() == 0:  # circular fire source
             self.ui.label_Q_dot_or_Q_dot_l.setText('Q_dot')

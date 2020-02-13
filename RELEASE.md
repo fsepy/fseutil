@@ -33,12 +33,12 @@ This file documents the release history of `fseutil`.
 - [ ] 0401 0402 0403 0404 implemented tableview for batch process calculation.
 - [ ] Implemented error handling.
     - [x] 0111\.
-    - [ ] 0401\.
-    - [ ] 0402\.
-    - [ ] 0403\.
-    - [ ] 0404\.
+    - [x] 0401\.
+    - [x] 0402\.
+    - [x] 0403\.
+    - [x] 0404\.
     - [ ] 0602\.
-- [ ] Sanity check GUI tip text.
+- [x] Sanity check GUI tip text.
     - [x] 0111\.
     - [x] 0401\.
     - [x] 0402\.

@@ -34,6 +34,10 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui.radioButton_fire_plume.toggled.connect(self.set_temperature_correlation)
         self.ui.groupBox.clicked.connect(lambda: print('hello'))
 
+    def keyPressEvent(self, event):
+        if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
+            self.copy_file_name()
+
     def error(self, msg: str, stop: bool = False):
         self.statusBar().showMessage(msg)
         if stop:
