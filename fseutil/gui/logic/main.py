@@ -51,8 +51,7 @@ class MainWindow(QtWidgets.QMainWindow):
         global KEY
 
         # check expiry date, whether the tool is over 180 days old
-        expiry_date_duration = 7
-        if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=expiry_date_duration):
+        if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=fseutil.__expiry_period_days__):
             app_ = self.activate_app(Dialog0001)
             if app_.pass_code != KEY and KEY is not None:
                 raise ValueError('Incorrect password.')

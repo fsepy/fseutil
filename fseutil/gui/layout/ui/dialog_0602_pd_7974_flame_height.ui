@@ -736,9 +736,9 @@
    <widget class="QGroupBox" name="groupBox_outputs">
     <property name="geometry">
      <rect>
-      <x>575</x>
+      <x>605</x>
       <y>505</y>
-      <width>221</width>
+      <width>191</width>
       <height>81</height>
      </rect>
     </property>
