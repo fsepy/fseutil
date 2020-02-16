@@ -18,6 +18,8 @@ class Dialog0602(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle('PD 7974-1:2019 Mean Flame Height')
+        self.setFixedSize(self.width(), self.height())
+        self.statusBar().setSizeGripEnabled(False)
 
         # set up figures
         ba = QtCore.QByteArray.fromBase64(dialog_0602_pd_7974_flame_height_figure_1)
@@ -82,57 +84,68 @@ class Dialog0602(QtWidgets.QMainWindow):
 
     def calculate(self):
 
-        Q_dot_or_Q_dot_l = float(self.ui.lineEdit_Q_dot_or_Q_dot_l.text())
-        L_A_or_D = float(self.ui.lineEdit_L_A_or_D.text())
         try:
-            L_B = float(self.ui.lineEdit_L_B.text())
-        except ValueError:
-            L_B = None
-        rho_0 = float(self.ui.lineEdit_rho_0.text())
-        c_p_0 = float(self.ui.lineEdit_c_p_0.text())
-        T_0 = float(self.ui.lineEdit_T_0.text())
-        g = float(self.ui.lineEdit_g.text())
-        fuel_type = int(self.ui.comboBox_fuel_type.currentIndex())
+            Q_dot_or_Q_dot_l = float(self.ui.lineEdit_Q_dot_or_Q_dot_l.text())
+            L_A_or_D = float(self.ui.lineEdit_L_A_or_D.text())
+            try:
+                L_B = float(self.ui.lineEdit_L_B.text())
+            except ValueError:
+                L_B = None
+            rho_0 = float(self.ui.lineEdit_rho_0.text())
+            c_p_0 = float(self.ui.lineEdit_c_p_0.text())
+            T_0 = float(self.ui.lineEdit_T_0.text())
+            g = float(self.ui.lineEdit_g.text())
+            fuel_type = int(self.ui.comboBox_fuel_type.currentIndex())
+        except Exception as e:
+            self.statusBar().showMessage(f'Failed to parse input parameters. Error: {e}.')
+            self.repaint()
+            raise ValueError
 
-        if self.ui.comboBox_fire_shape.currentIndex() == 0:  # circular fire source
-            Q_dot_star = eq_5_dimensionless_hrr(
-                Q_dot_kW=Q_dot_or_Q_dot_l,
-                rho_0=rho_0,
-                c_p_0_kJ_kg_K=c_p_0,
-                T_0=T_0,
-                g=g,
-                D=L_A_or_D,
-            )
-            flame_height = mean_flame_height_pd_7974(Q_dot_star=Q_dot_star, fuel_type=fuel_type, fire_diameter=L_A_or_D)
-        elif self.ui.comboBox_fire_shape.currentIndex() == 1:  # rectangular fire source
-            Q_dot_star = eq_11_dimensionless_hrr_rectangular(
-                Q_dot_kW=Q_dot_or_Q_dot_l,
-                rho_0=rho_0,
-                c_p_0_kJ_kg_K=c_p_0,
-                T_0=T_0,
-                g=g,
-                L_A=L_A_or_D,
-                L_B=L_B
-            )
-            flame_height = mean_flame_height_pd_7974(
-                Q_dot_star=Q_dot_star, fuel_type=fuel_type, fire_diameter=(L_A_or_D + L_B) / 2.
-            )
-        elif self.ui.comboBox_fire_shape.currentIndex() == 2:  # line fire source
-            Q_dot_star = eq_12_dimensionless_hrr_line(
-                Q_dot_l_kW_m=Q_dot_or_Q_dot_l,
-                rho_0=rho_0,
-                c_p_0_kJ_kg_K=c_p_0,
-                T_0=T_0,
-                g=g,
-                L_A=L_A_or_D,
-            )
-            flame_height = mean_flame_height_pd_7974(
-                Q_dot_star=Q_dot_star, fuel_type=fuel_type, fire_diameter=L_A_or_D
-            )
-        else:
-            raise ValueError('Unknown fire shape.')
+        try:
+            if self.ui.comboBox_fire_shape.currentIndex() == 0:  # circular fire source
+                Q_dot_star = eq_5_dimensionless_hrr(
+                    Q_dot_kW=Q_dot_or_Q_dot_l,
+                    rho_0=rho_0,
+                    c_p_0_kJ_kg_K=c_p_0,
+                    T_0=T_0,
+                    g=g,
+                    D=L_A_or_D,
+                )
+                flame_height = mean_flame_height_pd_7974(Q_dot_star=Q_dot_star, fuel_type=fuel_type, fire_diameter=L_A_or_D)
+            elif self.ui.comboBox_fire_shape.currentIndex() == 1:  # rectangular fire source
+                Q_dot_star = eq_11_dimensionless_hrr_rectangular(
+                    Q_dot_kW=Q_dot_or_Q_dot_l,
+                    rho_0=rho_0,
+                    c_p_0_kJ_kg_K=c_p_0,
+                    T_0=T_0,
+                    g=g,
+                    L_A=L_A_or_D,
+                    L_B=L_B
+                )
+                flame_height = mean_flame_height_pd_7974(
+                    Q_dot_star=Q_dot_star, fuel_type=fuel_type, fire_diameter=(L_A_or_D + L_B) / 2.
+                )
+            elif self.ui.comboBox_fire_shape.currentIndex() == 2:  # line fire source
+                Q_dot_star = eq_12_dimensionless_hrr_line(
+                    Q_dot_l_kW_m=Q_dot_or_Q_dot_l,
+                    rho_0=rho_0,
+                    c_p_0_kJ_kg_K=c_p_0,
+                    T_0=T_0,
+                    g=g,
+                    L_A=L_A_or_D,
+                )
+                flame_height = mean_flame_height_pd_7974(
+                    Q_dot_star=Q_dot_star, fuel_type=fuel_type, fire_diameter=L_A_or_D
+                )
+            else:
+                raise ValueError('Unknown fire shape')
+        except Exception as e:
+            self.statusBar().showMessage(f'Calculation incomplete. Error: {e}.')
+            self.repaint()
+            raise ValueError
 
         self.ui.lineEdit_Q_dot_star.setText(f'{Q_dot_star:.2f}')
         self.ui.lineEdit_Z_f.setText(f'{flame_height:.2f}')
 
+        self.statusBar().showMessage('Calculation complete.')
         self.repaint()

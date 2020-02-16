@@ -7,6 +7,9 @@ from PySide2 import QtCore
 class TableWindow(QtWidgets.QDialog):
     def __init__(self, data_list, header, window_title: str = None, parent=None, *args):
         super().__init__(parent, *args)
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, True)
+        self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
+        self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
         # QtWidgets.QWidget.__init__(self, *args)
         # setGeometry(x_pos, y_pos, width, height)
         self.setGeometry(300, 200, 570, 450)

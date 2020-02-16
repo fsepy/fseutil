@@ -11,6 +11,7 @@ class Dialog0601(QtWidgets.QMainWindow):
         super(Dialog0601, self).__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle('OFR File Name Generator')
 
         # default values
         self.ui.lineEdit_1_date.setText(datetime.today().strftime('%Y%m%d')[2:])

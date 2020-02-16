@@ -8,6 +8,10 @@ class Dialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, True)
+        self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
+        self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, True)
+
         self.resize(800, 600)
 
         self.label = QtWidgets.QLabel()

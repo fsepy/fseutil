@@ -22,8 +22,11 @@ def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: 
         "--icon=" + os.path.realpath(os.path.join("etc", "ofr_logo_1_80_80.ico")),
     ]
     if 'dev' in fseutil.__version__:
-        print('Dev. build enabled.')
+        print('Dev. build is enabled.')
+    else:
         cmd_option_list.append('--windowed')
+        print('Dev. build is not enabled.')
+
     if options:
         cmd_option_list.extend(options)
 

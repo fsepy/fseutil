@@ -9,6 +9,7 @@ from fseutil.gui.layout.main import Ui_MainWindow
 from fseutil.gui.logic.dialog_0001_pass_code import Dialog0001 as Dialog0001
 from fseutil.gui.logic.dialog_0101_adb_datasheet_1 import Dialog as Dialog0101
 from fseutil.gui.logic.dialog_0102_bs9999_datasheet_1 import Dialog as Dialog0102
+from fseutil.gui.logic.dialog_0103_merging_flow import Dialog0401 as Dialog0103
 from fseutil.gui.logic.dialog_0111_heat_detector_activation import Dialog0111 as Dialog0111
 from fseutil.gui.logic.dialog_0401_br187_parallel_simple import Dialog0401 as Dialog0401
 from fseutil.gui.logic.dialog_0402_br187_perpendicular_simple import Dialog0402 as Dialog0402
@@ -73,6 +74,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.ui.pushButton_0101_adb2_datasheet_1.clicked.connect(lambda: self.activate_app(Dialog0101))
         self.ui.pushButton_0102_bs9999_datasheet_1.clicked.connect(lambda: self.activate_app(Dialog0102))
+        self.ui.pushButton_0103_merging_flow.clicked.connect(lambda: self.activate_app(Dialog0103))
         self.ui.pushButton_0111_heat_detector_activation.clicked.connect(lambda: self.activate_app(Dialog0111))
 
         self.ui.pushButton_0401_br187_parallel_simple.clicked.connect(lambda: self.activate_app(Dialog0401))

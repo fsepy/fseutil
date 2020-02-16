@@ -77,6 +77,7 @@ class Dialog0111(QtWidgets.QMainWindow):
 
     def calculate(self):
         # clear outputs
+        self.ui.pushButton_show_results_in_table.setEnabled(False)
         self.ui.lineEdit_out_t_act.setText('')
 
         # get data

@@ -116,9 +116,9 @@ Datasheet
 No. 1</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="b4_01_br187_parallel_8">
+    <widget class="QPushButton" name="pushButton_0103_merging_flow">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -594,7 +594,7 @@ All rights reserved.</string>
  <tabstops>
   <tabstop>pushButton_0101_adb2_datasheet_1</tabstop>
   <tabstop>pushButton_0102_bs9999_datasheet_1</tabstop>
-  <tabstop>b4_01_br187_parallel_8</tabstop>
+  <tabstop>pushButton_0103_merging_flow</tabstop>
   <tabstop>pushButton_0111_heat_detector_activation</tabstop>
   <tabstop>b4_01_br187_parallel_10</tabstop>
   <tabstop>b4_01_br187_parallel_7</tabstop>
