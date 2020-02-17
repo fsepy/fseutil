@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
-from fseutil.etc.images_base64 import dialog_0401_br187_parallel_figure_1 as figure_1
+from fseutil.etc.images_base64 import dialog_0103_bs9999_merging_flow_1 as figure_1
 from fseutil.gui.layout.dialog_0103_merging_flow import Ui_MainWindow
 from fseutil.libstd.bs_9999_2017 import (
     clause_15_6_6_e_merging_flow_1, clause_15_6_6_e_merging_flow_2, clause_15_6_6_e_merging_flow_3

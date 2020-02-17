@@ -381,10 +381,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Ambient are thermal capacity.</string>
+      <string>Number of persons from ground level.</string>
      </property>
      <property name="statusTip">
-      <string>Ambient are thermal capacity.</string>
+      <string>Number of persons from ground level.</string>
      </property>
      <property name="text">
       <string>N</string>
@@ -418,10 +418,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Fire dimension 1.</string>
+      <string>Width of the stair to lower (basement) levels.</string>
      </property>
      <property name="statusTip">
-      <string>Fire dimension 1.</string>
+      <string>Width of the stair to lower (basement) levels.</string>
      </property>
      <property name="text">
       <string>S&lt;sub&gt;dn&lt;\sub&gt;</string>
@@ -449,10 +449,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Fire total heat release rate.</string>
+      <string>Width of the stair to upper levels.</string>
      </property>
      <property name="statusTip">
-      <string>Fire total heat release rate.</string>
+      <string>Width of the stair to upper levels.</string>
      </property>
      <property name="text">
       <string>S&lt;sub&gt;up&lt;/sub&gt;</string>
@@ -480,10 +480,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Fire dimension 2.</string>
+      <string>Number of persons from lower (basement) level.</string>
      </property>
      <property name="statusTip">
-      <string>Fire dimension 2.</string>
+      <string>Number of persons from lower (basement) level.</string>
      </property>
      <property name="text">
       <string>B</string>
@@ -511,10 +511,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Ambient air density.</string>
+      <string>Width of the door from ground floor level.</string>
      </property>
      <property name="statusTip">
-      <string>Ambient air density.</string>
+      <string>Width of the door from ground floor level.</string>
      </property>
      <property name="text">
       <string>W&lt;sub&gt;SE&lt;sub&gt;</string>
@@ -681,10 +681,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Ambient air temperature.</string>
+      <string>Distance between building final exit to door of ground level or lower stair.</string>
      </property>
      <property name="statusTip">
-      <string>Ambient air temperature.</string>
+      <string>Distance between building final exit to door of ground level or lower stair.</string>
      </property>
      <property name="text">
       <string>D</string>
@@ -786,10 +786,10 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Gravity.</string>
+      <string>Minimum door width per person.</string>
      </property>
      <property name="statusTip">
-      <string>Gravity.</string>
+      <string>Minimum door width per person.</string>
      </property>
      <property name="text">
       <string>X</string>
@@ -891,7 +891,7 @@
       <rect>
        <x>10</x>
        <y>25</y>
-       <width>161</width>
+       <width>156</width>
        <height>21</height>
       </rect>
      </property>
@@ -904,7 +904,7 @@
     <property name="geometry">
      <rect>
       <x>620</x>
-      <y>385</y>
+      <y>370</y>
       <width>171</width>
       <height>101</height>
      </rect>
@@ -921,6 +921,12 @@
        <height>18</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Scenario 1. Building final exit serves flow from upper levels and ground level.</string>
+     </property>
+     <property name="statusTip">
+      <string>Scenario 1. Building final exit serves flow from upper levels and ground level.</string>
+     </property>
      <property name="text">
       <string>Scenario 1</string>
      </property>
@@ -934,6 +940,12 @@
        <height>18</height>
       </rect>
      </property>
+     <property name="toolTip">
+      <string>Scenario 2. Building final exit serves flow from upper levels and lower (basement) levels.</string>
+     </property>
+     <property name="statusTip">
+      <string>Scenario 2. Building final exit serves flow from upper levels and lower (basement) levels.</string>
+     </property>
      <property name="text">
       <string>Scenario 2</string>
      </property>
@@ -946,6 +958,12 @@
        <width>83</width>
        <height>18</height>
       </rect>
+     </property>
+     <property name="toolTip">
+      <string>Scenario 3. Building final exit serves flow from upper levels, lower (basement) levels and ground level.</string>
+     </property>
+     <property name="statusTip">
+      <string>Scenario 3. Building final exit serves flow from upper levels, lower (basement) levels and ground level.</string>
      </property>
      <property name="text">
       <string>Scenario 3</string>
