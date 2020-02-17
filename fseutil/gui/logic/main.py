@@ -9,7 +9,7 @@ from fseutil.gui.layout.main import Ui_MainWindow
 from fseutil.gui.logic.dialog_0001_pass_code import Dialog0001 as Dialog0001
 from fseutil.gui.logic.dialog_0101_adb_datasheet_1 import Dialog as Dialog0101
 from fseutil.gui.logic.dialog_0102_bs9999_datasheet_1 import Dialog as Dialog0102
-from fseutil.gui.logic.dialog_0103_merging_flow import Dialog0401 as Dialog0103
+from fseutil.gui.logic.dialog_0103_merging_flow import Dialog0103 as Dialog0103
 from fseutil.gui.logic.dialog_0111_heat_detector_activation import Dialog0111 as Dialog0111
 from fseutil.gui.logic.dialog_0401_br187_parallel_simple import Dialog0401 as Dialog0401
 from fseutil.gui.logic.dialog_0402_br187_perpendicular_simple import Dialog0402 as Dialog0402

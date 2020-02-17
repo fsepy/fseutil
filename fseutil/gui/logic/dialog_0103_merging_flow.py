@@ -7,30 +7,41 @@ from fseutil.libstd.bs_9999_2017 import (
 )
 
 
-class Dialog0401(QtWidgets.QMainWindow):
+def filter_objects_by_name(
+        object_parent_widget: QtWidgets.QWidget,
+        object_types: list,
+        names: list = None):
+
+    list_objects = list()
+    for i in object_types:
+        for j in object_parent_widget.findChildren(i):
+            if names:
+                for k in names:
+                    if k in j.objectName():
+                        list_objects.append(j)
+            else:
+                list_objects.append(j)
+
+    return list_objects
+
+
+class Dialog0103(QtWidgets.QMainWindow):
     maximum_acceptable_thermal_radiation_heat_flux = 12.6
 
     def __init__(self, parent=None):
         # instantiation
-        super(Dialog0401, self).__init__(parent)
+        super(Dialog0103, self).__init__(parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle('Means of Escape Merging Flow')
 
-        # input grouping
-        self._in_S_dn = [self.ui.lineEdit_in_S_dn,
-                         self.ui.label_in_S_dn,
-                         self.ui.label_in_S_dn_unit
-                         ]
-        self._in_W_SE = [self.ui.lineEdit_in_W_SE,
-                         self.ui.label_in_W_SE,
-                         self.ui.label_in_W_SE_unit]
-        self._in_B = [self.ui.lineEdit_in_B,
-                      self.ui.label_in_B,
-                      self.ui.label_in_B_unit]
-        self._in_N = [self.ui.lineEdit_in_N,
-                      self.ui.label_in_N,
-                      self.ui.label_in_N_unit]
+        for i in filter_objects_by_name(
+                self.ui.groupBox_outputs,
+                object_types=[QtWidgets.QLineEdit, QtWidgets.QCheckBox, QtWidgets.QLabel]):
+            try:
+                i.setReadOnly(True)
+            except AttributeError:
+                i.setEnabled(False)
 
         # set up radiation figure
         ba = QtCore.QByteArray.fromBase64(figure_1)
@@ -58,18 +69,33 @@ class Dialog0401(QtWidgets.QMainWindow):
             self.close()
 
     def change_option_scenarios(self):
-        [i.setEnabled(True) for i in self._in_S_dn]
-        [i.setEnabled(True) for i in self._in_W_SE]
-        [i.setEnabled(True) for i in self._in_B]
-        [i.setEnabled(True) for i in self._in_N]
+        """When mode changes, turn off (grey them out) not required inputs and clear their value."""
 
-        if self.ui.radioButton_opt_scenario_1.isChecked():
-            [i.setEnabled(False) for i in self._in_S_dn]
-            [i.setEnabled(False) for i in self._in_B]
+        # enable everything in input group, i.e. scenario 3
+        list_obj = filter_objects_by_name(
+            self.ui.groupBox_inputs, [QtWidgets.QLabel, QtWidgets.QLineEdit], ['_in_S_dn', '_in_W_SE', '_in_B', '_in_N']
+        )
+        for i in list_obj:
+            i.setEnabled(True)
 
-        elif self.ui.radioButton_opt_scenario_2.isChecked():
-            [i.setEnabled(False) for i in self._in_W_SE]
-            [i.setEnabled(False) for i in self._in_N]
+        # disable items in accordance with selected mode
+        if self.ui.radioButton_opt_scenario_1.isChecked():  # scenario 1, flow from upper levels + ground floor
+            list_obj = filter_objects_by_name(
+                self.ui.groupBox_inputs, [QtWidgets.QLabel, QtWidgets.QLineEdit], ['_in_S_dn', '_in_B']
+            )
+            for i in list_obj:
+                i.setEnabled(False)
+                if isinstance(i, QtWidgets.QLineEdit):
+                    i.setText('')
+
+        elif self.ui.radioButton_opt_scenario_2.isChecked():  # scenario 2, flow from upper levels + basement
+            list_obj = filter_objects_by_name(
+                self.ui.groupBox_inputs, [QtWidgets.QLabel, QtWidgets.QLineEdit], ['_in_W_SE', '_in_N']
+            )
+            for i in list_obj:
+                i.setEnabled(False)
+                if isinstance(i, QtWidgets.QLineEdit):
+                    i.setText('')
 
     def test(self):
         self.ui.lineEdit_in_X.setText('3.06')
