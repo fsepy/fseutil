@@ -1,6 +1,6 @@
 import datetime
 
-from PySide2 import QtWidgets, QtGui, QtCore
+from PySide2 import QtWidgets, QtGui, QtCore, QtWebEngineWidgets
 
 import fseutil
 from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
@@ -26,25 +26,42 @@ except ModuleNotFoundError:
     KEY = None
 
 
+class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
+    def acceptNavigationRequest(self, url,  _type, isMainFrame):
+        if _type == QtWebEngineWidgets.QWebEnginePage.NavigationTypeLinkClicked:
+            QtGui.QDesktopServices.openUrl(url)
+            return False
+        return True
+
+class HtmlView(QtWebEngineWidgets.QWebEngineView):
+    def __init__(self, *args, **kwargs):
+        QtWebEngineWidgets.QWebEngineView.__init__(self, *args, **kwargs)
+        self.setPage(WebEnginePage(self))
+
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
-        # UI setup
+        # ui setup
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.init_check_expiry_date()
+
+        # window properties
         self.setWindowTitle('OFR Fire Safety Engineering Utility Tools')
         self.statusBar().setSizeGripEnabled(False)
         self.setFixedSize(self.width(), self.height())
 
-        self.init_check_expiry_date()
-        self.init_logos()
+        # signals
         self.init_buttons()
 
         # default values
         self.ui.label_big_name.setText('FSEUTIL')
         self.ui.label_version.setText('Version ' + fseutil.__version__)
         self.ui.label_version.setStyleSheet('color: grey;')
-
+        self.ui.label_version.setStatusTip('Version ' + fseutil.__version__)
+        self.ui.label_version.setToolTip('Version ' + fseutil.__version__)
+        self.init_logos()  # logo
         self.ui.dialog_error = QtWidgets.QErrorMessage(self)
         self.ui.dialog_error.setWindowTitle('Message')
 
@@ -69,6 +86,17 @@ class MainWindow(QtWidgets.QMainWindow):
         pix_map = QtGui.QPixmap()
         pix_map.loadFromData(ba)
         self.ui.label_logo.setPixmap(pix_map)
+
+        # tips
+        self.ui.label_logo.setToolTip('Click to go to ofrconsultants.com')
+        self.ui.label_logo.setStatusTip('Click to go to ofrconsultants.com')
+
+        # signals
+        self.ui.label_logo.mousePressEvent = self.label_logo_mousePressEvent
+
+    def label_logo_mousePressEvent(self, event=None):
+        if event:
+            QtGui.QDesktopServices.openUrl(QtCore.QUrl("https://ofrconsultants.com/"))
 
     def init_buttons(self):
 

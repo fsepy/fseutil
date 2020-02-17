@@ -21,6 +21,8 @@ class Dialog0111(QtWidgets.QMainWindow):
         # window properties
         self.setWindowTitle('PD 7974-1:2019 Heat Detecting Element Activation Time')
         self.ui.pushButton_show_results_in_table.setEnabled(False)
+        self.statusBar().setSizeGripEnabled(False)
+        self.setFixedSize(self.width(), self.height())
 
         # default values
         self._figure_1 = QtGui.QPixmap()
@@ -40,6 +42,8 @@ class Dialog0111(QtWidgets.QMainWindow):
     def keyPressEvent(self, event):
         if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
             self.copy_file_name()
+        elif event.key() == QtCore.Qt.Key_Escape:
+            self.close()
 
     def error(self, msg: str, stop: bool = False):
         self.statusBar().showMessage(msg)

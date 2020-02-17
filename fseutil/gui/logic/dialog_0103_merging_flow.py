@@ -54,6 +54,8 @@ class Dialog0401(QtWidgets.QMainWindow):
     def keyPressEvent(self, event):
         if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
             self.calculate()
+        elif event.key() == QtCore.Qt.Key_Escape:
+            self.close()
 
     def change_option_scenarios(self):
         [i.setEnabled(True) for i in self._in_S_dn]

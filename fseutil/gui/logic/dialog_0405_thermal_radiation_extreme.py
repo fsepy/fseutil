@@ -31,6 +31,8 @@ class Dialog0405(QtWidgets.QMainWindow):
     def keyPressEvent(self, event):
         if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
             self.copy_file_name()
+        elif event.key() == QtCore.Qt.Key_Escape:
+            self.close()
 
     def test(self):
 

@@ -46,6 +46,8 @@ class Dialog0401(QtWidgets.QMainWindow):
     def keyPressEvent(self, event):
         if event.key() == 16777221 or event.key() == 16777220 or event.key() == QtCore.Qt.Key_Enter:
             self.calculate()
+        elif event.key() == QtCore.Qt.Key_Escape:
+            self.close()
 
     def change_mode_S_and_UA(self):
         """update ui to align with whether to calculate boundary distance or unprotected area %"""
