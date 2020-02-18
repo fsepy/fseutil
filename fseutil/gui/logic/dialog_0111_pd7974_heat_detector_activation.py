@@ -19,6 +19,13 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
+        from fseutil.gui.logic.common import filter_objects_by_name
+        for i in filter_objects_by_name(self.ui.groupBox_out, object_types=[QtWidgets.QLineEdit]):
+            try:
+                i.setReadOnly(True)
+            except AttributeError:
+                i.setEnabled(False)
+
         # window properties
         self.setWindowTitle('PD 7974-1:2019 Heat Detecting Element Activation Time')
         self.ui.pushButton_show_results_in_table.setEnabled(False)
@@ -37,7 +44,6 @@ class Dialog0111(QtWidgets.QMainWindow):
         self.ui.pushButton_calculate.clicked.connect(self.calculate)
         self.ui.pushButton_test.clicked.connect(self.test)
         self.ui.radioButton_fire_plume.toggled.connect(self.set_temperature_correlation)
-        self.ui.groupBox.clicked.connect(lambda: print('hello'))
         self.ui.pushButton_show_results_in_table.clicked.connect(self.show_results_in_table)
 
     def keyPressEvent(self, event):

@@ -20,7 +20,7 @@ class Dialog0103(QtWidgets.QMainWindow):
 
         for i in filter_objects_by_name(
                 self.ui.groupBox_outputs,
-                object_types=[QtWidgets.QLineEdit, QtWidgets.QCheckBox, QtWidgets.QLabel]):
+                object_types=[QtWidgets.QLineEdit, QtWidgets.QCheckBox]):
             try:
                 i.setReadOnly(True)
             except AttributeError:

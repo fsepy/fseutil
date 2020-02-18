@@ -14,6 +14,13 @@ class Dialog0405(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.setWindowTitle('Thermal Radiation Analysis Extreme')
 
+        from fseutil.gui.logic.common import filter_objects_by_name
+        for i in filter_objects_by_name(self.ui.groupBox_out, object_types=[QtWidgets.QLineEdit]):
+            try:
+                i.setReadOnly(True)
+            except AttributeError:
+                i.setEnabled(False)
+
         # set up radiation figure
         ba = QtCore.QByteArray.fromBase64(dialog_0404_br187_perpendicular_figure_1)
         pix_map = QtGui.QPixmap()

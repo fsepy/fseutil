@@ -30,6 +30,7 @@ This file documents the release history of `fseutil`.
 - [ ] 0111 implemented graphical output.
 - [x] Converted all independent modules into QMainWindow objects, i.e. to have a status bar.
 - [ ] Installer for MS Windows.
+- [x] All output files set to readonly.
 - [x] Shortcut for all module GUI windows press ESC to close.
 - [x] Finalised GUI interface for:
     - [x] 0111\.

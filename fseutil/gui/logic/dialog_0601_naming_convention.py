@@ -58,13 +58,13 @@ class Dialog0601(QtWidgets.QMainWindow):
             dd = dd.replace(' ', '_')
             ee = ee.replace(' ', '_')
 
-        self.ui.lineEdit_result.setText('-'.join([aa, bb, cc, dd, ee, ff, gg]))
+        self.ui.lineEdit_out_result.setText('-'.join([aa, bb, cc, dd, ee, ff, gg]))
 
         self.repaint()
 
     def copy_file_name(self):
         clipboard = QtGui.QGuiApplication.clipboard()
-        clipboard.setText(self.ui.lineEdit_result.text())
-        self.ui.lineEdit_result.selectAll()
+        clipboard.setText(self.ui.lineEdit_out_result.text())
+        self.ui.lineEdit_out_result.selectAll()
 
         self.ui.statusbar.showMessage('File name is copied.')

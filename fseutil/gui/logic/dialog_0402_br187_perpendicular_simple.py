@@ -16,6 +16,13 @@ class Dialog0402(QtWidgets.QMainWindow):
         self.change_mode_S_and_UA()
         self.setWindowTitle('BR 187 Thermal Radiation Calculation (Rectangle and Perpendicular)')
 
+        from fseutil.gui.logic.common import filter_objects_by_name
+        for i in filter_objects_by_name(self.ui.groupBox_out, object_types=[QtWidgets.QLineEdit]):
+            try:
+                i.setReadOnly(True)
+            except AttributeError:
+                i.setEnabled(False)
+
         # set up radiation figure
         ba = QtCore.QByteArray.fromBase64(figure_1)
         pix_map = QtGui.QPixmap()
@@ -54,7 +61,7 @@ class Dialog0402(QtWidgets.QMainWindow):
             self.ui.comboBox_S_or_UA.setToolTip('Separation distance from emitter to notional boundary.')
             self.ui.comboBox_S_or_UA.setStatusTip('Separation distance from emitter to notional boundary.')
             self.ui.label_out_S_or_UA.setText('UA')
-            self.ui.label_out_unit_S_or_UA.setText('%')
+            self.ui.label_out_S_or_UA_unit.setText('%')
             self.ui.label_out_S_or_UA.setToolTip('Maximum permissible unprotected area')
 
         elif self.ui.comboBox_S_or_UA.currentText() == 'UA':  # to calculate unprotected area percentage
@@ -62,7 +69,7 @@ class Dialog0402(QtWidgets.QMainWindow):
             self.ui.comboBox_S_or_UA.setToolTip('Maximum permissible unprotected area.')
             self.ui.comboBox_S_or_UA.setStatusTip('Maximum permissible unprotected area.')
             self.ui.label_out_S_or_UA.setText('½S')
-            self.ui.label_out_unit_S_or_UA.setText('m')
+            self.ui.label_out_S_or_UA_unit.setText('m')
             self.ui.label_out_S_or_UA.setToolTip('Separation distance from emitter to notional boundary')
         else:
             raise ValueError('Unknown value for input UA or S.')

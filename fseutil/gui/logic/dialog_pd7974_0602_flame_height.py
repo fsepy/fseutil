@@ -21,6 +21,13 @@ class Dialog0602(QtWidgets.QMainWindow):
         self.setFixedSize(self.width(), self.height())
         self.statusBar().setSizeGripEnabled(False)
 
+        from fseutil.gui.logic.common import filter_objects_by_name
+        for i in filter_objects_by_name(self.ui.groupBox_outputs, object_types=[QtWidgets.QLineEdit]):
+            try:
+                i.setReadOnly(True)
+            except AttributeError:
+                i.setEnabled(False)
+
         # set up figures
         ba = QtCore.QByteArray.fromBase64(dialog_0602_pd_7974_flame_height_figure_1)
         pix_map = QtGui.QPixmap()
@@ -146,8 +153,8 @@ class Dialog0602(QtWidgets.QMainWindow):
             self.repaint()
             raise ValueError
 
-        self.ui.lineEdit_Q_dot_star.setText(f'{Q_dot_star:.2f}')
-        self.ui.lineEdit_Z_f.setText(f'{flame_height:.2f}')
+        self.ui.lineEdit_out_Q_dot_star.setText(f'{Q_dot_star:.2f}')
+        self.ui.lineEdit_out_Z_f.setText(f'{flame_height:.2f}')
 
         self.statusBar().showMessage('Calculation complete.')
         self.repaint()
