@@ -1,6 +1,6 @@
 import datetime
 
-from PySide2 import QtWidgets, QtGui, QtCore, QtWebEngineWidgets
+from PySide2 import QtWidgets, QtGui, QtCore
 
 import fseutil
 from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
@@ -26,17 +26,17 @@ except ModuleNotFoundError:
     KEY = None
 
 
-class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
-    def acceptNavigationRequest(self, url,  _type, isMainFrame):
-        if _type == QtWebEngineWidgets.QWebEnginePage.NavigationTypeLinkClicked:
-            QtGui.QDesktopServices.openUrl(url)
-            return False
-        return True
-
-class HtmlView(QtWebEngineWidgets.QWebEngineView):
-    def __init__(self, *args, **kwargs):
-        QtWebEngineWidgets.QWebEngineView.__init__(self, *args, **kwargs)
-        self.setPage(WebEnginePage(self))
+# class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
+#     def acceptNavigationRequest(self, url,  _type, isMainFrame):
+#         if _type == QtWebEngineWidgets.QWebEnginePage.NavigationTypeLinkClicked:
+#             QtGui.QDesktopServices.openUrl(url)
+#             return False
+#         return True
+#
+# class HtmlView(QtWebEngineWidgets.QWebEngineView):
+#     def __init__(self, *args, **kwargs):
+#         QtWebEngineWidgets.QWebEngineView.__init__(self, *args, **kwargs)
+#         self.setPage(WebEnginePage(self))
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -69,7 +69,7 @@ class MainWindow(QtWidgets.QMainWindow):
         global KEY
 
         # check expiry date, whether the tool is over 180 days old
-        if datetime.datetime.now() > fseutil.__date_released__ + datetime.timedelta(days=fseutil.__expiry_period_days__):
+        if datetime.datetime.now() > (fseutil.__date_released__ + datetime.timedelta(days=fseutil.__expiry_period_days__)):
             app_ = self.activate_app(Dialog0001)
             if app_.pass_code != KEY and KEY is not None:
                 raise ValueError('Incorrect password.')
