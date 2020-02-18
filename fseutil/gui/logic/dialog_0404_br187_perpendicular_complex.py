@@ -56,15 +56,15 @@ class Dialog0404(QtWidgets.QMainWindow):
         """update ui to align with whether to calculate boundary distance or unprotected area %"""
 
         # change input and output labels and units
-        if self.ui.comboBox_S_or_UA.currentText() == '½S':  # to calculate separation to boundary
+        if self.ui.comboBox_S_or_UA.currentText() == '½S, emitter to boundary':  # to calculate separation to boundary
             self.ui.label_unit_S_or_UA.setText('m')
-            self.ui.label_out_S_or_UA.setText('UA')
+            self.ui.label_out_S_or_UA.setText('Allowed unprotected area')
             self.ui.label_out_S_or_UA_unit.setText('%')
             self.ui.label_out_S_or_UA.setToolTip('Maximum permissible unprotected area')
 
-        elif self.ui.comboBox_S_or_UA.currentText() == 'UA':  # to calculate unprotected area percentage
+        elif self.ui.comboBox_S_or_UA.currentText() == 'Allowed unprotected area':  # to calculate unprotected area percentage
             self.ui.label_unit_S_or_UA.setText('%')
-            self.ui.label_out_S_or_UA.setText('½S')
+            self.ui.label_out_S_or_UA.setText('½S, emitter to boundary')
             self.ui.label_out_S_or_UA_unit.setText('m')
             self.ui.label_out_S_or_UA.setToolTip('Separation distance from emitter to notional boundary')
         else:
@@ -104,7 +104,7 @@ class Dialog0404(QtWidgets.QMainWindow):
 
         q_target = self.maximum_acceptable_thermal_radiation_heat_flux
 
-        if self.ui.comboBox_S_or_UA.currentText() == '½S':  # to calculate maximum unprotected area
+        if self.ui.comboBox_S_or_UA.currentText() == '½S, emitter to boundary':  # to calculate maximum unprotected area
             S = float(self.ui.lineEdit_S_or_UA.text()) * 2
             if S <= 2.:
                 self.statusBar().showMessage(
@@ -138,7 +138,7 @@ class Dialog0404(QtWidgets.QMainWindow):
             self.statusBar().showMessage('Calculation complete.')
 
         # to calculate minimum separation distance to boundary
-        elif self.ui.comboBox_S_or_UA.currentText() == 'UA':
+        elif self.ui.comboBox_S_or_UA.currentText() == 'Allowed unprotected area':
             UA = float(self.ui.lineEdit_S_or_UA.text()) / 100.
             if not 0 < UA <= 1:
                 self.statusBar().showMessage(

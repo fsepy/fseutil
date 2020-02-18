@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>826</width>
-    <height>664</height>
+    <height>651</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,51 +20,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_calculate">
-    <property name="geometry">
-     <rect>
-      <x>715</x>
-      <y>610</y>
-      <width>96</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Calculate</string>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>585</y>
-      <width>826</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_test">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>610</y>
-      <width>96</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>To generate example input parameters.</string>
-    </property>
-    <property name="statusTip">
-     <string>To generate example input parameters.</string>
-    </property>
-    <property name="text">
-     <string>Example</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -87,9 +42,9 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>310</y>
-      <width>185</width>
+      <x>415</x>
+      <y>295</y>
+      <width>396</width>
       <height>131</height>
      </rect>
     </property>
@@ -99,7 +54,7 @@
     <widget class="QLabel" name="label_unit_S_or_UA">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>315</x>
        <y>100</y>
        <width>40</width>
        <height>21</height>
@@ -124,7 +79,7 @@
     <widget class="QLabel" name="label_34">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>315</x>
        <y>75</y>
        <width>40</width>
        <height>21</height>
@@ -149,7 +104,7 @@
     <widget class="QLabel" name="label_33">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>315</x>
        <y>50</y>
        <width>40</width>
        <height>21</height>
@@ -174,7 +129,7 @@
     <widget class="QLabel" name="label_32">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>315</x>
        <y>25</y>
        <width>40</width>
        <height>21</height>
@@ -199,9 +154,9 @@
     <widget class="QLineEdit" name="lineEdit_W">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>25</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -219,7 +174,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -242,9 +197,9 @@
     <widget class="QLineEdit" name="lineEdit_H">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>50</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -262,7 +217,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -282,9 +237,9 @@
     <widget class="QLineEdit" name="lineEdit_S_or_UA">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>100</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -302,7 +257,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -322,9 +277,9 @@
     <widget class="QLineEdit" name="lineEdit_Q">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>75</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -342,7 +297,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -353,18 +308,18 @@
       </size>
      </property>
      <property name="toolTip">
-      <string>Positive float.</string>
+      <string>Positive float. {'Reduced fire load': 84, 'Normal fire load': 168}.</string>
      </property>
      <property name="statusTip">
-      <string>Positive float.</string>
+      <string>Positive float. {'Reduced fire load': 84, 'Normal fire load': 168}.</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_S_or_UA">
      <property name="geometry">
       <rect>
-       <x>5</x>
+       <x>10</x>
        <y>100</y>
-       <width>51</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -382,8 +337,8 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>80</width>
-       <height>30</height>
+       <width>9999</width>
+       <height>9999</height>
       </size>
      </property>
      <property name="toolTip">
@@ -394,12 +349,12 @@
      </property>
      <item>
       <property name="text">
-       <string>½S</string>
+       <string>½S, emitter to boundary</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>UA</string>
+       <string>Allowed unprotected area</string>
       </property>
      </item>
     </widget>
@@ -408,7 +363,7 @@
       <rect>
        <x>10</x>
        <y>75</y>
-       <width>43</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -426,8 +381,8 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>50</width>
-       <height>30</height>
+       <width>9999</width>
+       <height>9999</height>
       </size>
      </property>
      <property name="toolTip">
@@ -437,7 +392,7 @@
       <string>Emitter thermal heat flux.</string>
      </property>
      <property name="text">
-      <string>Q</string>
+      <string>Q, emitter heat flux</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_26">
@@ -445,7 +400,7 @@
       <rect>
        <x>10</x>
        <y>50</y>
-       <width>43</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -463,8 +418,8 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>50</width>
-       <height>30</height>
+       <width>9999</width>
+       <height>9999</height>
       </size>
      </property>
      <property name="toolTip">
@@ -474,7 +429,7 @@
       <string>Height of emitter.</string>
      </property>
      <property name="text">
-      <string>H</string>
+      <string>H, emitter height</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_30">
@@ -482,7 +437,7 @@
       <rect>
        <x>10</x>
        <y>25</y>
-       <width>43</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -494,8 +449,8 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>50</width>
-       <height>30</height>
+       <width>9999</width>
+       <height>9999</height>
       </size>
      </property>
      <property name="toolTip">
@@ -505,16 +460,16 @@
       <string>Width of emitter.</string>
      </property>
      <property name="text">
-      <string>W</string>
+      <string>W, emitter width</string>
      </property>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_out">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>450</y>
-      <width>185</width>
+      <x>415</x>
+      <y>435</y>
+      <width>396</width>
       <height>106</height>
      </rect>
     </property>
@@ -524,9 +479,9 @@
     <widget class="QLineEdit" name="lineEdit_out_Phi">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>25</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -544,7 +499,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -555,9 +510,9 @@
     <widget class="QLineEdit" name="lineEdit_out_q">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>50</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -575,7 +530,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -583,9 +538,9 @@
     <widget class="QLineEdit" name="lineEdit_out_S_or_UA">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>210</x>
        <y>75</y>
-       <width>60</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -603,7 +558,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>60</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -613,7 +568,7 @@
       <rect>
        <x>10</x>
        <y>25</y>
-       <width>40</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -631,7 +586,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>40</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -642,7 +597,7 @@
       <string>Solved view factor.</string>
      </property>
      <property name="text">
-      <string>Φ</string>
+      <string>Φ, view factor</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_out_q">
@@ -650,7 +605,7 @@
       <rect>
        <x>10</x>
        <y>50</y>
-       <width>40</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -668,7 +623,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>40</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -679,7 +634,7 @@
       <string>Solved heat flux at receiver surface when 100 % unprotected.</string>
      </property>
      <property name="text">
-      <string>q</string>
+      <string>q, receiver heat flux</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_out_S_or_UA">
@@ -687,7 +642,7 @@
       <rect>
        <x>10</x>
        <y>75</y>
-       <width>40</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -705,7 +660,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>40</width>
+       <width>16777215</width>
        <height>16777215</height>
       </size>
      </property>
@@ -716,13 +671,13 @@
       <string>Solved maximum permissible unprotected area.</string>
      </property>
      <property name="text">
-      <string>UA</string>
+      <string>Max. unprotected area</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_out_q_unit">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>315</x>
        <y>50</y>
        <width>40</width>
        <height>21</height>
@@ -735,7 +690,7 @@
     <widget class="QLabel" name="label_out_S_or_UA_unit">
      <property name="geometry">
       <rect>
-       <x>135</x>
+       <x>315</x>
        <y>75</y>
        <width>40</width>
        <height>21</height>
@@ -746,12 +701,44 @@
      </property>
     </widget>
    </widget>
-   <zorder>label</zorder>
-   <zorder>pushButton_calculate</zorder>
-   <zorder>line</zorder>
-   <zorder>pushButton_test</zorder>
-   <zorder>groupBox_in</zorder>
-   <zorder>groupBox_out</zorder>
+   <widget class="QPushButton" name="pushButton_calculate">
+    <property name="geometry">
+     <rect>
+      <x>715</x>
+      <y>555</y>
+      <width>96</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Calculate or press Enter.</string>
+    </property>
+    <property name="statusTip">
+     <string>Calculate or press Enter.</string>
+    </property>
+    <property name="text">
+     <string>Calculate</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_test">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>555</y>
+      <width>96</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Generate example input parameters.</string>
+    </property>
+    <property name="statusTip">
+     <string>Generate example input parameters.</string>
+    </property>
+    <property name="text">
+     <string>Example</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -774,8 +761,6 @@
   <tabstop>lineEdit_out_Phi</tabstop>
   <tabstop>lineEdit_out_q</tabstop>
   <tabstop>lineEdit_out_S_or_UA</tabstop>
-  <tabstop>pushButton_calculate</tabstop>
-  <tabstop>pushButton_test</tabstop>
  </tabstops>
  <resources/>
  <connections/>
