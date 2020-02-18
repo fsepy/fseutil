@@ -57,7 +57,6 @@ if __name__ == "__main__":
     )
     build_gui(
         options=[
-            "--noconsole",  # disable console display
             "--onefile",  # output one .exe file
             "--noconfirm",  # replace output directory without asking for confirmation
         ]
