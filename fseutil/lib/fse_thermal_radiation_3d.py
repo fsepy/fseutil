@@ -2,7 +2,9 @@ import itertools
 from typing import Union
 
 import numpy as np
-from matplotlib.path import Path
+# from matplotlib.path import Path
+
+from fseutil.etc.geo import points_in_ploy
 
 
 def polygon_area_2d(x, y):
@@ -80,10 +82,8 @@ def scatter_in_polygon_2d(polygon: np.ndarray, n_points: int) -> np.ndarray:
     # xx, yy = xx.flatten().reshape(xx.size, 1), yy.flatten().reshape(yy.size, 1)
 
     # get the points co-ordinates within the polygon
-    path = Path(polygon)
     xy = np.concatenate([xx, yy], axis=1)
-    xy_filter_inside_the_polygon = path.contains_points(xy)
-    xy = xy[xy_filter_inside_the_polygon]
+    xy = xy[points_in_ploy(xy, polygon)]
 
     return xy
 
@@ -372,7 +372,7 @@ def _test_single_receiver():
     # temperature
     rp_temperature = 293.15
 
-    single_receiver(
+    res = single_receiver(
         ep_vertices=ep,
         ep_norm=ep_norm,
         ep_temperature=ep_temperature,
@@ -381,6 +381,8 @@ def _test_single_receiver():
         rp_norm=rp_norm,
         rp_temperature=rp_temperature
     )
+
+    print(res)
 
 
 def single_receiver(

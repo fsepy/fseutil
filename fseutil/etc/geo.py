@@ -133,22 +133,27 @@ def _test_find_line_segment_intersection_2():
 
 def points_in_ploy(points_xy: list, poly_xy: list):
 
-    poly_xy.append(poly_xy[0])
+    poly_xy_list = list(poly_xy)
+    poly_xy_list.append(poly_xy_list[0])
 
-    results = list()
+    results = np.full((len(points_xy),), False, dtype=np.bool)
 
-    for point in points_xy:
+    for i, point in enumerate(points_xy):
         p1 = (-1e100, point[1])
         p2 = (1e100, point[1])
 
         count_intersection = 0
-        for i in range(len(poly_xy)-1):
-            p3 = poly_xy[i]
-            p4 = poly_xy[i+1]
+        for j in range(len(poly_xy_list) - 1):
+            p3 = poly_xy_list[j]
+            p4 = poly_xy_list[j + 1]
 
-            if find_line_segment_intersection_2(p1,p2,p3,p4):
+            if find_line_segment_intersection_2(p1, p2, p3, p4):
                 count_intersection += 1
-        print(count_intersection)
+
+        if count_intersection == 2:
+            results[i] = True
+
+    return results
 
 
 def _test_points_in_ploy():
@@ -168,7 +173,9 @@ def _test_points_in_ploy():
         (1.1, 3.9)
     ]
 
-    points_in_ploy(points_xy, poly_xy)
+    res = points_in_ploy(points_xy, poly_xy)
+
+    print(res)
 
 
 def ray_tracing_numpy(x, y, poly):
