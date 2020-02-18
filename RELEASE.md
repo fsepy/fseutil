@@ -25,31 +25,23 @@ This file documents the release history of `fseutil`.
 
 ### XX/XX/2020 VERSION: 0.0.1.dev20200214
 
-- [x] 0111 provided an option to switch to plume temperature correlations (i.e. near-field).
+- [x] 0101 ADB data sheet.
+- [x] 0102 BS 9999 data sheet.
+- [x] 0111 PD 7974 heat detector activation time.
+- [x] 0401 BR 187 parallel simple.
+- [x] 0402 BR 187 perpendicular simple.
+- [x] 0403 BR 187 parallel complex.
+- [x] 0404 BR 187 perpendicular complex.
+- [ ] 0405 general thermal radiation analysis.
+    - [ ] Calculation checked.
+- [ ] 0601 OFR naming.
+- [ ] 0602 PD 7974 flame height.
+    - [ ] Calculation checked.
 - [x] 0111 implemented display numerical results in table.
 - [ ] 0111 implemented graphical output.
 - [x] Converted all independent modules into QMainWindow objects, i.e. to have a status bar.
 - [ ] Installer for MS Windows.
 - [x] All output files set to readonly.
 - [x] Shortcut for all module GUI windows press ESC to close.
-- [x] Finalised GUI interface for:
-    - [x] 0111\.
-    - [x] 0602\.
-- [ ] 0401 0402 0403 0404 implemented tableview for batch process calculation.
 - [x] Implemented error handling.
-    - [x] 0111\.
-    - [x] 0401\.
-    - [x] 0402\.
-    - [x] 0403\.
-    - [x] 0404\.
-    - [x] 0602\.
-- [x] Sanity check GUI tip text.
-    - [x] 0111\.
-    - [x] 0401\.
-    - [x] 0402\.
-    - [x] 0403\.
-    - [x] 0404\.
-    - [x] 0405\.
-    - [x] 0601\.
-    - [x] 0602\.
-- [x] 0103 added.
+- [x] Implemented check GUI tip texts.

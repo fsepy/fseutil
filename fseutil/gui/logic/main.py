@@ -17,7 +17,7 @@ from fseutil.gui.logic.dialog_0403_br187_parallel_complex import Dialog0403 as D
 from fseutil.gui.logic.dialog_0404_br187_perpendicular_complex import Dialog0404 as Dialog0404
 from fseutil.gui.logic.dialog_0405_thermal_radiation_extreme import Dialog0405 as Dialog0405
 from fseutil.gui.logic.dialog_0601_naming_convention import Dialog0601 as Dialog0601
-from fseutil.gui.logic.dialog_pd7974_0602_flame_height import Dialog0602 as Dialog0602
+from fseutil.gui.logic.dialog_0602_pd7974_flame_height import Dialog0602 as Dialog0602
 
 try:
     from fseutil.__key__ import key
