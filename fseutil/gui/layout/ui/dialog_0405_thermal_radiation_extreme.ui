@@ -27,7 +27,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBox_in">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -422,7 +422,7 @@
      <string>Calculate</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_3">
+   <widget class="QGroupBox" name="groupBox_optionals">
     <property name="geometry">
      <rect>
       <x>585</x>
@@ -585,7 +585,7 @@
      <string>Example</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
+   <widget class="QGroupBox" name="groupBox_out">
     <property name="geometry">
      <rect>
       <x>585</x>
@@ -653,7 +653,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QLabel" name="label_11">
+    <widget class="QLabel" name="label_out_Phi">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -687,7 +687,7 @@
       <string>Φ</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_12">
+    <widget class="QLabel" name="label_out_q">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -721,7 +721,7 @@
       <string>q</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_25">
+    <widget class="QLabel" name="label_out_q_unit">
      <property name="geometry">
       <rect>
        <x>135</x>
@@ -734,7 +734,7 @@
       <string>kW/m²</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_13">
+    <widget class="QLabel" name="label_out_T">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -796,7 +796,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QLabel" name="label_44">
+    <widget class="QLabel" name="label_out_T_unit">
      <property name="geometry">
       <rect>
        <x>135</x>

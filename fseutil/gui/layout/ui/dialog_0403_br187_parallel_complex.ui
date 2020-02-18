@@ -75,7 +75,7 @@
      <pixmap>../images/0401_parallel_simple_794_560.png</pixmap>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox_in_2">
+   <widget class="QGroupBox" name="groupBox_out">
     <property name="geometry">
      <rect>
       <x>515</x>
@@ -189,7 +189,7 @@
       <string>Positive float.</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_13">
+    <widget class="QLabel" name="label_out_Phi">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -226,7 +226,7 @@
       <string>Φ</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_14">
+    <widget class="QLabel" name="label_out_q">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -300,7 +300,7 @@
       <string>UA</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_27">
+    <widget class="QLabel" name="label_out_q_unit">
      <property name="geometry">
       <rect>
        <x>135</x>
@@ -313,7 +313,7 @@
       <string>kW/m²</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_out_unit_S_or_UA">
+    <widget class="QLabel" name="label_out_S_or_UA_unit">
      <property name="geometry">
       <rect>
        <x>135</x>
@@ -945,7 +945,7 @@
    <zorder>pushButton_calculate</zorder>
    <zorder>line</zorder>
    <zorder>pushButton_test</zorder>
-   <zorder>groupBox_in_2</zorder>
+   <zorder>groupBox_out</zorder>
    <zorder>groupBox_in</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

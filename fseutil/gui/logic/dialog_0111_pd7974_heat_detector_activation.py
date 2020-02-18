@@ -7,6 +7,7 @@ from fseutil.gui.layout.dialog_0111_heat_detector_activation import Ui_MainWindo
 from fseutil.lib.fse_activation_hd import heat_detector_temperature_pd7974
 from fseutil.libstd.pd_7974_1_2019 import eq_22_t_squared_fire_growth
 from fseutil.gui.logic.dialog_0002_tableview import TableWindow
+from fseutil.gui.logic.common import filter_objects_by_name
 
 
 class Dialog0111(QtWidgets.QMainWindow):

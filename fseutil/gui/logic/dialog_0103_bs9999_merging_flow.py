@@ -2,27 +2,10 @@ from PySide2 import QtWidgets, QtGui, QtCore
 
 from fseutil.etc.images_base64 import dialog_0103_bs9999_merging_flow_1 as figure_1
 from fseutil.gui.layout.dialog_0103_merging_flow import Ui_MainWindow
+from fseutil.gui.logic.common import filter_objects_by_name
 from fseutil.libstd.bs_9999_2017 import (
     clause_15_6_6_e_merging_flow_1, clause_15_6_6_e_merging_flow_2, clause_15_6_6_e_merging_flow_3
 )
-
-
-def filter_objects_by_name(
-        object_parent_widget: QtWidgets.QWidget,
-        object_types: list,
-        names: list = None):
-
-    list_objects = list()
-    for i in object_types:
-        for j in object_parent_widget.findChildren(i):
-            if names:
-                for k in names:
-                    if k in j.objectName():
-                        list_objects.append(j)
-            else:
-                list_objects.append(j)
-
-    return list_objects
 
 
 class Dialog0103(QtWidgets.QMainWindow):

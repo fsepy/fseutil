@@ -69,7 +69,7 @@
      <pixmap>../images/0111_1_heat_detector_794_560.png</pixmap>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBox_in">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -921,7 +921,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_gas_temperature">
+   <widget class="QGroupBox" name="groupBox_gas_correlation">
     <property name="geometry">
      <rect>
       <x>610</x>
@@ -931,7 +931,7 @@
      </rect>
     </property>
     <property name="title">
-     <string>Gas Temperature</string>
+     <string>Gas Correlation</string>
     </property>
     <widget class="QRadioButton" name="radioButton_ceiling_jet">
      <property name="geometry">
@@ -972,7 +972,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
+   <widget class="QGroupBox" name="groupBox_out">
     <property name="geometry">
      <rect>
       <x>610</x>
@@ -1086,9 +1086,9 @@
    <zorder>line</zorder>
    <zorder>pushButton_calculate</zorder>
    <zorder>pushButton_test</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>groupBox_gas_temperature</zorder>
-   <zorder>groupBox_2</zorder>
+   <zorder>groupBox_in</zorder>
+   <zorder>groupBox_gas_correlation</zorder>
+   <zorder>groupBox_out</zorder>
    <zorder>pushButton_show_results_in_table</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">

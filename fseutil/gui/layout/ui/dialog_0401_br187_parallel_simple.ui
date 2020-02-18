@@ -608,7 +608,7 @@
       </size>
      </property>
     </widget>
-    <widget class="QLabel" name="label_11">
+    <widget class="QLabel" name="label_out_Phi">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -645,7 +645,7 @@
       <string>Φ</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_12">
+    <widget class="QLabel" name="label_out_q">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -719,7 +719,7 @@
       <string>UA</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_25">
+    <widget class="QLabel" name="label_out_q_unit">
      <property name="geometry">
       <rect>
        <x>135</x>
@@ -732,7 +732,7 @@
       <string>kW/m²</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_out_unit_S_or_UA">
+    <widget class="QLabel" name="label_out_S_or_UA_unit">
      <property name="geometry">
       <rect>
        <x>135</x>

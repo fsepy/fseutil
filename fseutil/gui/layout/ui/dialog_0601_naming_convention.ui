@@ -33,7 +33,7 @@
       <x>15</x>
       <y>15</y>
       <width>437</width>
-      <height>230</height>
+      <height>280</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -420,7 +420,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_result">
+      <widget class="QLineEdit" name="lineEdit_out_result">
        <property name="toolTip">
         <string>Composed file name.</string>
        </property>
