@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>621</height>
+    <height>499</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,66 +23,6 @@
    <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox_4">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>225</y>
-      <width>181</width>
-      <height>106</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>B3 Internal fire spread (structure)</string>
-    </property>
-    <widget class="QPushButton" name="b4_01_br187_parallel_7">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>15</x>
-       <y>20</y>
-       <width>70</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Not implemented.</string>
-     </property>
-     <property name="statusTip">
-      <string>Not implemented.</string>
-     </property>
-     <property name="text">
-      <string>Compart.
-Size</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="b4_01_br187_parallel_9">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>95</x>
-       <y>20</y>
-       <width>70</width>
-       <height>70</height>
-      </rect>
-     </property>
-     <property name="toolTip">
-      <string>Not implemented.</string>
-     </property>
-     <property name="statusTip">
-      <string>Not implemented.</string>
-     </property>
-     <property name="text">
-      <string>Heat
-Transfer
-1D</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
@@ -210,7 +150,7 @@ No. 1</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>455</y>
+      <y>340</y>
       <width>311</width>
       <height>106</height>
      </rect>
@@ -306,7 +246,7 @@ Height</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>340</y>
+      <y>225</y>
       <width>381</width>
       <height>106</height>
      </rect>
@@ -505,7 +445,7 @@ All rights reserved.</string>
     <property name="geometry">
      <rect>
       <x>15</x>
-      <y>565</y>
+      <y>0</y>
       <width>157</width>
       <height>14</height>
      </rect>
@@ -597,7 +537,6 @@ All rights reserved.</string>
   <tabstop>pushButton_0103_merging_flow</tabstop>
   <tabstop>pushButton_0111_heat_detector_activation</tabstop>
   <tabstop>b4_01_br187_parallel_10</tabstop>
-  <tabstop>b4_01_br187_parallel_7</tabstop>
   <tabstop>pushButton_0401_br187_parallel_simple</tabstop>
   <tabstop>pushButton_0402_br187_perpendicular_simple</tabstop>
   <tabstop>pushButton_0403_br187_parallel_complex</tabstop>
