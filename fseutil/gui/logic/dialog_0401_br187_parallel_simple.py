@@ -132,7 +132,7 @@ class Dialog0401(QtWidgets.QMainWindow):
                 raise ValueError
 
             try:
-                phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0., h_m=0., S_m=S)
+                phi_solved = phi_parallel_any_br187(W_m=W, H_m=H, w_m=0.5*W, h_m=0.5*H, S_m=S)
             except ValueError:
                 self.statusBar().showMessage(
                     'Calculation incomplete. '
@@ -170,7 +170,7 @@ class Dialog0401(QtWidgets.QMainWindow):
             try:
                 S_solved = linear_solver(
                     func=phi_parallel_any_br187,
-                    dict_params=dict(W_m=W, H_m=H, w_m=0., h_m=0., S_m=0),
+                    dict_params=dict(W_m=W, H_m=H, w_m=0.5*W, h_m=0.5*H, S_m=0),
                     x_name='S_m',
                     y_target=phi_target,
                     x_upper=1000,

@@ -10,13 +10,15 @@ from fseutil.gui.logic.main import MainWindow
 QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
 
 
-def main(app_window=None):
-    app = QtWidgets.QApplication(sys.argv)
-    if app_window is None:
-        window = MainWindow()
-    else:
-        window = app_window()
+def main():
+
+    app = QtWidgets.QApplication.instance()
+    if app is None:
+        app = QtWidgets.QApplication(sys.argv)
+
+    window = MainWindow()
     window.show()
+
     sys.exit(app.exec_())
 
 

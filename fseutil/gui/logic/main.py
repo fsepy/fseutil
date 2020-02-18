@@ -26,26 +26,12 @@ except ModuleNotFoundError:
     KEY = None
 
 
-# class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
-#     def acceptNavigationRequest(self, url,  _type, isMainFrame):
-#         if _type == QtWebEngineWidgets.QWebEnginePage.NavigationTypeLinkClicked:
-#             QtGui.QDesktopServices.openUrl(url)
-#             return False
-#         return True
-#
-# class HtmlView(QtWebEngineWidgets.QWebEngineView):
-#     def __init__(self, *args, **kwargs):
-#         QtWebEngineWidgets.QWebEngineView.__init__(self, *args, **kwargs)
-#         self.setPage(WebEnginePage(self))
-
-
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         # ui setup
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.init_check_expiry_date()
 
         # window properties
         self.setWindowTitle('OFR Fire Safety Engineering Utility Tools')
@@ -56,7 +42,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.init_buttons()
 
         # default values
-        self.ui.label_big_name.setText('FSEUTIL')
+        self.ui.label_big_name.setText('FSE Toolbox')
         self.ui.label_version.setText('Version ' + fseutil.__version__)
         self.ui.label_version.setStyleSheet('color: grey;')
         self.ui.label_version.setStatusTip('Version ' + fseutil.__version__)

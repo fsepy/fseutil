@@ -38,7 +38,7 @@ import datetime
 
 __version__ = "0.0.1.dev20200214"
 __date_released__ = datetime.datetime(2020, 2, 14)
-__expiry_period_days__ = 7
+__expiry_period_days__ = -1
 
 if __name__ == "__main__":
     import re

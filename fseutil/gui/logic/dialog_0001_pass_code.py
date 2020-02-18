@@ -1,5 +1,6 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 
+import fseutil
 from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 
 EXPIRY_DATE_PERIOD = 90
@@ -13,7 +14,7 @@ class Dialog0001(QtWidgets.QDialog):
 
         # ui elements instantiation
         self.label = QtWidgets.QLabel(
-            'Software is too old to run.\nEither to get the latest version or enter passcode.')
+            f'Software is too old to run.\nEither to get the latest version or enter passcode.\n{fseutil.__version__}.')
         self.edit = QtWidgets.QLineEdit()
         self.button = QtWidgets.QPushButton('Submit')
 
