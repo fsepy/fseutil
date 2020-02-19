@@ -12,7 +12,7 @@ from fseutil.gui.logic.dialog_0001_pass_code import Dialog0001
 from fseutil.gui.__main__ import main
 from PySide2 import QtWidgets
 try:
-    from fseutil.__key__ import key
+    from .__key__ import key
     KEY = key()
 except ModuleNotFoundError:
     KEY = None

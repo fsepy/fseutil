@@ -6,7 +6,6 @@ import fseutil
 from fseutil.etc.images_base64 import OFR_LOGO_1_PNG
 from fseutil.etc.images_base64 import OFR_LOGO_2_PNG
 from fseutil.gui.layout.main import Ui_MainWindow
-from fseutil.gui.logic.dialog_0001_pass_code import Dialog0001 as Dialog0001
 from fseutil.gui.logic.dialog_0101_adb_datasheet_1 import Dialog as Dialog0101
 from fseutil.gui.logic.dialog_0102_bs9999_datasheet_1 import Dialog as Dialog0102
 from fseutil.gui.logic.dialog_0103_bs9999_merging_flow import Dialog0103 as Dialog0103
@@ -50,17 +49,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.init_logos()  # logo
         self.ui.dialog_error = QtWidgets.QErrorMessage(self)
         self.ui.dialog_error.setWindowTitle('Message')
-
-    def init_check_expiry_date(self):
-        global KEY
-
-        # check expiry date, whether the tool is over 180 days old
-        if datetime.datetime.now() > (fseutil.__date_released__ + datetime.timedelta(days=fseutil.__expiry_period_days__)):
-            app_ = self.activate_app(Dialog0001)
-            if app_.pass_code != KEY and KEY is not None:
-                raise ValueError('Incorrect password.')
-            else:
-                app_.close()
 
     def init_logos(self):
         ba = QtCore.QByteArray.fromBase64(OFR_LOGO_1_PNG)
