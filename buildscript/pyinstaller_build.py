@@ -12,7 +12,7 @@ except ImportError:
     key = None
 
 
-def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'gui.py', options: list = None):
+def build_gui(app_name: str = 'FSEUTIL', fp_target_py: str = 'pyinstaller_build_entry.py', options: list = None):
     print('\n' * 2)
 
     os.chdir(os.path.dirname(os.path.realpath(__file__)))

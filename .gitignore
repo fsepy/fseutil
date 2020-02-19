@@ -45,7 +45,7 @@ MANIFEST
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+#  before PyInstaller buildscript_ the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -136,10 +136,10 @@ dmypy.json
 /.coverage
 
 # Pyinstaller
-pyinstaller_builds/build
-pyinstaller_builds/dist
-/fseutil/build
-/fseutil/dist
+buildscript/build
+buildscript/dist
+fseutil/build
+fseutil/dist
 
 # Temporary UI files
 fseutil/gui/layout/*.py
