@@ -2,7 +2,6 @@
 
 Fire Safety Engineering Tools.
 
-
 ## Getting Started
 
 Documentation is under construction.
@@ -15,25 +14,26 @@ Documentation is under construction.
 
 1. to use `pip` install from PyPI:
 
-    [![Downloads](https://pepy.tech/badge/sfeprapy)](https://pepy.tech/project/sfeprapy)
-
     ```sh
-    pip install --upgrade sfeprapy
+    pip install --upgrade fseutil
     ```
 
 2. to use `pip` install from GitHub (requires [git](https://git-scm.com/downloads)):  
 
-    *Note installing `SfePrapy` via this route will include the lastest commits/changes to the library.*  
+    *Note installing `fseutil` via this route will include the latest commits/changes to the library.*  
 
     ```sh
-    pip install --upgrade "git+https://github.com/fsepy/SfePrapy.git@master"
+    pip install --upgrade "git+https://github.com/fsepy/fseutil.git@dev"
     ```
 
 
 ### Command line interface
 
-`sfeprapy` command line interface (CLI) uses the current working directory to obtain and/or save files.
+Once `fseutil` is installed, CLI help can be summoned:
 
+```shell
+(base) C:\Users\IanFu>fseutil -h
+```
 
 ## Authors
 
