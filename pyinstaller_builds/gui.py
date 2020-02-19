@@ -19,6 +19,7 @@ except ModuleNotFoundError:
 
 if __name__ == "__main__":
 
+    # splash screen
     print(os.path.realpath(__file__))
     print('='*80)
     print('FSEUTIL')
@@ -32,18 +33,19 @@ if __name__ == "__main__":
     print('(THIS WINDOW IS ONLY VISIBLE IN DEV MODE WHEN VERSION CONTAINS DEV KEYWORD.)')
     print('='*80)
 
+    # check expiry date and check pass code
     if datetime.datetime.now() > (fseutil.__date_released__ + datetime.timedelta(days=fseutil.__expiry_period_days__)):
         app = QtWidgets.QApplication(sys.argv)
-        app_ = Dialog0001()
-        app_.show()
-        app_.exec_()
-
-        if int(app_.pass_code) != KEY and KEY is not None:
-            time.sleep(2)
-            raise ValueError('Incorrect password.')
-        else:
+        if KEY is not None:
+            app_ = Dialog0001()
+            app_.show()
+            app_.exec_()
+            if int(app_.pass_code) != KEY:
+                time.sleep(2)
+                raise ValueError('Incorrect password.')
             app_.close()
             app_.destroy()
             del app_
 
+    # main program starts
     main()
