@@ -1,15 +1,10 @@
 """fseutil CLI Help.
 Usage:
-    fseutil gui
-
-Examples:
-    fseutil gui
-
-Options:
+    fseutil
 
 Commands:
-    fseutil gui
-        Graphical user interface version of `fseutil`.
+    fseutil
+        `fseutil` graphical user interface.
 """
 
 
@@ -42,14 +37,5 @@ def gui():
 
 def main():
     arguments = docopt(__doc__)
-
-    if arguments["gui"]:
-            try:
-                gui()
-            except Exception as e:
-                # Just print(e) is cleaner and more likely what you want,
-                # but if you insist on printing message specifically whenever possible...
-                if hasattr(e, "message"):
-                    print(e.message)
-                else:
-                    print(e)
+    if len(arguments) == 0:
+        gui()

@@ -6,7 +6,7 @@ def clause_15_6_6_e_merging_flow_1(
         D: float,
         S_up: float,
         W_SE: float,
-):
+) -> tuple:
     """Calculates merging flow at final exit level in accordance with Figure 6 (1 of 3) in BD 9999:2017, page 68.
     Merging flow from stair with storey exit at final exit level.
     SI UNITS unless specified.
@@ -25,9 +25,9 @@ def clause_15_6_6_e_merging_flow_1(
     X *= 1000.  # [m] -> [mm]
 
     # calculate exit capacity
-    first_equation_check = False
+    condition_check = False
     if N > 60 and D < 2:
-        first_equation_check = True
+        condition_check = True
         W_FE = S_up + W_SE
     else:
         W_FE = N * X + 0.75 * S_up
@@ -38,7 +38,7 @@ def clause_15_6_6_e_merging_flow_1(
     # convert unit
     W_FE /= 1000.  # [mm] -> [m]
 
-    return W_FE, first_equation_check
+    return W_FE, condition_check
 
 
 def clause_15_6_6_e_merging_flow_2(
@@ -47,7 +47,7 @@ def clause_15_6_6_e_merging_flow_2(
         D: float,
         S_up: float,
         S_dn: float,
-):
+) -> tuple:
     """Calculates merging flow at final exit level in accordance with Figure 6 (2 of 3) in BD 9999:2017, page 68.
     Merging flow from stair with storey exit at final exit level.
     SI UNITS unless specified.
@@ -66,9 +66,9 @@ def clause_15_6_6_e_merging_flow_2(
     X *= 1000.  # [m] -> [mm]
 
     # calculate exit capacity
-    first_equation_check = False
+    condition_check = False
     if B > 60 and D < 2:
-        first_equation_check = True
+        condition_check = True
         W_FE = S_up + S_dn
     else:
         W_FE = B * X + 0.75 * S_up
@@ -79,7 +79,7 @@ def clause_15_6_6_e_merging_flow_2(
     # convert unit
     W_FE /= 1000.  # [mm] -> [m]
 
-    return W_FE, first_equation_check
+    return W_FE, condition_check
 
 
 def clause_15_6_6_e_merging_flow_3(
@@ -90,7 +90,7 @@ def clause_15_6_6_e_merging_flow_3(
         S_dn: float,
         N: float,
         W_SE: float,
-):
+) -> tuple:
     """Calculates merging flow at final exit level in accordance with Figure 6 (3 of 3) in BD 9999:2017, page 68.
     Merging flow from stair with storey exit at final exit level.
     SI UNITS unless specified.
@@ -112,9 +112,9 @@ def clause_15_6_6_e_merging_flow_3(
     W_SE *= 1000.  # [m] -> [mm]
 
     # calculate exit capacity
-    first_equation_check = False
+    condition_check = False
     if (B + N) > 60 and D < 2:
-        first_equation_check = True
+        condition_check = True
         W_FE = S_up + S_dn + W_SE
     else:
         W_FE = B * X + N * X + 0.75 * S_up
@@ -125,7 +125,7 @@ def clause_15_6_6_e_merging_flow_3(
     # convert unit
     W_FE /= 1000.  # [mm] -> [m]
 
-    return W_FE, first_equation_check
+    return W_FE, condition_check
 
 
 def _test_clause_15_6_6_e_merging_flow_3():
