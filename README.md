@@ -1,5 +1,7 @@
 # fseutil
 
+THIS PROJECT IS MOVED TO https://github.com/fsepy/fsetools/.
+
 Fire Safety Engineering Tools.
 
 ## Getting Started
